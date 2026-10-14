@@ -8,8 +8,8 @@
 #     -- bash -c 'lake env comparator config.json'
 #
 # Prerequisites: `lake build` at the repository root (the candidate's .lake is
-# read-only inside the sandbox), `lake build comparator lean4export` there, a
-# landrun binary, and `python3 comparator/prepare_challenge.py <trusted-rev>`.
+# read-only inside the sandbox), `lake build comparator lean4export` there,
+# and a landrun binary. The trusted statement is comparator/Challenge.lean.
 #
 # Usage:  bash comparator/run.sh [evidence-dir]
 # Environment:
@@ -27,13 +27,12 @@ LANDRUN="${COMPARATOR_LANDRUN:-$(command -v landrun || true)}"
 LEAN4EXPORT="${LEAN4EXPORT:-$REPO/.lake/packages/lean4export/.lake/build/bin/lean4export}"
 [[ -x "$LANDRUN" ]] || { echo "landrun not found: set COMPARATOR_LANDRUN" >&2; exit 2; }
 [[ -x "$COMPARATOR" ]] || { echo "build it first: lake build comparator lean4export" >&2; exit 2; }
-[[ -f "$HERE/Challenge/REVISION" ]] || { echo "run prepare_challenge.py first" >&2; exit 2; }
 mkdir -p "$EVIDENCE_DIR"
 LOG="$EVIDENCE_DIR/comparator.log"
 
 {
   printf 'run: %s\n' "$(date -u '+%Y-%m-%dT%H:%M:%SZ')"
-  printf 'challenge revision: %s' "$(cat "$HERE/Challenge/REVISION")"
+  printf 'challenge: %s\n' "$(cd "$HERE" && find Challenge.lean Challenge -name '*.lean' | sort | xargs sha256sum | sha256sum | cut -d' ' -f1)"
   printf 'candidate HEAD: %s\n' "$(git -C "$REPO" rev-parse HEAD)"
   printf 'comparator: %s\n' "$(sha256sum "$COMPARATOR" | cut -d' ' -f1)"
   printf 'landrun: %s\n' "$("$LANDRUN" --version 2>&1 | head -1)"

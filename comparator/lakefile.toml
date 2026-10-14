@@ -1,14 +1,14 @@
 # Comparator checking project for the six theorems displayed in the Lean
-# appendix of paper/tabachnikov-converse.tex.  `Challenge` is a frozen snapshot
-# of their import closure at a trusted revision (prepare_challenge.py);
-# `Solution` is the live library in this checkout.  See README.md.
+# appendix of paper/tabachnikov-converse.tex.  `Challenge` is the hand-written
+# trusted statement (Mathlib-only); `Solution` is the library in this checkout.
+# See README.md.
 
 name = "cd4vt_comparator"
 version = "0.1.0"
 defaultTargets = ["Challenge", "Solution"]
 
-# Same elaboration options as the library, so the snapshot elaborates exactly
-# like the revision it was frozen from.
+# Same elaboration options as the library, so the copied definitions elaborate
+# exactly as they do there.
 [leanOptions]
 pp.unicode.fun = true
 relaxedAutoImplicit = false
