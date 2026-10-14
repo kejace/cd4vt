@@ -1,0 +1,358 @@
+\section{Existence of anchors}\label{sec:constructions}
+
+We prove statements (R), (F) and (N) of Proposition~\ref{prop:split}. In
+each case $\mu$ is positive and adjacent-unequal with $\mu_0=1$, and we
+identify $\Zn$ with $\{0,\dots,n-1\}$.
+
+\subsection{A repeated maximum}
+
+\begin{proposition}[Statement (R)]\label{prop:R}
+If $\mu\le1$ and $\mu_J=1$ for some $J\ne0$, then $\mu$ has a regular anchor
+on the frame $(0,J-1,J,n-1)$.
+\end{proposition}
+% Lean: Gluck.Discrete.nonempty_regularFourAnchor_of_repeated_normalized_maximum
+%       (RepeatedMaximumAnchor.lean),
+%       Gluck.Discrete.repeated_maximum_index_separation,
+%       Gluck.Discrete.FourActiveSlots.Frame.nonempty_regularFourAnchor_of_repeated_maximum,
+%       Gluck.Discrete.NativeOppositePure.exists_r_zero_of_repeated_maximum,
+%       equalPeak_first_residual_pos, equalPeak_first_residual_neg,
+%       native_zero_of_repeated_r_zero, repeatedMaximumCore_physical,
+%       exists_nativeLength_anchor_of_repeated_maximum
+
+\begin{figure}[t]
+\centering
+\figfile{construct-R}{0.92\textwidth}
+\caption{Construction (R) for
+$\mu=(1,\allowbreak\,0.57,\allowbreak\,0.70,\allowbreak\,0.83,\allowbreak\,1,\allowbreak\,0.52,\allowbreak\,0.70,\allowbreak\,0.87)$, whose maximum $1$ is
+attained at $0$ and $J=4$. The frame is $(0,J-1,J,n-1)$ and the anchor is an
+orthogonal quadrilateral (dashed diagonals; Lemma~\ref{lem:core}). Dormant
+readings are grey; the arcs are as in Figure~\ref{fig:anchor}. Bottom row: the anchor, the polygon after
+opening the dormant edges, and a zoom on the block $\{1,2,3\}$, which is a
+single point in the anchor and now has short dormant edges (orange).}
+\label{fig:R}
+\end{figure}
+
+\begin{proof}
+Adjacent inequality gives $2\le J\le n-2$, so the frame is valid
+(Figure~\ref{fig:R}). Its readings are~\eqref{eq:readings} with $q=1$ and
+$p=\mu_1$, $t=\mu_{J-1}$, $h=\mu_{J+1}$, $l=\mu_{-1}$, which lie in $(0,1)$
+because they are at most $1$ and adjacent to a reading equal to $1$. For
+$u,v\in(0,1)$ the orthogonal core with $q=1$ is
+$\hat L=(\lambda,\lambda,\lambda',\lambda')$ with
+$\lambda=\sqrt{1-v^2}/\sqrt{1-u^2v^2}$ and $\lambda'=\sqrt{1-u^2}/\sqrt{1-u^2v^2}$
+in $(0,1)$, and
+$\rho_1=\arcsin(p\lambda)+\arcsin(t\lambda)-2\arcsin(u\lambda)$,
+$\rho_3=\arcsin(h\lambda')+\arcsin(l\lambda')-2\arcsin(v\lambda')$. Let
+$a=\frac12\min(p,t,h,l)$ and $b=\frac12(1+\max(p,t,h,l))$, so
+$0<a<p,t,h,l<b<1$. Since $\arcsin$ is increasing, $\rho_1>0$ on $u=a$,
+$\rho_1<0$ on $u=b$, $\rho_3>0$ on $v=a$ and $\rho_3<0$ on $v=b$. By the
+Poincar\'e--Miranda theorem, applied to $(-\rho_1,-\rho_3)$ on $[a,b]^2$, there
+is a common zero $(u,v)\in(0,1)^2$. All entries of $\hat L(u,v)$ and all of
+$p,t,h,l$ are less than $1$, so $\hat L\in\Omega$, and $\Ctrl(\hat L)=0$ by
+Lemma~\ref{lem:core}(iii). Corollary~\ref{cor:rank}(c) gives the rank.
+\end{proof}
+
+\subsection{Forward flag nonnegative}
+
+\begin{proposition}[Statement (F)]\label{prop:F}
+Let $0$ be a highest secondary peak relative to $H$, $\mu_H>1$ and
+$\varphi^+\ge0$. Then $\mu$ has a regular anchor on a frame $(0,i-1,i,n-1)$
+with $2\le i<H$.
+\end{proposition}
+% Lean: Gluck.Discrete.HighestSecondaryPeak.nonempty_regularFourAnchor_of_forward_terminal
+%       (UniversalRegularFourAnchor.lean), reducing to
+%       Gluck.Discrete.HighestSecondaryPeak.nonempty_regularFourAnchor_of_rising_terminal
+%       (FirstPairAnchorSelection.lean);
+%       Gluck.Discrete.nonempty_regularFourAnchor_of_rising_mountain_terminal,
+%       Gluck.Discrete.exists_firstPair_transition_on_rising_interval,
+%       Gluck.Discrete.firstPairFlag_lt_zero_of_le_one, Gluck.Discrete.natPred_val_residue,
+%       Gluck.Discrete.NativeOppositePure.exists_regular_anchor_of_firstPair_transition,
+%       Gluck.Discrete.FourActiveSlots.Frame.nonempty_regularFourAnchor_of_firstPair_transition
+
+\begin{figure}[t]
+\centering
+\figfile{construct-F}{0.92\textwidth}
+\caption{Construction (F) for
+$\mu=(1,\allowbreak\,0.96,\allowbreak\,0.87,\allowbreak\,0.78,\allowbreak\,1.26,\allowbreak\,1.30,\allowbreak\,0.89,\allowbreak\,0.48)$, with maximum at
+$H=5$. The frame $(0,i-1,i,n-1)$ sits at the first transition $i=4$ on the
+rising leg towards $H$. Here $t=\mu_3\le p=\mu_1$, so the anchor comes from
+the chart used when $pt<1$ and is not orthogonal. Bottom row: the anchor, the polygon after
+opening the dormant edges, and a zoom on the block $\{1,2,3\}$, which is a
+single point in the anchor and now has short dormant edges (orange).}
+\label{fig:F}
+\end{figure}
+
+\begin{proof}[Choice of the frame]
+Let $p=\mu_1$ and $l=\mu_{-1}$, both in $(0,1)$, and let $a$ be as in
+Lemma~\ref{lem:peak}(b). For $a-1\le j\le H-1$ we have
+$\mu_j\le\mu_{j+1}$ and $\mu_{j+1}>1$, so $\varphi(p,\mu_j,\mu_{j+1},l)$ is
+defined, and it is nonnegative for $j=H-1$. Let $i$ be the least such $j$ with
+$\varphi(p,\mu_j,\mu_{j+1},l)\ge0$. For $j=a-1$ the flag is negative: with
+$\sigma=\sigma(\mu_a,l)$, $\mu_{a-1}\le1$ gives
+$\arcsin(\mu_{a-1}\sigma)\le\arcsin\sigma$, and $\arcsin p<\pi/2$. So
+$i\ne a-1$. So $a\le i<H$, and with
+\[
+  t=\mu_{i-1},\quad q=\mu_i,\quad h=\mu_{i+1}
+\]
+we have $0<t<q$, $1<q<h$ and
+\begin{equation}\label{eq:transition}
+  \varphi(p,q,h,l)\ \ge\ 0\ >\ \varphi(p,t,q,l).
+\end{equation}
+Since $2\le a\le i$ and $i+1\le H\le n-2$, $(0,i-1,i,n-1)$ is a frame with
+readings~\eqref{eq:readings} (Figure~\ref{fig:F}). By
+Corollary~\ref{cor:rank}(a), every zero of $\Ctrl$ in $\Omega$ is regular.
+If $t\le p$, then $pt<1$ and Proposition~\ref{prop:chart} below gives a zero;
+if $t>p$, Proposition~\ref{prop:ordered} does.
+\end{proof}
+
+\begin{lemma}\label{lem:flag}
+Let $0<p<1$, $0<l<1<q<h$, $\sigma=\sigma(h,l)$ and $\varphi(p,q,h,l)\ge0$.
+Then
+\textup{(a)} $\sigma<p$ and $\sqrt{1-p^2}\sqrt{1-\sigma^2}\le(q-p)\sigma$;
+\textup{(b)} $pq>1$;
+\textup{(c)} $(1-p^2)(h^2-1)\le(1-l^2)(q-p)^2$.
+\end{lemma}
+% Lean: Gluck.Discrete.NativeOppositePure.arcsin_flag_guard_and_bound /
+%       firstPairFlag_guard_and_bound (a), arcsin_flag_one_lt_mul /
+%       firstPairFlag_one_lt_mul (b), firstPairFlag_square_bound (c)
+
+\begin{proof}
+(a) As $q\sigma<h\sigma<1$, $\arcsin(q\sigma)<\pi/2$, and the flag gives
+$\arcsin\sigma<\arcsin p$. The angle $\pi/2-\arcsin p+\arcsin\sigma$ then lies
+in $(0,\pi/2)$ and is at most $\arcsin(q\sigma)$; take sines.
+(b) From $\sigma<p$, $\sqrt{1-p^2}\,\sigma<p\sqrt{1-\sigma^2}$, so by~(a)
+$p(q-p)\sigma\ge p\sqrt{1-p^2}\sqrt{1-\sigma^2}>(1-p^2)\sigma$.
+(c) Square~(a) and multiply by $h^2-l^2$, using $\sigma^2(h^2-l^2)=1-l^2$ and
+$(1-\sigma^2)(h^2-l^2)=h^2-1$.
+\end{proof}
+
+\subsubsection*{The case $t>p$: an orthogonal core}
+
+\begin{proposition}\label{prop:ordered}
+Let $0<p<t<q$, $p<1$, $0<l<1<q<h$, and assume~\eqref{eq:transition}. Then
+$\Ctrl$ has a zero in $\Omega$.
+\end{proposition}
+% Lean: Gluck.Discrete.NativeOppositePure.exists_nativeLength_anchor_of_ordered_firstPair,
+%       exists_regular_nativeLength_anchor_of_ordered_firstPair, exists_ordered_r_zero,
+%       orderedCoreHalfLengths_physical, native_zero_of_ordered_r_zero,
+%       exists_r_residual_zero_of_failure;
+%       Gluck.Discrete.N6TypeAThreeCell.critical_hWall_pos, critical_hWall_identity,
+%       tWall_margin_identity, hWall_margin_identity, r_t_wall_pos_on_rectangle,
+%       r_h_wall_pos_on_rectangle, r_actual_t_sideB_wall_lt_one,
+%       r_actual_h_sideC_wall_lt_one, r_residual_one_left_pos,
+%       r_residual_three_bottom_pos
+%       (Lean works on [p,1]x[l,1] with the winding-number lemma; the enlarged
+%        rectangle below lets the clamp lemma replace it.)
+
+\begin{proof}
+Put $\bar p=\sqrt{1-p^2}$ and $a_*=\sqrt{(h^2-1)/(1-l^2)}$. Since $q>1>p$,
+Lemma~\ref{lem:flag}(c) says $p+\bar pa_*\le q$. As $\sigma(h,l)<p$ and
+$\sigma(h,l)^2(1+a_*^2)=1$, we get $\bar p<pa_*$; also $a_*^2\ge h^2-1$. Hence
+$(p+\bar pa_*)^2-h^2\bar p^2-p^2=\bar p^2(a_*^2-h^2)+2p\bar pa_*
+>\bar p^2(a_*^2-h^2+2)>0$, that is,
+\begin{equation}\label{eq:hbase}
+  q^2-h^2+p^2(h^2-1)>0 .
+\end{equation}
+For $u,v\in[0,1]$ we have the identities
+\begin{align*}
+  q^2-u^2v^2-t^2(1-v^2)&=q^2-t^2+v^2(t^2-u^2),\\
+  q^2-u^2v^2-h^2(1-u^2)&=\bigl(q^2-h^2+p^2(h^2-1)\bigr)+(u^2-p^2)(h^2-v^2)+p^2(1-v^2).
+\end{align*}
+The first is positive (if $u>t$ it is at least $q^2-u^2$), so
+$t\hat L_1<1$ on $[0,1]^2$. By~\eqref{eq:hbase} there is $p'\in(0,p)$ with
+$(p^2-p'^2)h^2<q^2-h^2+p^2(h^2-1)$, and then the second is positive for
+$u\ge p'$, so $h\hat L_2<1$ on $[p',1]\times[0,1]$.
+
+Fix $l'\in(0,l)$ and apply Lemma~\ref{lem:crossed} to $F=\rho_1$, $G=\rho_3$
+on $Q=[p',1]\times[l',1]$. Both are continuous on $Q$, since all arguments of
+$\arcsin$ lie in $[0,1]$ by Lemma~\ref{lem:core}(i) and the two walls just
+proved. On $u=p'$,
+$\rho_1=(\arcsin(p\hat L_0)-\arcsin(p'\hat L_0))+(\arcsin(t\hat L_1)-\arcsin(p'\hat L_1))>0$
+since $\hat L_0>0$ and $p'<p<t$. On $v=l'$, likewise $\rho_3>0$ since
+$\hat L_3>0$ and $l'<l<h$. By Lemma~\ref{lem:core}(v), $\rho_3(1,v)=0$ only
+for $v=l$, where $\rho_1(1,l)=\varphi(p,t,q,l)<0$ by~\eqref{eq:transition};
+$\rho_1(u,1)=0$ only for $u=p$, where $\rho_3(p,1)<0$ by
+Lemma~\ref{lem:topleft}; and $\rho_3(1,1)=\arcsin l-\pi/2<0$. So there is a
+common zero $(u,v)$ in the interior of $Q$. There $\hat L>0$,
+$\hat L_0,\hat L_3,q\hat L_1,q\hat L_2<1$ by Lemma~\ref{lem:core}(i), hence
+$p\hat L_0,l\hat L_3<1$, and $t\hat L_1,h\hat L_2<1$ were shown above. So
+$\hat L\in\Omega$ and $\Ctrl(\hat L)=0$ by Lemma~\ref{lem:core}(iii).
+\end{proof}
+
+\begin{lemma}\label{lem:topleft}
+Under the hypotheses of Proposition~\ref{prop:ordered}, with
+$\sigma_p=\sigma(q,p)$, we have $h\sigma_p<1$ and
+$\rho_3(p,1)=\arcsin l+\arcsin(h\sigma_p)-\arcsin\sigma_p-\pi/2<0$.
+\end{lemma}
+% Lean: Gluck.Discrete.N6TypeAThreeCell.r_corner_residual_neg_of_failure,
+%       strictMonoOn_arcsin_mul_sub_arcsin, r_corner_residual_neg_of_mul_le_one,
+%       r_corner_residual_eq_zero_at_threshold, r_corner_threshold_lt_inv,
+%       r_corner_residual_neg_of_one_lt_mul
+
+\begin{proof}
+The function $g(x)=\arcsin(hx)-\arcsin x$ is strictly increasing on
+$[0,1/h]$, because $h/\sqrt{1-h^2x^2}>1/\sqrt{1-x^2}$. By~\eqref{eq:hbase},
+$h^2\sigma_p^2(q^2-p^2)=h^2(1-p^2)<q^2-p^2$, so $\sigma_p<1/h$. If $hl\le1$,
+then $g(\sigma_p)<g(1/h)=\frac\pi2-\arcsin\frac1h\le\frac\pi2-\arcsin l$. If
+$hl>1$, put $d_0=h^2+1-2hl>0$ and $x_0=\sqrt{(1-l^2)/d_0}$. Then
+$d_0(1-h^2x_0^2)=(hl-1)^2$ and $d_0(1-x_0^2)=(h-l)^2$, so $x_0<1/h$ and
+$\cos g(x_0)=\bigl((hl-1)(h-l)+h(1-l^2)\bigr)/d_0=l$, that is,
+$g(x_0)=\frac\pi2-\arcsin l$. Finally $\sigma_p<x_0$: using
+$(1-l^2)a_*^2=h^2-1$,
+\[
+  (1-l^2)\bigl((p+\bar pa_*)^2-p^2\bigr)-\bar p^2d_0=2(1-l^2)p\bar pa_*+2\bar p^2(hl-1)>0,
+\]
+and $(p+\bar pa_*)^2\le q^2$ gives $\bar p^2d_0<(1-l^2)(q^2-p^2)$, that is,
+$\sigma_p^2<x_0^2$.
+\end{proof}
+
+\subsubsection*{The case $pt<1$: a chart}
+
+\begin{proposition}\label{prop:chart}
+Let $0<p<1$, $0<l<1<q<h$, $t>0$, $pt<1$ and $\varphi(p,q,h,l)\ge0$. Then
+$\Ctrl$ has a zero in $\Omega$.
+\end{proposition}
+% Lean: Gluck.Discrete.NativeOppositePure.exists_native_zero_of_firstPairFlag_of_product_lt_one,
+%       exists_regular_anchor_of_firstPairFlag, exists_regular_anchor_of_firstPairFlag_of_le;
+%       interiorD (= X), interiorN (= Y), interiorDelta, interiorBeta, interiorHigh,
+%       InteriorPhysical, isOpen_interiorPhysical, continuousOn_interiorHigh,
+%       interior_seamLow, chord_eliminated, interior_chord, strictAngles_of_interiorPhysical
+
+By Lemma~\ref{lem:flag}(b), $pq>1>pt$, so $t<q$. The chart solves $\chi=0$
+and $\varepsilon_1=0$ for $(\alpha_3,\gamma_2)$ given $(\alpha_0,\gamma_1)$. For
+$(\alpha_0,\gamma_1)\in\R^2$ let
+$\beta_1=\arcsin(p\sin\alpha_0)+\arcsin(\frac tq\sin\gamma_1)$ and
+\[
+  X=q\cos(\beta_1-\alpha_0)-\cos\gamma_1,\qquad Y=\sin\gamma_1-q\sin(\beta_1-\alpha_0).
+\]
+For every $\gamma_2$, putting $\alpha_3=\pi-\gamma_2-\beta_1$ (that is,
+$\varepsilon_1=0$) gives $q\chi=X\sin\gamma_2-Y\cos\gamma_2$, by expanding
+$\sin(\gamma_2+\beta_1-\alpha_0)$. Where $X>0$ let $\hat\gamma_2=\arctan(Y/X)$
+and $\hat\alpha_3=\pi-\hat\gamma_2-\beta_1$, so that $\chi=\varepsilon_1=0$.
+Let $\mathcal W$ be the open set where $X>0$, $Y>0$,
+$0<\hat\alpha_3<\pi/2$ and $\frac hq\sin\hat\gamma_2<1$, and on $\mathcal W$ let
+\[
+  \mathcal E(\alpha_0,\gamma_1)=\alpha_0+\gamma_1+\arcsin\bigl(\tfrac hq\sin\hat\gamma_2\bigr)
+  +\arcsin(l\sin\hat\alpha_3)-\pi
+\]
+be the value of $\varepsilon_3$. It is continuous, and by
+Lemma~\ref{lem:identity} every zero of $\mathcal E$ in
+$\mathcal W\cap(0,\pi/2)^2$ gives the zero
+$(\sin\alpha_0,\sin\gamma_1/q,\sin\hat\gamma_2/q,\sin\hat\alpha_3)\in\Omega$ of
+$\Ctrl$ (here $\hat\gamma_2\in(0,\pi/2)$, and $t<q$).
+
+\emph{The wall $\alpha_0=\pi/2$.} There
+$\beta_1=\arcsin p+\arcsin(\frac tq\sin\gamma_1)$, and for $\gamma_1\in[0,\pi/2]$
+\begin{align*}
+  X&=p\sqrt{q^2-t^2\sin^2\gamma_1}+t\sqrt{1-p^2}\sin\gamma_1-\cos\gamma_1,\\
+  Y&=\sqrt{1-p^2}\sqrt{q^2-t^2\sin^2\gamma_1}+(1-pt)\sin\gamma_1 .
+\end{align*}
+% Lean: wallD, wallN, wallD_eq_trig, wallN_eq_trig, interiorD_wall, interiorN_wall,
+%       interiorDelta_wall, interiorBeta_wall, interiorHigh_wall, wallD_pos, wallN_pos,
+%       wallDelta_pos, wall_chord, wallBeta_zero_pos, wallBeta_ne_zero, wallBeta_pos,
+%       wallBeta_lt_pi_div_two
+So $Y>0$, and $X>0$ because
+$p^2(q^2-t^2\sin^2\gamma_1)-\cos^2\gamma_1=(p^2q^2-1)+(1-p^2t^2)\sin^2\gamma_1>0$.
+On the wall $\chi=0$ reads $\cos\hat\alpha_3=\sin(\gamma_1+\hat\gamma_2)/q>0$.
+At $\gamma_1=0$, $\hat\alpha_3=\pi-\hat\gamma_2-\arcsin p>0$, and
+$\hat\alpha_3=0$ would force $q=\sin(\gamma_1+\hat\gamma_2)\le1$; so
+$0<\hat\alpha_3<\pi/2$ on the wall. At the corner $\gamma_1=0$ we have
+$Y=q\sqrt{1-p^2}$, $X=pq-1$, and with $Z=\sqrt{q^2-2pq+1}$,
+$\sin\hat\gamma_2=q\sqrt{1-p^2}/Z$ and $\sin\hat\alpha_3=(q-p)/Z$. For
+$x=\frac hq\sin\hat\gamma_2$ and $y=l\sin\hat\alpha_3$,
+\begin{align*}
+  Z^2(1-x^2-y^2)&=(1-l^2)(q-p)^2-(1-p^2)(h^2-1)\ \ge 0,\\
+  (1-l^2)Z^2(1-x^2)&=\bigl[(1-l^2)(q-p)^2-(1-p^2)(h^2-1)\bigr]+l^2(1-p^2)(h^2-1)>0
+\end{align*}
+by Lemma~\ref{lem:flag}(c). So $x<1$ and $\arcsin x+\arcsin y\le\pi/2$, that is,
+\begin{equation}\label{eq:corner}
+  (\tfrac\pi2,0)\in\mathcal W\qquad\text{and}\qquad
+  \mathcal E(\tfrac\pi2,0)=\arcsin x+\arcsin y-\tfrac\pi2\le0 .
+\end{equation}
+% Lean: wallN_zero, wallD_zero, sin_wallDelta_zero, sin_wallBeta_zero,
+%       wall_initial_hwall, arcsin_add_arcsin_le_half_pi, wall_initial_high_nonpos
+
+\emph{Exit.} Let $f(\gamma_1)=\frac hq\sin\hat\gamma_2(\frac\pi2,\gamma_1)$ and
+$g(\gamma_1)=\mathcal E(\frac\pi2,\gamma_1)$ on $[0,\pi/2]$; $g$ is continuous
+where $f\le1$, and $f(0)<1$. If $f=1$ somewhere, let $e$ be the first such
+point; then $g(e)=e+\arcsin(l\sin\hat\alpha_3)>0$. Otherwise let $e=\pi/2$;
+then $g(e)=\arcsin(\frac hq\sin\hat\gamma_2)+\arcsin(l\sin\hat\alpha_3)>0$.
+Choose $\gamma_{\mathrm{hi}}<e$ with $g(\gamma_{\mathrm{hi}})>0$. Then
+$\{\pi/2\}\times[0,\gamma_{\mathrm{hi}}]\subset\mathcal W$.
+% Lean: exists_positive_before_first_wall, exists_wall_positive_endpoint,
+%       wall_high_pos_at_hwall, wall_high_pos_at_right,
+%       exists_physical_boundary_strip_of_firstPairFlag_of_product_lt_one
+
+\emph{Inward derivative.} At $\gamma_1=0$, $\beta_1=\arcsin(p\sin\alpha_0)$ has
+derivative $0$ at $\alpha_0=\pi/2$. There $\partial_{\alpha_0}X=-q\sqrt{1-p^2}$
+and $\partial_{\alpha_0}Y=qp$, so
+$\partial_{\alpha_0}\hat\gamma_2=q(pX+\sqrt{1-p^2}\,Y)/(X^2+Y^2)>0$,
+$\partial_{\alpha_0}\hat\alpha_3=-\partial_{\alpha_0}\hat\gamma_2$, and
+$\partial_{\alpha_0}\mathcal E(\frac\pi2,0)
+=1+(\varsigma_{h/q}(\hat\gamma_2)-\varsigma_l(\hat\alpha_3))\,\partial_{\alpha_0}\hat\gamma_2>1$
+by~\eqref{eq:slope}.
+% Lean: hasDerivAt_lowTurn_boundary, hasDerivAt_interiorD_boundary,
+%       hasDerivAt_interiorN_boundary, exists_pos_derivative_interiorDelta_boundary,
+%       exists_derivative_gt_one_interiorHigh_boundary
+
+\begin{proof}[Proof of Proposition~\ref{prop:chart}]
+Since $\{\pi/2\}\times[0,\gamma_{\mathrm{hi}}]$ is compact, the segments
+$\{\alpha_0\}\times[0,\gamma_{\mathrm{hi}}]$ lie in $\mathcal W$ and
+$\mathcal E(\alpha_0,\gamma_{\mathrm{hi}})>0$ for $\alpha_0$ near $\pi/2$. By
+\eqref{eq:corner} and the inward derivative (needed when
+$\mathcal E(\frac\pi2,0)=0$), $\mathcal E(\alpha_0,0)<0$ for
+$\alpha_0<\pi/2$ near $\pi/2$. For such an $\alpha_0\in(0,\pi/2)$ the
+intermediate value theorem gives $\gamma_1\in(0,\gamma_{\mathrm{hi}})$ with
+$\mathcal E(\alpha_0,\gamma_1)=0$.
+\end{proof}
+% Lean: Gluck.Discrete.CompactBoundaryIVT.exists_inward_zero_of_boundary_derivative,
+%       exists_inward_zero, eventually_lt_left_of_hasDerivAt_pos,
+%       exists_strict_root_of_interior_strip,
+%       exists_strict_root_of_firstPairFlag_of_product_lt_one
+
+\subsection{Both flags negative}
+
+\begin{proposition}[Statement (N)]\label{prop:N}
+Let $0$ be a highest secondary peak relative to $H$, $\mu_H>1$,
+$\varphi^+<0$ and $\varphi^-<0$. Then $\mu$ has a regular anchor on the frame
+$(0,H-1,H,n-1)$.
+\end{proposition}
+% Lean: Gluck.Discrete.HighestSecondaryPeak.nonempty_regularFourAnchor_of_negative_terminals
+%       (NegativeCornerAnchorSelection.lean; takes hglobal, supplied by Lemma lem:peak(a));
+%       Gluck.Discrete.FourActiveSlots.Frame.nonempty_regularFourAnchor_of_negative_corners,
+%       Gluck.Discrete.NativeOppositePure.exists_nativeLength_regular_of_negative_corners,
+%       exists_nativeLength_anchor_of_negative_corners, exists_r_zero_of_negative_corners,
+%       negativeCornersCore_physical,
+%       fderiv_nativeLengthController_surjective_of_incident_orthogonal
+
+\begin{figure}[t]
+\centering
+\figfile{construct-N}{0.92\textwidth}
+\caption{Construction (N) for
+$\mu=(1,\allowbreak\,0.96,\allowbreak\,0.81,\allowbreak\,0.67,\allowbreak\,1.04,\allowbreak\,0.75,\allowbreak\,0.83,\allowbreak\,0.92)$: the secondary
+peak is $0$ and the maximum is $H=4$, and both flags are negative. The frame
+is $(0,H-1,H,n-1)$ and the anchor is an orthogonal quadrilateral (dashed
+diagonals; Lemma~\ref{lem:core}). Bottom row: the anchor, the polygon after
+opening the dormant edges, and a zoom on the block $\{1,2,3\}$, which is a
+single point in the anchor and now has short dormant edges (orange).}
+\label{fig:N}
+\end{figure}
+
+\begin{proof}
+By Lemma~\ref{lem:peak}, $2\le H\le n-2$ and $\mu_{H\pm1}<\mu_H$. The frame
+(Figure~\ref{fig:N}) has readings~\eqref{eq:readings} with $i=H$:
+$p=\mu_1$, $t=\mu_{H-1}$, $q=\mu_H$, $h=\mu_{H+1}$, $l=\mu_{-1}$, where
+$0<p,l<1<q$ and $t,h<q$; moreover $\varphi^+=\varphi(p,t,q,l)$ and
+$\varphi^-=\varphi(l,h,q,p)$. Apply Lemma~\ref{lem:crossed} to $F=\rho_1$,
+$G=\rho_3$ on $[0,1]^2$; they are continuous there, because all arguments of
+$\arcsin$ lie in $[0,1]$ by Lemma~\ref{lem:core}(i). By
+Lemma~\ref{lem:core}(v): $\rho_1(0,v)>0$ and $\rho_3(u,0)>0$;
+$\rho_3(1,v)=0$ forces $v=l$, where $\rho_1(1,l)=\varphi^+<0$;
+$\rho_1(u,1)=0$ forces $u=p$, where $\rho_3(p,1)=\varphi^-<0$; and
+$\rho_3(1,1)<0$. So there is a common zero $(u,v)\in(0,1)^2$. By
+Lemma~\ref{lem:core}(i), $\hat L_0,\hat L_3,q\hat L_1,q\hat L_2<1$, and with
+$p,l<1$ and $t,h<q$ all eight walls hold, so $\hat L\in\Omega$ and
+$\Ctrl(\hat L)=0$ by Lemma~\ref{lem:core}(iii). If $T\ge\pi/2$,
+Corollary~\ref{cor:rank}(b) gives the rank, and otherwise
+Proposition~\ref{prop:acute}.
+\end{proof}

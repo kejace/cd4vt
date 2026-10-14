@@ -1,0 +1,28 @@
+name: Lean Action CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+        with:
+          # Fetch the prebuilt Mathlib oleans (`lake exe cache get`) instead of
+          # recompiling Mathlib from source on every run.
+          use-mathlib-cache: true
+      # Every theorem listed in scripts/axioms.lean must depend on exactly the
+      # three standard axioms.
+      - name: Check axioms of the main theorems
+        run: |
+          out=$(lake env lean scripts/axioms.lean)
+          echo "$out"
+          expected=$(grep -c '^#print axioms' scripts/axioms.lean)
+          # Lean wraps long axiom lists across lines; join before matching.
+          ok=$(echo "$out" | tr -s ' \n' ' ' | grep -o "depends on axioms: \[propext, Classical.choice, Quot.sound\]" | wc -l)
+          test "$ok" -eq "$expected" || { echo "::error::unexpected axioms ($ok/$expected clean)"; exit 1; }

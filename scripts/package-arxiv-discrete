@@ -1,0 +1,240 @@
+#!/usr/bin/env python3
+"""Create and independently rebuild the discrete paper's arXiv source archive.
+
+Run from any directory with Python 3, pdfLaTeX, BibTeX and Poppler installed.
+Outputs the upload .tgz, a separate preview PDF and validation report under
+paper/arxiv/. No upload is performed. The exported TeX freezes the revision
+and expands figure macros to literal filenames for arXiv dependency scanning.
+
+Guidelines: https://info.arxiv.org/help/submit_tex.html
+"""
+from pathlib import Path
+import gzip
+import hashlib
+import io
+import json
+import os
+import re
+import shutil
+import subprocess
+import tarfile
+import tempfile
+
+ROOT = Path(__file__).resolve().parents[1]
+PAPER = ROOT / 'paper'
+NAME = 'tabachnikov-converse'
+OUT = PAPER / 'arxiv'
+
+
+def run(args, cwd=ROOT, env=None):
+    result = subprocess.run(args, cwd=cwd, env=env, text=True,
+                            stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    if result.returncode:
+        raise RuntimeError(f'{args!r} failed:\n{result.stdout[-7000:]}')
+    return result.stdout
+
+
+def source_text(path):
+    return re.sub(r'(?<!\\)%[^\n]*', '', path.read_text())
+
+
+def dependencies():
+    files = {Path(NAME + '.tex')}
+    pending = list(files)
+    while pending:
+        path = pending.pop()
+        text = source_text(PAPER / path)
+        for value in re.findall(r'\\(?:input|include)\{([^}]+)\}', text):
+            dep = Path(value if Path(value).suffix else value + '.tex')
+            if dep not in files:
+                files.add(dep)
+                pending.append(dep)
+        figures = re.findall(r'\\includegraphics(?:\[[^]]*\])?\{([^}]+)\}', text)
+        figures += ['tabachnikov/figures/' + v + '.pdf'
+                    for v in re.findall(r'\\figfile\{([^}]+)\}', text)]
+        files.update(Path(v) for v in figures if '#' not in v)
+        for group in re.findall(r'\\bibliography\{([^}]+)\}', text):
+            files.update(Path(v.strip() + '.bib') for v in group.split(','))
+    for path in files:
+        if path.is_absolute() or '..' in path.parts or not (PAPER / path).is_file():
+            raise RuntimeError(f'Invalid or missing dependency: {path}')
+    return files
+
+
+def environment(empty_texmf):
+    env = {k: v for k, v in os.environ.items()
+           if not k.startswith(('TEX', 'BIB', 'BST', 'LATEX'))}
+    env.update(TEXMFHOME=str(empty_texmf), TEXMFLOCAL=str(empty_texmf),
+               TEXMFCONFIG=str(empty_texmf / 'config'),
+               TEXMFVAR=str(empty_texmf / 'generated'),
+               TEXMFCACHE=str(empty_texmf / 'cache'),
+               TEXINPUTS='.:', BIBINPUTS='.:', BSTINPUTS='.:',
+               SOURCE_DATE_EPOCH=str(EPOCH), FORCE_SOURCE_DATE='1',
+               TZ='UTC', LC_ALL='C.UTF-8')
+    return env
+
+
+def compile_paper(directory, env, make_bibliography):
+    command = ['pdflatex', '-no-shell-escape', '-interaction=nonstopmode',
+               '-halt-on-error', '-file-line-error', '-recorder', NAME + '.tex']
+    for number in range(1, 4):
+        output = run(command, cwd=directory, env=env)
+        (directory / f'pass{number}.txt').write_text(output)
+        if number == 1 and make_bibliography:
+            bib_output = run(['bibtex', NAME], cwd=directory, env=env)
+            (directory / 'bibtex.txt').write_text(bib_output)
+            if 'Warning--' in bib_output:
+                raise RuntimeError(bib_output)
+    log = (directory / (NAME + '.log')).read_text()
+    for pattern in [r'Undefined control sequence', r'LaTeX Error', r'Emergency stop',
+                    r'Fatal error', r'undefined references', r'Citation .* undefined',
+                    r'Reference .* undefined', r'Missing character', r'Overfull \\[hv]box',
+                    r'Label\(s\) may have changed', r'Rerun to get',
+                    r'multiply[- ]defined']:
+        if re.search(pattern, log, re.I):
+            raise RuntimeError(f'Final log failed /{pattern}/: {directory}')
+    # The recorder must show no dependency on the checkout, a home TeX tree,
+    # or any other non-system location outside this isolated build directory.
+    allowed = [directory.resolve(), Path(env['TEXMFVAR']).resolve(),
+               Path('/usr/share'), Path('/var/lib/texmf'),
+               Path('/etc/texmf')]
+    inputs = set()
+    for line in (directory / (NAME + '.fls')).read_text().splitlines():
+        if line.startswith('INPUT '):
+            path = Path(line[6:])
+            resolved = (path if path.is_absolute() else directory / path).resolve()
+            if not any(resolved.is_relative_to(base) for base in allowed):
+                raise RuntimeError(f'External build dependency: {resolved}')
+            inputs.add(str(resolved))
+    return inputs
+
+
+REVISION = run(['git', 'rev-parse', 'HEAD']).strip()
+SHORT = REVISION[:12]
+EPOCH = int(run(['git', 'show', '-s', '--format=%ct', 'HEAD']).strip())
+if run(['git', 'status', '--porcelain', '--', 'paper/' + NAME + '.tex',
+        'paper/tabachnikov']).strip():
+    raise RuntimeError('Commit the paper sources before making a revision-labelled archive.')
+files = dependencies()
+assert len([p for p in files if p.suffix == '.pdf']) == 10
+OUT.mkdir(exist_ok=True)
+basename = NAME + '-arxiv-' + SHORT
+archive = OUT / (basename + '.tgz')
+
+with tempfile.TemporaryDirectory(prefix='cd4vt-arxiv-standalone-') as scratch:
+    scratch = Path(scratch)
+    staging = scratch / 'staging'
+    first = scratch / 'bibtex-build'
+    second = scratch / 'archive-build'
+    empty = scratch / 'empty-texmf'
+    for directory in (staging, first, second, empty):
+        directory.mkdir()
+    env = environment(empty)
+    for path in sorted(files):
+        dest = staging / path
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(PAPER / path, dest)
+    top = staging / (NAME + '.tex')
+    text = top.read_text()
+    old = r'\providecommand{\gitversion}{unknown}'
+    assert text.count(old) == 1
+    text = text.replace(old, r'\providecommand{\gitversion}{' + SHORT + '}')
+    old = r'''% Figures produced separately; a placeholder keeps the build going meanwhile.
+\newcommand{\figfile}[2]{\IfFileExists{tabachnikov/figures/#1.pdf}%
+  {\includegraphics[width=#2]{tabachnikov/figures/#1.pdf}}%
+  {\fbox{figure #1 pending}}}'''
+    assert text.count(old) == 1
+    # arXiv scans filenames without expanding this user macro. Keeping its
+    # definition produces a false missing dependency ending in '#1.pdf'.
+    text = text.replace(old, '')
+    text = text.replace('% Built by scripts/build-paper (pdflatex, deterministic metadata).',
+                        '% Standalone arXiv source; compile with pdflatex from this directory.')
+    top.write_text(text)
+    literal_figures = set()
+    for path in sorted(p for p in files if p.suffix == '.tex'):
+        exported = staging / path
+        text = re.sub(
+            r'\\figfile\{([^{}]+)\}\{([^{}]+)\}',
+            lambda m: r'\includegraphics[width=' + m[2]
+            + ']{tabachnikov/figures/' + m[1] + '.pdf}', exported.read_text())
+        if r'\figfile' in text:
+            raise RuntimeError(f'Unexpanded figure macro: {path}')
+        exported.write_text(text)
+        for value in re.findall(r'\\includegraphics(?:\[[^]]*\])?\{([^}]+)\}', text):
+            if '#' in value or '\\' in value or Path(value) not in files:
+                raise RuntimeError(f'Nonliteral or missing image filename: {value}')
+            literal_figures.add(Path(value))
+        for value in re.findall(r'\\(?:input|include)\{([^}]+)\}', text):
+            dep = Path(value if Path(value).suffix else value + '.tex')
+            if '#' in value or '\\' in value or dep not in files:
+                raise RuntimeError(f'Nonliteral or missing input filename: {value}')
+    assert literal_figures == {p for p in files if p.suffix == '.pdf'}
+    shutil.copytree(staging, first, dirs_exist_ok=True)
+    print('Building in an isolated directory with BibTeX...', flush=True)
+    first_inputs = compile_paper(first, env, make_bibliography=True)
+    bbl = Path(NAME + '.bbl')
+    shutil.copyfile(first / bbl, staging / bbl)
+    files.add(bbl)
+    # Construct the upload using the source manifest, never the build tree.
+    raw = io.BytesIO()
+    with tarfile.open(fileobj=raw, mode='w', format=tarfile.USTAR_FORMAT) as tar:
+        for path in sorted(files):
+            payload = (staging / path).read_bytes()
+            info = tarfile.TarInfo(path.as_posix())
+            info.size = len(payload)
+            info.mode = 0o644
+            info.mtime = EPOCH
+            tar.addfile(info, io.BytesIO(payload))
+    archive.write_bytes(gzip.compress(raw.getvalue(), mtime=0))
+    with tarfile.open(archive) as tar:
+        assert sorted(tar.getnames()) == sorted(p.as_posix() for p in files)
+        tar.extractall(second, filter='data')
+    print('Rebuilding the extracted .tgz using its supplied .bbl...', flush=True)
+    second_inputs = compile_paper(second, env, make_bibliography=False)
+    pdf = second / (NAME + '.pdf')
+    assert pdf.read_bytes() == (first / (NAME + '.pdf')).read_bytes(), 'PDFs differ'
+    bibliography_count = (second / bbl).read_text().count(r'\bibitem{')
+    assert bibliography_count == 13
+    for path in sorted(p for p in files if p.suffix == '.pdf'):
+        if not re.search(r'JavaScript:\s+no', run(['pdfinfo', str(second / path)])):
+            raise RuntimeError(f'Unexpected PDF JavaScript: {path}')
+    pdf_info = run(['pdfinfo', str(pdf)])
+    assert re.search(r'JavaScript:\s+no', pdf_info)
+    fonts = run(['pdffonts', str(pdf)])
+    for line in fonts.splitlines()[2:]:
+        if line.strip() and line.split()[-5] != 'yes':
+            raise RuntimeError(f'Unembedded font: {line}')
+    preview = OUT / (basename + '.pdf')
+    shutil.copyfile(pdf, preview)
+    report = {
+        'source_revision': REVISION,
+        'guidelines': 'https://info.arxiv.org/help/submit_tex.html',
+        'main_file': NAME + '.tex',
+        'recommended_arxiv_processor': 'pdfLaTeX, TeX Live 2023',
+        'pdflatex': run(['pdflatex', '--version']).splitlines()[0],
+        'bibtex': run(['bibtex', '--version']).splitlines()[0],
+        'archive': archive.name,
+        'archive_bytes': archive.stat().st_size,
+        'archive_sha256': hashlib.sha256(archive.read_bytes()).hexdigest(),
+        'archive_files': sorted(p.as_posix() for p in files),
+        'fixes': ['Freeze revision in title and Lean appendix',
+                  'Expand figure macros into literal includegraphics filenames',
+                  'Remove macro definitions with #1.pdf and all figure placeholders'],
+        'checks': {'clean_bibtex_build': True, 'extracted_archive_build': True,
+                   'literal_figure_filenames': True,
+                   'shell_escape_disabled': True, 'repository_dependencies': False,
+                   'user_texmf_dependencies': False, 'identical_pdfs': True,
+                   'final_log_errors_or_unresolved_references': False,
+                   'overfull_boxes_or_missing_glyphs': False,
+                   'bibliography_entries': bibliography_count,
+                   'all_fonts_embedded': True, 'pdf_javascript': False},
+        'preview_pdf': preview.name,
+        'preview_sha256': hashlib.sha256(pdf.read_bytes()).hexdigest(),
+        'pdfinfo': pdf_info,
+        'limitation': 'Tested locally on TeX Live 2023/Debian, not on arXiv servers.',
+    }
+    (OUT / (basename + '-validation.json')).write_text(json.dumps(report, indent=2)+'\n')
+print('Archive:', archive)
+print('Preview:', preview)
+print('Files:', len(files), 'Archive bytes:', archive.stat().st_size)
+print('Standalone builds passed; PDFs are byte-identical.')

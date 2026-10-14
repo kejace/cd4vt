@@ -1,0 +1,340 @@
+\section{The four-length system}\label{sec:system}
+
+All three constructions use a frame $(0,\,i-1,\,i,\,n-1)$ with $\kappa_0=1$.
+Writing $p=\kappa_1$, $t=\kappa_{i-1}$, $q=\kappa_i$, $h=\kappa_{i+1}$ and
+$l=\kappa_{-1}$, its readings are
+\begin{equation}\label{eq:readings}
+  (s_0,s_1,s_2,s_3)=(1,t,q,l),\qquad (f_0,f_1,f_2,f_3)=(p,q,h,1).
+\end{equation}
+% Lean: Gluck.Discrete.FourActiveSlots.firstPairFrame, firstPairFrame_start,
+%       firstPairFrame_finish
+In this section $p,t,q,h,l>0$ are arbitrary, and $\Ctrl=\Ctrl_{p,t,q,h,l}$ is
+the controller~\eqref{eq:controller} with these readings. Its block turns are
+\begin{align*}
+  \beta_0&=\arcsin L_3+\arcsin L_0, & \beta_1&=\arcsin(pL_0)+\arcsin(tL_1),\\
+  \beta_2&=\arcsin(qL_1)+\arcsin(qL_2), & \beta_3&=\arcsin(hL_2)+\arcsin(lL_3).
+\end{align*}
+Corners $0$ and $2$ are \emph{pure} (equal readings $1$, resp.\ $q$, on both
+sides), corners $1$ and $3$ are \emph{mixed}. Let $\Omega$ be the open set of
+$L\in\R^4$ with $L_j>0$ and
+\begin{equation}\label{eq:walls}
+  L_0<1,\quad pL_0<1,\quad tL_1<1,\quad qL_1<1,\quad qL_2<1,\quad hL_2<1,
+  \quad lL_3<1,\quad L_3<1 .
+\end{equation}
+This is condition~\ref{it:anchor-pos}. So a zero $L\in\Omega$ of $\Ctrl$ at
+which $D\Ctrl(L)$ is onto is a regular anchor on every frame with
+readings~\eqref{eq:readings}.
+% Lean: Gluck.Discrete.NativeOppositePure.lengthTurns,
+%       Gluck.Discrete.NativeOppositePure.nativeLengthController,
+%       Gluck.Discrete.FourActiveSlots.Frame.controller_eq_nativeLengthController,
+%       Gluck.Discrete.NativeOppositePure.NativeLengthPhysical,
+%       Gluck.Discrete.RegularFourAnchor.ofNative
+
+\subsection{Split coordinates}
+
+For $L\in\Omega$ the \emph{split angles}
+\[
+  \alpha_0=\arcsin L_0,\quad \alpha_3=\arcsin L_3,\quad
+  \gamma_1=\arcsin(qL_1),\quad \gamma_2=\arcsin(qL_2)
+\]
+lie in $(0,\pi/2)$, and $L=(\sin\alpha_0,\sin\gamma_1/q,\sin\gamma_2/q,\sin\alpha_3)$.
+The pure turns are $S=\alpha_0+\alpha_3=\beta_0$ and $T=\gamma_1+\gamma_2=\beta_2$,
+and the mixed turns are
+$\beta_1=\arcsin(p\sin\alpha_0)+\arcsin(\frac tq\sin\gamma_1)$ and
+$\beta_3=\arcsin(\frac hq\sin\gamma_2)+\arcsin(l\sin\alpha_3)$. Put
+\[
+  \chi=\sin S-\frac{\sin T}{q},\qquad
+  \varepsilon_1=\alpha_3+\gamma_2+\beta_1-\pi,\qquad
+  \varepsilon_3=\alpha_0+\gamma_1+\beta_3-\pi,
+\]
+so that $\varepsilon_1+\varepsilon_3=\Ctrl_2$. Geometrically, $\chi=0$ says
+that the diagonal between the mixed corners is a common chord of the circles
+of curvature $1$ and $q$ through the pure corners, and
+$\varepsilon_1=\varepsilon_3=0$ says that the turns at the mixed corners are
+the inscribed-angle turns of these two circles.
+% Lean: Gluck.Discrete.NativeOppositePure.StrictAngles, splitHalfLengths,
+%       exists_splitHalfLengths_of_physical, nativeLengthPhysical_splitHalfLengths,
+%       nativeLengthController_splitHalfLengths;
+%       chord, seamLow (= eps_1), seamHigh (= eps_3), lowTurn, highTurn, turnDefect,
+%       seamLow_add_seamHigh
+
+\begin{lemma}[Closure identity]\label{lem:identity}
+Let $q\ne0$ and let $\alpha_0,\alpha_3,\gamma_1,\gamma_2,\beta_1,\beta_3$ be
+arbitrary real numbers. Define $S,T,\chi,\varepsilon_1,\varepsilon_3$ by the
+formulas above, $\tau=\varepsilon_1+\varepsilon_3$, and
+$E=\sin\alpha_0+\frac{\sin\gamma_1}qe^{\ii\beta_1}+\frac{\sin\gamma_2}qe^{\ii(\beta_1+T)}
++\sin\alpha_3\,e^{\ii(\beta_1+T+\beta_3)}$. Then
+\begin{equation}\label{eq:identity}
+  E=e^{-\ii\alpha_3}\Bigl(\sin S-\frac{\sin T}{q}\,e^{\ii\varepsilon_1}\Bigr)
+  +\sin\alpha_3\,e^{-\ii S}\bigl(e^{\ii\tau}-1\bigr).
+\end{equation}
+If $L\in\Omega$ and the six numbers are its split angles and mixed turns, then
+$\Ctrl(L)=(E,\tau)$, and $\Ctrl(L)=0$ if and only if
+$\chi=\varepsilon_1=\varepsilon_3=0$.
+\end{lemma}
+% Lean: Gluck.Discrete.NativeOppositePure.nativeHalfClosure_eq, native_zero_iff,
+%       seamLow_mem_Ioo_of_strictAngles, native_zero_iff_of_strictAngles
+
+\begin{proof}
+We use $\sin x+\sin y\,e^{\pm\ii(x+y)}=\sin(x+y)\,e^{\pm\ii y}$. With
+$(x,y)=(\gamma_1,\gamma_2)$ and $\beta_1+\gamma_2=\varepsilon_1-\alpha_3+\pi$,
+\[
+  \tfrac{e^{\ii\beta_1}}{q}\bigl(\sin\gamma_1+\sin\gamma_2\,e^{\ii T}\bigr)
+  =\tfrac{\sin T}{q}e^{\ii(\beta_1+\gamma_2)}
+  =-\tfrac{\sin T}{q}\,e^{-\ii\alpha_3}e^{\ii\varepsilon_1}.
+\]
+Since $\beta_1+T+\beta_3=\tau+2\pi-S$, the last term of $E$ is
+$\sin\alpha_3\,e^{-\ii S}+\sin\alpha_3\,e^{-\ii S}(e^{\ii\tau}-1)$, and
+$\sin\alpha_0+\sin\alpha_3\,e^{-\ii S}=\sin S\,e^{-\ii\alpha_3}$. Adding up
+gives~\eqref{eq:identity}.
+
+For $L\in\Omega$, $(E,\tau)=\Ctrl(L)$ by the definitions. If
+$\chi=\varepsilon_1=\varepsilon_3=0$, then $\tau=0$ and $E=e^{-\ii\alpha_3}\chi=0$.
+Conversely, if $E=\tau=0$, then $\sin S=\frac{\sin T}{q}e^{\ii\varepsilon_1}$.
+Here $\sin T>0$, and $\varepsilon_1\in(-\pi,\pi)$ because
+$\alpha_3,\gamma_2\in(0,\pi/2)$ and $\beta_1\in(0,\pi)$. The imaginary part
+gives $\varepsilon_1=0$, the real part $\chi=0$, and
+$\varepsilon_3=\tau-\varepsilon_1=0$.
+\end{proof}
+
+\subsection{Rank}
+
+For $a>0$ and $z\in(0,\pi/2)$ with $a\sin z<1$ let
+$\varsigma_a(z)=\frac{d}{dz}\arcsin(a\sin z)=a\cos z/\sqrt{1-a^2\sin^2z}>0$.
+Since $a^2\cos^2z-(1-a^2\sin^2z)=a^2-1$,
+\begin{equation}\label{eq:slope}
+  \varsigma_a(z)<1\ \text{ if } a<1,\qquad
+  \varsigma_a(z)>1\ \text{ if } a>1 .
+\end{equation}
+% Lean: Gluck.Discrete.NativeOppositePure.angleSlope, angleSlope_pos,
+%       angleSlope_lt_one, one_lt_angleSlope, hasDerivAt_angleAtom
+For $L\in\Omega$ put
+\[
+  A=1-\varsigma_p(\alpha_0),\quad B=1-\varsigma_l(\alpha_3),\quad
+  C=1-\varsigma_{t/q}(\gamma_1),\quad D=1-\varsigma_{h/q}(\gamma_2).
+\]
+They are the derivatives of the defects $z-\arcsin(a\sin z)$, and $D<1$.
+
+\begin{lemma}\label{lem:rank}
+Let $0<p<1$, $0<l<1$, $q\ge1$, $0<t<q$ and $h>0$, and let $L\in\Omega$ with
+$\Ctrl(L)=0$. Then $A,B,C\in(0,1)$, $S+T>\pi$ and $\cos S<0$. If $D\Ctrl(L)$
+is not onto, then
+\begin{equation}\label{eq:minors}
+  AD=BC\qquad\text{and}\qquad
+  \cos S\,(A+B-AD)+\tfrac{\cos T}{q}\,(A+B-AB)=0 .
+\end{equation}
+\end{lemma}
+% Lean: Gluck.Discrete.NativeOppositePure.incident_minors_vanish_of_not_surjective;
+%       angle_sums_gt_pi_of_seamLow_zero, cos_first_sum_neg_of_root, cos_first_sum_neg,
+%       pi_div_two_lt_first_sum;
+%       fderiv_nativeLengthController_surjective_of_fixedTurn_minor,
+%       fderiv_nativeLengthController_surjective_of_fixedHalf_minor,
+%       incidentHalfLengths, incidentNativeController,
+%       differentiableAt_nativeLengthController_of_physical;
+%       closureTargetLinearMap, closureTargetLinearMap_surjective,
+%       closureTargetLinearMap_eq_zero_iff, hasFDerivAt_incidentNativeController_of_split,
+%       hasFDerivAt_nativeSplitController_of_split;
+%       hasFDerivAt_splitController_incident, splitDifferential,
+%       splitDifferential_surjective_of_det_ne_zero, hasFDerivAt_incidentSplitController,
+%       incidentDifferential, incidentDifferential_surjective_of_det_ne_zero
+
+\begin{proof}
+By~\eqref{eq:slope}, $A,B,C\in(0,1)$. By Lemma~\ref{lem:identity},
+$\chi=\varepsilon_1=\varepsilon_3=0$. Now $\varepsilon_1=0$ reads
+$S+T-\pi=(\alpha_0-\arcsin(p\sin\alpha_0))+(\gamma_1-\arcsin(\frac tq\sin\gamma_1))>0$.
+If $S\le\pi/2$, then $0<\pi-T<S\le\pi/2$ gives
+$\sin T<\sin S=\sin T/q\le\sin T$. So $S\in(\pi/2,\pi)$.
+
+We use two charts near the split angles of $L$: in chart~I the coordinates are
+$(S,\alpha_0,\gamma_1)$ with $T$ fixed ($\alpha_3=S-\alpha_0$,
+$\gamma_2=T-\gamma_1$), in chart~II they are $(S,\alpha_0,T)$ with $\gamma_1$
+fixed. In each chart, $x\mapsto L(x)=(\sin\alpha_0,\sin\gamma_1/q,\sin\gamma_2/q,\sin\alpha_3)$
+is smooth with values in $\Omega$ near $x$, and if
+$D(\Ctrl\circ L)(x)=D\Ctrl(L)\circ DL(x)$ is onto, so is $D\Ctrl(L)$. Since
+$\chi=\varepsilon_1=\tau=0$ at $x$, differentiating~\eqref{eq:identity} kills
+every term with an undifferentiated vanishing factor:
+\begin{gather*}
+  D(\Ctrl\circ L)=\Lambda\circ D(\chi,\varepsilon_1,\varepsilon_3),\\
+  \Lambda(x_0,x_1,x_2)=\Bigl(e^{-\ii\alpha_3}\bigl(x_0-\ii\tfrac{\sin T}{q}x_1\bigr)
+  +\ii\sin\alpha_3\,e^{-\ii S}(x_1+x_2),\ x_1+x_2\Bigr).
+\end{gather*}
+$\Lambda\colon\R^3\to\C\times\R$ is injective (if it vanishes, $x_1+x_2=0$, then
+$x_0=x_1=0$), hence bijective. So $D\Ctrl(L)$ is onto as soon as the Jacobian
+of $(\chi,\varepsilon_1,\varepsilon_3)$ in either chart is invertible. Since
+$\varepsilon_1=S+T-\pi-\operatorname{def}_p(\alpha_0)-\operatorname{def}_{t/q}(\gamma_1)$
+and
+$\varepsilon_3=S+T-\pi-\operatorname{def}_l(\alpha_3)-\operatorname{def}_{h/q}(\gamma_2)$
+with $\operatorname{def}_a(z)=z-\arcsin(a\sin z)$, these Jacobians are
+\[
+  J_{\mathrm I}=\begin{pmatrix}\cos S&0&0\\ 1&-A&-C\\ 1-B&B&D\end{pmatrix},
+  \qquad
+  J_{\mathrm{II}}=\begin{pmatrix}\cos S&0&-\frac{\cos T}{q}\\ 1&-A&1\\ 1-B&B&1-D\end{pmatrix},
+\]
+with $\det J_{\mathrm I}=\cos S\,(BC-AD)$ and
+$\det J_{\mathrm{II}}=-\cos S\,(A+B-AD)-\frac{\cos T}{q}(A+B-AB)$. As
+$\cos S\ne0$, rank loss forces~\eqref{eq:minors}.
+\end{proof}
+
+\begin{corollary}\label{cor:rank}
+Under the hypotheses of Lemma~\ref{lem:rank}, $D\Ctrl(L)$ is onto in each of
+the following cases:
+\textup{(a)} $h>q$;
+\textup{(b)} $T\ge\pi/2$;
+\textup{(c)} $q=1$.
+\end{corollary}
+% Lean (a): Gluck.Discrete.NativeOppositePure.fderiv_nativeLengthController_surjective_of_physical
+%       (splitControllerMinor, controller_minor_neg, splitControllerMinor_det_neg)
+% Lean (b): ...fderiv_nativeLengthController_surjective_of_nonacute_incident
+%       (fderiv_incidentSplitController_surjective, incidentDifferential_surjective,
+%        fderiv_incidentNativeController_surjective)
+% Lean (c): ...fderiv_nativeLengthController_surjective_of_equal_pure
+
+\begin{proof}
+(a) By~\eqref{eq:slope}, $D<0$, so $BC>0>AD$.
+(b) $A+B-AD=B+A(1-D)>0$, $A+B-AB=A+B(1-A)>0$, $\cos S<0$ and $\cos T\le0$, so
+the second expression in~\eqref{eq:minors} is negative.
+(c) Now $\sin S=\sin T$ and $S+T>\pi$. If $T<\pi/2$, then $0<\pi-S<T<\pi/2$
+gives $\sin S<\sin T$. So $T\ge\pi/2$, and (b) applies.
+\end{proof}
+
+The remaining case, $h<q$ and $T<\pi/2$, is only needed at the orthogonal
+points of the next subsection, where it is settled by an elimination.
+
+\begin{proposition}\label{prop:acute}
+Let $0<p,l<1<q$, $0<t,h<q$, and $0<u,v<1$. If $L=\hat L(u,v)$
+\textup{(}see~\eqref{eq:core}\textup{)} lies in $\Omega$, $\Ctrl(L)=0$ and
+$T<\pi/2$, then $D\Ctrl(L)$ is onto.
+\end{proposition}
+% Lean: Gluck.Discrete.NativeOppositePure.fderiv_nativeLengthController_surjective_of_acute_orthogonal
+
+The proof is in Appendix~\ref{sec:elimination}.
+
+\subsection{The orthogonal core}
+
+For $q\ge1$ and $u,v\in[0,1]$ with $uv<q$ put $\Delta=q^2-u^2v^2>0$ and
+\begin{equation}\label{eq:core}
+  \hat L(u,v)=\Delta^{-1/2}\Bigl(\sqrt{q^2-v^2},\ \sqrt{1-v^2},\
+  \sqrt{1-u^2},\ \sqrt{q^2-u^2}\Bigr).
+\end{equation}
+% Lean: Gluck.Discrete.NativeOppositePure.orderedCoreHalfLengths;
+%       Gluck.Discrete.N6TypeAThreeCell.rCoreSideA..D, r_core_side_a_half_at_one ..;
+%       Gluck.Discrete.orthogonalDelta; Gluck.Discrete.N6TypeAThreeCell.r_denom_pos_aux
+Given $p,t,h,l$, the \emph{residuals} are, where defined,
+\begin{align*}
+  \rho_1(u,v)&=\arcsin(p\hat L_0)+\arcsin(t\hat L_1)-\arcsin(u\hat L_0)-\arcsin(u\hat L_1),\\
+  \rho_3(u,v)&=\arcsin(h\hat L_2)+\arcsin(l\hat L_3)-\arcsin(v\hat L_2)-\arcsin(v\hat L_3).
+\end{align*}
+% Lean: Gluck.Discrete.N6TypeAThreeCell.rResidualOne, rResidualThree, rResidualMap,
+%       r_residual_one_eq_core_sides, r_residual_three_eq_core_sides,
+%       continuousOn_rResidualOne_of_denom_pos, continuousOn_rResidualThree_of_denom_pos
+
+\begin{lemma}[Orthogonal core]\label{lem:core}
+Let $q\ge1$ and write $\hat L=\hat L(u,v)$.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $\hat L_0^2+(v\hat L_2)^2=\hat L_3^2+(u\hat L_1)^2=(q\hat L_1)^2+(v\hat L_3)^2
+  =(q\hat L_2)^2+(u\hat L_0)^2=1$.
+\item Let $0<u,v<1$. The points $z_0=2\hat L_0\hat L_3$,
+  $z_1=2\ii u\hat L_0\hat L_1$, $z_2=-2q\hat L_1\hat L_2$,
+  $z_3=-2\ii v\hat L_2\hat L_3$ form a convex quadrilateral with perpendicular
+  diagonals and sides $|z_{j+1}-z_j|=2\hat L_j$, the circle through
+  $z_{j-1},z_j,z_{j+1}$ has curvature $k_j$, where $(k_0,\dots,k_3)=(1,u,q,v)$,
+  and the exterior angle at $z_j$ is
+  $\arcsin(k_j\hat L_{j-1})+\arcsin(k_j\hat L_j)$. The controller with readings
+  $(1,u,q,v)$, $(u,q,v,1)$ vanishes at $\hat L$.
+\item If $0<u,v<1$, $\hat L\in\Omega$ and $\rho_1(u,v)=\rho_3(u,v)=0$, then
+  $\Ctrl(\hat L)=0$.
+\item $\hat L(v,u)$ is $\hat L(u,v)$ in reverse order, so $\rho_3(u,v)$ equals
+  $\rho_1(v,u)$ computed with $(p,t)$ replaced by $(l,h)$.
+\item Let $q>1$ and $0<p,l<1$. Where defined,
+  $\rho_1(0,v)=\arcsin(p\hat L_0)+\arcsin(t\hat L_1)$ with $\hat L_0>0$; on the
+  face $v=1$, $\hat L_1=0$, $\hat L_0>0$, and $\rho_1(u,1)$ has the sign of
+  $p-u$; and at the corner $(1,l)$, $\hat L_0=1$, $\hat L_1=\sigma(q,l)$ and
+  $\rho_1(1,l)=\varphi(p,t,q,l)$ if $t\le q$. By \textup{(iv)},
+  $\rho_3(u,0)=\arcsin(h\hat L_2)+\arcsin(l\hat L_3)$ with $\hat L_3>0$,
+  $\rho_3(1,v)$ has the sign of $l-v$, $\rho_3(1,1)=\arcsin l-\pi/2$, and
+  $\rho_3(p,1)=\arcsin l+\arcsin(h\sigma(q,p))-\arcsin\sigma(q,p)-\pi/2$, which
+  is $\varphi(l,h,q,p)$ if $h\le q$.
+\end{enumerate}
+\end{lemma}
+% Lean: Gluck.Discrete.NativeOppositePure.coreHalfLengths_sq, coreHalfLengths_pos;
+%       Gluck.Discrete.N6TypeAThreeCell.r_core_realization_data,
+%       r_core_side_half_diagonal_squares, rCoreHalfDiagonalA..D, r_core_sides_pos;
+%       Gluck.Discrete.orthogonalA2_identity (...D2), realizesMenger_fourProfile_of_orthogonal,
+%       Gluck.Discrete.orthogonalQuad;
+%       Gluck.Discrete.NativeOppositePure.native_zero_of_ordered_r_zero,
+%       Gluck.Discrete.NativeOppositePure.rResidualThree_eq_swap;
+%       rResidualOne_left_pos, rResidualOne_top_zero_iff, r_corner_eq_firstPairFlag,
+%       Gluck.Discrete.N6TypeAThreeCell.r_residual_one_bottom_right_eq,
+%       r_residual_one_top_left, r_residual_three_top_left_eq,
+%       r_residual_three_right_neg
+
+\begin{proof}
+(i) Each sum is $\Delta^{-1}$ times $q^2-v^2+v^2(1-u^2)$,
+$q^2-u^2+u^2(1-v^2)$, $q^2(1-v^2)+v^2(q^2-u^2)$ or
+$q^2(1-u^2)+u^2(q^2-v^2)$, all equal to $\Delta$.
+
+(ii) Here $\hat L>0$. The $z_j$ lie on the four half-axes in counterclockwise
+order, so they form a convex quadrilateral whose diagonals meet at $0$. By
+Pythagoras and~(i), $|z_1-z_0|^2=4\hat L_0^2(\hat L_3^2+u^2\hat L_1^2)=4\hat L_0^2$,
+and likewise for the other sides. In the triangle $z_{j-1}z_jz_{j+1}$ the
+neighbours $z_{j\pm1}$ lie on one axis on opposite sides of $0$ and $z_j$ on
+the other axis, so the foot of the altitude from $z_j$ is $0$, strictly
+between $z_{j-1}$ and $z_{j+1}$, and both base angles are acute. The area is
+$\frac12|z_{j+1}-z_{j-1}|\,|z_j|$, so the circumradius is
+$|z_j-z_{j-1}|\,|z_{j+1}-z_j|/(2|z_j|)=1/k_j$ (for $j=1$:
+$4\hat L_0\hat L_1/(4u\hat L_0\hat L_1)$). By the law of sines the base angle
+at $z_{j+1}$ has sine $\frac{k_j}{2}|z_j-z_{j-1}|=k_j\hat L_{j-1}$, so it equals
+$\arcsin(k_j\hat L_{j-1})$; likewise the base angle at $z_{j-1}$ is
+$\arcsin(k_j\hat L_j)$. The exterior angle at $z_j$ is $\pi$ minus the
+interior angle, that is, the sum of the two base angles. In particular the
+moderate-arc inequalities $k_j\hat L_{j-1},k_j\hat L_j<1$ hold. Hence the
+turning law~\eqref{eq:turning-law} for the profile $k$ with half-lengths
+$\hat L$ returns the exterior angles, which sum to $2\pi$, and the development
+reproduces the sides of the quadrilateral up to a rotation, so it closes. By
+Proposition~\ref{prop:slot} with $n=4$ and no dormant edges, the controller
+vanishes at $\hat L$.
+
+(iii) The pure turns $\beta_0,\beta_2$ of $\Ctrl$ at $\hat L$ are those of
+the controller in~(ii), and $\rho_1,\rho_3$ are the differences of the mixed
+turns. So $\Ctrl(\hat L)$ is the vanishing controller of~(ii).
+
+(iv) Both claims are immediate from~\eqref{eq:core}, since $\Delta$ is
+symmetric.
+
+(v) At $u=0$ the subtracted terms vanish. At $v=1$,
+$\hat L=\bigl(a,0,\sqrt{1-u^2}/\sqrt{q^2-u^2},1\bigr)$ with
+$a=\sqrt{q^2-1}/\sqrt{q^2-u^2}>0$, so
+$\rho_1(u,1)=\arcsin(pa)-\arcsin(ua)$. At $(1,l)$, $\Delta=q^2-l^2$, and the
+formula follows from~\eqref{eq:flag}. The rest follows from~(iv) and
+$\hat L(1,1)=(1,0,0,1)$.
+\end{proof}
+
+\subsection{Crossed signs}
+
+\begin{lemma}\label{lem:crossed}
+Let $F,G$ be continuous on $Q=[u_1,u_2]\times[v_1,v_2]$, and suppose:
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item $F(u_1,v)>0$ and $G(u,v_1)>0$ for all $u,v$;
+\item if $G(u_2,v)=0$ then $F(u_2,v)<0$, and if $F(u,v_2)=0$ then $G(u,v_2)<0$;
+\item $G(u_2,v_2)<0$.
+\end{enumerate}
+Then $F$ and $G$ have a common zero in the interior of $Q$.
+\end{lemma}
+% Lean: Gluck.Discrete.NativeOppositePure.exists_zero_of_two_crossed_corners;
+%       Gluck.Hyperbolic.poincareMiranda_rect, ForMathlib: poincare_miranda
+%       (ForMathlib/Analysis/Complex/PoincareMiranda.lean).
+%       (Draft 1 used a winding-number variant for the (F) rectangle:
+%        Gluck.Discrete.ne_zero_of_crossed_fourArcs, windingNumberC_eq_one_of_crossed_fourArcs,
+%        Gluck.Discrete.N6TypeAThreeCell.exists_r_residual_zero.)
+
+\begin{proof}
+Let $c_1$ and $c_2$ be the clamps of $\R$ onto $[u_1,u_2]$ and $[v_1,v_2]$,
+and $R(u,v)=\bigl(u-c_1(u+F),\,v-c_2(v+G)\bigr)$. Then $R_1\le0$ on $u=u_1$,
+$R_1\ge0$ on $u=u_2$, $R_2\le0$ on $v=v_1$ and $R_2\ge0$ on $v=v_2$, so by the
+Poincar\'e--Miranda theorem $R(z)=0$ for some $z=(u,v)\in Q$. If $u=u_1$, then
+$F(z)\le0$, contradicting~(1); so $u>u_1$, and likewise $v>v_1$. If $u=u_2$,
+then $F(z)\ge0$; if also $v=v_2$, then $G(z)\ge0$, contradicting~(3), and if
+$v<v_2$, then $G(z)=0$, contradicting~(2). If $v=v_2$ and $u<u_2$, then
+$F(z)=0$ and $G(z)\ge0$, contradicting~(2). So $z$ is interior, and there
+$F(z)=G(z)=0$.
+\end{proof}

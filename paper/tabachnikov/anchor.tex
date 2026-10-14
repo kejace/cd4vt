@@ -1,0 +1,360 @@
+\section{Four active edges}\label{sec:anchor}
+
+In this section $\kappa\in\R^n$ is a positive profile. We put all the length
+on four edges and give the remaining edges length zero.
+
+\subsection{The controller}
+
+\begin{definition}\label{def:frame}
+A \emph{frame} is a choice of edges $0\le e_0<e_1<e_2<e_3\le n-1$. Its
+\emph{start} and \emph{finish readings} are
+$s_j=\kappa_{e_j}$ and $f_j=\kappa_{e_j+1}$ $(j\in\Z/4)$; the other readings
+are \emph{dormant}. On the open set
+$U=\{L\in\R^4:|s_jL_j|<1,\ |f_jL_j|<1\}$ put
+$a_j=\arcsin(s_jL_j)$, $b_j=\arcsin(f_jL_j)$, define the \emph{block turns}
+$\beta_j=b_{j-1}+a_j$ (indices mod $4$) and the \emph{controller}
+$\Ctrl=(\Ctrl_1,\Ctrl_2)\colon U\to\C\times\R$,
+\begin{equation}\label{eq:controller}
+  \Ctrl(L)=\Bigl(L_0+L_1e^{\ii\beta_1}+L_2e^{\ii(\beta_1+\beta_2)}
+  +L_3e^{\ii(\beta_1+\beta_2+\beta_3)},\ \
+  \beta_0+\beta_1+\beta_2+\beta_3-2\pi\Bigr).
+\end{equation}
+The \emph{slot embedding} $\iota\colon\R^4\to\R^n$ sets $(\iota L)_{e_j}=L_j$
+and $(\iota L)_i=0$ for $i\notin\{e_0,\dots,e_3\}$.
+\end{definition}
+% Lean: Gluck.Discrete.FourActiveSlots.Frame, .Frame.start, .Frame.finish,
+%       .Frame.startArc, .Frame.finishArc, .Frame.turns, .Frame.controller,
+%       .Frame.lengths (FourActiveSlotEmbedding.lean).
+%       Frame.lengths L returns full lengths 2 L_j; here iota returns half-lengths.
+
+The map $\Ctrl$ is real-analytic on $U$, and $\iota(U)\subset D_\kappa$. In
+the development of $\iota L$ the vertices $e_{j-1}+1,\dots,e_j$ of a block
+coincide, and only the two outer readings $f_{j-1}$ and $s_j$ contribute to
+the turn $\beta_j$ between the active edges $e_{j-1}$ and $e_j$.
+
+\begin{proposition}\label{prop:slot}
+For every $L\in U$ \textup{(}no closure hypothesis\textup{)}, with $h=\iota L$,
+\begin{equation}\label{eq:slot}
+  \Gap(\kappa,h)=2\,e^{\ii\psi_{e_0}(h)}\,\Ctrl_1(L),\qquad
+  \Turn(\kappa,h)-2\pi=\Ctrl_2(L).
+\end{equation}
+\end{proposition}
+% Lean: Gluck.Discrete.FourActiveSlots.Frame.closureGap_eq_controller,
+%       Gluck.Discrete.FourActiveSlots.Frame.turningSum_eq_controller,
+%       Gluck.Discrete.FourActiveSlots.Frame.turningSum_lengths,
+%       Gluck.Discrete.FourActiveSlots.Frame.heading_selected,
+%       Gluck.Discrete.FourActiveSlots.heading_eq_edge_gap_prefix (FourActiveSlotEmbedding.lean);
+%       Gluck.Discrete.sum_gapAngle, Gluck.Discrete.gapAngle (GapCoords.lean)
+
+\begin{proof}
+For $h\in D_\kappa$ let
+$\gamma_e=\arcsin(\kappa_eh_e)+\arcsin(\kappa_{e+1}h_e)$. Regrouping the
+arcsines of~\eqref{eq:turning-law} by edge gives $\Turn=\sum_e\gamma_e$, and
+induction on $k$ gives
+$\psi_k=\arcsin(\kappa_0h_{n-1})+\sum_{e<k}\gamma_e+\arcsin(\kappa_kh_k)$ for
+$0\le k<n$. For $h=\iota L$ we have $\gamma_e=0$ for dormant $e$ and
+$\gamma_{e_j}=a_j+b_j$. Hence $\Turn=\sum_j\beta_j$ and
+$\psi_{e_j}-\psi_{e_0}=\sum_{i<j}(a_i+b_i)+a_j-a_0=\beta_1+\dots+\beta_j$, so
+$\Gap=\sum_j2L_je^{\ii\psi_{e_j}}=2e^{\ii\psi_{e_0}}\Ctrl_1(L)$.
+\end{proof}
+
+
+\subsection{Regular anchors}
+
+\begin{definition}\label{def:anchor}
+A \emph{regular anchor} for $\kappa$ is a frame $e_0<\dots<e_3$ together with
+$L\in\R^4$ such that
+\begin{enumerate}[label=\textup{(A\arabic*)}]
+\item\label{it:anchor-pos} $L_j>0$, $s_jL_j<1$ and $f_jL_j<1$ for
+  $j=0,\dots,3$;
+\item\label{it:anchor-zero} $\Ctrl(L)=0$;
+\item\label{it:anchor-reg} the derivative $D\Ctrl(L)\colon\R^4\to\C\times\R$
+  is onto.
+\end{enumerate}
+\end{definition}
+% Lean: Gluck.Discrete.RegularFourAnchor (RegularFourAnchor.lean)
+
+\begin{figure}[t]
+\centering
+\figfile{anchor}{0.4\textwidth}
+\caption{The regular anchor of Figure~\ref{fig:method}(b). Only the four
+active edges have positive length; the blocks $\{1,2,3\}$ and $\{5,\dots,8\}$
+have collapsed to points (open circles). On active edge $e_j$ the two arcs
+have curvatures $s_j$ (blue) and $f_j$ (orange), the readings at its two
+ends. The turn at each corner is the sum of the two chord angles of the arcs
+meeting there, as in~\eqref{eq:controller}.}
+\label{fig:anchor}
+\end{figure}
+
+Condition~\ref{it:anchor-zero} says that the quadrilateral with half-sides
+$L_j$ and exterior angles $\beta_j$ closes with total turn $2\pi$
+(Figure~\ref{fig:anchor}), and~\ref{it:anchor-reg} says that the $3\times4$
+Jacobian has rank~$3$. The system depends only on $L$ and the eight readings.
+
+\begin{theorem}\label{thm:anchor-realizes}
+Let $\kappa^0>0$ admit a regular anchor $(e,\bar L)$. There are an open
+neighbourhood $V\subset(0,\infty)^n$ of $\kappa^0$ and a $C^1$ map
+$h\colon V\to\R^n$ such that $h(\kappa)$ realizes $\kappa$ for every
+$\kappa\in V$. In particular $\kappa^0$ has a realization.
+\end{theorem}
+% Lean: Gluck.Discrete.RegularFourAnchor.realizesR2 (RegularFourAnchor.lean);
+%       Gluck.Discrete.FourActiveSlots.Frame.realizesR2_of_controller_regular,
+%       .Frame.fderiv_lengths_at_controller_zero,
+%       .Frame.active_surj_of_controller_regular,
+%       .Frame.lengths_nonneg_lt_edgeCap (FourActiveSlotEmbedding.lean);
+%       Gluck.Discrete.realizesR2_of_regular_dormant_anchor_of_active_surj,
+%       Gluck.Discrete.lengthClosureMap_hasStrictFDerivAt_of_nonneg_lt_edgeCap
+%       (RegularDormantOpening.lean);
+%       Gluck.Discrete.moderateArc_zero_iff_edge (GapCoords.lean);
+% Lean (parametric): ContDiffAt.exists_localSection_pos_of_active_surjective
+%       (ForMathlib/Analysis/Calculus/ParametricPositiveSection.lean);
+%       Gluck.Discrete.RegularFourAnchor.nonempty_localDiscreteRealizationFamily
+%       (LocalContinuity.lean)
+
+\begin{proof}
+Let $\bar h=\iota\bar L$, let $\mathcal A=\{e_0,\dots,e_3\}$ and
+$\mathcal Z=\Zn\setminus\mathcal A$, and let
+$G(\kappa,h)=(\Gap(\kappa,h),\Turn(\kappa,h)-2\pi)$, a real-analytic map on the
+open set $\{(\kappa,h):h\in D_\kappa\}$. By~\ref{it:anchor-pos}, $\bar L\in U$,
+so $\bar h\in D_{\kappa^0}$, and $G(\kappa^0,\bar h)=0$ by~\eqref{eq:slot}
+and~\ref{it:anchor-zero}. Write $G_0=D_hG(\kappa^0,\bar h)$.
+Differentiating $G(\kappa^0,\iota L)=(g\,\Ctrl_1(L),\Ctrl_2(L))$, with
+$g=2e^{\ii\psi_{e_0}\circ\iota}\ne0$, at $\bar L$, the derivative of $g$ drops
+out because $\Ctrl_1(\bar L)=0$:
+$G_0(\iota v)=(g(\bar L)D\Ctrl_1(\bar L)v,\ D\Ctrl_2(\bar L)v)$. By~\ref{it:anchor-reg},
+$G_0$ maps $\R^{\mathcal A}$ onto $\C\times\R$.
+
+So there are $b\in\R^{\mathcal A}$ with $G_0b=-G_0\mathbf 1_{\mathcal Z}$ and a
+linear map $N\colon\C\times\R\to\R^{\mathcal A}$ with $G_0N=\mathrm{id}$. Put
+$v=\mathbf 1_{\mathcal Z}+b$ and $\widetilde G(\kappa,t,y)=G(\kappa,\bar h+tv+Ny)$ for
+$(\kappa,t,y)$ near $(\kappa^0,0,0)$ in $\R^n\times\R\times(\C\times\R)$. Then
+$\widetilde G(\kappa^0,0,0)=0$ and $D_y\widetilde G(\kappa^0,0,0)=\mathrm{id}$. The implicit
+function theorem gives a neighbourhood $\mathcal N$ of $(\kappa^0,0)$ and a
+$C^1$ map $y$ on $\mathcal N$ with $\widetilde G(\kappa,t,y(\kappa,t))=0$. Let
+$H(\kappa,t)=\bar h+tv+Ny(\kappa,t)$. Because $N$ takes values in
+$\R^{\mathcal A}$, $H_i(\kappa,t)=t$ for $i\in\mathcal Z$. At $(\kappa^0,0)$
+the active entries of $H$ are $\bar L_j>0$, and the inequalities
+$\kappa_iH_{i-1}<1$, $\kappa_iH_i<1$ hold strictly: they read $s_j\bar L_j<1$
+or $f_j\bar L_j<1$ at the ends of an active edge and $0<1$ otherwise. By
+continuity there are $t_0>0$ and an open $V\ni\kappa^0$ in $(0,\infty)^n$
+such that these strict inequalities and positivity hold at $(\kappa,t_0)$ for
+all $\kappa\in V$. Then $h(\kappa)=H(\kappa,t_0)$ is $C^1$, moderate, and
+satisfies $\Gap=0$, $\Turn=2\pi$.
+\end{proof}
+
+\subsection{Transport of anchors}
+
+\begin{proposition}\label{prop:invariance}
+If $\kappa>0$ admits a regular anchor, so do
+\textup{(a)} $\lambda\kappa$ for $\lambda>0$;
+\textup{(b)} the shift $\kappa(\cdot+a)$ for $a\in\Zn$;
+\textup{(c)} the reflection $\kappa(-\,\cdot)$.
+\end{proposition}
+% Lean: Gluck.Discrete.RegularFourAnchor.scale (RegularFourAnchorTransport.lean);
+%       Gluck.Discrete.RegularFourAnchor.comp_add_one, .comp_add, .comp_neg,
+%       .of_comp_add, .of_comp_neg, .nonempty_comp_add_iff, .nonempty_comp_neg_iff
+%       (RegularFourAnchorCyclic.lean);
+%       Gluck.Discrete.FourActiveSlots.Frame.controller_scale_input,
+%       .Frame.controller_scale, .Frame.fderiv_controller_scale;
+%       Gluck.Discrete.FourActiveSlots.Frame.shiftOneOfPos, .shiftOneOfZero,
+%       .Frame.reverse (FourActiveFrameReindex.lean);
+%       Gluck.Discrete.FourActiveSlots.slotController_rotate,
+%       .slotController_reverse, .Frame.controller_rotate_of_endpoints,
+%       .Frame.controller_reverse_of_endpoints (RegularFourAnchorTransport.lean);
+%       .Frame.fderiv_controller_rotate_of_endpoints,
+%       .Frame.fderiv_controller_reverse_of_endpoints,
+%       Gluck.Discrete.RegularFourAnchor.rotateReembed, .reverseReembed
+%       (RegularFourAnchorReindex.lean)
+
+\begin{proof}
+(a) Keep the frame and take $\bar L/\lambda$; all $\beta_j$ are unchanged and
+$\Ctrl^{\lambda\kappa}(L)=(\lambda^{-1}\Ctrl_1^\kappa(\lambda L),\Ctrl_2^\kappa(\lambda L))$.
+(b) Take $a=1$. If $e_0\ge1$, the frame $(e_j-1)_j$ has the same readings, and
+$\bar L$ works. If $e_0=0$, take the frame $(e_1-1,e_2-1,e_3-1,n-1)$ and
+$L'_j=L_{j+1}$ (indices mod $4$). Then $\beta'_j=\beta_{j+1}$ and, since
+$\sum_j\beta_j=\Ctrl_2+2\pi$,
+\[
+  \Ctrl'(L')=\bigl(e^{-\ii\beta_1}\bigl(\Ctrl_1(L)+L_0(e^{\ii\Ctrl_2(L)}-1)\bigr),\
+  \Ctrl_2(L)\bigr).
+\]
+(c) Edge $e$ of $\kappa$ is edge $-e-1$ of $\kappa'=\kappa(-\,\cdot)$,
+traversed backwards. Take the frame $e'_j=n-1-e_{3-j}$, with $s'_j=f_{3-j}$,
+$f'_j=s_{3-j}$, and $L'_j=L_{3-j}$. Then
+$(\beta'_0,\dots,\beta'_3)=(\beta_0,\beta_3,\beta_2,\beta_1)$ and
+$\Ctrl'(L')=\bigl(e^{\ii(\beta_1+\beta_2+\beta_3)}\,\overline{\Ctrl_1(L)},\
+\Ctrl_2(L)\bigr)$.
+
+In each case $\Ctrl'$ vanishes at the new point, and since $\Ctrl_1$ and
+$\Ctrl_2$ vanish there, the derivatives of the prefactors drop out:
+$D\Ctrl'$ is $D\Ctrl(\bar L)$ composed with a linear automorphism of
+$\C\times\R$ (in~(b), $(z,s)\mapsto(e^{-\ii\bar\beta_1}(z+\ii\bar L_0s),s)$)
+and a permutation of $\R^4$. Hence it is onto.
+\end{proof}
+
+The controller depends on $\kappa$ only through the eight readings. So if
+a frame $e$ for $\mu$ and a frame $e'$ for $\kappa$ have equal readings, a
+regular anchor $(e,L)$ for $\mu$ gives the regular anchor $(e',L)$ for
+$\kappa$, even if $\mu$ and $\kappa$ have different lengths.
+% Lean: Gluck.Discrete.RegularFourAnchor.controller_eq_of_endpoints,
+%       Gluck.Discrete.RegularFourAnchor.reembed,
+%       Gluck.Discrete.RegularFourAnchor.realizesR2_of_reembed (RegularFourAnchor.lean)
+
+\begin{lemma}\label{lem:constant-run}
+Let $\kappa\in\R^{m+1}$, $m\ge1$, with $\kappa_a=\kappa_{a+1}$ for some
+$0\le a\le m$, and let $\mu\in\R^m$ be obtained by deleting the entry $a$:
+$\mu_i=\kappa_{\tau(i)}$ with $\tau(i)=i$ for $i<a$ and $\tau(i)=i+1$ for
+$i\ge a$.
+\textup{(i)} If $\DFV(\kappa,c)$, then $\DFV(\mu,c)$.
+\textup{(ii)} If $(e,L)$ is a regular anchor for $\mu$, then $(\tau(e),L)$ is
+a regular anchor for $\kappa$.
+\end{lemma}
+% Lean: Gluck.Discrete.ConstantRun.skip, .eraseWord, .collapse, .collapse_mono,
+%       .collapse_add_period, .eraseWord_collapse, .eraseWord_dfv, .restoreFrame,
+%       .restoreFrame_start, .restoreFrame_finish, .restoreAnchor
+%       (ConstantRunAnchorReduction.lean);
+%       Gluck.Discrete.DFV.of_monotone_periodic_collapse, Gluck.Discrete.DFV.four_le_period
+%       (ConstantRunDFV.lean)
+
+\begin{proof}
+(i) The map $\nu\colon\mathbb N\to\mathbb N$ with $\nu(p(m+1)+j)=pm+j$ for
+$0\le j\le a$ and $\nu(p(m+1)+j)=pm+j-1$ for $a<j\le m$ is monotone, satisfies
+$\nu(i+m+1)=\nu(i)+m$ and $\mu_{\nu(i)}=\kappa_i$. It maps a window
+$i_1<\dots<i_4<i_1+m+1$ of $\kappa$ to indices
+$\nu(i_1)\le\dots\le\nu(i_4)\le\nu(i_1)+m$, and each inequality is strict
+because the two sides carry readings on opposite sides of $c$.
+(ii) $\tau$ is strictly increasing, the start readings agree by definition,
+and the residues $\tau(e_j)+1$ and $\tau(e_j+1)$ either coincide or are $a$
+and $a+1$. So the readings agree.
+\end{proof}
+
+A word is \emph{adjacent-unequal} if $\kappa_i\ne\kappa_{i+1}$ for all $i$.
+
+\begin{proposition}\label{prop:reduction}
+If every positive adjacent-unequal word with a strict four-vertex window
+admits a regular anchor, then every positive profile with a strict four-vertex
+window does, and Theorem~\ref{thm:dfv-realizes} holds.
+\end{proposition}
+% Lean: Gluck.Discrete.ConstantRun.nonempty_regularFourAnchor_of_adjacent_unequal_producer
+%       (ConstantRunAnchorReduction.lean);
+%       Gluck.Discrete.tabachnikovProblem2_of_adjacent_unequal_regular_anchors
+%       (RegularFourAnchorConverse.lean);
+%       Gluck.Discrete.nonempty_regularFourAnchor_of_dfv (TabachnikovFourActive.lean)
+
+\begin{proof}
+Induct on the length. If $\kappa_a=\kappa_{a+1}$, the shortened word of
+Lemma~\ref{lem:constant-run} is positive with a window at the same level, so
+it has a regular anchor, which lifts to $\kappa$. Then apply
+Theorem~\ref{thm:anchor-realizes}.
+\end{proof}
+
+\subsection{Peaks, flags and the case split}\label{ss:split}
+
+For $0<l<1<h$ put
+\begin{equation}\label{eq:flag}
+  \sigma(h,l)=\sqrt{\frac{1-l^2}{h^2-l^2}},\qquad
+  \varphi(p,t,h,l)=\arcsin p+\arcsin\bigl(t\,\sigma(h,l)\bigr)
+  -\arcsin\sigma(h,l)-\frac\pi2
+\end{equation}
+for $0<p<1$ and $0<t\le h$. Here $\sigma\in(0,1)$,
+$\sigma^2(h^2-l^2)=1-l^2$ and $h\sigma<1$, because
+$(1-h^2\sigma^2)(h^2-l^2)=l^2(h^2-1)>0$; so $t\sigma\le h\sigma<1$ and all
+arguments of $\arcsin$ lie in $(0,1)$.
+% Lean: Gluck.Discrete.NativeOppositePure.firstPairSigma,
+%       Gluck.Discrete.NativeOppositePure.firstPairFlag,
+%       Gluck.Discrete.NativeOppositePure.firstPairSigma_data (NativeFirstPairFlag.lean)
+
+A vertex $i$ is a \emph{strict local maximum} if
+$\kappa_{i-1}<\kappa_i>\kappa_{i+1}$. For an index $H$, a vertex $K\ne H$ is a
+\emph{highest secondary peak relative to $H$} if $K$ is a strict local
+maximum and $\kappa_i\le\kappa_K$ for every strict local maximum $i\ne H$.
+% Lean: Gluck.Discrete.HighestSecondaryPeak (CurvatureMountainSelection.lean);
+%       Gluck.Discrete.IsStrictLocalMax (ZigzagWords.lean)
+
+\begin{lemma}\label{lem:peak}
+Let $\kappa$ be adjacent-unequal, let $0$ be a highest secondary peak relative
+to $H$, and let $\kappa_0<\kappa_H$. Represent $H$ in $\{0,\dots,n-1\}$.
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $H$ is the unique global maximum: $\kappa_i<\kappa_H$ for $i\ne H$.
+\item $2\le H\le n-2$, and there is $a$ with $2\le a\le H$,
+  $\kappa_{a-1}\le\kappa_0<\kappa_a$, and $\kappa$ strictly increasing on
+  $\{a,\dots,H\}$.
+\end{enumerate}
+\end{lemma}
+% Lean (a): not a separate declaration; in the formal case split H is chosen as
+%       the global maximum, which supplies the hypothesis
+%       (hglobal : ∀ i, i ≠ H → κ i < κ H) of the (N) producer.
+% Lean (b): Gluck.Discrete.HighestSecondaryPeak.exists_mountain
+%       (CurvatureMountainSelection.lean);
+%       .not_isStrictLocalMax, .forward_step, .backward_step, .high_interval,
+%       .rising_lt, .falling_lt
+
+\begin{proof}
+In an adjacent-unequal word every global maximum is a strict local maximum.
+
+(a) If $G\ne H$ is a global maximum, then $\kappa_G\le\kappa_0<\kappa_H\le\kappa_G$.
+
+(b) Since $\kappa_{\pm1}<\kappa_0<\kappa_H$, $H\notin\{1,n-1\}$. Let $a$ be the
+least index in $\{1,\dots,H\}$ with $\kappa_j>\kappa_0$ for $a\le j\le H$; then
+$a\ge2$ and $\kappa_{a-1}\le\kappa_0$. If $\kappa_j>\kappa_{j+1}$ for some
+$a\le j<H$, the maximum of $\kappa$ on $\{a-1,\dots,j+1\}$ is at least
+$\kappa_j>\kappa_0$ and is not attained at the ends, so it is attained at a
+strict local maximum $i\ne H$ with $\kappa_i>\kappa_0$, which is impossible.
+\end{proof}
+
+Let now $\mu$ be positive and adjacent-unequal with $\mu_0=1$, and let $0$ be
+a highest secondary peak relative to $H$ with $\mu_H>1$. By
+Lemma~\ref{lem:peak}, $0<\mu_{\pm1}<1$ and $\mu_{H\pm1}<\mu_H$, so the
+\emph{forward} and \emph{backward flags}
+\[
+  \varphi^+=\varphi(\mu_1,\mu_{H-1},\mu_H,\mu_{-1}),\qquad
+  \varphi^-=\varphi(\mu_{-1},\mu_{H+1},\mu_H,\mu_1)
+\]
+are defined. The reflection $\mu'_i=\mu_{-i}$ has $0$ as a highest secondary
+peak relative to $-H$, and its forward flag is $\varphi^-$.
+
+\begin{proposition}\label{prop:split}
+Every positive adjacent-unequal word with a strict four-vertex window admits a
+regular anchor, provided the following hold for all positive adjacent-unequal
+words $\mu$ with $\mu_0=1$.
+\begin{description}
+\item[(R)] If $\mu\le1$ and $\mu_J=1$ for some $J\ne0$, then $\mu$ admits a
+  regular anchor.
+\item[(F)] If $0$ is a highest secondary peak relative to $H$, $\mu_H>1$ and
+  $\varphi^+\ge0$, then $\mu$ admits a regular anchor.
+\item[(N)] If $0$ is a highest secondary peak relative to $H$, $\mu_H>1$,
+  $\varphi^+<0$ and $\varphi^-<0$, then $\mu$ admits a regular anchor.
+\end{description}
+\end{proposition}
+% Lean: Gluck.Discrete.nonempty_regularFourAnchor_of_adjacent_unequal_dfv,
+%       Gluck.Discrete.nonempty_regularFourAnchor_of_repeated_global_maximum,
+%       Gluck.Discrete.HighestSecondaryPeak.nonempty_regularFourAnchor,
+%       Gluck.Discrete.HighestSecondaryPeak.nonempty_regularFourAnchor_of_forward_terminal,
+%       Gluck.Discrete.HighestSecondaryPeak.nonempty_regularFourAnchor_of_backward_terminal,
+%       Gluck.Discrete.nonempty_regularFourAnchor_of_normalizedAt
+%       (UniversalRegularFourAnchor.lean);
+%       Gluck.Discrete.DFV.exists_two_strictLocalMax (N6MonotoneResidue.lean);
+%       Gluck.Discrete.exists_highestSecondaryPeak (CurvatureMountainSelection.lean);
+%       Gluck.Discrete.normalizedAt, Gluck.Discrete.HighestSecondaryPeak.normalizedAt,
+%       Gluck.Discrete.normalizedAt_pos, Gluck.Discrete.normalizedAt_adjacent_ne
+%       (FirstPairMountainTransport.lean)
+
+\begin{proof}
+Let $\kappa$ be such a word and $H$ a global maximum. For $g\in\Zn$ the word
+$\mu^{(g)}_i=\kappa_{i+g}/\kappa_g$ is positive and adjacent-unequal with
+$\mu^{(g)}_0=1$, and by Proposition~\ref{prop:invariance} it suffices to find
+an anchor for one of them. If the maximum is also attained at $J\ne H$, apply
+(R) to $\mu^{(H)}$. Otherwise, by Lemma~\ref{lem:dfv-plateau} $\kappa$ has two
+distinct plateau maxima, which are strict local maxima, so there is a
+strict local maximum other than $H$; let $K$ be one of largest value. Then
+$0$ is a highest secondary peak of $\mu=\mu^{(K)}$ relative to $H-K$, and
+$\mu_{H-K}>1$. If $\varphi^+\ge0$, apply (F). If $\varphi^+<0\le\varphi^-$,
+apply (F) to the reflection of $\mu$ and use
+Proposition~\ref{prop:invariance}(c). If both flags are negative, apply (N).
+\end{proof}
+
+Statements (R), (F) and (N) are proved in Section~\ref{sec:constructions}
+(Propositions~\ref{prop:R}, \ref{prop:F} and~\ref{prop:N}). Together with
+Propositions~\ref{prop:reduction} and~\ref{prop:split} this proves
+Theorem~\ref{thm:dfv-realizes}.
+% Lean: Gluck.Discrete.realizesR2_of_dfv_fourActive,
+%       Gluck.Discrete.tabachnikovProblem2_all (TabachnikovFourActive.lean)

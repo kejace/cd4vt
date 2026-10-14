@@ -1,0 +1,282 @@
+{
+  "description": "Exact rational illustrative octagon; not an extracted Lean witness.",
+  "arithmetic": "Python standard-library fractions.Fraction; no numerical solver",
+  "solver_used": false,
+  "normals_u": [
+    [
+      "1",
+      "0"
+    ],
+    [
+      "3/5",
+      "4/5"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "-4/5",
+      "3/5"
+    ],
+    [
+      "-1",
+      "0"
+    ],
+    [
+      "-3/5",
+      "-4/5"
+    ],
+    [
+      "0",
+      "-1"
+    ],
+    [
+      "4/5",
+      "-3/5"
+    ]
+  ],
+  "tangential_vertices_y": [
+    [
+      "1",
+      "1/2"
+    ],
+    [
+      "1/3",
+      "1"
+    ],
+    [
+      "-1/2",
+      "1"
+    ],
+    [
+      "-1",
+      "1/3"
+    ],
+    [
+      "-1",
+      "-1/2"
+    ],
+    [
+      "-1/3",
+      "-1"
+    ],
+    [
+      "1/2",
+      "-1"
+    ],
+    [
+      "1",
+      "-1/3"
+    ]
+  ],
+  "radii": [
+    "1",
+    "2",
+    "1",
+    "3/2",
+    "1",
+    "2",
+    "1",
+    "3/2"
+  ],
+  "radius_differences": [
+    "1/2",
+    "-1",
+    "1",
+    "-1/2",
+    "1/2",
+    "-1",
+    "1",
+    "-1/2"
+  ],
+  "scaled_vertices_p": [
+    [
+      "0",
+      "0"
+    ],
+    [
+      "-2/3",
+      "1/2"
+    ],
+    [
+      "-7/3",
+      "1/2"
+    ],
+    [
+      "-17/6",
+      "-1/6"
+    ],
+    [
+      "-17/6",
+      "-17/12"
+    ],
+    [
+      "-13/6",
+      "-23/12"
+    ],
+    [
+      "-1/2",
+      "-23/12"
+    ],
+    [
+      "0",
+      "-5/4"
+    ]
+  ],
+  "circle_centers": [
+    [
+      "-1",
+      "-1/2"
+    ],
+    [
+      "-4/3",
+      "-3/2"
+    ],
+    [
+      "-11/6",
+      "-1/2"
+    ],
+    [
+      "-4/3",
+      "-2/3"
+    ],
+    [
+      "-11/6",
+      "-11/12"
+    ],
+    [
+      "-3/2",
+      "1/12"
+    ],
+    [
+      "-1",
+      "-11/12"
+    ],
+    [
+      "-3/2",
+      "-3/4"
+    ]
+  ],
+  "balance_sum": [
+    "0",
+    "0"
+  ],
+  "edge_closure_sum": [
+    "0",
+    "0"
+  ],
+  "minimum_strict_support_cross": "5/8",
+  "contact_edge_parameters_previous_central_next": [
+    [
+      "3/5",
+      "3/5",
+      "1/5"
+    ],
+    [
+      "1/5",
+      "2/5",
+      "6/5"
+    ],
+    [
+      "7/10",
+      "3/5",
+      "4/15"
+    ],
+    [
+      "2/5",
+      "2/5",
+      "9/10"
+    ],
+    [
+      "3/5",
+      "3/5",
+      "1/5"
+    ],
+    [
+      "1/5",
+      "2/5",
+      "6/5"
+    ],
+    [
+      "7/10",
+      "3/5",
+      "4/15"
+    ],
+    [
+      "2/5",
+      "2/5",
+      "9/10"
+    ]
+  ],
+  "three_line_system_nonzero_elimination_pivots": [
+    [
+      "1",
+      "4/5",
+      "1/2"
+    ],
+    [
+      "3/5",
+      "1",
+      "2/3"
+    ],
+    [
+      "-4/5",
+      "1",
+      "1/2"
+    ],
+    [
+      "-4/5",
+      "-3/4",
+      "2/3"
+    ],
+    [
+      "-1",
+      "-4/5",
+      "1/2"
+    ],
+    [
+      "-3/5",
+      "-1",
+      "2/3"
+    ],
+    [
+      "4/5",
+      "-1",
+      "1/2"
+    ],
+    [
+      "4/5",
+      "3/4",
+      "2/3"
+    ]
+  ],
+  "checks": {
+    "positive_radii": true,
+    "alternating_nonzero_differences": true,
+    "unit_normals": true,
+    "strict_convex_support": true,
+    "exact_balance_and_closure": true,
+    "exact_edge_scaling": true,
+    "all_three_inward_signed_distances": true,
+    "all_contact_squared_distances": true,
+    "all_central_contacts_in_open_edges": true,
+    "independent_three_line_system_solutions": true,
+    "selected_neighbor_contact_beyond_endpoint": true
+  },
+  "generator_sha256": "339454b102e3a9838392ac7546d07dc65933adee171e587872a7ef2158bb716d",
+  "environment": {
+    "python": "3.12.3",
+    "executable": "/tmp/gluck-figure-cas/bin/python",
+    "optional_cas_venv_used": false,
+    "note": "CAS resource launcher; standard-library exact rationals; no optional CAS backend."
+  },
+  "artifacts_sha256": {
+    "paper/tabachnikov/figures/side-tangent-circle.tex": "f1bdcbced880bde0623370c29d7cd2f9aa367006025d6e45ab834e384099083d",
+    "paper/tabachnikov/figures/side-tangent-circle.pdf": "af38c70e6a784fa5470e3cc0df3ad71af396dc93aec8b73763fca8562a508811",
+    "site/figures/tabachnikov-side-tangent-circle.svg": "c4af1e1153553873d1ce0440fbc32ee5d850306da2181aa5e75dd7a564c80d9b",
+    "paper/tabachnikov/figures/side-tangent-construction.tex": "18b8244be85198e05a26d839b7cdc796bac350cc5f4ba88c516d5b37609b6d5f",
+    "paper/tabachnikov/figures/side-tangent-construction.pdf": "05cf38381c6201ffd616b8ccbda535650cae7050e6638e3c0a1234d06f65e0af",
+    "site/figures/tabachnikov-side-tangent-construction.svg": "63b1a4b218af8ba7e7463c0b7b52251c1997e723666917fffb5a22d93c8c63a5"
+  }
+}

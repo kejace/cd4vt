@@ -1,0 +1,229 @@
+\section{Circles tangent to consecutive sides}\label{sec:side-tangent}
+
+There is a second discrete curvature attached to a convex polygon: the
+reciprocal radius of the inward circle tangent to three consecutive
+supporting lines. Wegner's four-edge theorem concerns these radii
+\cite[Theorem~1]{Wegner1994}; see also \cite[Corollary~21.11]{Pak2010}. We give a converse as a companion to
+Theorem~\ref{thm:main}. The construction below uses a tangential polygon and
+positive edge scaling; it is independent of the four-length system used for
+the main theorem.
+
+\begin{definition}\label{def:side-tangent-circle}
+Let $P_i$ be the vertices of a counterclockwise strictly convex polygon,
+with outward unit normal $N_i$ on edge $[P_i,P_{i+1}]$.
+The \emph{inward three-line circle at edge $i$} has center $C_i$ and radius
+$r_i>0$ satisfying
+\begin{equation}\label{eq:side-tangent-distances}
+ \langle N_{i-1},P_i-C_i\rangle
+ =\langle N_i,P_i-C_i\rangle
+ =\langle N_{i+1},P_{i+1}-C_i\rangle=r_i.
+\end{equation}
+Its central contact is required to lie in the open edge $(P_i,P_{i+1})$.
+The contacts on the two neighbouring supporting lines may lie on their
+extensions. The circle need not be contained in the entire polygon.
+\end{definition}
+% Lean: Gluck.Discrete.SideTangent.ThreeLineCircle
+% Lean: Gluck.Discrete.SideTangent.IsSideTangentRealization
+
+\begin{figure}[htbp]
+\centering
+\figfile{side-tangent-circle}{0.52\textwidth}
+\caption{The selected circle is tangent to three supporting lines, with
+its central contact in the open edge. Here one neighbouring contact lies
+beyond its edge. All coordinates, circle equations and contact parameters
+in this example are checked with exact rational arithmetic.}
+\label{fig:side-tangent-circle}
+\end{figure}
+
+Put $c_i=r_{i-1}-r_i$. By four cyclic sign changes we mean that there are
+$i_1<i_2<i_3<i_4<i_1+n$ with
+$c_{i_1}>0$, $c_{i_2}<0$, $c_{i_3}>0$ and $c_{i_4}<0$; zero differences are
+retained but do not count as a sign. This formulation includes repeated
+radii without a genericity assumption.
+
+\begin{theorem}\label{thm:side-tangent-converse}
+Let $n\ge4$ and let $r_i>0$ be a cyclic sequence. Suppose that $r$ is
+constant or that $c_i=r_{i-1}-r_i$ has four cyclic sign changes. Then a
+simple strictly convex polygon realizes $r_i$ as the radii of its inward
+three-line circles. Each center and radius are uniquely determined by the
+three equations~\eqref{eq:side-tangent-distances}, and every central contact
+lies in its open edge.
+\end{theorem}
+% Lean: Gluck.Discrete.SideTangent.sideTangentConverse
+% Lean: Gluck.Discrete.SideTangent.IsSideTangentRealization.tangent_sphere
+
+The main ingredient is a balanced polygon circumscribed about the unit
+circle. Its vertices, rather than the contact points, carry the coefficients.
+
+\begin{lemma}\label{lem:side-tangent-balance}
+Suppose $\sum_i c_i=0$ and $c$ has four cyclic sign changes. There is a
+strictly convex polygon $Y_i$, circumscribed about the unit circle with each
+contact in its open edge, such that $\sum_i c_iY_i=0$.
+\end{lemma}
+% Lean: Gluck.Discrete.SideTangent.exists_balanced_cyclicFan_of_dfv
+
+\begin{proof}
+Choose four alternating nonzero coefficients, and place their labels at
+$(1,1),(-1,1),(-1,-1),(1,-1)$ in that order. Collapse all intervening labels
+to the corresponding side contact of the square. All labels and their
+coefficients remain present. Denote this limiting configuration by $X_i$,
+and consider the finite rational field
+\[
+ G(a)=\sum_i\frac{c_i X_i}{1-\langle a,X_i\rangle}.
+\]
+For sufficiently small $\varepsilon>0$, all denominators are positive on
+$D_\varepsilon=\{(x,y):|x|+|y|\le1-\varepsilon\}$. On its upper boundary arc
+$y\ge |x|$, one of the two upper corner denominators equals $\varepsilon$.
+If the alternating corner coefficients are $\alpha,-\beta,\gamma,-\delta$
+with $\alpha,\beta,\gamma,\delta>0$, and the left and right contact
+coefficients are $u,v$, then
+\[
+ \mathop{\rm Re}G(x,y)\ge
+ \frac{\min(\alpha,\beta)}{\varepsilon}
+       -\gamma-\delta-2|u|-2|v|>0.
+\]
+The upper and lower contact labels have zero horizontal contribution,
+including near their poles. The corresponding bounds on the other three
+arcs give, successively, $\mathop{\rm Im}G<0$ on the left,
+$\mathop{\rm Re}G<0$ on the bottom and $\mathop{\rm Im}G>0$ on the right.
+Thus the boundary field has winding number $-1$.
+
+Now separate the repeated normals into small, strictly ordered clusters.
+This produces a genuine tangential polygon $X_i^{\eta}$, with every edge
+positive and every contact interior, converging to the labelled square as
+$\eta\downarrow0$. Positivity of all denominators and the strict boundary
+margins persist uniformly on the compact diamond. The perturbed field has
+the same nonzero winding number and hence a zero $a$ in $D_\varepsilon$.
+In particular $|a|<1$.
+
+Set $\sigma=\sqrt{1-|a|^2}$ and
+\[
+ A=\sigma I+\frac{aa^{\mathsf T}}{1+\sigma},\qquad
+ B_a(x)=\frac{Ax-a}{1-\langle a,x\rangle}.
+\]
+This projective transformation preserves the unit disk, its tangent lines,
+and the cyclic order and open contacts of our polygon. All relevant
+denominators are positive. Since $\sum_i c_i=0$,
+\[
+ \sum_i\frac{c_i}{1-\langle a,X_i^{\eta}\rangle}
+ =\langle a,G(a)\rangle=0,
+ \qquad
+ \sum_i c_i B_a(X_i^{\eta})=A G(a)-a\langle a,G(a)\rangle=0.
+\]
+The vertices $Y_i=B_a(X_i^{\eta})$ have the required properties.
+\end{proof}
+
+\begin{lemma}\label{lem:side-tangent-scaling}
+Let $Y_i$ be a counterclockwise strictly convex polygon circumscribed about the unit circle,
+with its contacts in its open edges. If $r_i>0$ and
+$\sum_i(r_{i-1}-r_i)Y_i=0$, the cyclic edge equations
+\begin{equation}\label{eq:side-tangent-scaling}
+ P_{i+1}-P_i=r_i(Y_{i+1}-Y_i)
+\end{equation}
+define a closed simple strictly convex polygon. Its inward three-line
+circle at edge $i$ has center $C_i=P_i-r_iY_i$ and radius $r_i$.
+\end{lemma}
+% Lean: Gluck.Discrete.SideTangent.sum_scaled_edges
+% Lean: Gluck.Discrete.SideTangent.strictSupport_of_positive_edge_scaling
+% Lean: Gluck.Discrete.SideTangent.realizesSideTangent_of_scaledFan
+
+\begin{proof}
+Cyclic summation by parts gives
+$\sum_i r_i(Y_{i+1}-Y_i)=\sum_i(r_{i-1}-r_i)Y_i=0$, so the edges close.
+Positive scaling preserves their ordered directions and their total turn
+of $2\pi$. For any fixed edge, the projections of the subsequent edges on
+its left normal are first positive and then negative. Every intermediate
+partial sum is positive, using closure for the second part. Hence every
+nonincident vertex is strictly to its left. This gives strict support and
+simplicity.
+
+The outward normals satisfy
+$\langle N_{i-1},Y_i\rangle=\langle N_i,Y_i\rangle=1$ and
+$\langle N_{i+1},Y_{i+1}\rangle=1$. Substituting
+$C_i=P_i-r_iY_i=P_{i+1}-r_iY_{i+1}$ gives all three
+signed-distance equations. The central contact is the image of $N_i$ under
+the positive homothety $x\mapsto C_i+r_ix$, and therefore lies in its open
+edge. Adjacent normals are linearly independent. The first two equations
+force any other center with radius $s$ to equal $P_i-sY_i$; the third then
+gives $s=r_i$, since $\langle N_{i+1},Y_i\rangle<1$. Finally, unit normals
+turn the signed-distance equations into actual circle tangency.
+\end{proof}
+
+\begin{figure}[tb]
+\centering
+\figfile{side-tangent-construction}{\textwidth}
+\caption{A balanced polygon circumscribed about the unit circle (left) and
+its positive edge scaling (right). The prescribed cyclic radii are
+$(1,2,1,3/2,1,2,1,3/2)$. Closure, strict support and all eight circles are
+verified exactly. The highlighted upper edge is the central edge of the
+circle in Figure~\ref{fig:side-tangent-circle}.}
+\label{fig:side-tangent-construction}
+\end{figure}
+
+\begin{proof}[Proof of Theorem~\ref{thm:side-tangent-converse}]
+For nonconstant data, apply Lemma~\ref{lem:side-tangent-balance} to
+$c_i=r_{i-1}-r_i$, whose sum is zero, and then
+Lemma~\ref{lem:side-tangent-scaling}. For constant $r_i=r$, take a regular
+polygon circumscribed about the unit circle and scale its edges by $r$.
+\end{proof}
+
+The forward implication is Wegner's four-edge theorem
+\cite[Theorem~1]{Wegner1994}, whose convention already includes plateau
+extrema. For the supporting-line circles of
+Definition~\ref{def:side-tangent-circle}, we give a proof using the signed
+affine-balance argument of \cite[Theorem~21.15]{Pak2010}, allowing zero
+coefficients.
+
+\begin{lemma}\label{lem:side-tangent-signs}
+Let $Y_i$ be the cyclic vertices of a counterclockwise strictly convex polygon. If
+$\sum_i c_i=0$ and $\sum_i c_iY_i=0$, then either every $c_i=0$ or the cyclic
+coefficient sequence has at least four sign changes.
+\end{lemma}
+% Lean: Gluck.Discrete.SideTangent.zero_or_dfv_of_strict_affine_balance
+
+\begin{proof}
+A nonzero zero-sum sequence has both signs. If it has no four alternating
+signs, it has one nonpositive block and one nonnegative block, with zeros
+allowed in either. Choose a negative entry $c_a$ beginning the first block
+and a positive entry $c_b$ beginning the second, using cyclic lifts
+$a<b<a+n$. The chord $Y_aY_b$ has strictly negative signed area against
+vertices in $(a,b)$ and strictly positive signed area against those in
+$(b,a+n)$. Thus
+\[
+ c_i[Y_a,Y_b,Y_i]\ge0\quad\hbox{for every }i,
+ \qquad \sum_i c_i[Y_a,Y_b,Y_i]=0,
+\]
+where $[A,B,C]$ is the signed determinant. The equality follows from the
+zero mass and zero vector sum, since the determinant is affine in its third
+argument. Every summand vanishes. Strict chord separation forces all
+coefficients except $c_a,c_b$ to vanish. The two balance equations then give
+$c_a(Y_a-Y_b)=0$, contradicting $c_a<0$ and distinctness of the vertices.
+\end{proof}
+
+\begin{corollary}\label{cor:side-tangent-iff}
+Let $n\ge4$ and $r_i>0$. The sequence $r$ is realized by the inward
+three-line circles of a simple strictly convex polygon, with their central
+contacts in the open edges, if and only if $r$ is constant or its cyclic
+differences $r_{i-1}-r_i$ have at least four sign changes.
+\end{corollary}
+% Lean: Gluck.Discrete.SideTangent.sideTangentForward
+% Lean: Gluck.Discrete.SideTangent.realizesSideTangent_iff_admissible
+
+\begin{proof}
+Sufficiency is Theorem~\ref{thm:side-tangent-converse}. For necessity, start
+from the actual polygon and its circles, and set
+$Y_i=(P_i-C_i)/r_i$. The two incident normal equations give
+$\langle N_{i-1},Y_i\rangle=\langle N_i,Y_i\rangle=1$.
+These normals are linearly independent, because the polygon is strictly
+convex. The circle at the preceding edge satisfies the same two normalized
+equations at $P_i$, so it gives the same $Y_i$. Consequently
+\[
+ Y_{i+1}-Y_i=\frac{P_{i+1}-P_i}{r_i}.
+\]
+This is a closed positive edge scaling of the original polygon; the strict
+support argument in Lemma~\ref{lem:side-tangent-scaling} therefore applies to
+$Y$. Summation by parts gives
+$\sum_i(r_{i-1}-r_i)Y_i=0$, and the differences themselves sum to zero.
+Lemma~\ref{lem:side-tangent-signs} supplies four sign changes unless every
+difference vanishes. In the latter case the cyclic radius sequence is constant.
+\end{proof}

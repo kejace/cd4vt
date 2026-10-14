@@ -1,0 +1,131 @@
+% A converse to the discrete four-vertex theorem (Tabachnikov's Problem 2).
+% Built by scripts/build-paper (pdflatex, deterministic metadata).
+\documentclass[11pt]{amsart}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{fancyvrb}
+\usepackage{newunicodechar}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+
+\pdfinfoomitdate=1
+\pdftrailerid{}
+\hypersetup{pdftitle={A converse to the discrete four-vertex theorem},
+            pdfauthor={Kristoffer Josefsson}}
+
+\tolerance=2000
+\emergencystretch=2em
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% ---------------------------------------------------------------------------
+% Notation (draft 2; one meaning per symbol, see Sections 3--5).
+%   Z_n indexes vertices P_i and edges [P_i,P_{i+1}] (edge i).
+%   kappa_i > 0 curvature at vertex i; r_i = 1/kappa_i (radii only).
+%   h_i half-length of edge i, ell_i = 2 h_i; theta_i turning angle;
+%   psi_j heading; Gap, Turn closure gap and total turn; D_kappa domain.
+%   Frame e_0<e_1<e_2<e_3; readings s_j = kappa_{e_j}, f_j = kappa_{e_j+1};
+%   L in R^4 active half-lengths; beta_j block turns; Phi controller;
+%   iota slot embedding; cal A active edges, cal Z dormant edges.
+%   Four-length system (Sec. 5): readings (1,t,q,l) / (p,q,h,1); Omega the
+%   eight walls; split angles alpha_0, alpha_3, gamma_1, gamma_2; S, T pure
+%   turns; chi chord equation; eps_1, eps_3 mixed-corner defects;
+%   varsigma_a slope; A,B,C,D slope defects; sigma(h,l), phi(p,t,h,l) flag;
+%   \hat L(u,v) orthogonal core, Delta = q^2-u^2v^2; rho_1, rho_3 residuals.
+%   Peak indices: H global maximum, K highest secondary peak, J repeated max.
+% ---------------------------------------------------------------------------
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zn}{\mathbb{Z}/n}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\Gap}{\mathcal{G}}
+\newcommand{\Turn}{\mathcal{T}}
+\newcommand{\Ctrl}{\Phi}
+\newcommand{\DFV}{\operatorname{DFV}}
+\newcommand{\Lean}[1]{\texttt{#1}}
+% Figures produced separately; a placeholder keeps the build going meanwhile.
+\newcommand{\figfile}[2]{\IfFileExists{tabachnikov/figures/#1.pdf}%
+  {\includegraphics[width=#2]{tabachnikov/figures/#1.pdf}}%
+  {\fbox{figure #1 pending}}}
+
+% Lean source in the appendix: Unicode glyphs mapped for pdflatex.
+\providecommand{\gitversion}{unknown}
+\newcommand{\leancommit}{\gitversion}
+\DefineVerbatimEnvironment{leancode}{Verbatim}{fontsize=\footnotesize}
+\newunicodechar{↔}{\ensuremath{\leftrightarrow}}
+\newunicodechar{≤}{\ensuremath{\le}}
+\newunicodechar{≠}{\ensuremath{\ne}}
+\newunicodechar{→}{\ensuremath{\to}}
+\newunicodechar{∀}{\ensuremath{\forall}}
+\newunicodechar{∃}{\ensuremath{\exists}}
+\newunicodechar{¬}{\ensuremath{\neg}}
+\newunicodechar{∧}{\ensuremath{\wedge}}
+\newunicodechar{∈}{\ensuremath{\in}}
+\newunicodechar{ℝ}{\ensuremath{\mathbb{R}}}
+\newunicodechar{ℂ}{\ensuremath{\mathbb{C}}}
+\newunicodechar{ℕ}{\ensuremath{\mathbb{N}}}
+\newunicodechar{κ}{\ensuremath{\kappa}}
+\newunicodechar{₀}{\ensuremath{_0}}
+
+\title{A converse to the discrete four-vertex theorem}
+\author{Kristoffer Josefsson}
+\renewcommand{\datename}{\textit{Version:}}
+\date{\texttt{\gitversion}}
+
+\begin{document}
+
+\begin{abstract}
+Tabachnikov asked whether every cyclic sequence of positive numbers with at
+least two local maxima and two local minima is the sequence of radii of the
+circles through consecutive vertex triples of a convex polygon whose
+circumcenters lie inside the corresponding vertex angles. We prove this for
+every $n\ge 4$, with extrema counted as plateaus. This is the sharp form: by
+Dahlberg's discrete four-vertex theorem the condition is also necessary for
+nonconstant sequences. Locally near every nonconstant admissible sequence the
+polygon can be chosen to depend continuously (indeed $C^1$) on the sequence,
+but in general not globally: we give an explicit path of admissible hexagon
+data along which no continuous choice of realizing polygons exists. The
+existence and continuity results are formalized in Lean~4 with Mathlib.
+We also prove the corresponding characterization for circles tangent to three
+consecutive supporting lines, using a separate tangential-polygon construction
+and Wegner's forward theorem.
+\end{abstract}
+
+\maketitle
+
+\input{tabachnikov/intro}
+\input{tabachnikov/method}
+\input{tabachnikov/setup}
+\input{tabachnikov/anchor}
+\input{tabachnikov/system}
+\input{tabachnikov/constructions}
+\input{tabachnikov/continuity}
+\input{tabachnikov/side-tangent}
+\input{tabachnikov/discussion}
+\subsection*{Acknowledgements}
+The author would like to thank Aristotle, Claude, Codex, Deepseek for helpful
+discussions. The proofs have been assisted with the use of AI but the author
+takes full responsibility for their correctness.
+
+\appendix
+\input{tabachnikov/lean}
+\input{tabachnikov/elimination}
+
+\bibliographystyle{amsplain}
+\bibliography{tabachnikov/refs}
+
+\end{document}

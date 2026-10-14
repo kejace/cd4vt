@@ -1,0 +1,137 @@
+\section{The acute orthogonal case}\label{sec:elimination}
+
+We prove Proposition~\ref{prop:acute}. Let $L=\hat L(u,v)$ be as there and
+suppose that $D\Ctrl(L)$ is not onto. All polynomial identities below were
+verified by computer algebra and are checked in Lean.
+% Lean: Gluck.Discrete.NativeOppositePure.fderiv_nativeLengthController_surjective_of_acute_orthogonal
+
+\emph{Projective coordinates.} By Lemma~\ref{lem:core}(i),
+$\cos\alpha_0=v\hat L_2$, $\cos\alpha_3=u\hat L_1$, $\cos\gamma_1=v\hat L_3$ and
+$\cos\gamma_2=u\hat L_0$, hence
+\begin{equation}\label{eq:tan}
+  \tan\alpha_0\tan\gamma_2=\tan\alpha_3\tan\gamma_1=\frac{q}{uv}>1 .
+\end{equation}
+% Lean: Gluck.Discrete.NativeOppositePure.coreHalfLengths_angle_data,
+%       coreHalfLengths_angles_acute, coreHalfLengths_tan, coreHalfLengths_tan_products,
+%       coreHalfLengths_tan_product_gt_one
+Put $x=\tan\alpha_0/\tan\gamma_1$, $y=1/(\tan\gamma_1\tan\gamma_2)$,
+$w=1/\tan\gamma_2$ and $m=w^2$. By~\eqref{eq:tan}, $\tan\alpha_0=xw/y$,
+$\tan\alpha_3=x/w$, $\tan\gamma_1=w/y$ and $\tan\gamma_2=1/w$. Since
+$T<\pi/2$, $\tan\gamma_1\tan\gamma_2<1$, so $y>1$; and
+$x/y=\tan\alpha_0\tan\gamma_2>1$, so $x>y>1$. With
+$\lambda_*=\cos\alpha_0\cos\alpha_3/y>0$ one finds
+\begin{equation}\label{eq:cos}
+  \cos S=\lambda_*\,(y-x^2),\qquad \frac{\cos T}{q}=\lambda_*\,x\,(y-1);
+\end{equation}
+the first is $\cos S=\cos\alpha_0\cos\alpha_3(1-\tan\alpha_0\tan\alpha_3)$, and
+the second uses $q\sin\alpha_3\cos\alpha_0=\cos\gamma_1\sin\gamma_2$, which
+follows from the cosine relations above.
+% Lean: Gluck.Discrete.NativeOppositePure.acute_projective_coordinates,
+%       coreHalfLengths_normalized_cos
+
+\emph{The equations.} By Lemma~\ref{lem:rank}, $AD=BC$. Put $a=A/2$, $b=C/2$
+and $\tau=A/B$. Then $B=2a/\tau$ and $D=2b/\tau$, and since $0<p,l<1$ and
+$t,h<q$, all of $A,B,C,D$ lie in $(0,1)$:
+\begin{equation}\label{eq:ranges}
+  0<a<\tfrac12,\quad 0<b<\tfrac12,\quad 2a<\tau,\quad 2b<\tau .
+\end{equation}
+% Lean: Gluck.Discrete.NativeOppositePure.incident_projective_parameters
+Substituting~\eqref{eq:cos} into the second equation of~\eqref{eq:minors}
+and dividing by $\lambda_*B$ gives
+\begin{equation}\label{eq:affine}
+  \mathcal A:=-(x+1)(x-y)(1+\tau)+2(x^2-y)b-2x(y-1)a=0 .
+\end{equation}
+% Lean: Gluck.Discrete.NativeOppositePure.projective_affine_of_incident_minor
+Since $\tan\arcsin(c\sin z)=\varsigma_c(z)\tan z$, the four mixed arcsines
+have tangents $(1-2a)\,xw/y$, $(1-2b)\,w/y$, $(1-2b/\tau)/w$ and
+$(1-2a/\tau)\,x/w$. The equations $\varepsilon_1=0$ and $\varepsilon_3=0$ say
+that four angles with nonzero cosines sum to $\pi$, and for such angles
+$(\tan z_1\tan z_2-1)(\tan z_3+\tan z_4)=(\tan z_1+\tan z_2)(1-\tan z_3\tan z_4)$.
+Clearing denominators gives
+\begin{align}
+  \mathcal E_1&:=y(x-m)\bigl(x(1-2a)+(1-2b)\bigr)
+     -(x+1)\bigl(y^2-xm(1-2a)(1-2b)\bigr)=0,\label{eq:E1}\\
+  \mathcal E_2&:=(xm-y^2)\,\tau\bigl(\tau-2b+x(\tau-2a)\bigr)
+     -y(x+1)\bigl(m\tau^2-x(\tau-2b)(\tau-2a)\bigr)=0.\label{eq:E2}
+\end{align}
+% Lean: Gluck.Discrete.NativeOppositePure.tan_angleAtom_eq_slope_mul_tan,
+%   tangent_turn_polynomial, first_projective_turn_polynomial,
+%   second_projective_turn_polynomial, incidentProjectiveRankLoss_of_angles,
+%   IncidentProjectiveRankLoss  (Lean names: P = x, Q = y, B = m, T = tau, r = a, k = b)
+% Lean: Gluck.Discrete.NativeIncidentProjective.turnOne, turnTwo, affineRelation
+So Proposition~\ref{prop:acute} follows from the next lemma.
+
+\begin{lemma}\label{lem:elim}
+There are no reals $x,y,m,a,b,\tau$ with $1<y<x$, $m>0$,
+$a>0$, $0<b<\tfrac12$, $2a<\tau$ and $2b<\tau$ satisfying
+\eqref{eq:affine}, \eqref{eq:E1} and~\eqref{eq:E2}.
+\end{lemma}
+% Lean: Gluck.Discrete.NativeIncidentProjective.not_projective_turn_solution
+% Lean: Gluck.Discrete.NativeOppositePure.IncidentProjectiveRankLoss.false
+
+\begin{proof}
+Put
+\[
+  D_0=x(x+1)a-(x^2-y),\qquad N_0=(x+1)(x-y)+2x(y-1)a,\qquad
+  \mathcal H=2bD_0+N_0 .
+\]
+\emph{Step 1: $\mathcal H=0$.} Write $\mathcal E_1=c_1m+d_1$ and
+$\mathcal E_2=c_2m+d_2$; then $c_1d_2-d_1c_2=0$. Here
+$c_1=-y(x(1-2a)+1-2b)+x(x+1)(1-2a)(1-2b)$,
+$d_1=xy(x(1-2a)+1-2b)-(x+1)y^2$,
+$c_2=x\tau(\tau-2b+x(\tau-2a))-y(x+1)\tau^2$ and
+$d_2=-y^2\tau(\tau-2b+x(\tau-2a))+xy(x+1)(\tau-2b)(\tau-2a)$. Solving
+\eqref{eq:affine} for $\tau$ (note $(x+1)(x-y)\ne0$) and substituting, one has
+the identity of rational functions
+\begin{equation}\label{eq:resultant}
+  (x+1)(x-y)\,(c_1d_2-d_1c_2)\big|_{\tau=\tau(a,b)}
+  =8xy\,(a-b)\,\bigl(b(x^2-y)+x^2a(y-1)\bigr)\,\mathcal H.
+\end{equation}
+% Lean: Gluck.Discrete.NativeIncidentProjective.elimination_identity (private),
+%   projectiveH_eq_zero, projectiveH, projectiveD0, projectiveN
+If $a=b$, then \eqref{eq:affine} reads $(x+1)(x-y)(2a-1-\tau)=0$, so
+$\tau=2a-1<2a$, contradicting $\tau>2a$. Also $b(x^2-y)+x^2a(y-1)>0$. Hence
+$\mathcal H=0$.
+
+\emph{Step 2: two consequences.} The identities
+\[
+  (x+1)\bigl((x-y)\tau-2bxa\bigr)+\mathcal H+\mathcal A=0,
+  \qquad
+  D_0\,\mathcal E_1+(x+1)\,\mathcal C=c_H\,\mathcal H,
+\]
+with $c_H=2mx^2a-mx^2+2mxa-mx+my-xy$ and
+$\mathcal C=m\,x\,\mathcal D(a)+y\,\mathcal P(a)$, where
+\begin{align*}
+  \mathcal P(a)&=2x^3a^2+(-3x^3+x^2y+x^2+xy)\,a+(x^3-x^2y-x^2+y^2),\\
+  \mathcal D(a)&=2x(x+y-1)\,a^2+(-x^2-xy+3x-y)\,a+(y-x),
+\end{align*}
+give $(x-y)\tau=2bxa$ and $\mathcal C=0$.
+% Lean: Gluck.Discrete.NativeIncidentProjective.projective_T_relation,
+%   projective_polyC_eq_zero, polyA (= calP), polyD (= calD), polyC (= calC)
+
+\emph{Step 3: a forced interval.} $N_0>0$, and $2bD_0=-N_0$ gives $D_0<0$.
+From $(x-y)\tau=2bxa$ and $\tau>2b$ we get $a>(x-y)/x$. From $\mathcal H=0$,
+$N_0+D_0=(1-2b)D_0<0$, and $N_0+D_0=x\bigl(a(x+2y-1)-(y-1)\bigr)$. Thus
+\begin{equation}\label{eq:interval}
+  a_-:=\frac{x-y}{x}<a<a_+:=\frac{y-1}{x+2y-1},
+\end{equation}
+% Lean: Gluck.Discrete.NativeIncidentProjective.projective_forced_interval
+and in particular $a_-<a_+$, which is equivalent to $x^2-2y^2+y<0$.
+
+\emph{Step 4: a sign obstruction.} $\mathcal P$ and $\mathcal D$ are convex
+quadratics in $a$, so it suffices that each is negative at two points
+bracketing~\eqref{eq:interval}. Direct evaluation gives
+\begin{align*}
+  \mathcal P(a_-)&=-xy(x-y), &
+  \mathcal P\Bigl(\tfrac{x^2-y}{x(x+1)}\Bigr)&=-\frac{x(x+y)(x^2-2y+1)}{(x+1)^2},\\
+  \mathcal D(a_-)&=\frac{(x-y)(x^2-xy-2y^2+y)}{x}, &
+  \mathcal D(a_+)&=-\frac{y(x+y)(x^2-2y+1)}{(x+2y-1)^2}.
+\end{align*}
+Here $x^2-2y+1>2x-2y>0$, $x^2-xy-2y^2+y<x^2-2y^2+y<0$, and
+$a_+<\frac{x^2-y}{x(x+1)}$, which after cross-multiplying is
+$(x+y)(x^2-2y+1)>0$. So $\mathcal P(a)<0$ and $\mathcal D(a)<0$, hence
+$\mathcal C<0$, contradicting $\mathcal C=0$.
+\end{proof}
+% Lean: Gluck.Discrete.NativeIncidentProjective.polyA_at_left, polyA_at_outer_right,
+%   polyD_at_left, polyD_at_right, quadratic_neg_between (private),
+%   polyA_neg_and_polyD_neg_of_interval, polyC_neg_of_interval

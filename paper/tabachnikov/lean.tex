@@ -1,0 +1,115 @@
+\section{Formal statements}\label{sec:lean}
+\begingroup\raggedright\setlength{\parindent}{1.5em}
+
+The main existence, continuity, and characterization results are proved in
+Lean~4 (\texttt{v4.35.0-rc2}) with Mathlib in
+\url{https://github.com/kejace/cd4vt} at version \texttt{\leancommit}, in the
+library \texttt{Gluck}. Each displayed theorem depends only on the standard
+axioms \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}.
+After \texttt{lake build}, the command
+\texttt{lake env lean scripts/axioms.lean} prints these axioms for every
+theorem below, using \texttt{\#print axioms}, for example
+\begin{leancode}
+#print axioms Gluck.Discrete.tabachnikov_converse_geometric
+\end{leancode}
+The paper sources name the Lean declarations behind the mathematical statements.
+
+\subsection*{Theorem~\ref{thm:main}}
+File \nolinkurl{Gluck/Discrete/TabachnikovConverse.lean}. Here
+\texttt{vertexCircumradius v i} is the distance from \texttt{v i} to the
+circumcenter of \texttt{v (i-1)}, \texttt{v i}, \texttt{v (i+1)}, and
+\texttt{IsCoherentConvexPolygon} is simplicity, strict convexity and
+coherence.
+\begin{leancode}
+theorem tabachnikov_converse_geometric [NeZero n]
+    (hn : 4 ≤ n) {r : ZMod n → ℝ}
+    (hr : ∀ i, 0 < r i) (hext : IsPlateauTwoMaxTwoMin r) :
+    ∃ v : ZMod n → ℂ, IsCoherentConvexPolygon v ∧
+      ∀ i, vertexCircumradius v i = r i
+\end{leancode}
+
+For this same polygon, the lemmas
+\nolinkurl{IsCoherentConvexPolygon.signedMengerR2_eq_inv_of_radii} and
+\nolinkurl{IsCoherentConvexPolygon.not_concyclic4_of_radius_ne}, in
+\nolinkurl{Gluck/Discrete/TabachnikovCharacterization.lean}, give curvature
+$1/r_i$ and exclude four consecutive concyclic vertices at each individual
+pair with $r_i\ne r_{i+1}$. The original theorem
+\texttt{tabachnikov\_converse}, with the combined conclusions, is retained.
+
+\subsection*{Corollary~\ref{cor:iff}}
+File \nolinkurl{Gluck/Discrete/TabachnikovCharacterization.lean}. The
+hypotheses include positivity and nonconstancy, and the conclusion uses the
+same distinct plateau runs as Theorem~\ref{thm:main}.
+\begin{leancode}
+theorem tabachnikov_radius_characterization [NeZero n]
+    (hn : 4 ≤ n) {r : ZMod n → ℝ}
+    (hr : ∀ i, 0 < r i) (hnc : ¬ ∃ c, ∀ i, r i = c) :
+    (∃ v : ZMod n → ℂ, IsCoherentConvexPolygon v ∧
+      ∀ i, vertexCircumradius v i = r i) ↔ IsPlateauTwoMaxTwoMin r
+\end{leancode}
+
+\subsection*{Theorem~\ref{thm:side-tangent-converse}}
+File \nolinkurl{Gluck/Discrete/SideTangentConverse.lean}, namespace
+\texttt{Gluck.Discrete.SideTangent}. The predicate
+\texttt{SideTangentAdmissible r} means positive radii which are constant
+or whose incoming-minus-outgoing differences have a strict four-sign window.
+The predicate \texttt{RealizesSideTangent r} includes simplicity, strict
+support, outward unit normals, all three signed-distance equations,
+uniqueness of center and radius, and the open central contact.
+\begin{leancode}
+theorem sideTangentConverse [NeZero n] (hn : 4 ≤ n)
+    (r : ZMod n → ℝ) (h : SideTangentAdmissible r) :
+    RealizesSideTangent r
+\end{leancode}
+The same file proves \texttt{IsSideTangentRealization.tangent\_sphere}:
+the sphere meets each of the three supporting lines in exactly its stated
+contact point. Thus the linear equations imply metric circle tangency.
+
+\subsection*{Corollary~\ref{cor:side-tangent-iff}}
+File \nolinkurl{Gluck/Discrete/SideTangentForward.lean}, in the same
+namespace and proof branch. The forward implication starts from an actual
+\texttt{IsSideTangentRealization}; the balanced polygon and the necessary
+sign condition are proved from it.
+\begin{leancode}
+theorem realizesSideTangent_iff_admissible [NeZero n]
+    (hn : 4 ≤ n) (r : ZMod n → ℝ) :
+    RealizesSideTangent r ↔ SideTangentAdmissible r
+\end{leancode}
+For positive nonconstant radii, \texttt{realizesSideTangent\_iff\_dfv}
+removes the constant alternative and concludes
+\texttt{DFV (radiusDifference r) 0} exactly.
+
+\subsection*{Theorem~\ref{thm:local}}
+File \nolinkurl{Gluck/Discrete/LocalContinuity.lean}. A
+\texttt{LocalDiscreteRealizationFamily κ₀} is an open neighbourhood of
+\texttt{κ₀} with a $C^1$ length map whose values are realizations and whose
+vertex map is $C^1$. The strict window already implies nonconstancy and
+$n\ge4$; neither needs to be a separate hypothesis.
+\begin{leancode}
+theorem localContinuousRealization_of_dfv [NeZero n]
+    {κ₀ : ZMod n → ℝ} {c : ℝ}
+    (hκ₀ : ∀ i, 0 < κ₀ i) (hdfv : DFV κ₀ c) :
+    Nonempty (LocalDiscreteRealizationFamily κ₀)
+\end{leancode}
+
+\subsection*{Theorem~\ref{thm:hexagon}}
+File \nolinkurl{Gluck/Discrete/GlobalContinuity/EnclosingCircleObstruction.lean},
+where \texttt{bandProfile s} is $\kappa^s$ of~\eqref{eq:band}.
+\begin{leancode}
+theorem no_continuous_regular_hexagon_path :
+    ¬ ∃ p : ℝ → (ZMod 6 → ℂ), ContinuousOn p (Set.Icc 0 1) ∧
+      ∀ s ∈ Set.Icc (0 : ℝ) 1,
+        IsSimplePolygon (p s) ∧ DahlbergRegular (p s) ∧
+        SignedMengerProfile (p s) = bandProfile s
+\end{leancode}
+Here \texttt{DahlbergRegular} asks that at every vertex the circumcenter lie
+in the closed vertex cone, with a collinear alternative when the middle
+point lies between the others. The prescribed positive profile excludes
+that alternative and already forces every consecutive triple to be positively
+oriented. The function \texttt{SignedMengerProfile} is
+$i\mapsto M(P_{i-1},P_i,P_{i+1})$. The orientation of a continuous path of
+convex hexagons is constant, and complex conjugation reverses it; after
+choosing counterclockwise orientation, a coherent convex realization of
+$\kappa^s$ satisfies the three displayed conditions. Thus the formal statement
+implies Theorem~\ref{thm:hexagon}.
+\par\endgroup
