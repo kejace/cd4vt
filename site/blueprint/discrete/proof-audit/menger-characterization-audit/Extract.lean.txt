@@ -1,0 +1,35 @@
+import Gluck.Discrete.TabachnikovCharacterization
+import Lean
+open Lean Elab Command
+
+def projectModule (env : Environment) (n : Name) : String :=
+  match env.getModuleIdxFor? n with
+  | some idx => env.header.moduleNames[idx]!.toString
+  | none => ""
+
+def isProjectDecl (env : Environment) (n : Name) : Bool :=
+  let m := projectModule env n
+  m.startsWith "Gluck" || m.startsWith "ForMathlib"
+
+elab "auditProofDeps" : command => do
+  let env ← getEnv
+  let roots : Array Name := #[ `Gluck.Discrete.tabachnikov_radius_characterization ]
+  let mut pending := roots
+  let mut visited : NameSet := {}
+  let mut rows : Array Json := #[]
+  while !pending.isEmpty do
+    let n := pending.back!
+    pending := pending.pop
+    if visited.contains n then continue
+    visited := visited.insert n
+    unless isProjectDecl env n do
+      if roots.contains n then throwError "Missing project root {n}"
+      continue
+    let some ci := env.find? n | throwError "Missing declaration {n}"
+    let deps := (ci.type.getUsedConstants ++ ((ci.value? true).map Expr.getUsedConstants).getD #[]).filter (isProjectDecl env)
+    rows := rows.push (Json.mkObj [("name", toJson n.toString), ("module", toJson (projectModule env n)), ("dependencies", toJson (deps.map Name.toString))])
+    pending := pending ++ deps
+  liftIO <| IO.FS.writeFile "/tmp/gluck-menger-characterization-kernel-dependencies.json" (Json.arr rows).pretty
+  logInfo m!"Recorded {rows.size} project declarations for {roots.size} roots"
+
+auditProofDeps

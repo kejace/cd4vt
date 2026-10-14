@@ -9,3 +9,6 @@
 # Python interpreter caches.
 __pycache__/
 *.py[cod]
+
+# Website build output (scripts/build-site).
+/_site/

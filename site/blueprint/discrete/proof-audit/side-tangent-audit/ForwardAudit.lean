@@ -1,0 +1,18 @@
+import Gluck.Discrete.SideTangentForward
+
+#print axioms Gluck.Discrete.SideTangent.crossR2_cyclic_triple_pos
+#print axioms Gluck.Discrete.SideTangent.crossR2_lifted_triple_pos
+#print axioms Gluck.Discrete.SideTangent.IsSideTangentRealization.normal_cross_ne
+#print axioms Gluck.Discrete.SideTangent.IsSideTangentRealization.reconstructed_inner
+#print axioms Gluck.Discrete.SideTangent.IsSideTangentRealization.reconstructed_next
+#print axioms Gluck.Discrete.SideTangent.IsSideTangentRealization.reconstructed_edge
+#print axioms Gluck.Discrete.SideTangent.exists_strict_balanced_polygon_of_realization
+#print axioms Gluck.Discrete.SideTangent.exists_sign_blocks_of_not_dfv
+#print axioms Gluck.Discrete.SideTangent.sum_mul_cross_eq_zero
+#print axioms Gluck.Discrete.SideTangent.vertex_ne_of_strictSupport
+#print axioms Gluck.Discrete.SideTangent.sign_block_chord_classification
+#print axioms Gluck.Discrete.SideTangent.zero_or_dfv_of_strict_affine_balance
+#print axioms Gluck.Discrete.SideTangent.constant_of_radiusDifference_eq_zero
+#print axioms Gluck.Discrete.SideTangent.sideTangentForward
+#print axioms Gluck.Discrete.SideTangent.realizesSideTangent_iff_admissible
+#print axioms Gluck.Discrete.SideTangent.realizesSideTangent_iff_dfv

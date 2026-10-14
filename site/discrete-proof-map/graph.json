@@ -1,0 +1,655 @@
+{
+  "title": "Four active edges. Every admissible word.",
+  "routes": [
+    {
+      "id": "constant",
+      "title": "Constant profile",
+      "description": "All readings equal c > 0. A regular n-gon gives the realization directly.",
+      "nodes": [
+        "constant",
+        "capstone"
+      ]
+    },
+    {
+      "id": "repeated",
+      "title": "Repeated maximum",
+      "description": "After constant-run reduction, two distinct positions attain the global maximum. Use the equal-peak construction.",
+      "nodes": [
+        "profile",
+        "collapse",
+        "peaks",
+        "repeated",
+        "restore",
+        "embedding",
+        "opening",
+        "simplicity",
+        "capstone"
+      ]
+    },
+    {
+      "id": "forward",
+      "title": "Unique maximum · forward ≥ 0",
+      "description": "The forward terminal flag is nonnegative, including zero. Use the first transition on the forward mountain leg.",
+      "nodes": [
+        "profile",
+        "collapse",
+        "peaks",
+        "forward",
+        "restore",
+        "embedding",
+        "opening",
+        "simplicity",
+        "capstone"
+      ]
+    },
+    {
+      "id": "backward",
+      "title": "Unique maximum · backward ≥ 0",
+      "description": "The forward flag is negative and the backward flag is nonnegative, including zero. Reflect, construct, and transport back.",
+      "nodes": [
+        "profile",
+        "collapse",
+        "peaks",
+        "backward",
+        "restore",
+        "embedding",
+        "opening",
+        "simplicity",
+        "capstone"
+      ]
+    },
+    {
+      "id": "negative",
+      "title": "Unique maximum · both negative",
+      "description": "Both terminal flags are strictly negative. Use the incident orthogonal anchor and its native-rank proof.",
+      "nodes": [
+        "profile",
+        "collapse",
+        "peaks",
+        "negative",
+        "restore",
+        "embedding",
+        "opening",
+        "simplicity",
+        "capstone"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "profile",
+      "stage": "inputs",
+      "column": 1,
+      "span": 3,
+      "color": "shared",
+      "title": "Positive curvature and the four-vertex condition",
+      "subtitle": "The nonconstant input · arbitrary n ≥ 4",
+      "formula": "low < c < high, in alternating cyclic order",
+      "summary": "Start with the labelled cyclic readings κ₀,…,κₙ₋₁. Every reading is positive, and four cyclic positions alternate strictly above and below some positive level c. All other readings are unrestricted positive numbers.",
+      "mechanism": [
+        "Choose lifts i₁ < i₂ < i₃ < i₄ < i₁+n with κᵢ₂, κᵢ₄ < c < κᵢ₁, κᵢ₃.",
+        "Adjacent equalities, repeated values and arbitrarily many distinct readings are allowed.",
+        "Constant positive profiles use the separate regular-polygon branch. They do not have a strict four-vertex window."
+      ],
+      "role": "This is the exact input class of Tabachnikov’s coherent discrete converse.",
+      "sources": [
+        {
+          "file": "TabachnikovReduction.lean",
+          "declaration": "TabachnikovProblem2"
+        }
+      ],
+      "links": [
+        {
+          "url": "/web/blueprint/#/discrete#sec:four_active_problem",
+          "title": "The precise hypothesis and conclusion"
+        }
+      ],
+      "conditions": [
+        {
+          "name": "Geometry",
+          "text": "Euclidean plane E²; positive signed Menger curvature."
+        },
+        {
+          "name": "Size",
+          "text": "Every finite n ≥ 4."
+        },
+        {
+          "name": "Input",
+          "text": "Positive and constant, or positive with a strict alternating four-vertex window."
+        }
+      ]
+    },
+    {
+      "id": "constant",
+      "stage": "inputs",
+      "column": 4,
+      "span": 1,
+      "color": "constant",
+      "title": "Constant curvature",
+      "subtitle": "The direct route",
+      "formula": "ℓ = 2 sin(π/n) / c",
+      "summary": "When every reading is the same c > 0, a regular n-gon on the circle of radius 1/c gives the required polygon.",
+      "mechanism": [
+        "Take all edge lengths equal to 2 sin(π/n)/c.",
+        "For n ≥ 4 the strict moderate-arc inequalities hold, the polygon closes, and its total turn is exactly 2π.",
+        "Use the existing constant-profile realization theorem in the final assembly."
+      ],
+      "role": "A complete separate case, with no four-edge anchor or dormant opening needed.",
+      "sources": [
+        {
+          "file": "RegularFourAnchorConverse.lean",
+          "declaration": "tabachnikovProblem2_of_adjacent_unequal_regular_anchors"
+        }
+      ],
+      "links": [
+        {
+          "url": "/web/blueprint/#/discrete#lem:four_active_const",
+          "title": "Constant words"
+        }
+      ]
+    },
+    {
+      "id": "collapse",
+      "stage": "preparation",
+      "column": 1,
+      "span": 2,
+      "color": "shared",
+      "title": "Reduction of constant runs",
+      "subtitle": "Finite reduction to unequal neighbors",
+      "formula": "κᵢ = κᵢ₊₁ → erase one reading",
+      "summary": "Delete repeated adjacent readings one at a time. The strict four-vertex window survives, so the reduced word still has at least four entries.",
+      "mechanism": [
+        "Apply the DFV-preserving finite deletion, never a limiting deformation of curvature.",
+        "Produce an anchor for the resulting word with unequal adjacent entries.",
+        "Keep the deletion data: the original readings will be put back into the anchor before any dormant edge is opened."
+      ],
+      "role": "This reduction covers arbitrary plateaus, rather than restricting the theorem to generic profiles.",
+      "sources": [
+        {
+          "file": "ConstantRunAnchorReduction.lean",
+          "declaration": "nonempty_regularFourAnchor_of_adjacent_unequal_producer"
+        }
+      ],
+      "links": [
+        {
+          "url": "/web/blueprint/#/discrete#sec:four_active_restoration",
+          "title": "Removing and restoring constant runs"
+        }
+      ]
+    },
+    {
+      "id": "peaks",
+      "stage": "preparation",
+      "column": 3,
+      "span": 2,
+      "color": "shared",
+      "title": "Selection of extrema for the anchor",
+      "subtitle": "An exhaustive choice of anchor construction",
+      "formula": "repeated maximum ∨ unique maximum",
+      "summary": "Choose a global maximum H of the reduced word. If another position has the same maximum, use the repeated-maximum construction. Otherwise choose the highest secondary peak and its two mountain legs.",
+      "mechanism": [
+        "The strict four-vertex window supplies a secondary peak away from the unique maximum.",
+        "Normalize the secondary peak to curvature 1 and move its index to 0; the global maximum is then greater than 1.",
+        "Inspect the forward terminal flag. If it is negative, inspect the backward flag. This gives the three unique-maximum branches below."
+      ],
+      "role": "The four colored cards are alternative cases. Each supplies an actual regular four-edge anchor.",
+      "sources": [
+        {
+          "file": "UniversalRegularFourAnchor.lean",
+          "declaration": "nonempty_regularFourAnchor_of_adjacent_unequal_dfv"
+        }
+      ],
+      "links": [
+        {
+          "url": "/web/blueprint/#/discrete#thm:four_active_adjacent_unequal",
+          "title": "The exhaustive case partition"
+        },
+        {
+          "url": "/web/blueprint/#/discrete#sec:mt_mountain",
+          "title": "The selected mountain"
+        }
+      ]
+    },
+    {
+      "id": "repeated",
+      "stage": "branches",
+      "column": 1,
+      "span": 1,
+      "color": "repeated",
+      "title": "Repeated maximum",
+      "subtitle": "Two distinct global maxima",
+      "formula": "κH = κJ = max κ",
+      "summary": "Use the four actual edges incident to two equal maxima. After normalizing the maxima to 1, all four neighboring readings are strictly smaller than 1.",
+      "mechanism": [
+        "An interior rectangle has strict signs for the two original orthogonal residuals.",
+        "Poincaré–Miranda gives a strictly physical native zero, with all endpoint walls strict.",
+        "The equal-peak native rank theorem gives surjectivity of the derivative in the four actual half-lengths."
+      ],
+      "role": "This produces the anchor without breaking the equality between the two maxima.",
+      "sources": [
+        {
+          "file": "UniversalRegularFourAnchor.lean",
+          "declaration": "nonempty_regularFourAnchor_of_repeated_global_maximum"
+        },
+        {
+          "file": "NativeRepeatedMaximum.lean",
+          "declaration": "exists_nativeLength_anchor_of_repeated_maximum"
+        }
+      ],
+      "links": [
+        {
+          "url": "/web/blueprint/#/discrete#sec:nrn_repeated",
+          "title": "Repeated-maximum root and rank"
+        }
+      ]
+    },
+    {
+      "id": "forward",
+      "stage": "branches",
+      "column": 2,
+      "span": 1,
+      "color": "first",
+      "title": "Forward first transition",
+      "subtitle": "Unique maximum · forward flag ≥ 0",
+      "formula": "Φ₊ ≥ 0",
+      "summary": "Along the forward mountain leg, locate the first transition from a negative flag to a nonnegative flag. The four selected edges retain their literal original endpoint readings.",
+      "mechanism": [
+        "Select the first sign transition, including the equality case Φ = 0.",
+        "If the predecessor t ≤ p, use the physical-strip intermediate-value construction. If p < t, use the ordered residual construction.",
+        "Both subcases provide a physical zero and full native derivative rank, which are packaged as an actual four-edge anchor."
+      ],
+      "role": "The first-transition theorem covers every predecessor comparison.",
+      "sources": [
+        {
+          "file": "UniversalRegularFourAnchor.lean",
+          "declaration": "HighestSecondaryPeak.nonempty_regularFourAnchor_of_forward_terminal"
+        },
+        {
+          "file": "NativeFirstPairTransition.lean",
+          "declaration": "exists_regular_anchor_of_firstPair_transition"
+        }
+      ],
+      "links": [
+        {
+          "url": "/web/blueprint/#/discrete#thm:nfp_transition",
+          "title": "Every first transition"
+        },
+        {
+          "url": "/web/blueprint/#/discrete#thm:mt_forward_terminal",
+          "title": "Forward terminal branch"
+        }
+      ]
+    },
+    {
+      "id": "backward",
+      "stage": "branches",
+      "column": 3,
+      "span": 1,
+      "color": "first",
+      "title": "Backward first transition",
+      "subtitle": "Unique maximum · forward flag < 0",
+      "formula": "Φ₊ < 0, Φ₋ ≥ 0",
+      "summary": "When the forward terminal flag is negative but the backward one is nonnegative, reverse the cyclic word and apply the forward first-transition construction.",
+      "mechanism": [
+        "Reflection turns the backward mountain leg into a forward one.",
+        "Apply the same complete first-transition producer, including a zero terminal flag.",
+        "Transport the anchor back to the original orientation, retaining actual edge indices, physical walls and derivative rank."
+      ],
+      "role": "The proof reuses the forward construction through a proved reflection transport.",
+      "sources": [
+        {
+          "file": "UniversalRegularFourAnchor.lean",
+          "declaration": "HighestSecondaryPeak.nonempty_regularFourAnchor_of_backward_terminal"
+        }
+      ],
+      "links": [
+        {
+          "url": "/web/blueprint/#/discrete#thm:mt_backward_terminal",
+          "title": "Backward terminal branch"
+        },
+        {
+          "url": "/web/blueprint/#/discrete#thm:nfp_transition",
+          "title": "The common first-transition producer"
+        }
+      ]
+    },
+    {
+      "id": "negative",
+      "stage": "branches",
+      "column": 4,
+      "span": 1,
+      "color": "negative",
+      "title": "Two negative terminals",
+      "subtitle": "Unique maximum · both flags < 0",
+      "formula": "Φ₊ < 0 and Φ₋ < 0",
+      "summary": "Choose the four literal edges incident to the secondary peak and the global maximum. The two negative terminal flags select the incident orthogonal construction.",
+      "mechanism": [
+        "A clamped-square fixed-point argument supplies a simultaneous zero of the original orthogonal residuals.",
+        "The corner flags exclude boundary fixed points and put the root strictly inside the physical region.",
+        "The native incident rank proof covers both acute and nonacute configurations; its acute case uses an exact projective sign obstruction."
+      ],
+      "role": "This closes the remaining unique-maximum case with the same regular-anchor output.",
+      "sources": [
+        {
+          "file": "NegativeCornerAnchorSelection.lean",
+          "declaration": "HighestSecondaryPeak.nonempty_regularFourAnchor_of_negative_terminals"
+        }
+      ],
+      "links": [
+        {
+          "url": "/web/blueprint/#/discrete#sec:nrn_negative",
+          "title": "Two negative terminals"
+        },
+        {
+          "url": "/web/blueprint/#/discrete#sec:nrn_acute",
+          "title": "The acute native-rank argument"
+        }
+      ]
+    },
+    {
+      "id": "restore",
+      "stage": "anchor",
+      "column": 1,
+      "span": 2,
+      "color": "shared",
+      "title": "Restoration of the original labels",
+      "subtitle": "Keep the four-edge witness itself",
+      "formula": "same endpoint readings ⇒ same controller",
+      "summary": "Undo normalization, cyclic shifts and any reflection. Restore every deleted constant-run entry at the anchor, retaining the four actual active edges.",
+      "mechanism": [
+        "Transport the native witness back to the original scale, labels and orientation.",
+        "The four-edge controller depends only on the eight incident endpoint readings.",
+        "Restoration preserves those readings exactly, so the controller and its derivative agree exactly. All other original readings remain present on zero-length edges."
+      ],
+      "role": "Every positive strict-DFV word now has a regular anchor, including arbitrary constant runs.",
+      "sources": [
+        {
+          "file": "RegularFourAnchor.lean",
+          "declaration": "controller_eq_of_endpoints"
+        },
+        {
+          "file": "TabachnikovFourActive.lean",
+          "declaration": "nonempty_regularFourAnchor_of_dfv"
+        }
+      ],
+      "links": [
+        {
+          "url": "/web/blueprint/#/discrete#lem:regular_four_reembed",
+          "title": "Exact endpoint-preserving reembedding"
+        },
+        {
+          "url": "/web/blueprint/#/discrete#thm:four_active_restore_runs",
+          "title": "Finite restoration"
+        }
+      ],
+      "caveat": "This is an exact finite restoration of anchor data. It does not assume that a limit of interior realizations stays realizable."
+    },
+    {
+      "id": "embedding",
+      "stage": "anchor",
+      "column": 3,
+      "span": 2,
+      "color": "shared",
+      "title": "Embedding the four-edge anchor",
+      "subtitle": "Embed into the full n-edge problem",
+      "formula": "F = (Re E, Im E, T − 2π), rank DF = 3",
+      "summary": "At the anchor, four actual edges have positive lengths and all remaining edges have zero length. Their native controller agrees with the full closure-and-turn problem up to an invertible factor.",
+      "mechanism": [
+        "The two real closure equations and the real total-turn equation vanish.",
+        "All active endpoint walls are strict; zero dormant lengths also lie strictly below their upper caps.",
+        "The ambient derivative is onto using corrections supported on the four active edges."
+      ],
+      "role": "This verifies the rank needed to open the original n-gon while keeping every curvature fixed.",
+      "sources": [
+        {
+          "file": "RegularFourAnchor.lean",
+          "declaration": "RegularFourAnchor"
+        },
+        {
+          "file": "FourActiveSlotEmbedding.lean",
+          "declaration": "realizesR2_of_controller_regular"
+        }
+      ],
+      "links": [
+        {
+          "url": "/web/blueprint/#/discrete#def:regular_four_anchor",
+          "title": "The regular-anchor data"
+        },
+        {
+          "url": "/web/blueprint/#/discrete#lem:four_active_native_rank",
+          "title": "Actual ambient derivative rank"
+        }
+      ]
+    },
+    {
+      "id": "opening",
+      "stage": "finish",
+      "column": 1,
+      "span": 2,
+      "color": "shared",
+      "title": "Positive lengths for all edges",
+      "subtitle": "Correct the four active lengths",
+      "formula": "ℓdormant > 0, F(κ, ℓ) = 0",
+      "summary": "Move into the positive side of every zero-length coordinate, and adjust the four active lengths so closure and total turn remain exact.",
+      "mechanism": [
+        "Surjectivity on active coordinates supplies a correction to any dormant opening direction.",
+        "Choose an inward kernel direction and use the native implicit-function opener.",
+        "For a sufficiently small positive parameter, all lengths are positive and both strict endpoint walls persist; κ is unchanged."
+      ],
+      "role": "This is the passage from a collapsed anchor to an honest polygon of the original size.",
+      "sources": [
+        {
+          "file": "RegularDormantOpening.lean",
+          "declaration": "realizesR2_of_regular_dormant_anchor_of_active_surj"
+        }
+      ],
+      "links": [
+        {
+          "url": "/web/blueprint/#/discrete#sec:four_active_opening",
+          "title": "Opening with every curvature fixed"
+        }
+      ],
+      "caveat": "The permitted opening size may depend on the finite curvature profile. The proof needs no uniform radius across all profiles or polygon sizes."
+    },
+    {
+      "id": "simplicity",
+      "stage": "finish",
+      "column": 3,
+      "span": 2,
+      "color": "shared",
+      "title": "Coherence and simplicity of the polygon",
+      "subtitle": "Positive turning and exact full turn",
+      "formula": "E = 0, T = 2π, simple polygon",
+      "summary": "The opened positive lengths reconstruct the required Euclidean polygon. Positive turning and total turn 2π supply simplicity.",
+      "mechanism": [
+        "Every length is positive and every moderate-arc bound is strict.",
+        "The complex endpoint gap is zero and the lifted real turn is 2π.",
+        "The existing positive-turning reconstruction gives simplicity, so the same lengths satisfy RealizesR2 for the original readings."
+      ],
+      "role": "The final object retains all original geometric requirements.",
+      "sources": [
+        {
+          "file": "RegularFourAnchor.lean",
+          "declaration": "realizesR2"
+        }
+      ],
+      "links": [
+        {
+          "url": "/web/blueprint/#/discrete#thm:regular_four_anchor_realizes",
+          "title": "A regular anchor realizes the entire word"
+        }
+      ]
+    },
+    {
+      "id": "capstone",
+      "stage": "target",
+      "column": 1,
+      "span": 4,
+      "color": "shared",
+      "title": "Tabachnikov’s discrete converse theorem",
+      "subtitle": "Tabachnikov’s Problem 2 · the original statement",
+      "formula": "DiscreteFourVertexPos κ ⇒ RealizesR2 κ",
+      "summary": "Combine the constant-profile regular polygon with the exhaustive nonconstant anchor construction. Every admissible positive cyclic word is coherently realized.",
+      "mechanism": [
+        "Constants use the direct regular-polygon branch.",
+        "For a strict-DFV word, reduce constant runs, produce and restore the regular anchor, then open it.",
+        "The resulting theorem has no additional geometric producer, genericity or regularity hypothesis."
+      ],
+      "role": "This is the completed universal theorem in the merged source.",
+      "sources": [
+        {
+          "file": "TabachnikovFourActive.lean",
+          "declaration": "tabachnikovProblem2_all"
+        }
+      ],
+      "links": [
+        {
+          "url": "/web/blueprint/#/discrete#thm:tabachnikov_all",
+          "title": "The final theorem"
+        }
+      ],
+      "conditions": [
+        {
+          "name": "Given",
+          "text": "n ≥ 4; κ : ZMod n → ℝ is positive and either constant or has a strict four-vertex window."
+        },
+        {
+          "name": "Obtained",
+          "text": "Positive lengths, both strict moderate-arc walls, exact closure, real total turn 2π, and a simple Euclidean polygon."
+        },
+        {
+          "name": "Coverage",
+          "text": "All allowed finite profiles, including repeated readings and arbitrary constant runs."
+        }
+      ]
+    },
+    {
+      "id": "local-family",
+      "stage": "extensions",
+      "column": 1,
+      "span": 1,
+      "color": "shared",
+      "title": "Local C¹ dependence on curvature",
+      "subtitle": "An additional theorem for nonconstant profiles",
+      "formula": "κ near κ₀ ↦ (ℓ(κ), vertices(κ))",
+      "summary": "The nonconstant theorem strengthens to a local C¹ choice of labelled lengths and vertices in a neighborhood of each admissible profile.",
+      "mechanism": [
+        "Choose one regular four-active anchor at the base profile and keep its frame fixed.",
+        "Use a parametric implicit-function correction supported on the active edges; put a fixed small positive ε into all dormant coordinates.",
+        "Vary the original curvature vector in an open neighborhood. The same selected polygons retain exact curvature, closure, full turn, strict walls and strict convexity."
+      ],
+      "role": "This is a separate local-continuity extension, not a step needed for universal existence.",
+      "sources": [
+        {
+          "file": "LocalContinuity.lean",
+          "declaration": "tabachnikovProblem2_local_continuity"
+        }
+      ],
+      "links": [
+        {
+          "url": "/web/blueprint/#/discrete#thm:tabachnikov_local_continuity",
+          "title": "Local C¹ coherent realizations"
+        },
+        {
+          "url": "/web/blueprint/#/discrete#thm:local",
+          "title": "Local-continuity account"
+        }
+      ],
+      "caveat": "The neighborhood and base realization depend on κ₀. This theorem excludes constant base profiles and does not assert a global continuous choice."
+    }
+  ],
+  "edges": [
+    [
+      "profile",
+      "collapse"
+    ],
+    [
+      "collapse",
+      "peaks"
+    ],
+    [
+      "peaks",
+      "repeated"
+    ],
+    [
+      "repeated",
+      "restore"
+    ],
+    [
+      "peaks",
+      "forward"
+    ],
+    [
+      "forward",
+      "restore"
+    ],
+    [
+      "peaks",
+      "backward"
+    ],
+    [
+      "backward",
+      "restore"
+    ],
+    [
+      "peaks",
+      "negative"
+    ],
+    [
+      "negative",
+      "restore"
+    ],
+    [
+      "restore",
+      "embedding"
+    ],
+    [
+      "embedding",
+      "opening"
+    ],
+    [
+      "opening",
+      "simplicity"
+    ],
+    [
+      "simplicity",
+      "capstone"
+    ],
+    [
+      "constant",
+      "capstone"
+    ]
+  ],
+  "story": [
+    {
+      "node": "profile",
+      "title": "Prescribed curvature values",
+      "subtitle": "Positivity and a strict four-vertex window."
+    },
+    {
+      "node": "collapse",
+      "title": "Reduction of constant runs",
+      "subtitle": "Keep the reduction finite and exact."
+    },
+    {
+      "node": "peaks",
+      "title": "Construction of a regular anchor",
+      "subtitle": "An exhaustive case split at the maximum."
+    },
+    {
+      "node": "restore",
+      "title": "Restoration of the original labels",
+      "subtitle": "Carry the four-edge witness to the original word."
+    },
+    {
+      "node": "opening",
+      "title": "Positive lengths for all edges",
+      "subtitle": "Correct the active lengths; preserve every curvature."
+    },
+    {
+      "node": "simplicity",
+      "title": "Reconstruction of the polygon",
+      "subtitle": "Closure, full turn, strict walls and simplicity."
+    }
+  ]
+}

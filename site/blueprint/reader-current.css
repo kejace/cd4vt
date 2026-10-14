@@ -1,0 +1,39 @@
+:root{--bg:#f8f7f2;--panel:#fffefa;--heading:#242e2c;--muted:#68736e;--line:#d9dcd3;--soft:#eeeee5;--accent:#386f79;--emphasis:#386f79;--shadow:none;--serif:Georgia,"Times New Roman",serif;--sans:system-ui,-apple-system,"Segoe UI",sans-serif;--mathlib:#386f79;--mathlib-bg:#e8eeed;--lean:#4c6a4e;--lean-bg:#ebf0e6}
+body{font-family:var(--serif)}
+.site-header,.project-header{background:#f8f7f2f2;backdrop-filter:none}
+h1,h2,h3,h4,.project-htop h1,.stmt-title{font-family:var(--serif)!important;font-weight:normal!important}
+.prose,.stmt-body,.proof-body,.overview{font-family:var(--serif);font-size:17px;line-height:1.75}
+.prose{text-align:left}
+button,input,select,.project-stats,.doc-nav,.doc-outline,.stmt-badges,.stmt-detail,.gm-bar,.site-header,.project-home,.reader-scope,.hero .subtitle,.card-title,.card-blurb,.card-row{font-family:var(--sans)}
+.card{border-radius:5px;box-shadow:none}
+.card:hover{transform:none;box-shadow:none;border-color:var(--accent)}
+.card-illo{border-radius:3px;background:#edf0e9!important}
+.card-pill{border-radius:3px;background:#e8eeed!important;color:#386f79!important}
+.card-pct,.project-stats .pbar{display:none}
+.stmt,.stmt-card,.lean-block,.sumcard,.gm-btn,.navq{border-radius:4px;box-shadow:none}
+.gm-btn.gm-btn-chapter{background:#e8eeed;border-color:#386f79;color:#386f79;box-shadow:none}
+.gm-ch-frame{background:#eef1e9;border-color:#386f79}.gm-ch-title{color:#386f79}
+.proof-map-return{color:#386f79;background:#fffefa;border-color:#d9dcd3;border-radius:3px;box-shadow:none}
+.reader-scope{margin:0 0 28px;padding:10px 0;border-bottom:1px solid var(--line);font-size:12px;line-height:1.65;color:var(--muted)}
+.reader-scope a{color:var(--accent)}.reader-scope p{font:inherit;margin:5px 0 0}
+@media(max-width:600px){.doc-main{padding:8px 18px 75px}.prose,.stmt-body,.proof-body{font-size:16px}.katex-display{max-width:100%;overflow-x:auto;overflow-y:hidden}}
+
+/* Existing curve/polygon artwork, shown whole on the project chooser. */
+.card-illo>img.fit-contain{filter:none;padding:20px}
+@media(max-width:600px){.card-grid{grid-template-columns:minmax(0,1fr)}.card{min-width:0}.proof-map-return{position:static;display:block;width:max-content;margin:0 24px 24px auto}}
+
+/* Global navigation stays available outside hgraph's routed application. */
+:root{--main-nav-height:64px}
+body{padding-top:var(--main-nav-height)}
+.blueprint-site-nav{position:fixed;inset:0 0 auto;z-index:100;height:var(--main-nav-height);box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:12px 28px;background:var(--bg);border-bottom:1px solid var(--line);font:13px Arial,Helvetica,sans-serif}
+.blueprint-site-brand{display:flex;align-items:center;gap:12px;font-weight:750;letter-spacing:2px;text-decoration:none;color:var(--heading)}
+.blueprint-site-brand span{font:38px/1 Georgia,serif;color:var(--accent)}
+.blueprint-site-nav nav{display:flex;align-items:center;gap:25px}
+.blueprint-site-nav nav a{color:var(--heading);text-decoration:none}
+.blueprint-site-nav nav a[aria-current=page]{color:var(--accent);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:8px}
+.blueprint-site-nav a:focus-visible{outline:3px solid var(--accent);outline-offset:5px}
+.site-header,.project-header{top:var(--main-nav-height)}
+.doc-nav,.doc-outline{top:calc(var(--main-nav-height) + 58px);max-height:calc(100vh - var(--main-nav-height) - 68px)}
+.panel-rails,.graph-modal{top:var(--main-nav-height)}
+.side-panel{top:calc(var(--main-nav-height) + 12px);max-height:calc(100vh - var(--main-nav-height) - 24px)}
+@media(max-width:600px){:root{--main-nav-height:104px}.blueprint-site-nav{flex-direction:column;align-items:flex-start;justify-content:center;gap:12px;padding:10px 20px}.blueprint-site-nav nav{gap:22px;font-size:12px}.blueprint-site-brand span{font-size:30px}.blueprint-site-brand{font-size:12px}}

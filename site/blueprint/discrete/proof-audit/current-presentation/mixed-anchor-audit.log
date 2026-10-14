@@ -1,0 +1,42 @@
+PASS Gluck.ArcChain.exists_realization_of_profile_window: 770 project dependencies; shared construction present; retired closing absent; axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PASS Gluck.dahlberg_converse: 773 project dependencies; shared construction present; retired closing absent; axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PASS Gluck.spherical_dahlberg_converse: 797 project dependencies; shared construction present; retired closing absent; axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PASS Gluck.spherical_dahlberg_converse_unrestricted: 776 project dependencies; shared construction present; retired closing absent; axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PASS Gluck.Hyperbolic.dahlberg_converse: 794 project dependencies; shared construction present; retired closing absent; axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PASS Gluck.hyperbolic_dahlberg_converse: 797 project dependencies; shared construction present; retired closing absent; axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PASS Gluck.dahlberg_converse_smooth: 1207 project dependencies; shared construction present; retired closing absent; axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PASS Gluck.spherical_dahlberg_converse_smooth: 1229 project dependencies; shared construction present; retired closing absent; axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PASS Gluck.spherical_dahlberg_converse_unrestricted_smooth: 1208 project dependencies; shared construction present; retired closing absent; axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PASS Gluck.hyperbolic_dahlberg_converse_smooth: 1230 project dependencies; shared construction present; retired closing absent; axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PASS Gluck.dahlberg_converse_rgc2: 1464 project dependencies; shared construction present; retired closing absent; axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PASS Gluck.spherical_dahlberg_converse_rgc2: 1233 project dependencies; shared construction present; retired closing absent; axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PASS Gluck.spherical_dahlberg_converse_unrestricted_rgc2: 1719 project dependencies; shared construction present; retired closing absent; axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+PASS Gluck.hyperbolic_dahlberg_converse_rgc2: 1233 project dependencies; shared construction present; retired closing absent; axioms: [propext,
+ Classical.choice,
+ Quot.sound]

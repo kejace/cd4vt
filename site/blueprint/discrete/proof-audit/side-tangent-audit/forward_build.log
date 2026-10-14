@@ -1,0 +1,28 @@
+⚠ [3494/3531] Replayed Gluck.Discrete.SideTangentPerturbation
+warning: Gluck/Discrete/SideTangentPerturbation.lean:34:0: `eventually_projective_denominators_pos` does not use the following hypothesis in its type:
+  • [Fintype ι] (#2)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+⚠ [3497/3531] Replayed Gluck.Discrete.Budget
+warning: Gluck/Discrete/Budget.lean:210:2: `if_pos` has been deprecated: Use `ite_eq_left` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲
+warning: Gluck/Discrete/Budget.lean:213:2: `if_neg` has been deprecated: Use `ite_eq_right` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲
+warning: Gluck/Discrete/Budget.lean:216:2: `if_pos` has been deprecated: Use `ite_eq_left` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲
+warning: Gluck/Discrete/Budget.lean:219:2: `if_neg` has been deprecated: Use `ite_eq_right` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲
+✔ [3527/3538] Built Gluck.Discrete.SideTangentChordSeparation (3.2s)
+✔ [3535/3538] Built Gluck.Discrete.SideTangentNecessityBalance (3.4s)
+✔ [3538/3538] Built Gluck.Discrete.SideTangentForward (2.8s)
+Build completed successfully (3538 jobs).

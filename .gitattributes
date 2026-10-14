@@ -1,0 +1,3 @@
+# Generated hgraph bundles contain embedded WASM strings; preserve their bytes.
+site/blueprint/assets/* -diff
+site/blueprint/** linguist-generated=true

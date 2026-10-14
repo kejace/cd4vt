@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>CD4VT · The discrete converse proof map</title>
+  <link rel="stylesheet" href="../proof-map/styles.css">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+  <link rel="stylesheet" href="/web/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#map-title">Skip to the proof map</a>
+  <header class="masthead">
+    <a class="brand" href="/web/"><span class="brand-mark" aria-hidden="true">◇</span> CD4VT <span class="brand-sub">/ DISCRETE PROOF ATLAS</span></a>
+    <nav aria-label="Main"><a href="/web/">Home</a><a href="/web/blueprint/#/discrete">Blueprint</a><a href="/paper/tabachnikov-converse.pdf">Paper</a><a href="https://github.com/kejace/cd4vt">GitHub</a></nav>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <div><p class="eyebrow">THE COHERENT DISCRETE CONVERSE · E²</p><h1 id="page-title">Discrete converse proof map</h1><p class="hero-copy">The proof realizes the prescribed curvature using a regular four-edge anchor, then gives every remaining edge a positive length.</p></div>
+      <div class="hero-math">
+        <svg class="anchor-sketch" viewBox="0 0 360 140" role="img" aria-labelledby="sketch-title sketch-desc"><title id="sketch-title">From four active edges to a full polygon</title><desc id="sketch-desc">A schematic collapsed anchor with four active edges on the left, followed by an opened polygon on the right. The drawing illustrates the proof structure, not a computed realization.</desc><g fill="none" stroke="#24796a" stroke-width="2"><path d="M22 82 55 24 133 38 145 103Z"/><path d="M222 76 240 35 286 22 325 48 337 89 308 114 252 105Z"/></g><g fill="#24796a"><circle cx="22" cy="82" r="3"/><circle cx="55" cy="24" r="3"/><circle cx="133" cy="38" r="3"/><circle cx="145" cy="103" r="3"/><circle cx="222" cy="76" r="3"/><circle cx="240" cy="35" r="3"/><circle cx="286" cy="22" r="3"/><circle cx="325" cy="48" r="3"/><circle cx="337" cy="89" r="3"/><circle cx="308" cy="114" r="3"/><circle cx="252" cy="105" r="3"/></g><g fill="none" stroke="#9c722c" stroke-width="1.3"><circle cx="55" cy="24" r="7"/><circle cx="133" cy="38" r="7"/><circle cx="145" cy="103" r="7"/></g><path d="M170 70H199l-6-5m6 5-6 5" fill="none" stroke="#98a79b" stroke-width="1.4"/></svg>
+        <div class="gain">Exactly closed.<br>Every reading retained.</div><p>Four active edges → all edges positive.<br>Schematic of the anchor and opening.</p><span class="status established">Universal theorem · n ≥ 4</span>
+      </div>
+    </section>
+    <section class="theorem-strip" aria-label="The theorem's scope">
+      <div><strong>Given</strong><p>A positive cyclic word, constant or with a strict alternating high–low–high–low window.</p></div>
+      <div><strong>Obtain</strong><p>A simple Euclidean polygon with those curvatures, positive lengths, strict moderate arcs, closure and total turn 2π.</p></div>
+      <div><strong>Includes</strong><p>Arbitrary repeated readings, constant runs and every finite polygon size n ≥ 4.</p></div>
+    </section>
+    <section class="original-proof" aria-labelledby="story-title">
+      <div class="section-heading"><div><p class="eyebrow">THE NONCONSTANT ARGUMENT</p><h2 id="story-title">Steps in the polygon construction</h2></div><p>Open any step for its mechanism, theorem and sources.</p></div>
+      <div class="story-grid" id="story-grid"></div>
+    </section>
+    <section class="atlas" aria-labelledby="map-title">
+      <div class="atlas-heading"><div><p class="eyebrow">CONSTRUCTION CASES</p><h2 id="map-title">Choosing a four-edge anchor</h2></div><p class="map-instruction">Choose a profile case and follow its route.<br>Every card opens an explanation.</p></div>
+      <div class="toolbar">
+        <label for="trace">Trace a case <select id="trace" disabled><option value="">All cases</option></select></label>
+        <label for="compare">Compare with <select id="compare" disabled><option value="">None</option></select></label>
+        <button type="button" id="map-reset" class="text-button" disabled>Reset view</button>
+        <div class="legend"><span><i class="line-solid"></i>Conceptual proof step</span><span class="common-key" hidden><i class="common-dot"></i>Shared by both</span></div>
+      </div>
+      <p id="trace-description" class="trace-description" aria-live="polite">Loading the proof map…</p>
+      <p class="mobile-map-hint">Swipe ↔ to see the whole map. The selected route is also listed below.</p>
+      <div class="map-scroll" tabindex="0" aria-label="Discrete proof map; scroll horizontally on small screens">
+        <div class="map" id="map">
+          <svg id="edges" aria-hidden="true"><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="context-stroke"/></marker></defs><g id="edge-paths"></g></svg>
+          <section class="map-stage"><div class="stage-label"><span>01</span> TWO ADMISSIBLE INPUTS <small>The constant branch goes directly to the conclusion</small></div><div class="node-row" id="inputs"></div></section>
+          <section class="map-stage"><div class="stage-label"><span>02</span> PREPARE THE NONCONSTANT WORD <small>Keep the original labels and reduction data</small></div><div class="node-row" id="preparation"></div></section>
+          <section class="map-stage"><div class="stage-label"><span>03</span> FOUR ALTERNATIVE ANCHOR CASES <small>Flag signs are evaluated after normalization</small></div><div class="node-row" id="branches"></div></section>
+          <section class="map-stage"><div class="stage-label"><span>04</span> RETURN TO THE ORIGINAL WORD <small>All four cases supply a regular physical anchor</small></div><div class="node-row" id="anchor"></div></section>
+          <section class="map-stage"><div class="stage-label"><span>05</span> OPEN AND RECONSTRUCT <small>Keep κ fixed throughout</small></div><div class="node-row" id="finish"></div></section>
+          <section class="map-stage target-stage"><div class="stage-label"><span>06</span> THE UNIVERSAL CONVERSE</div><div class="node-row" id="target"></div></section>
+        </div>
+      </div>
+      <div class="map-footer"><span><span class="case-dot repeated"></span>Repeated maximum <span class="case-dot first"></span>First transition <span class="case-dot negative"></span>Two negative terminals</span><span>Alternative cases · conceptual dependencies</span></div>
+      <section class="route-outline" id="route-outline" aria-labelledby="route-title" hidden><h3 id="route-title">Selected route</h3><ol id="route-steps"></ol></section>
+    </section>
+    <details class="flag-note"><summary>What are the terminal flags? <span aria-hidden="true">＋</span></summary><div>
+      <p>After the secondary peak is normalized to κ₀ = 1 and the unique maximum is at H, write Φ(p,q,h,l) = asin(p) + asin(qσ) − asin(σ) − π/2, with σ = √((1−l²)/(h²−l²)).</p>
+      <p>The forward flag is Φ₊ = Φ(κ₁, κH−1, κH, κ−1). The backward flag is Φ₋ = Φ(κ−1, κH+1, κH, κ₁). The forward nonnegative case is taken first; the backward case then requires Φ₊ &lt; 0. Equality belongs to the first-transition branches.</p>
+      <a href="/web/blueprint/#/discrete#def:nfp_flag">Read the exact flag definition ↗</a>
+    </div></details>
+    <section class="comparison" aria-labelledby="comparison-title"><div class="section-heading"><div><p class="eyebrow">COMPARISON OF CASES</p><h2 id="comparison-title">Comparison of the anchor constructions</h2></div></div>
+      <div class="table-scroll" tabindex="0" aria-label="Comparison of the discrete proof cases"><table><thead><tr><th scope="col">Step</th><th scope="col">Constant profile</th><th scope="col">Repeated maximum</th><th scope="col">First transition</th><th scope="col">Two negative terminals</th></tr></thead><tbody>
+        <tr><th scope="row">Case</th><td>κᵢ = c &gt; 0 everywhere.</td><td>Two global maxima after run reduction.</td><td>Unique maximum; at least one terminal flag ≥ 0.</td><td>Unique maximum; both terminal flags &lt; 0.</td></tr>
+        <tr><th scope="row">Chosen geometry</th><td>A regular n-gon.</td><td>Four actual edges incident to the two equal maxima.</td><td>Four actual edges at the first sign transition along a mountain leg.</td><td>Four actual edges incident to the secondary peak and the global maximum.</td></tr>
+        <tr><th scope="row">Produce a zero</th><td>An explicit equal-length formula.</td><td>Poincaré–Miranda on an interior residual rectangle.</td><td>Physical-strip IVT or ordered residual construction, according to the predecessor.</td><td>A clamped-square fixed point; the flags exclude boundary zeros.</td></tr>
+        <tr><th scope="row">Regularity</th><td>No anchor opening.</td><td>Native equal-peak derivative rank.</td><td>Full native rank; reflected transport for the backward leg.</td><td>Full incident rank in both acute and nonacute cases.</td></tr>
+        <tr><th scope="row">Finish</th><td>Already a coherent realization.</td><td colspan="3">Restore every original reading; use the surjective active derivative to open all dormant edges, preserve strict walls and recover a simple polygon.</td></tr>
+      </tbody></table></div>
+    </section>
+    <section class="extensions" aria-labelledby="extension-title"><div class="section-heading"><div><p class="eyebrow">DEPENDENCE ON CURVATURE</p><h2 id="extension-title">Local continuity and the global obstruction</h2></div></div><div class="extension-grid"><div id="extensions"></div><div class="scope-card"><h3>Hexagon obstruction to a global choice</h3><p>A local C¹ family exists around each nonconstant admissible profile. It need not extend along every path: a verified six-reading example has pointwise realizations but no continuous family along the whole path.</p><a href="/web/blueprint/#/discrete#thm:hexagon">Read the global-selection obstruction ↗</a></div></div></section>
+    <section class="scope-note"><h2>Formal theorem and verification</h2><p>This page follows <code>Gluck.Discrete.tabachnikovProblem2_all</code> and the regular four-edge anchor construction in the merged source.</p><p>The cards are a curated explanation, not a compiler-generated dependency graph. <a href="https://github.com/kejace/cd4vt/blob/main/scripts/axioms.lean">Axiom check of the main theorems</a>.</p></section>
+  </main>
+  <dialog class="inspector" id="inspector" aria-labelledby="explainer-title"><div class="explainer-toolbar"><span class="eyebrow">INSIDE THE DISCRETE PROOF</span><button type="button" id="close-explainer" aria-label="Close explainer">Close <span aria-hidden="true">×</span></button></div><div id="detail"></div></dialog>
+  <footer class="site-footer"><span>CD4VT / discrete converse four-vertex theorem</span><span><a href="/web/">Home</a> · <a href="graph.json">Map data</a></span></footer>
+  <noscript><p class="no-script">The interactive cards need JavaScript. The comparison table remains available, and the <a href="/web/blueprint/#/discrete#chap:discrete_four_active">discrete blueprint</a> contains the full argument.</p></noscript>
+</body>
+</html>

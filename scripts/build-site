@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+"""Assemble the website as plain static files for GitHub Pages.
+
+The page sources in site/ address each other through root-absolute routes:
+/web/... for site/ itself and /paper/... for the built paper. This build copies
+site/ to the root of OUT and paper/tabachnikov-converse.pdf to OUT/paper/, and
+prefixes every such route with --base (the Pages project path, e.g. /cd4vt).
+
+    scripts/build-site --out _site --base /cd4vt
+    python3 -m http.server -d _site 8000     # local preview with --base ''
+"""
+import argparse
+from pathlib import Path
+import re
+import shutil
+
+ROOT = Path(__file__).resolve().parents[1]
+PAPER = ROOT / 'paper' / 'tabachnikov-converse.pdf'
+TEXT = {'.html', '.js', '.json', '.css', '.svg', '.txt'}
+# A root-absolute route inside a string, attribute or url(...): "/web/...", '/paper/...'.
+ROUTE = re.compile(r'''(?<=["'(`=])/(web|paper)(?=[/"'?#`)])''')
+MARKER = '.cd4vt-site'
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument('--out', default=ROOT / '_site', type=Path)
+    parser.add_argument('--base', default='', help='URL path of the site root, e.g. /cd4vt')
+    args = parser.parse_args()
+    out, base = args.out.resolve(), args.base.rstrip('/')
+    if out.exists():
+        if not (out / MARKER).is_file():
+            raise SystemExit(f'build-site: {out} exists and was not made by this script')
+        shutil.rmtree(out)
+    if not PAPER.is_file():
+        raise SystemExit(f'build-site: {PAPER} is missing; build it with scripts/build-paper')
+    shutil.copytree(ROOT / 'site', out, ignore=shutil.ignore_patterns('README.md'))
+    (out / 'paper').mkdir()
+    shutil.copy2(PAPER, out / 'paper' / PAPER.name)
+
+    def route(match):
+        return base if match.group(1) == 'web' else f'{base}/paper'
+    for path in out.rglob('*'):
+        if path.is_file() and path.suffix in TEXT:
+            text = path.read_text(encoding='utf-8', errors='surrogateescape')
+            new = ROUTE.sub(route, text)
+            if new != text:
+                path.write_text(new, encoding='utf-8', errors='surrogateescape')
+
+    (out / '404.html').write_text(
+        f'<!doctype html><meta charset="utf-8"><title>Not found</title>'
+        f'<link rel="stylesheet" href="{base}/site.css"><main class="site-main">'
+        f'<h1>Not found</h1><p><a href="{base}/">Home</a></p></main>\n', encoding='utf-8')
+    (out / '.nojekyll').write_text('')
+    (out / MARKER).write_text('')
+    files = sum(1 for p in out.rglob('*') if p.is_file())
+    size = sum(p.stat().st_size for p in out.rglob('*') if p.is_file())
+    print(f'build-site: {files} files, {size / 2**20:.1f} MiB -> {out}')
+
+
+if __name__ == '__main__':
+    main()

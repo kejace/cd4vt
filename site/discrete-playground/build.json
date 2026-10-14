@@ -1,0 +1,22 @@
+{
+  "compiler": "emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 3.1.6 ()",
+  "flags": [
+    "-O3",
+    "-std=c99",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-sMODULARIZE=1",
+    "-sEXPORT_ES6=1",
+    "-sENVIRONMENT=web,worker",
+    "-sFILESYSTEM=0",
+    "-sASSERTIONS=0",
+    "-sEXPORTED_FUNCTIONS=['_solve','_input_buffer','_output_buffer','_evaluate']"
+  ],
+  "source": "tools/discrete_playground/solver.c",
+  "sha256": "14c6a682ea38d6c0447b7008d20ba2db47492369ac5b90dc5ac1d42221908735",
+  "artifacts": {
+    "solver.mjs": "5ad4307943083fd55bd414d45364da7d00b333957975216835b95e0d22d32271",
+    "solver.wasm": "c53b25f404cda694f52c916531f8da6cbf0314f994bb8d4e0b38382ef8fc48e6"
+  }
+}

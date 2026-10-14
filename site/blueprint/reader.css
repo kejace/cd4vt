@@ -1,0 +1,5 @@
+.proof-map-return { position:fixed; bottom:18px; right:22px; z-index:100; color:#176d68; background:#fffefa; border:1px solid #bacfbe; box-shadow:0 3px 14px #19392f18; padding:9px 14px; border-radius:7px; font:600 12px system-ui,sans-serif; text-decoration:none; }
+.proof-map-return:focus-visible { outline:3px solid #176d68; outline-offset:3px; }
+a[data-preview-figure] { display:block; margin:20px 0 10px; }
+a[data-preview-figure] img { width:100%; height:auto; display:block; background:white; border:1px solid #dde3d7; border-radius:6px; }
+@media(max-width:600px) { .proof-map-return { right:12px; bottom:12px; padding:8px 10px; } }
