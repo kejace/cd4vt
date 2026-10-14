@@ -1,0 +1,32 @@
+'Gluck.Discrete.SideTangent.crossR2_cyclic_triple_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Gluck.Discrete.SideTangent.crossR2_lifted_triple_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Gluck.Discrete.SideTangent.IsSideTangentRealization.normal_cross_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Gluck.Discrete.SideTangent.IsSideTangentRealization.reconstructed_inner' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Gluck.Discrete.SideTangent.IsSideTangentRealization.reconstructed_next' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Gluck.Discrete.SideTangent.IsSideTangentRealization.reconstructed_edge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Gluck.Discrete.SideTangent.exists_strict_balanced_polygon_of_realization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Gluck.Discrete.SideTangent.exists_sign_blocks_of_not_dfv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Gluck.Discrete.SideTangent.sum_mul_cross_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Gluck.Discrete.SideTangent.vertex_ne_of_strictSupport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Gluck.Discrete.SideTangent.sign_block_chord_classification' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Gluck.Discrete.SideTangent.zero_or_dfv_of_strict_affine_balance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Gluck.Discrete.SideTangent.constant_of_radiusDifference_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Gluck.Discrete.SideTangent.sideTangentForward' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Gluck.Discrete.SideTangent.realizesSideTangent_iff_admissible' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Gluck.Discrete.SideTangent.realizesSideTangent_iff_dfv' depends on axioms: [propext, Classical.choice, Quot.sound]

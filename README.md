@@ -2,6 +2,7 @@
 
 Paper and Lean 4 / Mathlib formalization answering Tabachnikov's Problem 2
 ([arXiv:0710.5902](https://arxiv.org/abs/0710.5902)).
+Website: <https://kejace.github.io/cd4vt/>.
 
 Every cyclic sequence of positive numbers `r₁, …, rₙ` (`n ≥ 4`) with at least
 two local maxima and two local minima, with extrema counted as plateaus, is the
@@ -26,6 +27,8 @@ three consecutive supporting lines.
 | `scripts/axioms.lean` | `#print axioms` for the paper's displayed theorems |
 | `comparator/` | [Comparator](https://github.com/leanprover/comparator) statement/axiom/kernel audit |
 | `scripts/build-paper`, `scripts/package-arxiv-discrete` | paper build and arXiv packaging |
+| `site/`, `scripts/build-site` | website (GitHub Pages): construction overview, playground, proof map, blueprint |
+| `tools/discrete_playground/` | playground solver source and the paper's figure generators |
 
 ## Main formal statements
 

@@ -1,0 +1,59 @@
+/* Shares the smooth atlas typography, cards and inspector; these rules lay out the discrete cases. */
+:root { --repeated:#457b9a; --first:#795b9e; --negative:#9c722c; }
+.skip-link { position:fixed; left:12px; top:-100px; padding:10px; background:white; z-index:20; }
+.skip-link:focus { top:12px; }
+.masthead nav { flex-wrap:wrap; }
+.hero { padding-bottom:26px; }
+.anchor-sketch { width:min(360px,100%); height:120px; }
+.hero-math .gain { font-size:30px; }
+.theorem-strip { display:grid; grid-template-columns:1.2fr 1.4fr 1fr; gap:24px; border-block:1px solid var(--line); padding:20px 0; margin-bottom:32px; }
+.theorem-strip strong { display:block; color:var(--teal); text-transform:uppercase; font-size:10px; letter-spacing:1px; margin-bottom:7px; }
+.theorem-strip p { font-size:12px; line-height:1.75; color:#56655e; margin:0; }
+.story-number,.story-open { color:var(--teal); }
+.story-card:hover { border-color:var(--teal); background:#f0f5ee; }
+.map { min-width:1060px; padding:18px 36px 28px; }
+.map-stage + .map-stage { margin-top:62px; }
+.node-row { grid-template-columns:repeat(4,minmax(0,1fr)); gap:26px; }
+.node { grid-column:var(--column) / span var(--span); min-height:124px; }
+.node.repeated { --accent:var(--repeated); }
+.node.first { --accent:var(--first); }
+.node.negative { --accent:var(--negative); }
+.node.constant { --accent:#708569; }
+.node.inspected { outline:2px solid var(--accent); outline-offset:3px; }
+.node.common { box-shadow:0 0 0 3px #176d6840; border-color:#176d68; }
+.node.common::after { content:'SHARED'; position:absolute; top:9px; right:20px; font-size:7px; letter-spacing:.7px; color:#176d68; }
+.target-stage .node { align-items:center; text-align:center; background:#edf4e9; min-height:110px; }
+.target-stage .node-title { font:25px/1.3 Georgia,serif; }
+.target-stage .node-formula { font-size:17px; }
+.node-row .node:first-child:last-child { width:100%; }
+.inspector[data-color="repeated"] { --accent:var(--repeated); }
+.inspector[data-color="first"] { --accent:var(--first); }
+.inspector[data-color="negative"] { --accent:var(--negative); }
+.case-dot { display:inline-block; width:6px; height:6px; border-radius:50%; margin:0 5px 1px 12px; }
+.case-dot:first-child { margin-left:0; }.case-dot.repeated{background:var(--repeated)}.case-dot.first{background:var(--first)}.case-dot.negative{background:var(--negative)}
+.toolbar { align-items:center; }
+.toolbar select { width:220px; max-width:100%; }
+.trace-description { padding-bottom:8px; line-height:1.7; min-height:50px; }
+.route-outline { padding:20px 26px; background:#f5f6ef; border-top:1px solid var(--line); }
+.route-outline h3 { font-size:12px; margin-bottom:12px; }
+.route-outline ol { padding:0; margin:0; display:flex; flex-wrap:wrap; gap:8px; list-style:none; counter-reset:steps; }
+.route-outline li { counter-increment:steps; }
+.route-outline button { border:1px solid var(--line); border-radius:5px; background:#fffefb; color:var(--ink); padding:8px; font-size:11px; cursor:pointer; }
+.route-outline button::before { content:counter(steps) '. '; color:var(--teal); }
+.flag-note { margin-top:18px; background:#f0f2e9; border-radius:8px; }
+.flag-note summary { font-size:12px; padding:16px 20px; }
+.flag-note div { padding:0 20px 18px; font-size:12px; line-height:1.8; overflow-wrap:anywhere; }
+.flag-note div p { max-width:1000px; }
+.comparison table { min-width:990px; }
+.comparison th,.comparison td { width:auto; }
+.comparison thead th { color:var(--ink); }.comparison thead th:nth-child(3){color:var(--repeated)}.comparison thead th:nth-child(4){color:var(--first)}.comparison thead th:nth-child(5){color:var(--negative)}
+.extensions { margin-top:36px; }
+.extension-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:stretch; }
+.extension-grid .node { height:100%; background:#f1f5ec; }
+.scope-card { padding:20px; border:1px solid var(--line); border-radius:7px; }
+.scope-card h3 { font:23px Georgia,serif; }.scope-card p { font-size:12px; color:var(--muted); line-height:1.8; }.scope-card a { font-size:12px; }
+.scope-note code { font-size:10px; overflow-wrap:anywhere; }
+.source-entry { padding:12px 0; border-bottom:1px solid var(--line); }.source-entry code { display:block; margin-bottom:6px; }.source-entry a { font-size:11px; color:var(--teal); }
+.no-script { padding:20px 5vw; }
+@media(max-width:900px) { .theorem-strip { grid-template-columns:1fr; gap:15px; }.toolbar label { flex-wrap:wrap; }.extension-grid { grid-template-columns:1fr; } }
+@media(max-width:600px) { .toolbar label { display:flex; align-items:flex-start; flex-direction:column; gap:7px; }.toolbar select { width:100%; }.map-scroll { max-width:100%; }.hero-math .gain { font-size:28px; }.route-outline { padding:18px; }.route-outline ol { flex-direction:column; }.route-outline button { text-align:left; width:100%; }.extension-grid .node { min-height:160px; }.brand { letter-spacing:1.5px; } }

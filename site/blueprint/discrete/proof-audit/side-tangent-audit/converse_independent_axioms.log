@@ -1,0 +1,12 @@
+'Gluck.Discrete.SideTangent.sideTangentConverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Gluck.Discrete.SideTangent.sideTangentConverse_of_dfv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Gluck.Discrete.SideTangent.IsSideTangentRealization.tangent_sphere' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Gluck.Discrete.SideTangent.exists_sideTangent_scaledPolygon' depends on axioms: [propext, Classical.choice, Quot.sound]
+Gluck.Discrete.SideTangent.sideTangentConverse {n : ℕ} [NeZero n] (hn : 4 ≤ n) (ρ : ZMod n → ℝ)
+  (h : Gluck.Discrete.SideTangent.SideTangentAdmissible ρ) : Gluck.Discrete.SideTangent.RealizesSideTangent ρ
+Gluck.Discrete.SideTangent.IsSideTangentRealization.tangent_sphere {n : ℕ} [NeZero n] {ρ : ZMod n → ℝ}
+  {P N C : ZMod n → ℂ} (h : Gluck.Discrete.SideTangent.IsSideTangentRealization ρ P N C) (i k : ZMod n)
+  (hk : k = i - 1 ∨ k = i ∨ k = i + 1) :
+  Metric.sphere (C i) (ρ i) ∩ Gluck.Discrete.SideTangent.supportingLine P N k = {C i + ρ i • N k}

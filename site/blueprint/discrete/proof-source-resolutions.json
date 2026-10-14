@@ -1,0 +1,8 @@
+{
+  "Gluck/Discrete/CircleParameterGeometry.lean": {
+    "previous_sha256": "f8c7bc998f5e1f09e7e39e26c8f423db3454cdaf8c7e0b341f64f68299adf38c",
+    "selected_sha256": "da4dcfd534a937dc103efeb041b5217f86f2cd605648f7246ae9fb1eeb069855",
+    "selected_commit": "b5f00fb809e9a05d185c61a91fc4c8b3336ffcad",
+    "reason": "The side-tangent version adds only crossR2_circlePoint_pos_of_wrapped_edge before the final namespace end. All earlier declarations are byte-identical. Both exact original source variants and their separate kernel audits remain published; hgraph displays the additive superset version."
+  }
+}

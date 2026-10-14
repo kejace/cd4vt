@@ -1,0 +1,534 @@
+{
+  "recorded_at": "2026-10-01T04:25:18.667675+00:00",
+  "revision": "60216fe91c8f71364359fde2bb6ad63b65df84ef",
+  "base_commit": "f2747dd81b799338be3bd341cae9a39fa151ae8b",
+  "scope": "Current presentation after the shared spaceform mixed-curvature refactor. Fresh appendix audits, the successful 9314-job build, and the 14-endpoint kernel dependency audit refer to library source 60216fe91c8f71364359fde2bb6ad63b65df84ef. This overlay includes the previous current-presentation file set, every new or changed library file since f2747dd81b799338be3bd341cae9a39fa151ae8b, the root import aggregators, and LocalConverse. Historical proof snapshots and their Comparator records remain unchanged.",
+  "files": {
+    "ForMathlib.lean": "949989910cb6e5542cc9f8bda82efb968b4561e3796176253a3bb91ffdf40441",
+    "ForMathlib/Analysis/Calculus/PeriodicGluing.lean": "5fe84ba1f39bc879014230b454f16deffde233670e849b996de359cbbc067957",
+    "ForMathlib/Analysis/Complex/AngleIntegral.lean": "993e079cb813a1ab288b264bebc98efd038179f5450af9286ccb119e518c300e",
+    "ForMathlib/Analysis/ODE/LinearControl.lean": "b73076bd003afc6d2ad4c5edc21f237b39dc88435587d65aa90eb1de743a0e29",
+    "ForMathlib/Topology/Order/ParametricRoot.lean": "29b83df1142c72aee709c228f8315842c2b5b325f37208b6c18b7703db7a8097",
+    "Gluck.lean": "6fa484925a537045a239bfb1efa45238df8f37036d19cda810496106d9c22562",
+    "Gluck/AlternatingLevels.lean": "a1f1d27eed5dbd28018d1002f8f89079e31b36909cf4e6e76a33ad5e028a2f0f",
+    "Gluck/ArcChain.lean": "ae6b8e58ea1f6c1f16ba492dec9bb2a9f409f990fee62fe951cdda6c0eab2208",
+    "Gluck/ArcChain/Anchor.lean": "4206c6978d0c69389a0d80258900c5fd135638cf77020038066ec713ef59710c",
+    "Gluck/ArcChain/AnchorHemisphere.lean": "7c8a8a9b7ef8e1aa1c115f46ca2825ffe395271aa36ec6ee3f2c770d3a5241c1",
+    "Gluck/ArcChain/AnchorParams.lean": "b369035c70214af4b4ee3475382834cef5c7d3b67f2912ff7436b8d5c2b8e0b2",
+    "Gluck/ArcChain/AnchorRank.lean": "92c399deed61c27ae9c690f8abaa062febbfabe04c0d4b0513423b7851087182",
+    "Gluck/ArcChain/AnchorSelection.lean": "15cb8b22805e6080cc905207eec5299c4bae630d601087e3d501a86d5db01b80",
+    "Gluck/ArcChain/AnchorSimple.lean": "fb2846f8e76f7fb9642aca6923ddb481a4842d41e60eb07a5687edce7b8209c0",
+    "Gluck/ArcChain/Arc.lean": "0e254c744df48c4a4d71e9e8cc645935de05d1a049cb865924c938b554013a87",
+    "Gluck/ArcChain/Chain.lean": "4973129aefb3d920b3da3631fd426f1e4ee01e059905b9344def66a58482d370",
+    "Gluck/ArcChain/ChainReference.lean": "f879a73b7a962b607dcd672d7ef5b0c742722bd6cafc65080b264349b525697c",
+    "Gluck/ArcChain/ConcentrationSimple.lean": "38455413d3dc80393d878d70e21a12a1fb0f3e2767d19b4b9f4254d7651e90e3",
+    "Gluck/ArcChain/ControlClosing.lean": "364b9c660f8590971da7ad7825ccfe3a1fdf99a717074ef2d539acf133417e1f",
+    "Gluck/ArcChain/ControlFlow.lean": "53cf836fc6c148e5f0b87ab5a42b0014949220bde26923883d2379a89f2d531c",
+    "Gluck/ArcChain/ControlStability.lean": "d7ed1d9beae3ba0c2248db81c7534cb1f61a8928a6daf26ac935ac9f8ebd8435",
+    "Gluck/ArcChain/Converse.lean": "a58d351507fc198645230b7e325c8f2890d5321c2dc8194ae3ad70e7a45a28ef",
+    "Gluck/ArcChain/Coordinates.lean": "7464435f00c304672b3e947d0ef292c9bfbd87fa8d201299fe884cc34657f3bd",
+    "Gluck/ArcChain/Cycles.lean": "7b2adaa1c062b952d5f4ec559d23c7038faffd5a0f4990ef663f468f5ddd373b",
+    "Gluck/ArcChain/Defs.lean": "0e7bf22367136020ebbbdfdc56912cdc019f84a1de9cfc1605fe87c8cd416c83",
+    "Gluck/ArcChain/Final.lean": "16df03c599b0a0dc85c216ba0b1ee09c5bff3077c5243d46e45449b22bf41f3a",
+    "Gluck/ArcChain/FrameEquation.lean": "54e8e33e9e215505ea026092afd81a35a6f3dffa0afa3166f11ba00655f720b7",
+    "Gluck/ArcChain/FrameRealization.lean": "44cde1a84dfc02c428e36114f0cb42c9b1e3a60bf7e685b298ee469bbd8fc6b1",
+    "Gluck/ArcChain/LieModel.lean": "63c59ba3bce29b0dff2f2e80487d7844505d37c3ed79f723a39b57169ef20560",
+    "Gluck/ArcChain/Main.lean": "0f3a9d581715b63330aabccfd4d24061ac2ef5a67d4dc66a0fce8d26b448dd15",
+    "Gluck/ArcChain/NormalForm.lean": "95c5def58acd03f6d4f3eadb2c8d02a64dfbe78967181986d774c094e8fa33dc",
+    "Gluck/ArcChain/Opening.lean": "7d3561ad1f98f7eae6228c6296b2748d0dd420ad1fd0ba329666a2ef75913526",
+    "Gluck/ArcChain/PausedAnchor.lean": "edf2eaa8e1ac416ee16b10dde33b3fd04bb3d2719ec1dd06a4186a928715e874",
+    "Gluck/ArcChain/PeriodicFrames.lean": "4b1436011cf44ce5242eb77854458f3af3ba6fef8608a02a0df54591a706869f",
+    "Gluck/ArcChain/ProfileConcentration.lean": "4a67032891df943124146906037f8aed541496fa7d64bffccf5a9d9cafb3cb38",
+    "Gluck/ArcChain/ProfileConverse.lean": "b4e2b8ec2b96bb0ac89614d1071d42d9a71c132a17c5d41cb15484900ec3737f",
+    "Gluck/ArcChain/ProfileRealization.lean": "31687e39660ad3dd02da6bbdf27dec33d8516dea1c28cf38265128dacdfb3443",
+    "Gluck/ArcChain/Realize.lean": "4f1f47f73b7140c38d82131d43454d423c019052bbc40e8975f2a38d0d9a680b",
+    "Gluck/ArcChain/Stability.lean": "ad6b0f76a1208ac400dc4e1630c43a2cccd4346181479447ef8e46d61b590f4e",
+    "Gluck/Discrete.lean": "97a4976d1ed5ef4af5117b02da1dcd67c4ddadbe4c756562796503434fff3565",
+    "Gluck/Discrete/GlobalContinuity/EnclosingCircleObstruction.lean": "ee93d910462013d41b06bc9db1c2ce11796b6770b20b55c68b5da39dfc7926e2",
+    "Gluck/Discrete/LocalContinuity.lean": "633424aa082ecbe43a822bc7fc487694717b1c424a19f67b9c41845db56221cd",
+    "Gluck/Discrete/MirandaPerturbation.lean": "9bdda878d7c55b51a2c90365c320b5c830836a3338061ed5e07bdd6eb3631866",
+    "Gluck/Discrete/N6TypeAThreeCellR.lean": "d047428cad4041213f391f538327a06123a288740843069c8455906d4cb63509",
+    "Gluck/Discrete/NativeIncidentAcuteRank.lean": "53d5619fcfdd59691dd40e70646980c6e78711505793977cb5b4d3a4ae0a171f",
+    "Gluck/Discrete/NativeIncidentProjectiveElimination.lean": "3a816dc2298ff4819dcdc0af04a21017d26a59738107b7d1111fd98a23a03647",
+    "Gluck/Discrete/NativeNegativeCorners.lean": "02527f0738a34428bbd15b52edddb609ed6e08441a51e440cff05c17eef1ad36",
+    "Gluck/Discrete/NativeRepeatedMaximum.lean": "8be55a0d57bcf6038f1d922646748e1ac3c670be8572eeff71426bd7a8e8a99e",
+    "Gluck/Discrete/TabachnikovCharacterization.lean": "fc6c958ec1f8e719a444736bb3370b4f7804cd16e4bd79c27fbe1efdda006c02",
+    "Gluck/Discrete/TabachnikovConverse.lean": "aed1c98ecdacdfe3bd84b334865d911bb54c2d135b8a3eb38559802257c42b0a",
+    "Gluck/Euclidean/DahlbergStep2.lean": "d94a71411181f9f7e4400bdcc7b540da8e5dd17429e1269f321816ec27ba02ca",
+    "Gluck/Forward/Discrete/AlternatingDiskPathCrossing.lean": "94600aea797eaea137196dbd1da9d1a64d1972252c319d4408e25901b639a0ac",
+    "Gluck/Hyperbolic.lean": "b378a3d0c05222986e5ddd419417a98afb1bdd4a12b0a5d406b4565ba055d162",
+    "Gluck/Hyperbolic/ArcLength/ConverseCap.lean": "fc13736391a00a2ae7cb6d82c5faa79792f0f13e35bef1bb5cd40817c3ceb233",
+    "Gluck/Hyperbolic/Exact.lean": "f69082a6e42747c6a202126dc4ea1d93bb60c08e3a19c26c094518add867b743",
+    "Gluck/Hyperbolic/Family/Bicircle.lean": "9db334d1058fb011f95e17c6c2770349acbecc9a8c1beb65d6c44d20d9ea9e65",
+    "Gluck/Hyperbolic/Family/Simplicity.lean": "e8ed6453462dda3c7c7da3071b7bc8e1d57e1b96169d6db849f55b5c7a6a9f9c",
+    "Gluck/Hyperbolic/Mixed.lean": "b6d94d98e313fa4000d4c3ac298bb146a3084fa8ba2e255b8de59efdf2db3c14",
+    "Gluck/Hyperbolic/MixedSign.lean": "44a45dd560a01a971cd3fe64491a24dda6e6424e794636cc297caa020e117211",
+    "Gluck/Hyperbolic/SharedConverse.lean": "431aa15ccabb3e3e56e61fa8ea84c8b851b813afbb8cad4af8f8f8822cfdd3ba",
+    "Gluck/Regularity.lean": "0335a78647638aea29516086699f9ab38630acb1c53703f14cce173b6e858861",
+    "Gluck/Regularity/Assembly.lean": "7694ddbd8016f2a4fe790e4f48097d92c5bafd0cd3be43b754eedb9c304419a9",
+    "Gluck/Regularity/Interface.lean": "edd1ef2692b98c4718ce68834ab85e3faa4350304a56045eaa79bb753d25f812",
+    "Gluck/Regularity/LevelGeodesic.lean": "f5dbcf7079d87dd37c8b239ede38bd92f30d6ed5147a3fe37d17b9087301ba9b",
+    "Gluck/Regularity/LocalConverse.lean": "de7e0101bba4737b341e57ad514c4aa3255dceb206ac858ee45b10fe5416ea5c",
+    "Gluck/Regularity/Model.lean": "a8effe09851842b522ee98e516dde803451723fb774c37bdaee77794c5935538",
+    "Gluck/Regularity/Regularization.lean": "bbcdef115b0eebc3815ad8914604c34aea203b4616e8467dca189552d6bb2dea",
+    "Gluck/Regularity/SpaceformUniform.lean": "932c3200cd4fa97fd991151a658a143f11e1c5c1b8fac7b8407f81ffc838423d",
+    "Gluck/Regularity/SphereUnrestricted.lean": "9cbfb55300ea9c7749fef8c21a48ba897d724047517a776953f1d1d6512d3a09",
+    "Gluck/Regularity/Uniform.lean": "e77277a016104550cc3abd094f9825a9df497c5e8203e0ff5cba4e7bcb8094d5",
+    "Gluck/Smooth.lean": "87ac6b9080693d9c124e2afe05e8f0558c98e1df2d17c91b28e1126eae511c37",
+    "Gluck/Smooth/Assembly.lean": "a812cd42b2d9e1e8e6bf14d9f651438ca1f8bbbfb2eed774eb57ec719577fef3",
+    "Gluck/SpaceForm.lean": "960e25dec916883624d55f05dcebf1bd6141955824443f1f580df8be2ff48f8b",
+    "Gluck/SpaceForm/Converse.lean": "fa260875583a10ef89f9590260ed493609fba64c14064bc761bd24fb6d23d6d0",
+    "Gluck/SpaceForm/GeodesicCurvature.lean": "bd38eb8d0e095e7610af7c8ee4824ee55142be329f6f2b4568b25a523e714383",
+    "Gluck/SpaceForm/Reparam.lean": "ff4ad5322d5dfb25b49c3c71da97392ce431fb9b33b7ea31125823e11b83b229",
+    "Gluck/Sphere.lean": "666463a9c140145cce615b1fe49241063fc74dc585e770265d7754eebdabd00b",
+    "Gluck/Sphere/ArcLength/Window.lean": "9711285f15a203c9e09f033adab81b3ea9c5b0bc5c9d5e6b4fefc23b7553ea5e",
+    "Gluck/Sphere/Family/Closing.lean": "e773cb3a545c73e1368aa0e85dc17777ffd8d20d4f111d3205d5cb6eaf704bad",
+    "Gluck/Sphere/Family/TurningC.lean": "12db265f01ac9d5e7be08891194de42370fd6f33943fff5b7a1a8ceb34867ca4",
+    "Gluck/Sphere/Mixed.lean": "aed4efcf379c87518c81f49538b992731831b0dcaa45b7c86c6a21937670ac67",
+    "Gluck/Sphere/StepReparam.lean": "7fbcdbff9be9018e13f4f2fe0862ef8e5fd854f5b321b02d9a5e4588b26b1693",
+    "Gluck/Sphere/Unrestricted.lean": "98f5d5abf81c78d2c2088f178aef3451b85a401b1fa192d5d1e7586c56f6fc14"
+  },
+  "root_headers": [
+    "Gluck.lean",
+    "ForMathlib.lean",
+    "Gluck/ArcChain.lean",
+    "Gluck/Regularity.lean",
+    "Gluck/Smooth.lean",
+    "Gluck/Sphere.lean",
+    "Gluck/Hyperbolic.lean",
+    "Gluck/SpaceForm.lean",
+    "Gluck/Discrete.lean"
+  ],
+  "audited_declarations": [
+    {
+      "name": "Gluck.Discrete.tabachnikov_converse",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "discrete-audit.log"
+    },
+    {
+      "name": "Gluck.Discrete.tabachnikov_converse_geometric",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "discrete-audit.log"
+    },
+    {
+      "name": "Gluck.Discrete.IsCoherentConvexPolygon.signedMengerR2_eq_inv_of_radii",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "discrete-audit.log"
+    },
+    {
+      "name": "Gluck.Discrete.IsCoherentConvexPolygon.not_concyclic4_of_radius_ne",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "discrete-audit.log"
+    },
+    {
+      "name": "Gluck.Discrete.tabachnikov_radius_characterization",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "discrete-audit.log"
+    },
+    {
+      "name": "Gluck.Discrete.GlobalContinuity.no_continuous_coherent_hexagon_path",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "discrete-audit.log"
+    },
+    {
+      "name": "Gluck.Discrete.GlobalContinuity.no_continuous_regular_hexagon_path",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "discrete-audit.log"
+    },
+    {
+      "name": "Gluck.Discrete.NativeIncidentProjective.projectiveH_eq_zero",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "discrete-audit.log"
+    },
+    {
+      "name": "Gluck.Discrete.NativeIncidentProjective.not_projective_turn_solution",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "discrete-audit.log"
+    },
+    {
+      "name": "Gluck.Discrete.NativeOppositePure.IncidentProjectiveRankLoss.false",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "discrete-audit.log"
+    },
+    {
+      "name": "Gluck.Discrete.NativeOppositePure.fderiv_nativeLengthController_surjective_of_acute_orthogonal",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "discrete-audit.log"
+    },
+    {
+      "name": "Gluck.Discrete.localContinuousRealization_of_dfv",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "discrete-audit.log"
+    },
+    {
+      "name": "geometric_conclusion_iff_full",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "discrete-audit.log"
+    },
+    {
+      "name": "hexagon_condition_iff_oriented",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "discrete-audit.log"
+    },
+    {
+      "name": "Gluck.SpaceForm.sphere_geodesicCurvature_comp_eq",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "smooth-audit.log"
+    },
+    {
+      "name": "Gluck.SpaceForm.hyperbolic_geodesicCurvature_comp_eq",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "smooth-audit.log"
+    },
+    {
+      "name": "Gluck.spherical_dahlberg_converse_geodesic_of_level",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "smooth-audit.log"
+    },
+    {
+      "name": "Gluck.hyperbolic_dahlberg_converse_geodesic_of_level",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "smooth-audit.log"
+    },
+    {
+      "name": "Gluck.ArcChain.HasWindow.four_le",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "smooth-audit.log"
+    },
+    {
+      "name": "Gluck.ArcChain.stepConverse_iff_four_le",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "smooth-audit.log"
+    },
+    {
+      "name": "Gluck.ArcChain.stepConverse",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "smooth-audit.log"
+    },
+    {
+      "name": "sphere_constant_level_audit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "smooth-audit.log"
+    },
+    {
+      "name": "hyperbolic_constant_level_audit",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "smooth-audit.log"
+    },
+    {
+      "name": "AppendixUniformAudit.same_contract",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "uniform-audit.log"
+    },
+    {
+      "name": "Gluck.smooth_of_uniform_regularity",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "uniform-audit.log"
+    },
+    {
+      "name": "Gluck.UniformRegularStatement.exists_smooth",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "uniform-audit.log"
+    },
+    {
+      "name": "Gluck.dahlberg_converse_uniform",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "uniform-audit.log"
+    },
+    {
+      "name": "Gluck.spherical_dahlberg_converse_uniform",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "uniform-audit.log"
+    },
+    {
+      "name": "Gluck.hyperbolic_dahlberg_converse_uniform",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "uniform-audit.log"
+    },
+    {
+      "name": "Gluck.spaceform_dahlberg_converse_uniform",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "uniform-audit.log"
+    },
+    {
+      "name": "Gluck.ArcChain.exists_realization_of_profile_window",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "mixed-anchor-audit.log"
+    },
+    {
+      "name": "Gluck.dahlberg_converse",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "mixed-anchor-audit.log"
+    },
+    {
+      "name": "Gluck.spherical_dahlberg_converse",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "mixed-anchor-audit.log"
+    },
+    {
+      "name": "Gluck.spherical_dahlberg_converse_unrestricted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "mixed-anchor-audit.log"
+    },
+    {
+      "name": "Gluck.Hyperbolic.dahlberg_converse",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "mixed-anchor-audit.log"
+    },
+    {
+      "name": "Gluck.hyperbolic_dahlberg_converse",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "mixed-anchor-audit.log"
+    },
+    {
+      "name": "Gluck.dahlberg_converse_smooth",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "mixed-anchor-audit.log"
+    },
+    {
+      "name": "Gluck.spherical_dahlberg_converse_smooth",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "mixed-anchor-audit.log"
+    },
+    {
+      "name": "Gluck.spherical_dahlberg_converse_unrestricted_smooth",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "mixed-anchor-audit.log"
+    },
+    {
+      "name": "Gluck.hyperbolic_dahlberg_converse_smooth",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "mixed-anchor-audit.log"
+    },
+    {
+      "name": "Gluck.dahlberg_converse_rgc2",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "mixed-anchor-audit.log"
+    },
+    {
+      "name": "Gluck.spherical_dahlberg_converse_rgc2",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "mixed-anchor-audit.log"
+    },
+    {
+      "name": "Gluck.spherical_dahlberg_converse_unrestricted_rgc2",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "mixed-anchor-audit.log"
+    },
+    {
+      "name": "Gluck.hyperbolic_dahlberg_converse_rgc2",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "mixed-anchor-audit.log"
+    }
+  ],
+  "evidence": {
+    "discrete-audit.lean": "76351b2c30a7677b9a93deb0b28009f532bda0beb2c10327897345eab7fbf4c7",
+    "discrete-audit.log": "164866891afca744857a3c6224ffad5ed70a87f6f6fd2491815537fdebbcf616",
+    "mixed-anchor-audit.lean": "db120902dcb50719130f725f2911cd66b84439e3f4609c1b245e7ef957420ea4",
+    "mixed-anchor-audit.log": "407aa7f0e17d7653ea8caf60be6a759927275fd19b7ba68b140a47403a803d12",
+    "smooth-audit.lean": "c9d77f47cc9f6b5952e096dea8bd20122514cb25513a9f340d34c24e484ce87d",
+    "smooth-audit.log": "00e03ae91444398a436201889b2befd2641b7971043f966e28262352de00eeb7",
+    "summary.json": "21cbe2fb3a99bc4f4509a2b58d5d937d368a04a49b1598b43e0bd751a1c17217",
+    "uniform-audit.lean": "52f2e00f48479bc83e8a40d2d5b572e99a88137128242230789c1fcf3963cbb5",
+    "uniform-audit.log": "85c3ce5a021b9206d8d58761647d0e68b4d3c041b8696a43af180e00cc399f62"
+  },
+  "full_build": {
+    "command": "lake build",
+    "source_commit": "60216fe91c8f71364359fde2bb6ad63b65df84ef",
+    "result": "passed",
+    "exit_code": 0,
+    "jobs": 9314,
+    "final_output": "Build completed successfully (9314 jobs).",
+    "raw_log_sha256": "f5b5827b4da35c4b666956a97159b70e7f2a275551b51aaabde1aecaa3bb5df8",
+    "raw_log_included": false
+  },
+  "appendix_audit_counts": {
+    "discrete": 14,
+    "smooth": 9,
+    "uniform": 7
+  },
+  "shared_construction_audit": {
+    "entries": 14,
+    "result": "passed",
+    "summary": "summary.json",
+    "source": "mixed-anchor-audit.lean",
+    "log": "mixed-anchor-audit.log"
+  },
+  "comparator_scope": "No Comparator run or renewed Comparator verdict is claimed by this record."
+}

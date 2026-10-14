@@ -1,0 +1,403 @@
+{
+  "verifiedAtUTC": "2026-09-30T02:30:17.828002+00:00",
+  "branch": "proof/circumedge",
+  "headAtAudit": "09e0ab1b579889270da5b2b51aa91ba41f76e679",
+  "rootModule": "Gluck.Discrete.SideTangentForward",
+  "leanToolchain": "leanprover/lean4:v4.35.0-rc2",
+  "buildJobs": 3538,
+  "buildLog": "forward_build.log",
+  "audit": "ForwardAudit.lean",
+  "auditLog": "forward_axioms.log",
+  "auditChecks": {
+    "auditedDeclarations": 16,
+    "declarations": [
+      "Gluck.Discrete.SideTangent.crossR2_cyclic_triple_pos",
+      "Gluck.Discrete.SideTangent.crossR2_lifted_triple_pos",
+      "Gluck.Discrete.SideTangent.IsSideTangentRealization.normal_cross_ne",
+      "Gluck.Discrete.SideTangent.IsSideTangentRealization.reconstructed_inner",
+      "Gluck.Discrete.SideTangent.IsSideTangentRealization.reconstructed_next",
+      "Gluck.Discrete.SideTangent.IsSideTangentRealization.reconstructed_edge",
+      "Gluck.Discrete.SideTangent.exists_strict_balanced_polygon_of_realization",
+      "Gluck.Discrete.SideTangent.exists_sign_blocks_of_not_dfv",
+      "Gluck.Discrete.SideTangent.sum_mul_cross_eq_zero",
+      "Gluck.Discrete.SideTangent.vertex_ne_of_strictSupport",
+      "Gluck.Discrete.SideTangent.sign_block_chord_classification",
+      "Gluck.Discrete.SideTangent.zero_or_dfv_of_strict_affine_balance",
+      "Gluck.Discrete.SideTangent.constant_of_radiusDifference_eq_zero",
+      "Gluck.Discrete.SideTangent.sideTangentForward",
+      "Gluck.Discrete.SideTangent.realizesSideTangent_iff_admissible",
+      "Gluck.Discrete.SideTangent.realizesSideTangent_iff_dfv"
+    ],
+    "allowedAxioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "unexpectedAxioms": []
+  },
+  "newProofModules": {
+    "Gluck/Discrete/SideTangentChordSeparation.lean": {
+      "sha256": "d366769a7da7e66a9b65f121a08bbd47f7e63ce9c7e5d720b8f1f3b5402fb4cf",
+      "lines": 97,
+      "imports": [
+        "Gluck.Discrete.StrictSupportSimplicity"
+      ]
+    },
+    "Gluck/Discrete/SideTangentReconstruction.lean": {
+      "sha256": "85f9b9ac6f831921f15ac9bd12193a0035f0b19a96fa55da6f2abcab26a2a645",
+      "lines": 94,
+      "imports": [
+        "Gluck.Discrete.SideTangentConverse"
+      ]
+    },
+    "Gluck/Discrete/SideTangentSignBlocks.lean": {
+      "sha256": "e3be2c1b7e9ea9614e9be689199b41ad18788952e18654d4c7526eaedc824f97",
+      "lines": 70,
+      "imports": [
+        "Gluck.Discrete.SideTangentDFV"
+      ]
+    },
+    "Gluck/Discrete/SideTangentNecessityBalance.lean": {
+      "sha256": "f61d3f6ebe5ec0cd05031d0636518a46ceaa0618a8eda570e5918be8386a258e",
+      "lines": 132,
+      "imports": [
+        "Gluck.Discrete.SideTangentSignBlocks",
+        "Gluck.Discrete.SideTangentChordSeparation"
+      ]
+    },
+    "Gluck/Discrete/SideTangentForward.lean": {
+      "sha256": "70ab4ec88da892abf42cf27c6cd7e1bf92545e102ac471ce78e6be01a55ac428",
+      "lines": 61,
+      "imports": [
+        "Gluck.Discrete.SideTangentNecessityBalance",
+        "Gluck.Discrete.SideTangentReconstruction"
+      ]
+    }
+  },
+  "localImportClosureCount": 36,
+  "localImportClosure": {
+    "ForMathlib/Analysis/Complex/ConeWinding.lean": {
+      "sha256": "87d6ae78575746e45c5e3e65a036df5914f2ace86ec9b5340387a6625868f9f1",
+      "lines": 99,
+      "imports": [
+        "ForMathlib.Analysis.Complex.WindingNumber",
+        "Mathlib.Analysis.Convex.Basic",
+        "Mathlib.Topology.Subpath"
+      ]
+    },
+    "ForMathlib/Analysis/Complex/DiamondStability.lean": {
+      "sha256": "a9ef9bf783b996a597139853d9eab5474c147c6dc1f5cb1bba2e1b322f838f42",
+      "lines": 70,
+      "imports": [
+        "ForMathlib.Analysis.Complex.DiamondWinding",
+        "Mathlib.Topology.MetricSpace.ProperSpace.Lemmas"
+      ]
+    },
+    "ForMathlib/Analysis/Complex/DiamondWinding.lean": {
+      "sha256": "f5709606d1b9ad3923b5859b1ff376897ae24f61e084aa4e7afbaa2b44285f91",
+      "lines": 147,
+      "imports": [
+        "ForMathlib.Analysis.Complex.ConeWinding",
+        "Mathlib.Analysis.Normed.Module.Convex"
+      ]
+    },
+    "ForMathlib/Analysis/Complex/WindingNumber.lean": {
+      "sha256": "8ce5a268725cc06608593b36c49e87b4ade22da9bc7d06a70a2c455fd4eaafad",
+      "lines": 666,
+      "imports": [
+        "Mathlib.Analysis.Normed.Module.Ray",
+        "Mathlib.Analysis.SpecialFunctions.Complex.Circle",
+        "Mathlib.MeasureTheory.Integral.CircleIntegral",
+        "Mathlib.Topology.Homotopy.Lifting"
+      ]
+    },
+    "ForMathlib/Analysis/InnerProductSpace/ProjectiveBalance.lean": {
+      "sha256": "eaf590db04ad98a6c08bebc9d3b2be3206c5774ba8a852f73f487deade59f552",
+      "lines": 58,
+      "imports": [
+        "ForMathlib.Analysis.InnerProductSpace.ProjectiveBall"
+      ]
+    },
+    "ForMathlib/Analysis/InnerProductSpace/ProjectiveBall.lean": {
+      "sha256": "c9707c12ab2b4ad7c80af33044e2d29a42a74b132123ad82c029183a49ea933f",
+      "lines": 151,
+      "imports": [
+        "Mathlib.Analysis.InnerProductSpace.Basic",
+        "Mathlib.Tactic"
+      ]
+    },
+    "ForMathlib/Analysis/InnerProductSpace/ProjectiveOrientation.lean": {
+      "sha256": "2a94183f3b31ba21cef89861bc45d5c9f6e74fbe805f975abb7f06d917a10fb5",
+      "lines": 83,
+      "imports": [
+        "ForMathlib.Analysis.InnerProductSpace.ProjectiveBall",
+        "Mathlib.Analysis.Complex.Basic"
+      ]
+    },
+    "ForMathlib/Analysis/InnerProductSpace/ProjectiveSegments.lean": {
+      "sha256": "385236776dce50c7fa103c06177b12c2c18cd4f4c6e88bef8932f60e916aeaed",
+      "lines": 47,
+      "imports": [
+        "ForMathlib.Analysis.InnerProductSpace.ProjectiveBall",
+        "Mathlib.Analysis.Convex.Segment"
+      ]
+    },
+    "Gluck/Discrete/Budget.lean": {
+      "sha256": "68a1c0b33ff2d3be5fee494311a85fdbdef3649adb3565ea0660a67856593a87",
+      "lines": 530,
+      "imports": [
+        "Gluck.Discrete.Defs"
+      ]
+    },
+    "Gluck/Discrete/CircleParameterGeometry.lean": {
+      "sha256": "da4dcfd534a937dc103efeb041b5217f86f2cd605648f7246ae9fb1eeb069855",
+      "lines": 154,
+      "imports": [
+        "Gluck.Discrete.PolygonConvexity",
+        "Mathlib.Analysis.SpecialFunctions.Complex.CircleMap"
+      ]
+    },
+    "Gluck/Discrete/Converse.lean": {
+      "sha256": "48791e5b74799d0dab9ebf657c5a122d400e627563c75e2120a899fc1e6a432d",
+      "lines": 129,
+      "imports": [
+        "Gluck.Discrete.Convexity",
+        "Gluck.Discrete.LocalRegularity",
+        "Gluck.Discrete.N4Moderate"
+      ]
+    },
+    "Gluck/Discrete/Convexity.lean": {
+      "sha256": "c491ffad62c7719fed4f8caa899f0f7227d2340663abc63debad345db957a0b8",
+      "lines": 457,
+      "imports": [
+        "Gluck.Discrete.TangentChord"
+      ]
+    },
+    "Gluck/Discrete/Defs.lean": {
+      "sha256": "215e071b73bfb91f99c47497b4941819e040810d93dc0d1d65ba8de9d41aa21a",
+      "lines": 386,
+      "imports": [
+        "Mathlib.Algebra.Field.GeomSum",
+        "Mathlib.Analysis.Convex.Segment",
+        "Mathlib.Analysis.SpecialFunctions.Complex.Circle",
+        "Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse",
+        "Mathlib.Data.ZMod.Basic",
+        "Mathlib.RingTheory.RootsOfUnity.Complex",
+        "Mathlib.Tactic"
+      ]
+    },
+    "Gluck/Discrete/LocalRegularity.lean": {
+      "sha256": "ab60d32358ef1717f7a4e81e148c980cf4cecf878d6c49984333f7dc34f0a55e",
+      "lines": 711,
+      "imports": [
+        "Gluck.Discrete.TangentChord"
+      ]
+    },
+    "Gluck/Discrete/N4Moderate.lean": {
+      "sha256": "bac2fc5c7901caf3ce449bded1e9957e17978a47018f8284e8a630b423071fd1",
+      "lines": 786,
+      "imports": [
+        "Gluck.Discrete.Convexity",
+        "Gluck.Discrete.N4Orthogonal"
+      ]
+    },
+    "Gluck/Discrete/N4Orthogonal.lean": {
+      "sha256": "92d0cd71c536b9a8cd15a1a1f1579dc94a07d16038e5cd46448773a752d697ad",
+      "lines": 621,
+      "imports": [
+        "Gluck.Discrete.TangentChord"
+      ]
+    },
+    "Gluck/Discrete/PolygonConvexity.lean": {
+      "sha256": "41925386a4f77e3c411e42321f7f3e59cb2ce8572d7458928c59ac8432e08569",
+      "lines": 1706,
+      "imports": [
+        "Gluck.Discrete.Convexity",
+        "Mathlib.Analysis.LocallyConvex.Separation"
+      ]
+    },
+    "Gluck/Discrete/SideTangentChordSeparation.lean": {
+      "sha256": "d366769a7da7e66a9b65f121a08bbd47f7e63ce9c7e5d720b8f1f3b5402fb4cf",
+      "lines": 97,
+      "imports": [
+        "Gluck.Discrete.StrictSupportSimplicity"
+      ]
+    },
+    "Gluck/Discrete/SideTangentCircle.lean": {
+      "sha256": "8241f52931866c550203d74a8f27dfec3750bfef8443cfb06be61f9b110971b0",
+      "lines": 75,
+      "imports": [
+        "Gluck.Discrete.SideTangentContact",
+        "ForMathlib.Analysis.InnerProductSpace.ProjectiveSegments"
+      ]
+    },
+    "Gluck/Discrete/SideTangentContact.lean": {
+      "sha256": "4447e34428201b0c35cd4af4c8854b7fc3b5e71103139c869e4fcc2a28acf414",
+      "lines": 58,
+      "imports": [
+        "Gluck.Discrete.SideTangentFan"
+      ]
+    },
+    "Gluck/Discrete/SideTangentConverse.lean": {
+      "sha256": "71ea3efb8d5e83fa46c2587f56a512a085d50f8bd7266ec25e3e91cea6bace6f",
+      "lines": 212,
+      "imports": [
+        "Gluck.Discrete.SideTangentScaledPolygon",
+        "Gluck.Discrete.SideTangentRegularFan"
+      ]
+    },
+    "Gluck/Discrete/SideTangentDFV.lean": {
+      "sha256": "459a29443ddc526a33f03b6b11f154e0864b6677379830f96de776e3a0fe940b",
+      "lines": 136,
+      "imports": [
+        "Gluck.Discrete.SideTangentSquareFan",
+        "Gluck.Discrete.Converse"
+      ]
+    },
+    "Gluck/Discrete/SideTangentFan.lean": {
+      "sha256": "e32165f1ec0a4cc864e6f32501d20da84e3ddb813a2ac033396bacf091b563d6",
+      "lines": 106,
+      "imports": [
+        "Gluck.Discrete.SideTangentSquareLabels",
+        "Gluck.Discrete.CircleParameterGeometry"
+      ]
+    },
+    "Gluck/Discrete/SideTangentField.lean": {
+      "sha256": "b47d1833b4bcf54a20051285a3a059c46456818db43c6d905cab8c530f5b405c",
+      "lines": 185,
+      "imports": [
+        "ForMathlib.Analysis.Complex.DiamondWinding",
+        "Mathlib.Tactic"
+      ]
+    },
+    "Gluck/Discrete/SideTangentForward.lean": {
+      "sha256": "70ab4ec88da892abf42cf27c6cd7e1bf92545e102ac471ce78e6be01a55ac428",
+      "lines": 61,
+      "imports": [
+        "Gluck.Discrete.SideTangentNecessityBalance",
+        "Gluck.Discrete.SideTangentReconstruction"
+      ]
+    },
+    "Gluck/Discrete/SideTangentNecessityBalance.lean": {
+      "sha256": "f61d3f6ebe5ec0cd05031d0636518a46ceaa0618a8eda570e5918be8386a258e",
+      "lines": 132,
+      "imports": [
+        "Gluck.Discrete.SideTangentSignBlocks",
+        "Gluck.Discrete.SideTangentChordSeparation"
+      ]
+    },
+    "Gluck/Discrete/SideTangentPerturbation.lean": {
+      "sha256": "c8eaa50609e5b720ea822245c9cf7156509f97a7c9f3cc3bfabb9645095e894b",
+      "lines": 84,
+      "imports": [
+        "Gluck.Discrete.SideTangentField",
+        "ForMathlib.Analysis.InnerProductSpace.ProjectiveBalance",
+        "ForMathlib.Analysis.Complex.DiamondStability",
+        "Mathlib.Analysis.InnerProductSpace.Continuous"
+      ]
+    },
+    "Gluck/Discrete/SideTangentProjectiveFan.lean": {
+      "sha256": "ab182b89ee0ced36a5758c227510161680f41743ec07e8adb808cb7b30c516e2",
+      "lines": 238,
+      "imports": [
+        "Gluck.Discrete.SideTangentSquareFan",
+        "Gluck.Discrete.SideTangentCircle",
+        "ForMathlib.Analysis.InnerProductSpace.ProjectiveOrientation"
+      ]
+    },
+    "Gluck/Discrete/SideTangentReconstruction.lean": {
+      "sha256": "85f9b9ac6f831921f15ac9bd12193a0035f0b19a96fa55da6f2abcab26a2a645",
+      "lines": 94,
+      "imports": [
+        "Gluck.Discrete.SideTangentConverse"
+      ]
+    },
+    "Gluck/Discrete/SideTangentRegularFan.lean": {
+      "sha256": "e2e409272bb707e081fa3094ae3d18331ed866db1837aec5782949254123944f",
+      "lines": 63,
+      "imports": [
+        "Gluck.Discrete.SideTangentProjectiveFan"
+      ]
+    },
+    "Gluck/Discrete/SideTangentScaledPolygon.lean": {
+      "sha256": "d670b286bf789b9db94f27a638201f5dcd9638ee99cd9c545e66c65273acb936",
+      "lines": 326,
+      "imports": [
+        "Gluck.Discrete.SideTangentDFV",
+        "Gluck.Discrete.SideTangentProjectiveFan",
+        "Gluck.Discrete.StrictSupportSimplicity"
+      ]
+    },
+    "Gluck/Discrete/SideTangentSignBlocks.lean": {
+      "sha256": "e3be2c1b7e9ea9614e9be689199b41ad18788952e18654d4c7526eaedc824f97",
+      "lines": 70,
+      "imports": [
+        "Gluck.Discrete.SideTangentDFV"
+      ]
+    },
+    "Gluck/Discrete/SideTangentSquareFan.lean": {
+      "sha256": "46928d3d66c558c2c188a7e3cf6772f36ac2e9ef8e33e0827ba1ac0acf6f6205",
+      "lines": 246,
+      "imports": [
+        "Gluck.Discrete.SideTangentFan"
+      ]
+    },
+    "Gluck/Discrete/SideTangentSquareLabels.lean": {
+      "sha256": "33195945d779ccce96f5ef7eb8c04bdf7a9e1cf641e82bb387ac9f342f8e1437",
+      "lines": 83,
+      "imports": [
+        "Gluck.Discrete.SideTangentPerturbation"
+      ]
+    },
+    "Gluck/Discrete/StrictSupportSimplicity.lean": {
+      "sha256": "bc74c131ca26d00e03bdfa701a82e25b158ca28385e9cdc4c2418e32449abd31",
+      "lines": 104,
+      "imports": [
+        "Gluck.Discrete.PolygonConvexity"
+      ]
+    },
+    "Gluck/Discrete/TangentChord.lean": {
+      "sha256": "96aae65ab62c5711e9a808f8edae2ec4a838946ce5b731218eea1228895541d5",
+      "lines": 435,
+      "imports": [
+        "Gluck.Discrete.Budget",
+        "Mathlib.Analysis.InnerProductSpace.TwoDim"
+      ]
+    }
+  },
+  "externalImports": [
+    "Mathlib.Algebra.Field.GeomSum",
+    "Mathlib.Analysis.Complex.Basic",
+    "Mathlib.Analysis.Convex.Basic",
+    "Mathlib.Analysis.Convex.Segment",
+    "Mathlib.Analysis.InnerProductSpace.Basic",
+    "Mathlib.Analysis.InnerProductSpace.Continuous",
+    "Mathlib.Analysis.InnerProductSpace.TwoDim",
+    "Mathlib.Analysis.LocallyConvex.Separation",
+    "Mathlib.Analysis.Normed.Module.Convex",
+    "Mathlib.Analysis.Normed.Module.Ray",
+    "Mathlib.Analysis.SpecialFunctions.Complex.Circle",
+    "Mathlib.Analysis.SpecialFunctions.Complex.CircleMap",
+    "Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse",
+    "Mathlib.Data.ZMod.Basic",
+    "Mathlib.MeasureTheory.Integral.CircleIntegral",
+    "Mathlib.RingTheory.RootsOfUnity.Complex",
+    "Mathlib.Tactic",
+    "Mathlib.Topology.Homotopy.Lifting",
+    "Mathlib.Topology.MetricSpace.ProperSpace.Lemmas",
+    "Mathlib.Topology.Subpath"
+  ],
+  "lakeManifestSHA256": "dc683822d40137b4ae653df71ae4a36050c675a1923fb2dfa7e4365f60377d7e",
+  "mathlibRevision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "evidenceFiles": {
+    "ForwardAudit.lean": {
+      "sha256": "722b908c848c459b1aa28633598551cb5798dd4687c1b62230c9fd842dd263dc"
+    },
+    "forward_build.log": {
+      "sha256": "82fb8ca4af66c1de957984989d359d6f663c2a75e61b1249573352fbc23078d6"
+    },
+    "forward_axioms.log": {
+      "sha256": "fac8e2158743c2f28c9fe3b34259a5432f7c54da9bc887e0dee9cfde4f23b16d"
+    }
+  }
+}
