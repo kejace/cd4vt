@@ -1,0 +1,30 @@
+name = "cd4vt"
+version = "0.1.0"
+keywords = ["math"]
+defaultTargets = ["Gluck", "ForMathlib"]
+
+[leanOptions]
+pp.unicode.fun = true # pretty-prints `fun a ↦ b`
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+maxSynthPendingDepth = 3
+
+# Optional theorem-statement/proof audit tool, pinned to its v4.35.0-rc2 tag.
+# No library imports it; see comparator/README.md.
+[[require]]
+name = "Comparator"
+git = "https://github.com/leanprover/comparator"
+rev = "32bd61da1d68fbaa310234964e9b820b03a0f82f"
+
+# `mathlib` is required last so its pinned transitive dependency versions take
+# precedence over Comparator's.
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.35.0-rc2"
+
+[[lean_lib]]
+name = "Gluck"
+
+[[lean_lib]]
+name = "ForMathlib"

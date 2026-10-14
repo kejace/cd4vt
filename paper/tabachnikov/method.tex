@@ -1,0 +1,68 @@
+\section{The method}\label{sec:method}
+
+We never deform a known polygon. Instead we build the polygon from its edge
+lengths. Write $2h_i$ for the length of the edge from vertex $i$ to vertex
+$i+1$. A chord of length $2h$ in a circle of curvature $\kappa$ makes the angle
+$\arcsin(\kappa h)$ with the tangent at either end, so if the circle through
+three consecutive vertices is to have curvature $\kappa_i$, the polygon must
+turn at vertex $i$ by
+$\theta_i=\arcsin(\kappa_ih_{i-1})+\arcsin(\kappa_ih_i)$. Laying the edges
+end to end with these turns, the polygon closes up after one revolution
+exactly when three real equations hold: the two coordinates of the closure
+gap and the total turn $\sum\theta_i=2\pi$. It therefore suffices to solve
+three equations in the $n$ positive half-lengths $h_i$, subject to the bounds
+$\kappa_i h_{i-1}<1$ and $\kappa_i h_i<1$. Section~\ref{sec:setup} proves
+that every such solution gives a simple, strictly convex, coherent polygon.
+
+\begin{figure}[t]
+\centering
+\figfile{method}{\textwidth}
+\caption{The method, computed for the word
+$\mu=(1,\allowbreak\,0.94,\allowbreak\,0.63,\allowbreak\,0.44,\allowbreak\,1.75,\allowbreak\,1.88,\allowbreak\,1.25,\allowbreak\,0.56,\allowbreak\,0.5)$.
+(a) The frame of four active edges $e_0,\dots,e_3$ (shaded) and their eight
+endpoint readings (black); the other readings (grey) are dormant.
+(b) A regular anchor: the dormant edges have length zero, each block of
+vertices between two active edges is a single point (open circles), and the
+polygon is a quadrilateral. (c) The implicit function theorem opens the
+dormant edges to small positive lengths, keeping every prescribed curvature.
+(d) Another realization of the same word, for comparison.}
+\label{fig:method}
+\end{figure}
+
+The main idea is to put all the length on four edges
+(Figure~\ref{fig:method}). If every other edge has length zero, the vertices
+between two consecutive long edges collapse to one point. The turn at such a
+collapsed block involves only the curvatures at its two ends, and the three
+equations become three equations in four unknowns that involve only the
+eight curvature readings at the ends of the four chosen edges. A positive
+solution at which the three equations have full rank is a \emph{regular
+anchor}. It is a closed quadrilateral whose corners carry two circles each.
+The implicit function theorem then opens every edge of length zero to a small
+positive length while keeping all the prescribed curvatures, and the result
+is a realization (Section~\ref{sec:anchor}). The same argument, with the
+curvatures as parameters, gives the local $C^1$ dependence.
+
+It remains to choose the four edges so that a regular anchor exists. After
+removing repeated consecutive curvatures and rescaling, this is a
+combinatorial problem about the word $\kappa_1,\dots,\kappa_n$, solved by one
+of three explicit constructions, each on a frame of the shape
+$(0,\allowbreak\,i-1,\allowbreak\,i,\allowbreak\,n-1)$: the two edges at a peak with curvature $1$ at vertex
+$0$ and the two edges at a vertex $i$ further on. The resulting four-length
+system depends on five numbers only (Section~\ref{sec:system}).
+\begin{description}
+\item[(R)] If the maximum of $\kappa$ is attained twice, take the edges at
+  the two maxima. An explicit quadrilateral with perpendicular diagonals,
+  deformed in two parameters, gives the anchor.
+\item[(F)] Otherwise let $0$ be the highest peak other than the global
+  maximum $H$. A number $\varphi$ built from the readings next to $0$ and $H$,
+  the \emph{forward flag}, decides the construction. If it is nonnegative,
+  take the edges at the \emph{first transition}: the first vertex $i$ on the
+  way up to $H$ at which the flag of $(\kappa_{i},\kappa_{i+1})$ becomes
+  nonnegative.
+\item[(N)] If the forward flag and its mirror image, the backward flag, are
+  both negative, take the edges at the two peaks $0$ and $H$ and again an
+  orthogonal quadrilateral.
+\end{description}
+Each construction finds a zero by the intermediate value theorem or the
+Poincar\'e--Miranda theorem, and proves the rank condition by an explicit
+computation (Section~\ref{sec:constructions}).

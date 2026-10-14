@@ -1,0 +1,11 @@
+# Lake build artifacts
+/.lake/
+
+# Paper build scratch (scripts/build-paper) and arXiv packages
+# (scripts/package-arxiv-discrete); the arXiv archive is rebuilt per revision.
+/.build/
+/paper/arxiv/
+
+# Python interpreter caches.
+__pycache__/
+*.py[cod]

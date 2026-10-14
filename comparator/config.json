@@ -1,0 +1,18 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Gluck.Discrete.tabachnikov_converse_geometric",
+    "Gluck.Discrete.tabachnikov_radius_characterization",
+    "Gluck.Discrete.SideTangent.sideTangentConverse",
+    "Gluck.Discrete.SideTangent.realizesSideTangent_iff_admissible",
+    "Gluck.Discrete.localContinuousRealization_of_dfv",
+    "Gluck.Discrete.GlobalContinuity.no_continuous_regular_hexagon_path"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "enable_nanoda": false
+}

@@ -1,0 +1,295 @@
+#!/usr/bin/env bash
+#
+# Build a paper (default paper/tabachnikov-converse.tex) with pdflatex.
+#
+# Usage:
+#   scripts/build-paper            # one build; fails on errors/overfull boxes
+#   scripts/build-paper --paper NAME   # build paper/<NAME>.tex
+#   scripts/build-paper --check    # two independent builds + byte comparison
+#   scripts/build-paper --keep     # keep this run's unique scratch directory
+#   scripts/build-paper --no-copy  # leave the PDF only in the scratch directory
+#   scripts/build-paper --help
+#
+# Guarantees:
+#   * Works from any directory; the repository root is located from the script
+#     path, and every path used is inside this worktree.
+#   * Scratch (.aux/.log/.out/.toc/.pdf) is written only under the validated
+#     base ${PAPER_BUILD_DIR:-<root>/.build/tmp/paper-build}, inside a fresh,
+#     uniquely named run directory created with mktemp; never /tmp and never
+#     outside <root>/.build/tmp.
+#   * PAPER_BUILD_DIR is canonicalised and rejected unless it is a strict child
+#     of <root>/.build/tmp: outside paths, ".." components and symlink escapes
+#     are refused, before any mkdir/rm/copy.
+#   * pdflatex runs with -halt-on-error; it stops at the FIRST failing pass,
+#     records every pass exit code, and never lets a later successful pass hide
+#     an earlier failure. Pass logs are preserved on any failure, including a
+#     PDF byte mismatch between the two --check runs.
+#   * Deterministic PDF metadata: the source sets \pdfinfoomitdate and clears
+#     the trailer id, and SOURCE_DATE_EPOCH is exported for belt and braces.
+#   * Fails on a TeX error, an unresolved reference or citation, a missing
+#     glyph, an overfull \hbox/\vbox, or a non-converged cross-reference run,
+#     and prints the offending log lines.
+#   * Records the tool versions it used.
+#
+# The default scratch base is documented here. The final
+# PDF is copied to paper/<NAME>.pdf (disable with --no-copy). A source that
+# uses \bibliography gets a bibtex pass after the first pdflatex pass; inputs,
+# figures and .bib files resolve relative to paper/.
+
+set -euo pipefail
+
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+root="$(cd "${script_dir}/.." && pwd -P)"
+
+name="tabachnikov-converse"
+scratch_guard="${root}/.build/tmp"
+
+check=0
+keep=0
+copy=1
+expect_name=0
+for arg in "$@"; do
+  if [[ "${expect_name}" -eq 1 ]]; then
+    name="${arg}"; expect_name=0; continue
+  fi
+  case "${arg}" in
+    --paper) expect_name=1 ;;
+    --check) check=1 ;;
+    --keep) keep=1 ;;
+    --no-copy) copy=0 ;;
+    -h|--help)
+      sed -n '4,13p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'
+      exit 0 ;;
+    *)
+      echo "build-paper: unknown argument: ${arg}" >&2
+      exit 2 ;;
+  esac
+done
+
+case "${name}" in
+  ""|*/*|*..*|-*)
+    echo "build-paper: invalid paper name: ${name}" >&2
+    exit 2 ;;
+esac
+src="${root}/paper/${name}.tex"
+final_pdf="${root}/paper/${name}.pdf"
+export TEXINPUTS="${root}/paper:${TEXINPUTS:-}"
+# Version stamp: the repository commit, with "+dirty" if this paper's sources
+# (paper/NAME.tex and its section folder paper/<NAME up to the first "-">) or
+# the formal development have uncommitted changes. Passed to TeX as \gitversion.
+gitversion="$(git -C "${root}" rev-parse --short=12 HEAD 2>/dev/null || echo unknown)"
+if [[ -n "$(git -C "${root}" status --porcelain -- "paper/${name}.tex" "paper/${name%%-*}" \
+      Gluck ForMathlib Gluck.lean ForMathlib.lean \
+      lakefile.toml lake-manifest.json lean-toolchain 2>/dev/null)" ]]; then
+  gitversion="${gitversion}+dirty"
+fi
+export BIBINPUTS="${root}/paper:${BIBINPUTS:-}"
+
+if [[ ! -f "${src}" ]]; then
+  echo "build-paper: missing source ${src}" >&2
+  exit 1
+fi
+
+if ! command -v pdflatex >/dev/null 2>&1; then
+  echo "build-paper: pdflatex not found on PATH" >&2
+  exit 1
+fi
+
+# --- Validate PAPER_BUILD_DIR before touching the filesystem -----------------
+#
+# The base must canonicalise to a strict child of ${root}/.build/tmp. This
+# refuses outside paths, ".." components and symlink escapes, and it runs
+# before any mkdir/rm/copy below.
+raw_base="${PAPER_BUILD_DIR:-${root}/.build/tmp/paper-build}"
+
+case "${raw_base}" in
+  *..*)
+    echo "build-paper: refusing PAPER_BUILD_DIR containing '..': ${raw_base}" >&2
+    exit 2 ;;
+esac
+case "${raw_base}" in
+  /*) base_abs="${raw_base}" ;;
+  *)  base_abs="${root}/${raw_base}" ;;
+esac
+base_canon="$(realpath -m "${base_abs}")"
+
+if [[ "${base_canon}" != "${scratch_guard}/"* ]]; then
+  echo "build-paper: PAPER_BUILD_DIR must be a strict child of ${scratch_guard}" >&2
+  echo "build-paper:   got ${base_canon}" >&2
+  exit 2
+fi
+if [[ "${base_canon}" == "${scratch_guard}" ]]; then
+  echo "build-paper: PAPER_BUILD_DIR must be a strict child of ${scratch_guard}" >&2
+  exit 2
+fi
+
+# Deterministic metadata; harmless if pdflatex ignores it.
+export SOURCE_DATE_EPOCH="${SOURCE_DATE_EPOCH:-1700000000}"
+export FORCE_SOURCE_DATE=1
+
+mkdir -p "${base_canon}"
+echo "build-paper: source        ${src}"
+echo "build-paper: scratch base  ${base_canon}"
+
+# Run directories are created in the MAIN shell: make_run_dir is never called
+# through command substitution, so its registration is not lost (a $(...) call
+# would run in a subshell and silently drop the bookkeeping). Cleanup removes
+# only the directories this run created, unless --keep is set or the directory
+# is explicitly retained (--no-copy keeps the directory that holds the PDF).
+run_dirs=()
+retain_dirs=()
+run_dir=""
+cleanup() {
+  if [[ "${keep}" -eq 0 ]]; then
+    local d r skip
+    for d in ${run_dirs[@]+"${run_dirs[@]}"}; do
+      [[ -n "${d}" && -d "${d}" ]] || continue
+      skip=0
+      for r in ${retain_dirs[@]+"${retain_dirs[@]}"}; do
+        [[ "${d}" == "${r}" ]] && skip=1
+      done
+      if [[ "${skip}" -eq 0 ]]; then
+        rm -rf -- "${d}"
+      fi
+    done
+  fi
+  return 0
+}
+trap cleanup EXIT
+
+# Create a fresh run directory and register it in the global run_dirs array.
+# With --no-copy the directory holds the only PDF, so it is retained.
+make_run_dir() {
+  run_dir="$(mktemp -d "${base_canon}/run.XXXXXXXX")"
+  run_dirs+=("${run_dir}")
+  if [[ "${copy}" -eq 0 ]]; then
+    retain_dirs+=("${run_dir}")
+  fi
+}
+
+# On any hard failure, keep the run directories so the pass logs survive.
+fail_keep_logs() {
+  keep=1
+  echo "build-paper: failing; scratch kept under ${base_canon}" >&2
+}
+
+# Record the tool versions both in the run directory and under the base with a
+# stable filename, so the evidence survives the run directory's cleanup.
+report_tools() {
+  local dir="$1"
+  {
+    echo "pdflatex: $(pdflatex --version 2>/dev/null | head -1)"
+    echo "kpathsea: $(pdflatex --version 2>/dev/null | sed -n '2p')"
+    echo "run: $(date -u +%Y-%m-%dT%H:%M:%SZ) UTC"
+    echo "source: paper/${name}.tex"
+    echo "version: ${gitversion}"
+    echo "SOURCE_DATE_EPOCH=${SOURCE_DATE_EPOCH}"
+  } > "${dir}/tool-versions.txt"
+  cp "${dir}/tool-versions.txt" "${base_canon}/tool-versions.txt"
+}
+
+# Compile into a fresh, empty run directory. Runs up to three passes with
+# -halt-on-error and records every pass exit code. It STOPS at the first
+# nonzero pass and returns nonzero immediately, so a later successful pass can
+# never hide an earlier failure; the caller keeps the run directory (with the
+# failing pass log) for inspection.
+build_once() {
+  local dir="$1"
+  local n rc=0
+  : > "${dir}/pass-exit-codes.txt"
+  for n in 1 2 3; do
+    rc=0
+    ( cd "${root}" && pdflatex -interaction=nonstopmode -halt-on-error \
+        -file-line-error -output-directory="${dir}" -jobname="${name}" \
+        "\\def\\gitversion{${gitversion}}\\input{paper/${name}.tex}" ) \
+        > "${dir}/pass${n}.log" 2>&1 || rc=$?
+    if [[ "${n}" -eq 1 && "${rc}" -eq 0 ]] && grep -q '^\\bibdata' "${dir}/${name}.aux"; then
+      ( cd "${dir}" && bibtex "${name}" ) > "${dir}/bibtex.log" 2>&1 || rc=$?
+      if [[ "${rc}" -ne 0 ]]; then
+        echo "build-paper: bibtex failed (exit ${rc})" >&2
+        tail -n 30 "${dir}/bibtex.log" >&2 || true
+        return 1
+      fi
+    fi
+    printf 'pass %s exit=%s\n' "${n}" "${rc}" >> "${dir}/pass-exit-codes.txt"
+    if [[ "${rc}" -ne 0 ]]; then
+      echo "build-paper: pdflatex pass ${n} failed (exit ${rc})" >&2
+      echo "build-paper: last lines of ${dir}/pass${n}.log:" >&2
+      tail -n 30 "${dir}/pass${n}.log" >&2 || true
+      return 1
+    fi
+  done
+  if [[ ! -f "${dir}/${name}.pdf" ]]; then
+    echo "build-paper: pdflatex produced no PDF in ${dir}" >&2
+    return 1
+  fi
+  return 0
+}
+
+# Inspect the final LaTeX log for hard problems. The parenthesis in
+# "Label(s) may have changed" is matched literally.
+inspect_log() {
+  local dir="$1"
+  local log="${dir}/pass3.log"
+  local failed=0
+  local -a patterns=(
+    '^!:'
+    'Undefined control sequence'
+    'LaTeX Error'
+    'Emergency stop'
+    'Fatal error'
+    'There were undefined references'
+    'Citation .* undefined'
+    'Reference .* undefined'
+    'Missing character'
+    'Overfull \\hbox'
+    'Overfull \\vbox'
+    'Overfull \\hoffset'
+    'Label\(s\) may have changed'
+  )
+  local pat
+  for pat in "${patterns[@]}"; do
+    if grep -Eq -- "${pat}" "${log}"; then
+      echo "build-paper: problem matching /${pat}/ in ${log}:" >&2
+      grep -En -- "${pat}" "${log}" | head -20 >&2
+      failed=1
+    fi
+  done
+  return "${failed}"
+}
+
+if [[ "${check}" -eq 1 ]]; then
+  make_run_dir; dir_a="${run_dir}"
+  build_once "${dir_a}" || { fail_keep_logs; echo "build-paper: run A failed" >&2; exit 1; }
+  report_tools "${dir_a}"
+  inspect_log "${dir_a}" || { fail_keep_logs; echo "build-paper: run A failed the log check" >&2; exit 1; }
+  make_run_dir; dir_b="${run_dir}"
+  build_once "${dir_b}" || { fail_keep_logs; echo "build-paper: run B failed" >&2; exit 1; }
+  report_tools "${dir_b}"
+  inspect_log "${dir_b}" || { fail_keep_logs; echo "build-paper: run B failed the log check" >&2; exit 1; }
+  if cmp -s "${dir_a}/${name}.pdf" "${dir_b}/${name}.pdf"; then
+    echo "build-paper: two-run PDF byte comparison: IDENTICAL"
+  else
+    echo "build-paper: two-run PDF byte comparison: DIFFER" >&2
+    sha256sum "${dir_a}/${name}.pdf" "${dir_b}/${name}.pdf" >&2
+    fail_keep_logs
+    exit 1
+  fi
+  if [[ "${copy}" -eq 1 ]]; then
+    cp "${dir_a}/${name}.pdf" "${final_pdf}"
+    echo "build-paper: wrote ${final_pdf}"
+  fi
+  sha256sum "${dir_a}/${name}.pdf" | tee "${base_canon}/pdf.sha256"
+else
+  make_run_dir; dir_a="${run_dir}"
+  build_once "${dir_a}" || { fail_keep_logs; echo "build-paper: build failed" >&2; exit 1; }
+  report_tools "${dir_a}"
+  inspect_log "${dir_a}" || { fail_keep_logs; echo "build-paper: log check failed" >&2; exit 1; }
+  if [[ "${copy}" -eq 1 ]]; then
+    cp "${dir_a}/${name}.pdf" "${final_pdf}"
+    echo "build-paper: wrote ${final_pdf}"
+  fi
+  sha256sum "${dir_a}/${name}.pdf" | tee "${base_canon}/pdf.sha256"
+fi
+
+echo "build-paper: OK"

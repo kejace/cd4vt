@@ -1,0 +1,90 @@
+\section{Turning-angle curvature and the mixed-sign problem}\label{sec:discussion}
+
+The choice of discrete curvature matters. Two elementary examples explain
+why the results above neither extend to turning angles without further
+hypotheses nor give a converse for arbitrary signed Menger profiles.
+
+\subsection{Turning angles need not have four extrema}
+
+If curvature is defined simply as the exterior turning angle, a strictly
+convex polygon can have only one local maximum and one local minimum.
+
+\begin{example}\label{ex:turning-angle}
+Take the quadrilateral with counterclockwise vertices
+\[
+ A=(0,0),\qquad B=(3,0),\qquad C=(4,1),\qquad D=(0,2).
+\]
+It is strictly convex. Its exterior turns, in the same order, are
+\[
+ \theta_A=\frac{\pi}{2},\qquad
+ \theta_B=\frac{\pi}{4},\qquad
+ \theta_C=\frac{\pi}{2}+\arctan\frac35,\qquad
+ \theta_D=\frac{\pi}{2}+\arctan\frac14.
+\]
+Thus $\theta_B<\theta_A<\theta_D<\theta_C$. Around the cycle
+$A,B,C,D$, only $B$ is a local minimum and only $C$ is a local maximum.
+All four readings are distinct, so plateau conventions do not affect the
+example.
+\end{example}
+
+The construction is just a quadrilateral with unequal side lengths; there
+is no limiting or degenerate configuration. It disproves the unrestricted
+turning-angle version of the forward theorem. Additional assumptions can
+restore such a statement: generic equilateral convex polygons with at least
+four vertices satisfy an angle version of the discrete four-vertex theorem
+\cite[Corollary~21.6]{Pak2010}.
+
+\subsection{Four extrema do not suffice for mixed-sign Menger curvature}
+
+For signed Menger curvature, the analogous difficulty concerns the
+\emph{converse}. The strict four-vertex window alone does not guarantee
+realizability once negative values are allowed.
+
+\begin{example}\label{ex:mixed-sign}
+For any $M,\varepsilon>0$, consider the cyclic profile
+\begin{equation}\label{eq:mixed-counterexample}
+ \kappa=(M,-\varepsilon,M,-\varepsilon).
+\end{equation}
+It has two strict maxima and two strict minima, and satisfies
+$\DFV(\kappa,0)$: the two negative readings lie below zero and the two
+positive readings above it. Nevertheless, no oriented simple quadrilateral
+has this signed Menger profile.
+\end{example}
+
+\begin{proof}
+For any counterclockwise simple polygon, let $\theta_i\in(-\pi,\pi)$ be its
+principal exterior turns. They sum to $2\pi$. By~\eqref{eq:menger},
+\[
+ \kappa_i=\frac{2\sin\theta_i}{|P_{i+1}-P_{i-1}|},
+\]
+so $\kappa_i$ and $\theta_i$ have the same sign. There must therefore be at
+least three positive curvature readings: with at most two positive turns,
+\[
+ 2\pi=\sum_i\theta_i
+ \le \sum_{\theta_i>0}\theta_i<2\pi,
+\]
+a contradiction. For a clockwise simple polygon the same argument with
+signs reversed requires at least three negative readings. The profile
+in~\eqref{eq:mixed-counterexample} has only two of each sign, so neither
+orientation is possible.
+\end{proof}
+
+This obstruction is independent of coherence or local regularity. Making
+$M$ arbitrarily large or $\varepsilon$ arbitrarily small does not remove it:
+each individual positive turn is still less than $\pi$. Its moderate-arc
+form is proved in \nolinkurl{Gluck/Discrete/Budget.lean}, by
+\texttt{three\_le\_card\_pos\_of\_realizes} and
+\texttt{killerProfile\_not\_realizes}. These Lean statements concern the
+\texttt{RealizesR2} development model; the general polygon argument above
+and Example~\ref{ex:turning-angle} are elementary arguments supplied here,
+not separately formalized.
+
+What additional conditions on a mixed-sign cyclic profile, beyond a strict
+four-vertex window, characterize its realization as the signed Menger
+curvature of a counterclockwise simple, locally regular polygon in the
+sense of Dahlberg~\cite{Dahlberg2008}? The positive-support condition just
+proved is necessary, but we do not claim it is sufficient. Thus the direct
+mixed-sign extension is false, while finding the right strengthened
+converse remains an open problem left by this work. Theorem~\ref{thm:main}
+settles the positive case; a mixed-sign characterization would be a further
+discrete counterpart of Dahlberg's smooth converse.
