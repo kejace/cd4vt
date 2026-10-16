@@ -36,3 +36,8 @@ body.home .reading.active input{border-color:#000;box-shadow:none}
 body.home #polygon-empty{color:#808080;font-family:"Times New Roman",Times,serif}
 body.home .site-bottom{display:block;font-family:"Times New Roman",Times,serif;border:0;padding:0 16px;max-width:62em;margin:0 auto;font-size:17px;color:#000}
 body.home .site-bottom hr{margin-top:2em}
+body.home sup{line-height:0}
+body.home .footnotes{font-size:15px;margin-top:2em}
+body.home .footnotes hr{width:12em;margin:0 0 .8em}
+body.home .footnotes ol{padding-left:1.5em;margin:0}
+body.home .footnotes li{margin:.4em 0}
