@@ -1,14 +1,14 @@
 const $=selector=>document.querySelector(selector);
-const colors=['#8c579a','#287a8b','#ae7140','#438657','#b55565','#6077aa','#97802f','#547d77','#956b50','#787399','#6b863c'];
+// 24 saturated hues, 105° apart so neighbouring vertices contrast.
+const colors=Array.from({length:24},(_,i)=>`hsl(${i*105%360} 85% 36%)`);
 const fmt=x=>Number.isFinite(x)?Number(x.toPrecision(7)).toString():'—';
-const sci=x=>x===0?'0':x.toExponential(1);
 const state={k:[],solution:null,display:null,ready:false,busy:false,pending:null,revision:0,seed:17,fit:false,drag:null,range:null,selected:-1,current:false,status:'loading',message:'Loading the numerical engine…'};
 let paintRequest=0,dispatchRequest=0;
 const worker=new Worker(new URL('./worker.js',import.meta.url),{type:'module'});
 
 function admissibility(k){
   if(k.some(x=>!Number.isFinite(x)||x<=0))return {valid:false,message:'Every curvature reading must be positive.'};
-  if(k.length<4||k.length>11)return {valid:false,message:'Choose between 4 and 11 readings.'};
+  if(k.length<4||k.length>24)return {valid:false,message:'Choose between 4 and 24 readings.'};
   const max=Math.max(...k),min=Math.min(...k);
   if(min<1e-6||max>1e6||max/min>10000)return {valid:false,message:'This numerical solver supports readings from 10⁻⁶ to 10⁶, with a maximum ratio of 10,000.'};
   if(k.every(x=>x===k[0]))return {valid:true,constant:true,message:'Constant positive profile · the regular-polygon case.'};
@@ -113,7 +113,7 @@ $('#show-circles').addEventListener('change',paint);
 $('#zoom-profile').addEventListener('click',()=>{state.fit=!state.fit;state.range=null;paint();});
 $('#apply-profile').addEventListener('click',()=>{
   const tokens=$('#profile-text').value.trim().split(/[\s,;]+/).filter(Boolean),k=tokens.map(Number);
-  if(k.length<4||k.length>11||k.some(x=>!Number.isFinite(x)||x<=0)){$('#paste-error').textContent='Enter 4–11 positive numbers.';return;}
+  if(k.length<4||k.length>24||k.some(x=>!Number.isFinite(x)||x<=0)){$('#paste-error').textContent='Enter 4–24 positive numbers.';return;}
   $('#paste-error').textContent='';$('#size').value=String(k.length);$('#path-control').hidden=true;
   state.k=k;state.solution=null;state.display=null;state.range=null;state.fit=false;state.seed=17;state.selected=-1;
   buildReadings();queueSolve(true);
@@ -212,7 +212,7 @@ function paint(){
       if(document.activeElement!==input)input.value=Number.isFinite(state.k[i])?fmt(state.k[i]):'';
     }
     const metrics=state.current?state.display.metrics:null;
-    for(const name of ['closure','turn','curvature','wall'])$(`#metric-${name}`).textContent=metrics?(name==='wall'?metrics[name].toPrecision(3):sci(metrics[name])):'—';
+    $('#metric-wall').textContent=metrics?metrics.wall.toPrecision(3):'—';
   });
 }
 function valueAtPointer(event){

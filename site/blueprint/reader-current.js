@@ -33,7 +33,7 @@ function annotate() {
   const kind=location.hash.startsWith('#/discrete')?'discrete':location.hash.startsWith('#/smooth')?'smooth':null;
   if (!doc || !kind || doc.querySelector(':scope > .reader-scope')) return;
   const aside=document.createElement('aside');aside.className='reader-scope';
-  aside.innerHTML=`<a href="/web/blueprint/">All projects</a> · <a href="/web/#construction-overview">Construction and playground</a><p>The paper and its supporting proofs, with linked Lean declarations. <a href="/paper/tabachnikov-converse.pdf">The paper</a>.</p>`;
+  aside.innerHTML=`<a href="/web/blueprint/">All projects</a> · <a href="/web/#playground">Playground</a><p>The paper and its supporting proofs, with linked Lean declarations. <a href="/paper/tabachnikov-converse.pdf">The paper</a>.</p>`;
   if (kind==='discrete') {
     const evidence=document.createElement('p');
     evidence.innerHTML='Audited proof sources: <a href="./discrete/proof-audit/menger-characterization-audit/COMPLETE.md">Menger radius characterization</a> · <a href="./discrete/proof-audit/side-tangent-audit/forward_axioms.log">Side-tangent characterization</a> · <a href="./discrete/proof-provenance.json">Source revisions</a>.';

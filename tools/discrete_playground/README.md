@@ -1,6 +1,6 @@
 # Discrete curvature playground
 
-Open `/web/discrete-playground/` on the preview server. It supports 4–11 labelled
+Open `/web/discrete-playground/` on the preview server. It supports 4–24 labelled
 vertices, editable positive curvature readings, an immediately updated polygon,
 DFV witnesses, Menger circles and JSON export. Each colored circle passes through
 the corresponding vertex and its two neighbors. Circles are clipped to the view;
@@ -177,6 +177,11 @@ medians were at or below the browser timer's approximately 0.1 ms resolution;
 the largest per-size 95th percentile was 1.11 ms and the overall maximum 1.90 ms.
 These measure the solver in the worker, excluding UI rendering and message latency.
 Timing values recorded as zero mean below the timer's resolution.
+
+The browser timings above were measured when the playground supported 4–11
+vertices. With the range raised to 24, the native suite (`validation-native.json`)
+passes all 440 cold cases for n = 4–24 (median 0.46 ms, maximum 129 ms) and
+4,200 continuation edits.
 
 All 39 preset/size combinations, real exported geometry, pointer and keyboard
 editing, invalid profiles, stale-result handling, obstruction/restart behavior,
