@@ -25,8 +25,10 @@ TEXT = {'.html', '.js', '.json', '.css', '.svg', '.txt'}
 # A root-absolute route inside a string, attribute or url(...): "/web/...", '/paper/...'.
 ROUTE = re.compile(r'''(?<=["'(`=])/(web|paper)(?=[/"'?#`)])''')
 MARKER = '.cd4vt-site'
-# Local .js/.css/.mjs references in HTML attributes (bundled assets carry hashes already).
-ASSET_ATTR = re.compile(r'''((?:src|href)=")((?!https?:|//)[^"?#]+\.(?:js|mjs|css))(")''')
+# Local .js/.css/.mjs references in HTML attributes. The blueprint's bundled
+# assets/ are left alone: their names carry hashes, and its chunks import the
+# entry module by its plain URL, so a stamped entry would load React twice.
+ASSET_ATTR = re.compile(r'''((?:src|href)=")((?!https?:|//)(?![^"]*assets/)[^"?#]+\.(?:js|mjs|css))(")''')
 # Module, worker and WASM references of the playground.
 PLAYGROUND = [("'./worker.js'", "'./worker.js?v={v}'"), ("'./solver.mjs'", "'./solver.mjs?v={v}'"),
               ('new URL("solver.wasm",import.meta.url)', 'new URL("solver.wasm?v={v}",import.meta.url)')]
