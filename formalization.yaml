@@ -1,0 +1,205 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+# formalization.yaml (v0.4): https://github.com/mathlib-initiative/formalization.yaml
+
+version: "v0.4"
+
+project:
+  name: "A converse to the discrete four-vertex theorem"
+  description: >-
+    Lean 4 / Mathlib formalization of the paper "A converse to the discrete
+    four-vertex theorem", answering Tabachnikov's Problem 2. For every n >= 4,
+    every cyclic sequence of positive numbers with two distinct plateau maxima
+    and two distinct plateau minima is the sequence of circumradii of
+    consecutive vertex triples of a simple, strictly convex, coherent polygon
+    (circumcenters inside the vertex angles). Together with Dahlberg's discrete
+    four-vertex theorem, also proved here, this characterizes the nonconstant
+    radius sequences of such polygons. The realization can be chosen C^1 in
+    the data near every nonconstant admissible sequence, but an explicit path
+    of hexagon data admits no continuous choice of realizing polygons. The
+    analogous characterization for circles tangent to three consecutive
+    supporting lines (the converse to Wegner's four-edge theorem) is also
+    proved.
+  authors: ["Kristoffer Josefsson"]
+  responsible_maintainers: ["Kristoffer Josefsson"]
+  license: "Apache-2.0"
+
+sources:
+  - title: "A converse to the discrete four-vertex theorem"
+    authors: ["Kristoffer Josefsson"]
+    id: "paper/tabachnikov-converse.tex (this repository)"
+    type: "original-proof"
+    location: "Theorems 1.1, 7.1, 7.2, 8.2; Corollaries 1.2, 8.6"
+    relationship: "formalizes"
+    note: >-
+      The paper and the formalization were developed together; the Lean
+      appendix of the paper displays the formal statements.
+    license: ""
+    author_endorsement: "participated"
+  - title: "Converse Sturm-Hurwitz-Kellogg theorem and related results"
+    authors: ["Serge Tabachnikov"]
+    id: "doi:10.1007/s11784-007-0049-y; arXiv:0710.5902"
+    type: "article"
+    location: "Problem 2"
+    relationship: "other"
+    note: >-
+      Poses the open problem that this project solves; Problem 2 is stated in
+      Lean as Gluck.Discrete.tabachnikovProblem2_all.
+    author_endorsement: "not-contacted"
+  - title: "A discrete four vertex theorem"
+    authors: ["Björn E. J. Dahlberg"]
+    id: "doi:10.1007/s10711-008-9238-0"
+    type: "article"
+    relationship: "independently-proves"
+    note: >-
+      The forward theorem, giving necessity in Corollary 1.2; its plateau
+      convention for counting extrema is used throughout. Proved in Lean, not
+      assumed.
+    author_endorsement: "n/a"
+  - title: "On the evolutes of piecewise linear curves in the plane"
+    authors: ["Bernd Wegner"]
+    id: "Rad Hrvatske Akad. Znan. Umjet. Mat. Znan. 11 (1994), 1-16"
+    type: "article"
+    location: "Theorem 1"
+    relationship: "independently-proves"
+    note: >-
+      Wegner's four-edge theorem, the forward direction of Corollary 8.6.
+      Proved in Lean (Gluck.Discrete.SideTangent.sideTangentForward), not
+      assumed.
+    author_endorsement: "not-contacted"
+
+related_formalizations: []
+
+classification:
+  arxiv: ["math.MG", "math.DG"]
+  msc2020: ["52A10", "53A04", "51M04"]
+
+status:
+  scope: >-
+    Complete for the paper's main results: Theorems 1.1, 7.1, 7.2, 8.2 and
+    Corollaries 1.2, 8.6, including both forward four-vertex theorems they
+    rely on. The library contains no sorry and no axiom declarations.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
+  main_results:
+    - declaration: "Gluck.Discrete.tabachnikov_converse_geometric"
+      file: "Gluck/Discrete/TabachnikovConverse.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator/config.json"
+      literature_dependencies: []
+    - declaration: "Gluck.Discrete.tabachnikov_radius_characterization"
+      file: "Gluck/Discrete/TabachnikovCharacterization.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator/config.json"
+      literature_dependencies: []
+    - declaration: "Gluck.Discrete.localContinuousRealization_of_dfv"
+      file: "Gluck/Discrete/LocalContinuity.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator/config.json"
+      literature_dependencies: []
+    - declaration: "Gluck.Discrete.GlobalContinuity.no_continuous_regular_hexagon_path"
+      file: "Gluck/Discrete/GlobalContinuity/EnclosingCircleObstruction.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator/config.json"
+      literature_dependencies: []
+    - declaration: "Gluck.Discrete.SideTangent.sideTangentConverse"
+      file: "Gluck/Discrete/SideTangentConverse.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator/config.json"
+      literature_dependencies: []
+    - declaration: "Gluck.Discrete.SideTangent.realizesSideTangent_iff_admissible"
+      file: "Gluck/Discrete/SideTangentForward.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator/config.json"
+      literature_dependencies: []
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["Claude Opus 4.8", "Claude Fable 5", "Claude Opus 5.5"]
+      framework: "Claude Code, Archon"
+      tool_setup: >-
+        Agents wrote Lean proofs directly against the Lean compiler and a Lean
+        language-server MCP, orchestrated in an Archon prover loop.
+    - method: "autonomous"
+      models: ["Aristotle"]
+      framework: "Aristotle (Harmonic)"
+      tool_setup: "Individual lemmas submitted as Lean projects; results compiled and checked locally."
+    - method: "other"
+      models: ["Codex", "DeepSeek"]
+      notes: "Discussion and cross-checking, as acknowledged in the paper."
+  notes: >-
+    The mathematics and proofs were developed with AI assistance (Aristotle,
+    Claude, Codex, DeepSeek); the author takes full responsibility for their
+    correctness. Lean statements were reviewed against the paper, and the
+    Comparator check in comparator/ ties them to a hand-written challenge.
+
+fidelity:
+  divergences: >-
+    Polygons are maps ZMod n -> C. "Coherent convex polygon" is
+    IsCoherentConvexPolygon (simplicity, strict convexity, coherence);
+    radii are vertexCircumradius. Theorem 7.2 is stated for counterclockwise
+    simple Dahlberg-regular hexagons with prescribed signed Menger curvature;
+    the paper explains why this implies the stated theorem. In Theorem 7.1 the
+    hypotheses n >= 4 and nonconstancy are implied by the DFV hypothesis and
+    are not separate assumptions.
+
+review:
+  status: "self-assessed"
+  reviewers: ["Kristoffer Josefsson"]
+  notes: >-
+    The six main statements and the 37 definitions they depend on are restated
+    independently in comparator/Challenge.lean and comparator/Challenge/
+    (Mathlib imports only); Comparator (leanprover/comparator) confirms that
+    the library proves exactly these statements using only the permitted
+    axioms, and the kernel replays the proofs. CI checks the axioms with
+    scripts/axioms.lean.
+
+alignment:
+  namespace: "Gluck.Discrete"
+  statements:
+    - source: "Theorem 1.1 (realization)"
+      lean: "Gluck.Discrete.tabachnikov_converse_geometric"
+      module: "Gluck.Discrete.TabachnikovConverse"
+      status: "proved"
+    - source: "Corollary 1.2 (characterization)"
+      lean: "Gluck.Discrete.tabachnikov_radius_characterization"
+      module: "Gluck.Discrete.TabachnikovCharacterization"
+      status: "proved"
+    - source: "Tabachnikov's Problem 2, all n >= 4"
+      lean: "Gluck.Discrete.tabachnikovProblem2_all"
+      module: "Gluck.Discrete.TabachnikovFourActive"
+      status: "proved"
+    - source: "Dahlberg's discrete four-vertex theorem (forward direction)"
+      lean: "Gluck.Forward.signedMengerProfile_dahlbergFourVertex_E2_exactPaper"
+      module: "Gluck.Forward.Discrete.DahlbergExact"
+      status: "proved"
+    - source: "Theorem 7.1 (local C^1 continuity)"
+      lean: "Gluck.Discrete.localContinuousRealization_of_dfv"
+      module: "Gluck.Discrete.LocalContinuity"
+      status: "proved"
+    - source: "Theorem 7.2 (no global continuous choice)"
+      lean: "Gluck.Discrete.GlobalContinuity.no_continuous_regular_hexagon_path"
+      module: "Gluck.Discrete.GlobalContinuity.EnclosingCircleObstruction"
+      status: "proved"
+    - source: "Theorem 8.2 (side-tangent converse)"
+      lean: "Gluck.Discrete.SideTangent.sideTangentConverse"
+      module: "Gluck.Discrete.SideTangentConverse"
+      status: "proved"
+    - source: "Wegner's four-edge theorem (forward direction of Corollary 8.6)"
+      lean: "Gluck.Discrete.SideTangent.sideTangentForward"
+      module: "Gluck.Discrete.SideTangentForward"
+      status: "proved"
+    - source: "Corollary 8.6 (side-tangent characterization)"
+      lean: "Gluck.Discrete.SideTangent.realizesSideTangent_iff_admissible"
+      module: "Gluck.Discrete.SideTangentForward"
+      status: "proved"
+
+acknowledgements: >-
+  Built on Mathlib. Statement checking uses leanprover/comparator.

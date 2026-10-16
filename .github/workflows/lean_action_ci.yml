@@ -26,3 +26,13 @@ jobs:
           # Lean wraps long axiom lists across lines; join before matching.
           ok=$(echo "$out" | tr -s ' \n' ' ' | grep -o "depends on axioms: \[propext, Classical.choice, Quot.sound\]" | wc -l)
           test "$ok" -eq "$expected" || { echo "::error::unexpected axioms ($ok/$expected clean)"; exit 1; }
+
+  metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Validate formalization.yaml
+        run: |
+          pipx run check-jsonschema --schemafile \
+            https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json \
+            formalization.yaml

@@ -25,6 +25,7 @@ three consecutive supporting lines.
 | `Gluck/` | the formalization (library `Gluck`) |
 | `ForMathlib/` | self-contained generalisations, Mathlib-only imports, staged for upstreaming |
 | `scripts/axioms.lean` | `#print axioms` for the paper's displayed theorems |
+| `formalization.yaml` | project metadata in the [formalization.yaml](https://github.com/mathlib-initiative/formalization.yaml) format |
 | `comparator/` | [Comparator](https://github.com/leanprover/comparator) statement/axiom/kernel audit |
 | `scripts/build-paper`, `scripts/package-arxiv-discrete` | paper build and arXiv packaging |
 | `site/`, `scripts/build-site` | website (GitHub Pages): construction overview, playground, proof map, blueprint |
