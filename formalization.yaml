@@ -71,7 +71,7 @@ related_formalizations: []
 
 classification:
   arxiv: ["math.MG", "math.DG"]
-  msc2020: ["52A10", "53A04", "51M04"]
+  msc2020: ["53A70"]                  # Discrete differential geometry
 
 status:
   scope: >-
