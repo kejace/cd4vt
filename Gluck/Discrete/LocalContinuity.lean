@@ -3,6 +3,7 @@ module
 public import ForMathlib.Analysis.Calculus.ParametricPositiveSection
 public import Gluck.Discrete.ProfileLengthSmoothness
 public import Gluck.Discrete.TabachnikovFourActive
+public import Gluck.Statements
 
 /-!
 # Local continuous choice of coherent discrete realizations
@@ -28,21 +29,6 @@ open Filter Set
 open scoped Topology
 
 variable {n : ℕ} [NeZero n]
-
-/-- A local family in the literal geometry of `RealizesR2`. The same length
-function supplies exact closure, a full turn, and the simple polygon. -/
-structure LocalDiscreteRealizationFamily (κ₀ : ZMod n → ℝ) where
-  neighborhood : Set (ZMod n → ℝ)
-  isOpen_neighborhood : IsOpen neighborhood
-  base_mem : κ₀ ∈ neighborhood
-  lengths : (ZMod n → ℝ) → (ZMod n → ℝ)
-  contDiffOn_lengths : ContDiffOn ℝ 1 lengths neighborhood
-  positive : ∀ κ ∈ neighborhood, ∀ i, 0 < κ i
-  moderate : ∀ κ ∈ neighborhood, ModerateArc 0 κ (lengths κ)
-  closure : ∀ κ ∈ neighborhood, closureGap κ (lengths κ) = 0
-  fullTurn : ∀ κ ∈ neighborhood, turningSum κ (lengths κ) = 2 * Real.pi
-  simple : ∀ κ ∈ neighborhood, IsSimplePolygon (polygonR2 κ (lengths κ))
-  contDiffOn_vertices : ContDiffOn ℝ 1 (fun κ => polygonR2 κ (lengths κ)) neighborhood
 
 namespace LocalDiscreteRealizationFamily
 

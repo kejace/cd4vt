@@ -2,6 +2,7 @@ module
 
 public import Gluck.Discrete.SideTangentSquareFan
 public import Gluck.Discrete.Converse
+public import Gluck.Statements
 
 /-!
 # Cyclic radius differences and the balanced tangential fan
@@ -17,9 +18,6 @@ open scoped BigOperators
 namespace Gluck.Discrete.SideTangent
 
 variable {n : ℕ}
-
-/-- The coefficient that arises by cyclic summation by parts of scaled edges. -/
-def radiusDifference (ρ : ZMod n → ℝ) (i : ZMod n) : ℝ := ρ (i - 1) - ρ i
 
 /-- Start the ordered finite list at any original cyclic label. -/
 def cyclicLabelEquiv [NeZero n] (s : ZMod n) : Fin n ≃ ZMod n where

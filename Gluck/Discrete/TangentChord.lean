@@ -7,6 +7,7 @@ module
 
 public import Gluck.Discrete.Budget
 public import Mathlib.Analysis.InnerProductSpace.TwoDim
+public import Gluck.Statements
 
 /-!
 # Discrete D0c: the Euclidean tangent–chord / signed Menger bridge
@@ -38,12 +39,6 @@ open scoped Real
 attribute [local instance] Complex.finrank_real_complex_fact
 
 /-! ## Signed twice-area and signed Menger curvature -/
-
-/-- The signed twice-area of a planar triple: the `z`-component of the cross
-product `(B - A) × (C - A) = Im(conj(B-A) · (C-A))`. Positive when `A, B, C`
-turn left. This is the affine-point form of `Complex.orientation.areaForm`. -/
-def crossR2 (A B C : ℂ) : ℝ :=
-  (B - A).re * (C - A).im - (B - A).im * (C - A).re
 
 /-- The planar cross product is the standard area form applied to the two
 vectors based at its first point. -/
@@ -146,12 +141,6 @@ lemma crossR2_eq_zero_iff_mem_affineSpan_pair {A B C : ℂ} (hAB : A ≠ B) :
   · exact exists_lineMap_eq_of_crossR2_eq_zero hAB
   · rintro ⟨t, rfl⟩
     exact crossR2_lineMap_self A B t
-
-/-- The signed Menger curvature of an ordered planar triple. On a nondegenerate
-triple its absolute value is the reciprocal circumradius; the sign records the
-triple's orientation. Project-local Euclidean definition. -/
-noncomputable def signedMengerR2 (A B C : ℂ) : ℝ :=
-  2 * crossR2 A B C / (dist A B * dist B C * dist C A)
 
 /-- Nonzero oriented area forces all three vertices to be pairwise distinct. -/
 lemma pairwise_ne_of_crossR2_ne_zero {A B C : ℂ} (hcross : crossR2 A B C ≠ 0) :

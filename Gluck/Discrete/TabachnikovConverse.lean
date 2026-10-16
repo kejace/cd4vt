@@ -6,6 +6,7 @@ Authors: kejace
 module
 
 public import Gluck.Discrete.TabachnikovFourActive
+public import Gluck.Statements
 
 /-!
 # Tabachnikov's discrete converse in his own vocabulary
@@ -131,26 +132,6 @@ theorem signedMengerR2_polygonR2 [NeZero n] {κ ℓ : ZMod n → ℝ}
   rw [← e0, ← e1, ← e2, signedMengerR2_development hMA k, hc1]
 
 /-! ## The collated statement -/
-
-/-- **At least two local maxima and two local minima** (Tabachnikov's
-hypothesis), with local extrema counted plateau-aware in Dahlberg's sense:
-a maximal constant run whose two outside neighbours are both strictly lower
-(resp. higher), and two extrema are distinct when their runs are disjoint. -/
-def IsPlateauTwoMaxTwoMin (r : ZMod n → ℝ) : Prop :=
-  HasTwoPlateauMaxRuns r ∧ HasTwoPlateauMinRuns r
-
-/-- **Coherent convex polygon** (Tabachnikov, Problem 2): a simple polygon,
-strictly convex and counterclockwise (every vertex lies strictly to the left
-of every edge not incident to it), and coherent. -/
-def IsCoherentConvexPolygon (v : ZMod n → ℂ) : Prop :=
-  IsSimplePolygon v ∧
-    (∀ a c : ZMod n, c ≠ a → c ≠ a + 1 → 0 < crossR2 (v a) (v (a + 1)) (v c)) ∧
-    CoherentR2 v
-
-/-- The radius of the circle through the consecutive triple
-`v (i - 1), v i, v (i + 1)`. -/
-noncomputable def vertexCircumradius (v : ZMod n → ℂ) (i : ZMod n) : ℝ :=
-  dist (circumcenterR2 (v i) (v (i - 1)) (v (i + 1))) (v i)
 
 /-- Four points lie on a common circle. -/
 def Concyclic4 (a b c d : ℂ) : Prop :=

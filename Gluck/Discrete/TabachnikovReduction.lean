@@ -7,6 +7,7 @@ module
 
 public import Gluck.Discrete.N6MonotoneResidue
 public import Gluck.Discrete.N6PlateauPerturbation
+public import Gluck.Statements
 
 /-!
 # Tabachnikov's Problem 2 as one named proposition
@@ -183,25 +184,6 @@ literature's problem and not a value-separated proxy for it.
 
 Blueprint: `chap:discrete_tabachnikov_reduction`, section *The extrema form of
 the hypothesis class*. -/
-
-/-- **Two distinct plateau maxima** — Dahlberg's "`κ` has at least two local
-maxima", transcribed: two short plateau maximum runs whose residue supports
-are disjoint.  Its shape is verbatim the first conjunct of the conclusion of
-`DFV.plateau_extrema`. -/
-def HasTwoPlateauMaxRuns (κ : ZMod n → ℝ) : Prop :=
-  ∃ a₁ k₁ a₂ k₂ : ℕ, k₁ < n ∧ k₂ < n ∧
-    PlateauMaxRun κ a₁ k₁ ∧ PlateauMaxRun κ a₂ k₂ ∧
-    ∀ m₁, m₁ ≤ k₁ → ∀ m₂, m₂ ≤ k₂ →
-      ((a₁ + m₁ : ℕ) : ZMod n) ≠ ((a₂ + m₂ : ℕ) : ZMod n)
-
-/-- **Two distinct plateau minima** — `HasTwoPlateauMaxRuns` with
-`PlateauMinRun` in place of `PlateauMaxRun`.  Verbatim the second conjunct of
-the conclusion of `DFV.plateau_extrema`. -/
-def HasTwoPlateauMinRuns (κ : ZMod n → ℝ) : Prop :=
-  ∃ a₁ k₁ a₂ k₂ : ℕ, k₁ < n ∧ k₂ < n ∧
-    PlateauMinRun κ a₁ k₁ ∧ PlateauMinRun κ a₂ k₂ ∧
-    ∀ m₁, m₁ ≤ k₁ → ∀ m₂, m₂ ≤ k₂ →
-      ((a₁ + m₁ : ℕ) : ZMod n) ≠ ((a₂ + m₂ : ℕ) : ZMod n)
 
 /-- **The extremum-form hypothesis class**: all values positive, and the
 profile is constant or has two distinct plateau maxima *and* two distinct

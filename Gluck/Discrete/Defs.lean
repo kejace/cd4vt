@@ -12,6 +12,7 @@ public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse
 public import Mathlib.Data.ZMod.Basic
 public import Mathlib.RingTheory.RootsOfUnity.Complex
 public import Mathlib.Tactic
+public import Gluck.Statements
 
 /-!
 # Discrete foundations: polygons, turning angles, realizability
@@ -50,21 +51,6 @@ open scoped Real
 
 /-! ## Generalized trigonometric functions -/
 
-/-- Generalized sine over the unit space forms: `sin` at `K = 1`, `sinh` at
-`K = -1`, identity otherwise (in particular at the Euclidean `K = 0`). -/
-noncomputable def sK (K x : ℝ) : ℝ :=
-  if K = 1 then Real.sin x else if K = -1 then Real.sinh x else x
-
-/-- Generalized cosine over the unit space forms: `cos` at `K = 1`, `cosh` at
-`K = -1`, constant `1` otherwise. -/
-noncomputable def cK (K x : ℝ) : ℝ :=
-  if K = 1 then Real.cos x else if K = -1 then Real.cosh x else 1
-
-/-- Generalized tangent `tK K = sK K / cK K`: `tan` at `K = 1`, `tanh` at
-`K = -1`, identity at `K = 0`. -/
-noncomputable def tK (K x : ℝ) : ℝ :=
-  sK K x / cK K x
-
 @[simp] lemma sK_zero (x : ℝ) : sK 0 x = x := by norm_num [sK]
 
 @[simp] lemma sK_one (x : ℝ) : sK 1 x = Real.sin x := by simp [sK]
@@ -88,16 +74,6 @@ noncomputable def tK (K x : ℝ) : ℝ :=
 /-! ## Polygon data, moderate arcs, and the turning-angle law -/
 
 variable {n : ℕ}
-
-/-- The strict moderate-arc domain for cyclic curvature data `κ` and edge
-lengths `ℓ` at ambient curvature `K`: positive edge lengths, positive branch
-(`0 < sK`, `0 < cK` at half-lengths — automatic for `K ∈ {0, -1}`, encoding
-`ℓ i < π` at `K = 1`), and the strict wall `|κ i| * tK K (ℓ j / 2) < 1` on
-both edges adjacent to each vertex. The strict wall is what makes every
-turning angle strictly less than `π` (`abs_turningAngle_lt_pi`). -/
-def ModerateArc (K : ℝ) (κ ℓ : ZMod n → ℝ) : Prop :=
-  ∀ i : ZMod n, 0 < ℓ i ∧ 0 < sK K (ℓ i / 2) ∧ 0 < cK K (ℓ i / 2) ∧
-    |κ i| * tK K (ℓ (i - 1) / 2) < 1 ∧ |κ i| * tK K (ℓ i / 2) < 1
 
 namespace ModerateArc
 
@@ -131,13 +107,6 @@ lemma moderateArc_zero_iff {κ ℓ : ZMod n → ℝ} :
   · intro h i
     obtain ⟨h1, h2, h3⟩ := h i
     exact ⟨h1, by simpa using half_pos h1, by simp, by simpa using h2, by simpa using h3⟩
-
-/-- The analytic turning-angle law (TA): the turning angle at vertex `i` is
-`arcsin (κ i * tK K (ℓ (i-1) / 2)) + arcsin (κ i * tK K (ℓ i / 2))`. Analytic
-in `κ i` through `κ i = 0` (a straight vertex), hence the correct gauge for
-mixed-sign profiles. -/
-noncomputable def turningAngle (K : ℝ) (κ ℓ : ZMod n → ℝ) (i : ZMod n) : ℝ :=
-  Real.arcsin (κ i * tK K (ℓ (i - 1) / 2)) + Real.arcsin (κ i * tK K (ℓ i / 2))
 
 /-- The turning angle is odd in the curvature profile. -/
 lemma turningAngle_neg (K : ℝ) (κ ℓ : ZMod n → ℝ) (i : ZMod n) :
@@ -181,28 +150,6 @@ lemma abs_turningAngle_lt_pi {K : ℝ} {κ ℓ : ZMod n → ℝ} (h : ModerateAr
     _ < Real.pi := by linarith
 
 /-! ## Euclidean development and closure -/
-
-/-- Heading of edge `j` in the Euclidean development: the cumulative turning
-`ψ j = ∑_{m ≤ j} θ m` over the ordered lift `m ↦ (m : ZMod n)`. Edge `j`
-leaves vertex `j` after the turn at vertex `j`. -/
-noncomputable def heading (κ ℓ : ZMod n → ℝ) (j : ℕ) : ℝ :=
-  ∑ m ∈ Finset.range (j + 1), turningAngle 0 κ ℓ (m : ZMod n)
-
-/-- Vertex `k` of the Euclidean development in `ℂ`:
-`v k = ∑_{j < k} ℓ j · e^{i ψ j}`. -/
-noncomputable def vertexR2 (κ ℓ : ZMod n → ℝ) (k : ℕ) : ℂ :=
-  ∑ j ∈ Finset.range k,
-    (ℓ (j : ZMod n) : ℂ) * Complex.exp ((heading κ ℓ j : ℂ) * Complex.I)
-
-/-- The closure gap `E(κ, ℓ) = v n`: the development closes up iff it
-vanishes. -/
-noncomputable def closureGap (κ ℓ : ZMod n → ℝ) : ℂ :=
-  vertexR2 κ ℓ n
-
-/-- The total turning `T(κ, ℓ) = ∑_{i ∈ ZMod n} θ i` of the Euclidean
-turning angles. -/
-noncomputable def turningSum [NeZero n] (κ ℓ : ZMod n → ℝ) : ℝ :=
-  ∑ i : ZMod n, turningAngle 0 κ ℓ i
 
 lemma vertexR2_succ (κ ℓ : ZMod n → ℝ) (k : ℕ) :
     vertexR2 κ ℓ (k + 1) = vertexR2 κ ℓ k
@@ -267,24 +214,7 @@ lemma vertexR2_add_n [NeZero n] {κ ℓ : ZMod n → ℝ} (hE : closureGap κ �
       rw [h1, heading_add_n hT, h2, Complex.exp_add, Complex.exp_two_pi_mul_I, mul_one]
     rw [show k + 1 + n = (k + n) + 1 from by ring, vertexR2_succ, vertexR2_succ, ih, hedge]
 
-/-- The polygon of a closed development: `i ↦ v (i.val)`. Well-defined as a
-cyclic object by `vertexR2_add_n`. -/
-noncomputable def polygonR2 (κ ℓ : ZMod n → ℝ) : ZMod n → ℂ :=
-  fun i => vertexR2 κ ℓ i.val
-
 /-! ## Simple polygons and realizability -/
-
-/-- A cyclic vertex tuple `v : ZMod n → ℂ` is a simple polygon when every
-closed edge segment `segment ℝ (v i) (v (i + 1))` is nondegenerate,
-consecutive edges meet exactly in their shared vertex, and non-adjacent
-edges are disjoint. -/
-def IsSimplePolygon (v : ZMod n → ℂ) : Prop :=
-  (∀ i : ZMod n, v i ≠ v (i + 1)) ∧
-    (∀ i : ZMod n,
-      segment ℝ (v i) (v (i + 1)) ∩ segment ℝ (v (i + 1)) (v (i + 1 + 1))
-        = {v (i + 1)}) ∧
-    (∀ i j : ZMod n, i ≠ j → i + 1 ≠ j → j + 1 ≠ i →
-      segment ℝ (v i) (v (i + 1)) ∩ segment ℝ (v j) (v (j + 1)) = ∅)
 
 /-- Euclidean discrete realizability of a cyclic curvature profile `κ`: some
 moderate-arc edge lengths close the development with total turning `2π`

@@ -9,10 +9,10 @@
     "Gluck.Discrete.localContinuousRealization_of_dfv",
     "Gluck.Discrete.GlobalContinuity.no_continuous_regular_hexagon_path"
   ],
+  "definition_names": [],
   "permitted_axioms": [
     "propext",
-    "Classical.choice",
-    "Quot.sound"
-  ],
-  "enable_nanoda": false
+    "Quot.sound",
+    "Classical.choice"
+  ]
 }

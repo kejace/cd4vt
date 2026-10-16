@@ -7,6 +7,7 @@ module
 
 public import Gluck.Discrete.Convexity
 public import Mathlib.Analysis.LocallyConvex.Separation
+public import Gluck.Statements
 
 /-!
 # Positive polygonal turning and global support
@@ -69,13 +70,6 @@ def PositivePolygonalUmlaufsatz : Prop :=
 /-- Every cyclic vertex lies in every closed left edge half-plane. -/
 def ConvexEdgeSupport (v : ZMod n → ℂ) : Prop :=
   ∀ i j : ZMod n, 0 ≤ crossR2 (v i) (v (i + 1)) (v j)
-
-/-- Every vertex other than the endpoints lies in the open left half-plane of
-each oriented edge.  This is the strict-convexity interface consumed by the
-Dahlberg edge-envelope argument. -/
-def StrictConvexEdgeSupport (v : ZMod n → ℂ) : Prop :=
-  ∀ i j : ZMod n, j ≠ i → j ≠ i + 1 →
-    0 < crossR2 (v i) (v (i + 1)) (v j)
 
 /-- The principal signed turn from a nonzero vector `u` to a nonzero vector
 `w`. -/

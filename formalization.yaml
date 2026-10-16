@@ -87,37 +87,37 @@ status:
       file: "Gluck/Discrete/TabachnikovConverse.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
-      comparator_config: "comparator/config.json"
+      comparator_config: "comparator.json"
       literature_dependencies: []
     - declaration: "Gluck.Discrete.tabachnikov_radius_characterization"
       file: "Gluck/Discrete/TabachnikovCharacterization.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
-      comparator_config: "comparator/config.json"
+      comparator_config: "comparator.json"
       literature_dependencies: []
     - declaration: "Gluck.Discrete.localContinuousRealization_of_dfv"
       file: "Gluck/Discrete/LocalContinuity.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
-      comparator_config: "comparator/config.json"
+      comparator_config: "comparator.json"
       literature_dependencies: []
     - declaration: "Gluck.Discrete.GlobalContinuity.no_continuous_regular_hexagon_path"
       file: "Gluck/Discrete/GlobalContinuity/EnclosingCircleObstruction.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
-      comparator_config: "comparator/config.json"
+      comparator_config: "comparator.json"
       literature_dependencies: []
     - declaration: "Gluck.Discrete.SideTangent.sideTangentConverse"
       file: "Gluck/Discrete/SideTangentConverse.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
-      comparator_config: "comparator/config.json"
+      comparator_config: "comparator.json"
       literature_dependencies: []
     - declaration: "Gluck.Discrete.SideTangent.realizesSideTangent_iff_admissible"
       file: "Gluck/Discrete/SideTangentForward.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
-      comparator_config: "comparator/config.json"
+      comparator_config: "comparator.json"
       literature_dependencies: []
 
 automation:
@@ -138,8 +138,8 @@ automation:
   notes: >-
     The mathematics and proofs were developed with AI assistance (Aristotle,
     Claude, Codex, DeepSeek); the author takes full responsibility for their
-    correctness. Lean statements were reviewed against the paper, and the
-    Comparator check in comparator/ ties them to a hand-written challenge.
+    correctness. Lean statements were reviewed against the paper, and
+    Comparator (comparator.json) checks the library against Challenge.lean.
 
 fidelity:
   divergences: >-
@@ -155,11 +155,12 @@ review:
   status: "self-assessed"
   reviewers: ["Kristoffer Josefsson"]
   notes: >-
-    The six main statements and the 37 definitions they depend on are restated
-    independently in comparator/Challenge.lean and comparator/Challenge/
-    (Mathlib imports only); Comparator (leanprover/comparator) confirms that
-    the library proves exactly these statements using only the permitted
-    axioms, and the kernel replays the proofs. CI checks the axioms with
+    Challenge.lean states the six main theorems together with the 37
+    definitions they depend on (Mathlib imports only; the definitions are
+    those of the library module Gluck/Statements.lean). lake comparator
+    (comparator.json) confirms that the library proves exactly these
+    statements using only the permitted axioms, and the Lean, NanoDa and
+    con-ron kernels accept the proofs. CI checks the axioms with
     scripts/axioms.lean.
 
 alignment:
@@ -203,4 +204,4 @@ alignment:
       status: "proved"
 
 acknowledgements: >-
-  Built on Mathlib. Statement checking uses leanprover/comparator.
+  Built on Mathlib. Statement checking uses lake comparator (leanprover/comparator).
