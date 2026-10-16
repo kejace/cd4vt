@@ -3,11 +3,13 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Mathlib.Topology.Instances.Real.Lemmas
-import Mathlib.Topology.Order.IntermediateValue
-import Mathlib.Tactic.Choose
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Push
+module
+
+public import Mathlib.Topology.Instances.Real.Lemmas
+public import Mathlib.Topology.Order.IntermediateValue
+public import Mathlib.Tactic.Choose
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Push
 
 /-!
 # Continuous roots of monotone families
@@ -17,6 +19,8 @@ whenever each function changes sign across a continuously varying bracket.
 The parameter space is arbitrary, and continuity in the parameter is only
 required at heights strictly inside the bracket.
 -/
+
+@[expose] public section
 
 open Filter Topology
 

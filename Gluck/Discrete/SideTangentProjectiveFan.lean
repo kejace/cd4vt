@@ -1,6 +1,8 @@
-import Gluck.Discrete.SideTangentSquareFan
-import Gluck.Discrete.SideTangentCircle
-import ForMathlib.Analysis.InnerProductSpace.ProjectiveOrientation
+module
+
+public import Gluck.Discrete.SideTangentSquareFan
+public import Gluck.Discrete.SideTangentCircle
+public import ForMathlib.Analysis.InnerProductSpace.ProjectiveOrientation
 
 /-!
 # Strict tangent geometry after projective balancing
@@ -9,6 +11,8 @@ Positive denominators at the tangent vertices preserve the positive order of
 adjacent normals. The balanced vertices retain their strict supporting lines,
 interior unit-circle contacts, and positively oriented nonzero edges.
 -/
+
+@[expose] public section
 
 open scoped InnerProductSpace
 

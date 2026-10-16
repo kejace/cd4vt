@@ -1,5 +1,7 @@
-import Gluck.Discrete.NativeOppositePureDefs
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
+module
+
+public import Gluck.Discrete.NativeOppositePureDefs
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
 
 /-!
 # The pure-one wall of the native first-pair construction
@@ -8,6 +10,8 @@ The convention is: `α, β` are the pure-one half-angles, and `γ, δ`
 are the pure-`q` half-angles. This file constructs the acute `δ` chart
 on `α = π / 2`. It does not yet assert the global realization theorem.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.NativeOppositePure
 

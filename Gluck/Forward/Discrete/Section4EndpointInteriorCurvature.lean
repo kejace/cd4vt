@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4EndpointSpliceRegularity
-import Mathlib.MeasureTheory.Integral.CircleIntegral
+module
+
+public import Gluck.Forward.Discrete.Section4EndpointSpliceRegularity
+public import Mathlib.MeasureTheory.Integral.CircleIntegral
 
 /-!
 # Curvature at a circle–interior endpoint splice
@@ -12,6 +14,8 @@ import Mathlib.MeasureTheory.Integral.CircleIntegral
 The signed Menger curvature at a circle–interior splice eventually exceeds
 the circle curvature as the circle chord collapses.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 
@@ -51,7 +55,7 @@ theorem dist_circlePoint_add_eq_two_mul_sin_half
   rw [dist_circlePoint_eq_two_mul_abs_sin_half, show θ + δ - θ = δ by ring,
     abs_of_pos hR, abs_of_pos hsin]
 
-private noncomputable def endpointPredecessorCurvatureModel
+noncomputable def endpointPredecessorCurvatureModel
     (O P : ℂ) (R θ δ : ℝ) : ℝ :=
   2 * (Real.sin (δ / 2) *
         inner ℝ (circleTangent θ) (P - circlePoint O R θ) -
@@ -60,7 +64,7 @@ private noncomputable def endpointPredecessorCurvatureModel
     (dist (circlePoint O R θ) P *
       dist (circlePoint O R (θ - δ)) P)
 
-private noncomputable def endpointSuccessorCurvatureModel
+noncomputable def endpointSuccessorCurvatureModel
     (O P : ℂ) (R θ δ : ℝ) : ℝ :=
   2 * (-Real.sin (δ / 2) *
         inner ℝ (circleTangent θ) (P - circlePoint O R θ) -

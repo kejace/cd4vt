@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse
-import Mathlib.Tactic
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse
+public import Mathlib.Tactic
 
 /-!+# Branch-safe consequences of the original native first-pair flag
 
@@ -13,6 +15,8 @@ squared failure bound, and strict `p*q > 1` are conclusions rather than
 additional assumptions. The stronger separation is needed when the flag
 itself is an equality.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.NativeOppositePure
 

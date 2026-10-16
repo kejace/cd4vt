@@ -1,5 +1,7 @@
-import Gluck.Discrete.FourActiveSlotEmbedding
-import Gluck.Discrete.NativeOppositePurePhysical
+module
+
+public import Gluck.Discrete.FourActiveSlotEmbedding
+public import Gluck.Discrete.NativeOppositePurePhysical
 
 /-!
 # A regular four-edge anchor retained as geometric data
@@ -8,6 +10,8 @@ This witness can be moved between finite curvature words when the four
 literal endpoint pairs agree. In particular, restoring constant runs
 requires no closedness theorem for the interior realization locus.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

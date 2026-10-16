@@ -3,9 +3,11 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4ContactOrderCrosscut
-import Gluck.Forward.Discrete.Section4CircleParameters
-import Gluck.Forward.Discrete.Section4CircleArc
+module
+
+public import Gluck.Forward.Discrete.Section4ContactOrderCrosscut
+public import Gluck.Forward.Discrete.Section4CircleParameters
+public import Gluck.Forward.Discrete.Section4CircleArc
 
 /-!
 # Propagating the circle order of minimal-disk contacts
@@ -16,6 +18,8 @@ wrapper and the resulting propagation lemma: after the orientation of one
 third boundary point has been anchored, every further boundary point on the
 same polygonal arc lies on the corresponding oriented circle arc.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 
@@ -172,7 +176,7 @@ private theorem false_of_ordered_anchor_gt_aux
 
 /-- A correctly ordered third point bounds every further contact angle by the
 endpoint angle on the same polygonal arc. -/
-private theorem circlePoint_angle_le_endpoint_of_ordered_anchor_aux
+theorem circlePoint_angle_le_endpoint_of_ordered_anchor_aux
     {n : ℕ} [NeZero n] {v : ZMod n → ℂ}
     {O : ℂ} {R : ℝ} {c : ZMod n} {m p t : ℕ}
     {θB θC θA θD : ℝ}
@@ -238,7 +242,7 @@ theorem cyclicLift_right_add_complementContactArcLength :
 
 /-- Every minimal-circle contact occurs on the complementary polygonal arc
 from the right endpoint to the left endpoint. -/
-private theorem exists_complementContactArcCoordinate_aux
+theorem exists_complementContactArcCoordinate_aux
     {i : ZMod n} (hi : OnDiskBoundaryR2 v O R i) :
     ∃ t : ℕ, t ≤ run.complementContactArcLength ∧
       Gluck.cyclicLift (Gluck.cyclicLift run.c (run.b + 1)) t = i := by

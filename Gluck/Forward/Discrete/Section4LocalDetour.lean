@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4ContactOrderCrosscut
+module
+
+public import Gluck.Forward.Discrete.Section4ContactOrderCrosscut
 
 /-!
 # The local contact detour is disjoint from the return chain
@@ -23,6 +25,8 @@ where `D` and `X` lie in a small ball about `B`, and `X` lies strictly between
 `A, ..., P, B`.  The remaining final edge `PB` is avoided because `D` and `X`
 are on the same strict side of its supporting line.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

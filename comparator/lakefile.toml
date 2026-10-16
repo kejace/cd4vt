@@ -23,7 +23,7 @@ path = ".."
 [[require]]
 name = "Comparator"
 git = "https://github.com/leanprover/comparator"
-rev = "32bd61da1d68fbaa310234964e9b820b03a0f82f"
+rev = "e3dcf3083fc53d44b27a4431fabf7d43181583f5"
 
 [[lean_lib]]
 name = "Challenge"

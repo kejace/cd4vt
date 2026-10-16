@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Challenge.Forward.Discrete.Defs
+module
+
+public import Challenge.Forward.Discrete.Defs
 
 /-!
 # Challenge: `Gluck/Discrete/SideTangentDFV.lean`
@@ -11,6 +13,8 @@ import Challenge.Forward.Discrete.Defs
 Verbatim copies (docstrings abridged) of the definitions from `Gluck/Discrete/SideTangentDFV.lean` that the challenge
 statements depend on, in the library's order and `open`/`variable` context.
 -/
+
+@[expose] public section
 
 open scoped BigOperators
 

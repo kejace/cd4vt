@@ -3,10 +3,12 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.NativeOppositePureDefs
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.InverseDeriv
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
-import Mathlib.Tactic
+module
+
+public import Gluck.Discrete.NativeOppositePureDefs
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.InverseDeriv
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+public import Mathlib.Tactic
 
 /-!+# Derivative core of the native opposite-pure controller
 
@@ -15,6 +17,8 @@ does the high-curvature angle excess on its original physical domain.
 These signs give the mixed-split determinant without an orthogonality
 assumption. The branch comparison retains both possible second-cap turns.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.NativeOppositePure
 

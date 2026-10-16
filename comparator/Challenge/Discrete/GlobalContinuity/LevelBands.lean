@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Challenge.Discrete.SideTangentConverse
+module
+
+public import Challenge.Discrete.SideTangentConverse
 
 /-!
 # Challenge: `Gluck/Discrete/GlobalContinuity/LevelBands.lean`
@@ -11,6 +13,8 @@ import Challenge.Discrete.SideTangentConverse
 Verbatim copies (docstrings abridged) of the definitions from `Gluck/Discrete/GlobalContinuity/LevelBands.lean` that the challenge
 statements depend on, in the library's order and `open`/`variable` context.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.GlobalContinuity
 

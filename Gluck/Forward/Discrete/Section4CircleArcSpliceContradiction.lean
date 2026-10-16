@@ -3,12 +3,14 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4CircleArc
-import Gluck.Forward.Discrete.Section4EndpointInteriorCurvature
-import Gluck.Forward.Discrete.Section4CircleSpliceOrientation
-import Gluck.Forward.Discrete.Section4CircleSpliceSimple
-import Gluck.Forward.Discrete.Section4CircleSpliceNonconcyclic
-import Gluck.Forward.Discrete.Section4CircleSpliceAssembly
+module
+
+public import Gluck.Forward.Discrete.Section4CircleArc
+public import Gluck.Forward.Discrete.Section4EndpointInteriorCurvature
+public import Gluck.Forward.Discrete.Section4CircleSpliceOrientation
+public import Gluck.Forward.Discrete.Section4CircleSpliceSimple
+public import Gluck.Forward.Discrete.Section4CircleSpliceNonconcyclic
+public import Gluck.Forward.Discrete.Section4CircleSpliceAssembly
 
 /-!
 # The circle-arc splice contradiction
@@ -16,6 +18,8 @@ import Gluck.Forward.Discrete.Section4CircleSpliceAssembly
 Local endpoint curvature gaps turn an ordered complementary circle arc into
 Dahlberg's impossible auxiliary-radius geometry.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 
@@ -85,7 +89,7 @@ private theorem circleSplice_rightEndpoint_cross_pos_aux
     (one_div_pos.mpr hR).trans hgap
   simpa only [SignedMengerProfile_apply] using hpos
 
-private structure CircleArcMeshData (run : Section4PositiveRunCertificate v O R)
+structure CircleArcMeshData (run : Section4PositiveRunCertificate v O R)
     (arc : Section4CircleArcCertificate run) (k : ℕ) where
   step_pos : 0 < (arc.θA - arc.θB) / (2 * k + 1 + 1 : ℕ)
   step_lt_pi : (arc.θA - arc.θB) / (2 * k + 1 + 1 : ℕ) < Real.pi

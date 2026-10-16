@@ -1,5 +1,7 @@
-import Gluck.Discrete.NativeNegativeCorners
-import ForMathlib.Analysis.Complex.PoincareMiranda
+module
+
+public import Gluck.Discrete.NativeNegativeCorners
+public import ForMathlib.Analysis.Complex.PoincareMiranda
 
 /-!
 # Native four-slot anchors between equal maximum readings
@@ -8,6 +10,8 @@ The two actual pure readings are both one. All four mixed endpoint readings
 lie strictly below one. An interior rectangle gives strict residual signs,
 and Poincaré–Miranda supplies an original, strictly physical native zero.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.NativeOppositePure
 

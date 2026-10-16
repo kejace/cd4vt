@@ -3,10 +3,12 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4ContactCoverage
-import Gluck.Forward.Discrete.Section4EndpointInteriorCurvature
-import Gluck.Forward.Discrete.Section4LocalDetour
-import Gluck.Forward.Discrete.Section4VertexEdgeClearance
+module
+
+public import Gluck.Forward.Discrete.Section4ContactCoverage
+public import Gluck.Forward.Discrete.Section4EndpointInteriorCurvature
+public import Gluck.Forward.Discrete.Section4LocalDetour
+public import Gluck.Forward.Discrete.Section4VertexEdgeClearance
 
 /-!
 # The three-contact orientation anchor
@@ -14,6 +16,8 @@ import Gluck.Forward.Discrete.Section4VertexEdgeClearance
 A small counterclockwise detour at a positively oriented contact fixes the
 cyclic order of three circle contacts.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 
@@ -165,7 +169,7 @@ private theorem crossR2_pos_of_mem_openSegment_from_second_aux
   rw [hBzero, mul_zero, zero_add]
   exact mul_pos ht.1 hQ
 
-private structure PositiveContactDetourData
+structure PositiveContactDetourData
     {n : ℕ} [NeZero n] (v : ZMod n → ℂ) (O : ℂ)
     (R θB θA : ℝ) (m : ℕ) where
   ε : ℝ
@@ -214,7 +218,7 @@ private theorem exists_positiveContactDetourData_aux
   exact ⟨⟨ε, δ, X, hδ, by linarith, hDball, hXopen, hXball, hDside, hXside,
     hXinside, hclear⟩⟩
 
-private structure ContactAnchorPaths (O : ℂ) (R θB θC θA : ℝ) where
+structure ContactAnchorPaths (O : ℂ) (R θB θC θA : ℝ) where
   step : ℝ
   step_pos : 0 < step
   step_before : θB + step < θA

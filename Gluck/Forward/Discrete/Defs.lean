@@ -1,5 +1,9 @@
-import Gluck.Forward.Kernel
-import Gluck.Discrete.TangentChord
+module
+
+public import Gluck.Forward.Kernel
+public import Gluck.Discrete.TangentChord
+
+@[expose] public section
 
 namespace Gluck.Forward
 

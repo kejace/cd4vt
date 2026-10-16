@@ -1,4 +1,6 @@
-import Gluck.Forward.Discrete.Defs
+module
+
+public import Gluck.Forward.Discrete.Defs
 
 /-!
 # Finite cyclic components
@@ -7,6 +9,8 @@ An isolated API for the interval bookkeeping in Dahlberg's Lemmas 4--7.
 The actual circle is cut at one vertex outside the subset, reducing maximal
 cyclic runs to maximal ordinary intervals of natural numbers.
 -/
+
+@[expose] public section
 
 open scoped BigOperators
 

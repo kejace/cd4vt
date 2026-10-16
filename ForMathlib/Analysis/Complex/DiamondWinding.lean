@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import ForMathlib.Analysis.Complex.ConeWinding
-import Mathlib.Analysis.Normed.Module.Convex
+module
+
+public import ForMathlib.Analysis.Complex.ConeWinding
+public import Mathlib.Analysis.Normed.Module.Convex
 
 /-!
 # A zero-existence principle on a diamond
@@ -12,6 +14,8 @@ import Mathlib.Analysis.Normed.Module.Convex
 Four consecutive boundary arcs are tested in four different open half-planes.
 The coordinate swap gives a model with winding minus one.
 -/
+
+@[expose] public section
 
 open scoped unitInterval
 
@@ -30,15 +34,15 @@ theorem convex_diamond (r : ℝ) : Convex ℝ (diamond r) := by
       (convexOn_norm (convex_univ : Convex ℝ (Set.univ : Set ℝ))).comp_linearMap Complex.imLm
   simpa [diamond] using (hre.add him).convex_le r
 
-private noncomputable def circlePhase : C(I, ℝ) :=
+noncomputable def circlePhase : C(I, ℝ) :=
   ⟨fun t ↦ 2 * Real.pi * (t : ℝ), by fun_prop⟩
 
-private noncomputable def unitLoop : C(I, ℂ) := phaseCurve circlePhase
+noncomputable def unitLoop : C(I, ℂ) := phaseCurve circlePhase
 
 private theorem norm_unitLoop (t : I) : ‖unitLoop t‖ = 1 :=
   norm_exp_ofReal_mul_I _
 
-private theorem l1_unitLoop_pos (t : I) : 0 < |(unitLoop t).re| + |(unitLoop t).im| := by
+theorem l1_unitLoop_pos (t : I) : 0 < |(unitLoop t).re| + |(unitLoop t).im| := by
   have h := norm_le_abs_re_add_abs_im (unitLoop t)
   linarith [norm_unitLoop t]
 
@@ -63,7 +67,7 @@ private theorem unitLoop_closed : unitLoop 0 = unitLoop 1 := by
 theorem diamondBoundary_closed (r : ℝ) : diamondBoundary r 0 = diamondBoundary r 1 := by
   simp only [diamondBoundary, ContinuousMap.coe_mk, unitLoop_closed]
 
-private noncomputable def reversedPhase : C(I, ℝ) :=
+noncomputable def reversedPhase : C(I, ℝ) :=
   ⟨fun t ↦ Real.pi / 2 - 2 * Real.pi * (t : ℝ), by fun_prop⟩
 
 private theorem reversedPhase_eq_swap (t : I) :

@@ -3,16 +3,18 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Curvature
-import Gluck.Curve
-import Gluck.Euclidean.FourVertex
-import Gluck.Euclidean.Reduction
-import Gluck.Euclidean.Simplicity
-import Gluck.Euclidean.StepReduction
-import Gluck.Winding
-import Mathlib.Analysis.ODE.ExistUnique
-import Mathlib.MeasureTheory.Function.Floor
-import Mathlib.MeasureTheory.Order.Group.Lattice
+module
+
+public import Gluck.Curvature
+public import Gluck.Curve
+public import Gluck.Euclidean.FourVertex
+public import Gluck.Euclidean.Reduction
+public import Gluck.Euclidean.Simplicity
+public import Gluck.Euclidean.StepReduction
+public import Gluck.Winding
+public import Mathlib.Analysis.ODE.ExistUnique
+public import Mathlib.MeasureTheory.Function.Floor
+public import Mathlib.MeasureTheory.Order.Group.Lattice
 
 /-!
 # The space-form converse (constant-curvature model, definition layer)
@@ -41,6 +43,8 @@ the admissibility lower bound is *established* per model (S²: compactness of a
 strictly positive `κ`; H²: the escape-velocity bound `κ > 1`).
 
 -/
+
+@[expose] public section
 
 namespace Gluck.SpaceForm
 

@@ -1,4 +1,6 @@
-import Gluck.Discrete.StrictSupportSimplicity
+module
+
+public import Gluck.Discrete.StrictSupportSimplicity
 
 /-!
 # Chord separation for a strictly supported polygon
@@ -7,6 +9,8 @@ The strict edge inequalities imply positive orientation of every cyclically
 ordered triple. The proof uses the determinant identity in a common open
 half-plane, so it needs neither a choice of angles nor a genericity assumption.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.SideTangent
 

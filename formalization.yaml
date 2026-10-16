@@ -29,10 +29,11 @@ sources:
     id: "paper/tabachnikov-converse.tex (this repository)"
     type: "original-proof"
     location: "Theorems 1.1, 7.1, 7.2, 8.2; Corollaries 1.2, 8.6"
-    relationship: "formalizes"
+    relationship: "other"
     note: >-
-      The paper and the formalization were developed together; the Lean
-      appendix of the paper displays the formal statements.
+      The formalization proves the results of this paper. The paper and the
+      formalization were developed together; the Lean appendix of the paper
+      displays the formal statements.
     license: ""
     author_endorsement: "participated"
   - title: "Converse Sturm-Hurwitz-Kellogg theorem and related results"
@@ -49,22 +50,22 @@ sources:
     authors: ["Björn E. J. Dahlberg"]
     id: "doi:10.1007/s10711-008-9238-0"
     type: "article"
-    relationship: "independently-proves"
+    relationship: "background"
     note: >-
       The forward theorem, giving necessity in Corollary 1.2; its plateau
-      convention for counting extrema is used throughout. Proved in Lean, not
-      assumed.
+      convention for counting extrema is used throughout. The formalization
+      proves it independently (not assumed).
     author_endorsement: "n/a"
   - title: "On the evolutes of piecewise linear curves in the plane"
     authors: ["Bernd Wegner"]
     id: "Rad Hrvatske Akad. Znan. Umjet. Mat. Znan. 11 (1994), 1-16"
     type: "article"
     location: "Theorem 1"
-    relationship: "independently-proves"
+    relationship: "background"
     note: >-
       Wegner's four-edge theorem, the forward direction of Corollary 8.6.
-      Proved in Lean (Gluck.Discrete.SideTangent.sideTangentForward), not
-      assumed.
+      The formalization proves it independently
+      (Gluck.Discrete.SideTangent.sideTangentForward), not assumed.
     author_endorsement: "not-contacted"
 
 related_formalizations: []

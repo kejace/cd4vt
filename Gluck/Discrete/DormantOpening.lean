@@ -3,11 +3,13 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.BlockResultant
-import Gluck.Discrete.FourArcRectangle
-import Gluck.Discrete.GapCoords
-import Gluck.Discrete.MirandaPerturbation
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.InverseDeriv
+module
+
+public import Gluck.Discrete.BlockResultant
+public import Gluck.Discrete.FourArcRectangle
+public import Gluck.Discrete.GapCoords
+public import Gluck.Discrete.MirandaPerturbation
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.InverseDeriv
 
 /-!
 # Opening dormant edges: the analytic half of branch (iv)
@@ -32,6 +34,8 @@ once their displayed family hypotheses are supplied.
 
 Blueprint: `chapters/Gluck_Discrete_DormantOpening.tex`.
 -/
+
+@[expose] public section
 
 open Real Complex
 

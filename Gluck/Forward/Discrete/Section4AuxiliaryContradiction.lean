@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Dahlberg
+module
+
+public import Gluck.Forward.Discrete.Dahlberg
 
 /-!
 # The final auxiliary-polygon contradiction in Dahlberg Section 4
@@ -13,6 +15,8 @@ If every curvature disk of an auxiliary polygon which contains all vertices
 has the same centre and radius, then the two distinct containing disks supplied
 by the exact form of Dahlberg's Theorem 6 give a contradiction.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

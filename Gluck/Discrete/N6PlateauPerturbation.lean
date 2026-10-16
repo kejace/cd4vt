@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.CollarOpenness
-import Gluck.Discrete.RealizabilityClosure
+module
+
+public import Gluck.Discrete.CollarOpenness
+public import Gluck.Discrete.RealizabilityClosure
 
 /-!
 # Perturbing six-vertex plateaus
@@ -16,6 +18,8 @@ perturbation adds a small multiple of the canonical residue representative.
 This is only a generic-density statement.  It does not pass realizability to
 the limiting plateau profile.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

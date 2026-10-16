@@ -1,5 +1,7 @@
-import Gluck.Discrete.SideTangentSquareFan
-import Gluck.Discrete.Converse
+module
+
+public import Gluck.Discrete.SideTangentSquareFan
+public import Gluck.Discrete.Converse
 
 /-!
 # Cyclic radius differences and the balanced tangential fan
@@ -7,6 +9,8 @@ import Gluck.Discrete.Converse
 Cyclic relabeling preserves every prescribed radius, including repetitions.
 The coefficient at a vertex is the incoming radius minus the outgoing radius.
 -/
+
+@[expose] public section
 
 open scoped BigOperators
 

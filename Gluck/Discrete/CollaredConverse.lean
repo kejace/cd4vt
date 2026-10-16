@@ -3,18 +3,20 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Mathlib.Analysis.Calculus.Deriv.Comp
-import Mathlib.Analysis.Calculus.FDeriv.Add
-import Mathlib.Analysis.Calculus.FDeriv.Mul
-import Mathlib.Analysis.Complex.RealDeriv
-import Mathlib.Analysis.Normed.Module.FiniteDimension
-import Mathlib.Analysis.SpecialFunctions.ExpDeriv
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.InverseDeriv
-import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
-import Mathlib.LinearAlgebra.Complex.FiniteDimensional
-import Gluck.Discrete.CollaredContinuation
-import Gluck.Discrete.Convexity
-import Gluck.Discrete.Converse
+module
+
+public import Mathlib.Analysis.Calculus.Deriv.Comp
+public import Mathlib.Analysis.Calculus.FDeriv.Add
+public import Mathlib.Analysis.Calculus.FDeriv.Mul
+public import Mathlib.Analysis.Complex.RealDeriv
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+public import Mathlib.Analysis.SpecialFunctions.ExpDeriv
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.InverseDeriv
+public import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
+public import Mathlib.LinearAlgebra.Complex.FiniteDimensional
+public import Gluck.Discrete.CollaredContinuation
+public import Gluck.Discrete.Convexity
+public import Gluck.Discrete.Converse
 
 /-!
 # Route A′/B collar wiring: the conditional general-`n` converse
@@ -45,6 +47,8 @@ realizability theorem `realizesR2_of_collar`.
   Closure Obstruction does not touch.
 
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

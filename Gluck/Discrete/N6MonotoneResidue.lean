@@ -3,9 +3,11 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.Converse
-import Gluck.Discrete.MonotoneCuts
-import Gluck.Discrete.N6CarrierSkeleton
+module
+
+public import Gluck.Discrete.Converse
+public import Gluck.Discrete.MonotoneCuts
+public import Gluck.Discrete.N6CarrierSkeleton
 
 /-!
 # The ordinary nonzigzag residue at six vertices
@@ -20,6 +22,8 @@ Together with `CyclicMonotoneRuns.six_run_length_classification` and the
 nine-cell table in `N6CarrierSkeleton`, this isolates the remaining analytic
 base case without asserting the still-missing carrier degree.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

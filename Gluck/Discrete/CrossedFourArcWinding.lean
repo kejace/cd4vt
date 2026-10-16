@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Winding
+module
+
+public import Gluck.Winding
 
 /-!
 # Winding from crossed four-arc signs
@@ -13,13 +15,15 @@ the lower, left, right, and upper open half-planes, with the two crossed
 coordinate-axis corners retained explicitly.
 -/
 
+@[expose] public section
+
 namespace Gluck.Discrete
 
-private noncomputable def crossedFourArcPhase (t : unitInterval) : ℝ :=
+noncomputable def crossedFourArcPhase (t : unitInterval) : ℝ :=
   9 * Real.pi / 8 + Real.pi * (t : ℝ) +
     2 * Real.pi * max 0 (min ((t : ℝ) - 3 / 8) (1 / 2))
 
-private lemma continuous_crossed_four_arc_phase_aux : Continuous crossedFourArcPhase := by
+lemma continuous_crossed_four_arc_phase_aux : Continuous crossedFourArcPhase := by
   unfold crossedFourArcPhase
   fun_prop
 
@@ -41,7 +45,7 @@ private lemma crossed_four_arc_phase_of_seven_eighths_le_aux
   rw [crossedFourArcPhase, min_eq_right (by linarith), max_eq_right (by norm_num)]
   ring
 
-private noncomputable def crossedFourArcModel : C(unitInterval, ℂ) :=
+noncomputable def crossedFourArcModel : C(unitInterval, ℂ) :=
   ⟨fun t ↦ Complex.exp ((crossedFourArcPhase t : ℂ) * Complex.I), by
     apply Complex.continuous_exp.comp
     exact (Complex.continuous_ofReal.comp continuous_crossed_four_arc_phase_aux).mul
@@ -158,12 +162,12 @@ private lemma crossed_four_arc_model_loop_aux :
     ring
   rw [hexp, mul_one]
 
-private noncomputable def crossedFourArcHomotopyPhase
+noncomputable def crossedFourArcHomotopyPhase
     (st : unitInterval × unitInterval) : ℝ :=
   (1 - (st.1 : ℝ)) * (2 * Real.pi * (st.2 : ℝ)) +
     (st.1 : ℝ) * crossedFourArcPhase st.2
 
-private lemma continuous_crossed_four_arc_homotopy_phase_aux :
+lemma continuous_crossed_four_arc_homotopy_phase_aux :
     Continuous crossedFourArcHomotopyPhase := by
   unfold crossedFourArcHomotopyPhase
   exact (continuous_const.sub (continuous_subtype_val.comp continuous_fst)).mul
@@ -171,7 +175,7 @@ private lemma continuous_crossed_four_arc_homotopy_phase_aux :
       (continuous_subtype_val.comp continuous_fst).mul
         (continuous_crossed_four_arc_phase_aux.comp continuous_snd)
 
-private noncomputable def crossedFourArcModelHomotopy :
+noncomputable def crossedFourArcModelHomotopy :
     C(unitInterval × unitInterval, ℂ) :=
   ⟨fun st ↦ Complex.exp ((crossedFourArcHomotopyPhase st : ℂ) * Complex.I),
     Complex.continuous_exp.comp

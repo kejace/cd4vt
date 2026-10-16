@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.TangentChord
+module
+
+public import Gluck.Discrete.TangentChord
 
 /-!
 # Discrete D1: convexity and simplicity (Euclidean, positive)
@@ -25,6 +27,8 @@ free, exactly parallel to smooth Gluck.
   witness).
 
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

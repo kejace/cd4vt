@@ -1,4 +1,6 @@
-import Gluck.Forward.Discrete.CyclicComponents
+module
+
+public import Gluck.Forward.Discrete.CyclicComponents
 
 /-!
 # Avoiding connected subsets in finite cyclic component decompositions
@@ -7,6 +9,8 @@ This file supplies the final finite selection step used in Dahlberg §4: a
 connected cyclic subset contained in a disconnected set can meet at most one
 of two distinct maximal runs.
 -/
+
+@[expose] public section
 
 namespace Gluck
 

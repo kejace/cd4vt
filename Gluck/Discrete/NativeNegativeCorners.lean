@@ -1,5 +1,7 @@
-import Gluck.Discrete.NativeOrderedFirstPair
-import ForMathlib.Analysis.Complex.PoincareMiranda
+module
+
+public import Gluck.Discrete.NativeOrderedFirstPair
+public import ForMathlib.Analysis.Complex.PoincareMiranda
 
 /-!
 # Original native anchors from two negative terminal corners
@@ -10,11 +12,13 @@ literal corner flags. No scalar-root uniqueness or effective replacement of
 the target endpoint readings is assumed.
 -/
 
+@[expose] public section
+
 namespace Gluck.Discrete.NativeOppositePure
 
 open Set N6TypeAThreeCell
 
-private def clampUnit (x : ℝ) : ℝ := max 0 (min 1 x)
+def clampUnit (x : ℝ) : ℝ := max 0 (min 1 x)
 
 private lemma clampUnit_bounds (x : ℝ) : 0 ≤ clampUnit x ∧ clampUnit x ≤ 1 := by
   exact ⟨le_max_left _ _, max_le zero_le_one (min_le_left _ _)⟩

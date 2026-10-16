@@ -3,9 +3,11 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.Closing
-import Gluck.Discrete.Converse
-import Mathlib.RingTheory.RootsOfUnity.Complex
+module
+
+public import Gluck.Discrete.Closing
+public import Gluck.Discrete.Converse
+public import Mathlib.RingTheory.RootsOfUnity.Complex
 
 /-!
 # Rotationally periodic profiles close, and realizability at every composite `n`
@@ -31,6 +33,8 @@ the general positive-DFV converse is Tabachnikov's Problem 2 (arXiv:0710.5902)
 and remains open — nothing here bears on it.
 
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 
@@ -466,7 +470,7 @@ theorem discreteFourVertexPos_alternating [NeZero n] {m : ℕ} (hn : n = 2 * m)
 
 /-- One period of the composite-`n` witness: value `2` at block starts, `1`
 elsewhere. -/
-private def spikeProfile (p : ℕ) : ZMod n → ℝ := fun i =>
+def spikeProfile (p : ℕ) : ZMod n → ℝ := fun i =>
   if i.val % p = 0 then 2 else 1
 
 /-- The spike profile at a lifted index below `n` reads off the residue of the

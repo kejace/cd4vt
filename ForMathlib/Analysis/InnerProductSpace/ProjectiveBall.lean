@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Mathlib.Analysis.InnerProductSpace.Basic
-import Mathlib.Tactic
+module
+
+public import Mathlib.Analysis.InnerProductSpace.Basic
+public import Mathlib.Tactic
 
 /-!
 # An explicit projective normalization of the unit ball
@@ -13,6 +15,8 @@ These are projective maps in the affine Klein model. They are not conformal
 Möbius transformations. Keeping the positive square-root parameter explicit
 makes the algebra independent of square-root simplification.
 -/
+
+@[expose] public section
 
 open scoped InnerProductSpace
 

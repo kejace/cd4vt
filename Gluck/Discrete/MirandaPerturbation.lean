@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import ForMathlib.Analysis.Complex.PoincareMiranda
+module
+
+public import ForMathlib.Analysis.Complex.PoincareMiranda
 
 /-!
 # Poincaré–Miranda under perturbation
@@ -32,6 +34,8 @@ opened family itself is branch (iv)'s remaining geometric work
 (`chap:discrete_dormant_opening`).  Nothing in this file is a realization
 theorem.
 -/
+
+@[expose] public section
 
 open Set
 

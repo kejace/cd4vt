@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Dahlberg
+module
+
+public import Gluck.Forward.Discrete.Dahlberg
 
 /-!
 # Orientation of minimal-disk contacts
@@ -13,6 +15,8 @@ Dahlberg's Section 4.  A contact with a minimal enclosing circle is an extreme
 point of its closed ball.  Local regularity and polygon simplicity therefore
 exclude a collinear turn at every contact.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

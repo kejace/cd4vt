@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4PositiveChain
-import Gluck.Discrete.CircleParameterGeometry
+module
+
+public import Gluck.Forward.Discrete.Section4PositiveChain
+public import Gluck.Discrete.CircleParameterGeometry
 
 /-!
 # The explicit finite circle splice in Dahlberg Section 4
@@ -14,6 +16,8 @@ returns from its right endpoint to its left endpoint through a finite ordered
 mesh on the minimal circle.  This file defines that cyclic vertex map and
 records its basic indexing identities.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

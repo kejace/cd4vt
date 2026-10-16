@@ -3,9 +3,11 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.AlternatingDiskPathCrossing
-import Gluck.Forward.Discrete.PolygonalChainPath
-import Gluck.Discrete.PolygonConvexity
+module
+
+public import Gluck.Forward.Discrete.AlternatingDiskPathCrossing
+public import Gluck.Forward.Discrete.PolygonalChainPath
+public import Gluck.Discrete.PolygonConvexity
 
 /-!
 # Circle order of separated polygonal subchains
@@ -18,6 +20,8 @@ intersect.
 This is the finite crosscut ingredient in the global contact-order step of
 Dahlberg's Section 4 argument.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

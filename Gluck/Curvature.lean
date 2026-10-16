@@ -1,7 +1,9 @@
-import Mathlib.Topology.Basic
-import Mathlib.Topology.Order.LocalExtr
-import Mathlib.Topology.Order.IntermediateValue
-import Mathlib.Tactic
+module
+
+public import Mathlib.Topology.Basic
+public import Mathlib.Topology.Order.LocalExtr
+public import Mathlib.Topology.Order.IntermediateValue
+public import Mathlib.Tactic
 
 /-!
 # Curvature functions on the circle
@@ -17,6 +19,8 @@ function on the circle `S¹ = ℝ / 2πℤ`. From it we build the radius of curv
 four-vertex condition under which the curve closes up.
 
 -/
+
+@[expose] public section
 
 namespace Gluck
 

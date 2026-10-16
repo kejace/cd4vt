@@ -1,5 +1,7 @@
-import Gluck.Forward.Discrete.Section4AuxiliaryContradiction
-import Mathlib.Analysis.Normed.Module.Convex
+module
+
+public import Gluck.Forward.Discrete.Section4AuxiliaryContradiction
+public import Mathlib.Analysis.Normed.Module.Convex
 
 /-!
 # Convex-hull criterion for Dahlberg's auxiliary-polygon rigidity
@@ -10,6 +12,8 @@ its convex hull, then every curvature disk containing the auxiliary vertices
 also contains the original vertices. Minimality of the original enclosing
 disk rules out all auxiliary curvature circles of smaller radius.
 -/
+
+@[expose] public section
 
 open Set Metric
 

@@ -1,5 +1,7 @@
-import ForMathlib.Analysis.InnerProductSpace.ProjectiveBall
-import Mathlib.Analysis.Convex.Segment
+module
+
+public import ForMathlib.Analysis.InnerProductSpace.ProjectiveBall
+public import Mathlib.Analysis.Convex.Segment
 
 /-!
 # Open segments under projective ball normalization
@@ -8,6 +10,8 @@ Positive affine denominators preserve the interior of every segment. In the
 side-tangent construction this keeps the unit-circle contact inside its finite
 edge after the projective balancing step.
 -/
+
+@[expose] public section
 
 open scoped InnerProductSpace
 

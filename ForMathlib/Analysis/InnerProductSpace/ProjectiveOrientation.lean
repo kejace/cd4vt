@@ -1,5 +1,7 @@
-import ForMathlib.Analysis.InnerProductSpace.ProjectiveBall
-import Mathlib.Analysis.Complex.Basic
+module
+
+public import ForMathlib.Analysis.InnerProductSpace.ProjectiveBall
+public import Mathlib.Analysis.Complex.Basic
 
 /-!
 # Orientation of projective ball normalization in the plane
@@ -7,6 +9,8 @@ import Mathlib.Analysis.Complex.Basic
 The area multiplier is positive precisely on the affine region of positive
 projective denominators. These identities make orientation preservation explicit.
 -/
+
+@[expose] public section
 
 open scoped InnerProductSpace
 

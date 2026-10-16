@@ -1,6 +1,8 @@
-import ForMathlib.Analysis.Calculus.ParametricPositiveSection
-import Gluck.Discrete.ProfileLengthSmoothness
-import Gluck.Discrete.TabachnikovFourActive
+module
+
+public import ForMathlib.Analysis.Calculus.ParametricPositiveSection
+public import Gluck.Discrete.ProfileLengthSmoothness
+public import Gluck.Discrete.TabachnikovFourActive
 
 /-!
 # Local continuous choice of coherent discrete realizations
@@ -17,6 +19,8 @@ This is an existence of a local choice, not a canonical or global selector,
 and does not assert passage through an arbitrary given polygon. Constant
 profiles are not covered by this local theorem.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

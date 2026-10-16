@@ -1,7 +1,9 @@
-import Gluck.Winding
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.Periodic
-import Mathlib.MeasureTheory.Function.Floor
-import Mathlib.MeasureTheory.Order.Group.Lattice
+module
+
+public import Gluck.Winding
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Periodic
+public import Mathlib.MeasureTheory.Function.Floor
+public import Mathlib.MeasureTheory.Order.Group.Lattice
 
 /-!
 # Closing the κ-curve: the reduction is justified
@@ -48,6 +50,8 @@ Landed, axiom-clean and fully proved:
   `exists_reparam_kappaErrorMap_close` (`lem:exists_reparam_close`, the `L¹`
   measure estimate), and `reduction_justified` (`lem:reduction_justified`).
 -/
+
+@[expose] public section
 
 namespace Gluck
 
@@ -242,29 +246,29 @@ density `alignDensity` is manifestly jointly continuous and its arc integrals ar
 clean to compute. -/
 
 /-- Configuration breakpoints `θ₁,…,θ₄`. -/
-private noncomputable def alignN1 (δ : ℝ) (z : ℂ) : ℝ := π / 4 + δ * z.re
-private noncomputable def alignN2 (δ : ℝ) (z : ℂ) : ℝ := 3 * π / 4 + δ * z.im
-private noncomputable def alignN3 (_δ : ℝ) (_z : ℂ) : ℝ := 5 * π / 4
-private noncomputable def alignN4 (_δ : ℝ) (_z : ℂ) : ℝ := 7 * π / 4
+noncomputable def alignN1 (δ : ℝ) (z : ℂ) : ℝ := π / 4 + δ * z.re
+noncomputable def alignN2 (δ : ℝ) (z : ℂ) : ℝ := 3 * π / 4 + δ * z.im
+noncomputable def alignN3 (_δ : ℝ) (_z : ℂ) : ℝ := 5 * π / 4
+noncomputable def alignN4 (_δ : ℝ) (_z : ℂ) : ℝ := 7 * π / 4
 
 /-- Arc lengths `L_k = θ_{k+1} - θ_k` (with `θ₅ = θ₁ + 2π`). -/
-private noncomputable def alignL1 (δ : ℝ) (z : ℂ) : ℝ := alignN2 δ z - alignN1 δ z
-private noncomputable def alignL2 (δ : ℝ) (z : ℂ) : ℝ := alignN3 δ z - alignN2 δ z
-private noncomputable def alignL3 (δ : ℝ) (z : ℂ) : ℝ := alignN4 δ z - alignN3 δ z
-private noncomputable def alignL4 (δ : ℝ) (z : ℂ) : ℝ := (alignN1 δ z + 2 * π) - alignN4 δ z
+noncomputable def alignL1 (δ : ℝ) (z : ℂ) : ℝ := alignN2 δ z - alignN1 δ z
+noncomputable def alignL2 (δ : ℝ) (z : ℂ) : ℝ := alignN3 δ z - alignN2 δ z
+noncomputable def alignL3 (δ : ℝ) (z : ℂ) : ℝ := alignN4 δ z - alignN3 δ z
+noncomputable def alignL4 (δ : ℝ) (z : ℂ) : ℝ := (alignN1 δ z + 2 * π) - alignN4 δ z
 
 /-- Arc centres `τ_k = θ_k + L_k/2`. -/
-private noncomputable def alignC1 (δ : ℝ) (z : ℂ) : ℝ := alignN1 δ z + alignL1 δ z / 2
-private noncomputable def alignC2 (δ : ℝ) (z : ℂ) : ℝ := alignN2 δ z + alignL2 δ z / 2
-private noncomputable def alignC3 (δ : ℝ) (z : ℂ) : ℝ := alignN3 δ z + alignL3 δ z / 2
-private noncomputable def alignC4 (δ : ℝ) (z : ℂ) : ℝ := alignN4 δ z + alignL4 δ z / 2
+noncomputable def alignC1 (δ : ℝ) (z : ℂ) : ℝ := alignN1 δ z + alignL1 δ z / 2
+noncomputable def alignC2 (δ : ℝ) (z : ℂ) : ℝ := alignN2 δ z + alignL2 δ z / 2
+noncomputable def alignC3 (δ : ℝ) (z : ℂ) : ℝ := alignN3 δ z + alignL3 δ z / 2
+noncomputable def alignC4 (δ : ℝ) (z : ℂ) : ℝ := alignN4 δ z + alignL4 δ z / 2
 
 /-- Plateau height `m(L) = (π/2 - ηV)/(L - η)` solved so the arc integral is `π/2`
 (`η = π/16`, `V = 2/3`).  The denominator is clamped from below by `π/8` so that
 `alignHt` is globally continuous (the structural lemmas are stated over all `z`);
 on the disk `L ∈ [π/4, 3π/4]` we have `L - π/16 ≥ 3π/16 > π/8`, so the clamp is
 inactive and the value is exactly `(π/2 - ηV)/(L - η)`. -/
-private noncomputable def alignHt (L : ℝ) : ℝ :=
+noncomputable def alignHt (L : ℝ) : ℝ :=
   (π / 2 - π / 16 * (2 / 3)) / max (π / 8) (L - π / 16)
 
 /-- On the disk range `L - π/16 ≥ π/8` the clamp is inactive. -/
@@ -283,7 +287,7 @@ private lemma continuous_alignHt : Continuous alignHt := by
 /-- **The calibrated speed density** `w_z` (blueprint `def:align_density`):
 constant node value `V = 2/3` plus four trapezoidal plateau pulses, one per arc,
 of height `m_k - V`, supported on `[θ_k, θ_{k+1}]` with ramp width `η = π/16`. -/
-private noncomputable def alignDensity (δ : ℝ) (z : ℂ) (θ : ℝ) : ℝ :=
+noncomputable def alignDensity (δ : ℝ) (z : ℂ) (θ : ℝ) : ℝ :=
   2 / 3
   + (alignHt (alignL1 δ z) - 2 / 3) * clampTent (π / 16) (alignL1 δ z) (alignC1 δ z) θ
   + (alignHt (alignL2 δ z) - 2 / 3) * clampTent (π / 16) (alignL2 δ z) (alignC2 δ z) θ
@@ -668,7 +672,7 @@ circle homeomorphism sending the four configuration breakpoints
 `θ_k` to the canonical step breakpoints `k·π/2` (`alignReparam_node_values`),
 strictly increasing (slope `w_z ≥ 2/3 > 0`), continuous, jointly continuous in
 `(z,θ)`, and quasi-periodic (the full-period integral of `w_z` is `2π`). -/
-private noncomputable def alignReparam (δ : ℝ) (z : ℂ) : ℝ → ℝ :=
+noncomputable def alignReparam (δ : ℝ) (z : ℂ) : ℝ → ℝ :=
   fun θ => π / 2 + ∫ t in (alignN1 δ z)..θ, alignDensity δ z t
 
 /-- `alignReparam` is an instance of the generic `integralReparam`: the anchor
@@ -803,7 +807,7 @@ function `κ`, the preliminary reparametrization `h₁`, and `0 < δ ≤ π/8`,
 `E_κ(z) := errorVector (radius (κ ∘ h₁ ∘ g_z))`, the error vector of the curve
 reconstructed from the curvature function `κ ∘ h₁ ∘ g_z`.  `E_κ(z) = 0` means
 exactly that this curve closes up. -/
-private noncomputable def kappaErrorMap (κ h₁ : ℝ → ℝ) (δ : ℝ) (z : ℂ) : ℂ :=
+noncomputable def kappaErrorMap (κ h₁ : ℝ → ℝ) (δ : ℝ) (z : ℂ) : ℂ :=
   errorVector (radius (κ ∘ h₁ ∘ alignReparam δ z))
 
 /-- **`E_κ` is continuous on the disk** (blueprint `lem:kappa_error_map_continuous`).

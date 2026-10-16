@@ -1,7 +1,9 @@
-import Gluck.Curve
-import Gluck.Curvature
-import Gluck.SpaceForm.Defs
-import Mathlib.Geometry.Euclidean.Sphere.Basic
+module
+
+public import Gluck.Curve
+public import Gluck.Curvature
+public import Gluck.SpaceForm.Defs
+public import Mathlib.Geometry.Euclidean.Sphere.Basic
 
 /-!
 # Definitions for forward four-vertex theorems
@@ -10,6 +12,8 @@ This subtree is deliberately independent of the converse development.  It
 packages the conclusions of the smooth and discrete forward four-vertex
 theorems, together with Dahlberg's local regularity condition.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

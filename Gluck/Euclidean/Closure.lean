@@ -1,6 +1,8 @@
-import Gluck.Curve
-import Gluck.Curvature
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+module
+
+public import Gluck.Curve
+public import Gluck.Curvature
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 
 /-!
 # Reconstruction and the closure condition
@@ -18,6 +20,8 @@ closure integrals `C(ρ) = ∫₀^{2π} cos θ ρ(θ) dθ` and
 `S(ρ) = ∫₀^{2π} sin θ ρ(θ) dθ` vanish.
 
 -/
+
+@[expose] public section
 
 namespace Gluck
 

@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.PolygonConvexity
+module
+
+public import Gluck.Discrete.PolygonConvexity
 
 /-!
 # Polygon simplicity from strict edge support
@@ -13,6 +15,8 @@ The two segment-separation proofs are extracted from the private lemmas in
 `a7ebc8ec01e77beefff2b38a4257e2f0ae09f3d5`. Their hypotheses do not require the
 circle-splice construction. No original forward file is changed.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

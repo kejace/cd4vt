@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import ForMathlib.Analysis.Complex.DiamondWinding
-import Mathlib.Tactic
+module
+
+public import ForMathlib.Analysis.Complex.DiamondWinding
+public import Mathlib.Tactic
 
 /-!
 # The rational field for a tangential square with side-contact labels
@@ -13,6 +15,8 @@ The four square corners carry alternating nonzero coefficients. Additional label
 may carry arbitrary coefficients at the four side contacts. These are the limiting
 vertices of a strict tangential polygon, not the final polygon itself.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.SideTangent
 

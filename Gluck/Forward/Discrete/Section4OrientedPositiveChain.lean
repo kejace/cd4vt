@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4GlobalContactOrientation
-import Gluck.Forward.Discrete.Section4PositiveChain
+module
+
+public import Gluck.Forward.Discrete.Section4GlobalContactOrientation
+public import Gluck.Forward.Discrete.Section4PositiveChain
 
 /-!
 # WLOG orientation of Dahlberg's Section 4 positive chain
@@ -15,6 +17,8 @@ the failure of the four-vertex conclusion.  Thus the finite positive run is
 available for the original polygon or its reversal, with no orientation
 assumption in the theorem statement.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

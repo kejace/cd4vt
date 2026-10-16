@@ -1,7 +1,9 @@
-import Gluck.Discrete.SideTangentField
-import ForMathlib.Analysis.InnerProductSpace.ProjectiveBalance
-import ForMathlib.Analysis.Complex.DiamondStability
-import Mathlib.Analysis.InnerProductSpace.Continuous
+module
+
+public import Gluck.Discrete.SideTangentField
+public import ForMathlib.Analysis.InnerProductSpace.ProjectiveBalance
+public import ForMathlib.Analysis.Complex.DiamondStability
+public import Mathlib.Analysis.InnerProductSpace.Continuous
 
 /-!
 # Persistence of the labelled side-tangent balancing field
@@ -10,6 +12,8 @@ All original coefficients stay fixed. Positivity of every projective denominator
 and all four boundary signs persist for nearby finite vertex configurations,
 so the perturbed configuration has an actual field zero.
 -/
+
+@[expose] public section
 
 open Set Filter
 open scoped Topology InnerProductSpace BigOperators

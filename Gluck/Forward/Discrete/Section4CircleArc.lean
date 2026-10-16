@@ -3,9 +3,11 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4CircleParameters
-import Gluck.Forward.Discrete.MinimalDiskBoundarySemicircle
-import Gluck.Forward.Discrete.Section4CircleSplice
+module
+
+public import Gluck.Forward.Discrete.Section4CircleParameters
+public import Gluck.Forward.Discrete.MinimalDiskBoundarySemicircle
+public import Gluck.Forward.Discrete.Section4CircleSplice
 
 /-!
 # The complementary minimal-circle arc in Dahlberg Section 4
@@ -15,6 +17,8 @@ splice.  The separate contact-order theorem only has to place every minimal
 circle contact in the chosen endpoint interval; minimality then forces that
 interval to span at least `π`.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

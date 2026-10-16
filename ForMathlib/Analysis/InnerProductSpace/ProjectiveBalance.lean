@@ -1,4 +1,6 @@
-import ForMathlib.Analysis.InnerProductSpace.ProjectiveBall
+module
+
+public import ForMathlib.Analysis.InnerProductSpace.ProjectiveBall
 
 /-!
 # Weighted balance under projective ball normalization
@@ -6,6 +8,8 @@ import ForMathlib.Analysis.InnerProductSpace.ProjectiveBall
 A zero of the finite rational field becomes an exact weighted balance of the
 transformed vertices. The coefficients themselves are unchanged.
 -/
+
+@[expose] public section
 
 open scoped BigOperators InnerProductSpace
 

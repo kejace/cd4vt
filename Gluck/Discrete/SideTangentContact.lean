@@ -1,4 +1,6 @@
-import Gluck.Discrete.SideTangentFan
+module
+
+public import Gluck.Discrete.SideTangentFan
 
 /-!
 # Central contacts of a tangential polygon
@@ -7,6 +9,8 @@ Consecutive tangent intersections lie on opposite sides of their common unit
 normal. This puts the incircle contact in the open central edge, with explicit
 positive distances and without an extra geometric hypothesis.
 -/
+
+@[expose] public section
 
 open scoped InnerProductSpace
 

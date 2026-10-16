@@ -3,12 +3,14 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.CrossedFourArcWinding
-import Gluck.Discrete.FourArcRectangle
-import Gluck.Discrete.N6TypeAThreeCellAnalytic
-import Gluck.Discrete.N6TypeAOrthogonalCore
-import Gluck.Discrete.OrthogonalResidualController
-import ForMathlib.Topology.Order.ParametricRoot
+module
+
+public import Gluck.Discrete.CrossedFourArcWinding
+public import Gluck.Discrete.FourArcRectangle
+public import Gluck.Discrete.N6TypeAThreeCellAnalytic
+public import Gluck.Discrete.N6TypeAOrthogonalCore
+public import Gluck.Discrete.OrthogonalResidualController
+public import ForMathlib.Topology.Order.ParametricRoot
 
 /-!
 # The planar R-cell branch of the Type-A three-cell selector
@@ -16,6 +18,8 @@ import ForMathlib.Topology.Order.ParametricRoot
 This file defines the two normalized residuals of the Type-A `R` cell and
 proves their four crossed boundary signs.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.N6TypeAThreeCell
 
@@ -91,12 +95,16 @@ theorem hasDerivAt_rResidualZeroReleased_one
   have hDelta : 0 < orthogonalDelta 1 u q v :=
     orthogonal_delta_pos_of_strict_alternation zero_lt_one hu hq hv
       hu1 huq hv1 hvq
+  have hsqrtDiff : DifferentiableAt ℝ (fun k ↦ √(orthogonalDelta k u q v)) 1 :=
+    (show DifferentiableAt ℝ (fun k ↦ orthogonalDelta k u q v) 1 by
+      unfold orthogonalDelta; fun_prop).sqrt hDelta.ne'
+  have hsqrtNe : √(orthogonalDelta 1 u q v) ≠ 0 := (Real.sqrt_pos.2 hDelta).ne'
   have hAdiff : DifferentiableAt ℝ (fun k ↦ rCoreSideA k u q v / 2) 1 := by
-    unfold rCoreSideA orthogonalDelta
-    fun_prop (disch := positivity)
+    unfold rCoreSideA
+    exact ((differentiableAt_const _).div hsqrtDiff hsqrtNe).div_const 2
   have hDdiff : DifferentiableAt ℝ (fun k ↦ rCoreSideD k u q v / 2) 1 := by
-    unfold rCoreSideD orthogonalDelta
-    fun_prop (disch := positivity)
+    unfold rCoreSideD
+    exact ((differentiableAt_const _).div hsqrtDiff hsqrtNe).div_const 2
   have hdata := r_core_realization_data zero_lt_one hu hq hv
     hu1 huq hv1 hvq
   have hsides := r_core_sides_pos zero_lt_one hu hq hv

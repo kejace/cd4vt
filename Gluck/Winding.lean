@@ -1,17 +1,19 @@
-import Mathlib.Analysis.SpecialFunctions.Complex.Circle
-import Mathlib.Topology.ContinuousMap.Basic
-import Mathlib.Topology.Order.IntermediateValue
-import Mathlib.Analysis.Normed.Group.Basic
-import Mathlib.Topology.MetricSpace.Basic
-import Mathlib.Analysis.Complex.RealDeriv
-import Mathlib.Analysis.Calculus.Deriv.Basic
-import Mathlib.Analysis.Calculus.ContDiff.Basic
-import Mathlib.Analysis.Real.Pi.Bounds
-import Mathlib.Topology.Homotopy.Lifting
-import Mathlib.Tactic
-import ForMathlib.Analysis.Complex.WindingNumber
-import Gluck.Euclidean.Closure
-import Gluck.Euclidean.Bicircle
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Complex.Circle
+public import Mathlib.Topology.ContinuousMap.Basic
+public import Mathlib.Topology.Order.IntermediateValue
+public import Mathlib.Analysis.Normed.Group.Basic
+public import Mathlib.Topology.MetricSpace.Basic
+public import Mathlib.Analysis.Complex.RealDeriv
+public import Mathlib.Analysis.Calculus.Deriv.Basic
+public import Mathlib.Analysis.Calculus.ContDiff.Basic
+public import Mathlib.Analysis.Real.Pi.Bounds
+public import Mathlib.Topology.Homotopy.Lifting
+public import Mathlib.Tactic
+public import ForMathlib.Analysis.Complex.WindingNumber
+public import Gluck.Euclidean.Closure
+public import Gluck.Euclidean.Bicircle
 
 /-!
 # The winding-number argument (topological core)
@@ -43,6 +45,8 @@ This file keeps only the project-facing surface:
 Blueprint: `blueprint/src/chapters/Gluck_Winding.tex` (`thm:existence_of_zero`).
 -/
 
+@[expose] public section
+
 namespace Gluck
 
 open scoped Real unitInterval
@@ -63,7 +67,7 @@ Everything *provable about* `windingNumberC` is nevertheless derived from the
 by lifting `g` along the exponential covering `Circle.exp` starting at a chosen
 real preimage of `g 0`.  It satisfies `Circle.exp (angleLift g t) = g t`
 (`angleLift_lifts`) and `angleLift g 0` is the chosen base preimage. -/
-private noncomputable def angleLift (g : C(I, Circle)) : C(I, ℝ) :=
+noncomputable def angleLift (g : C(I, Circle)) : C(I, ℝ) :=
   Circle.isCoveringMap_exp.liftPath g (Circle.exp_surjective (g 0)).choose
     (Circle.exp_surjective (g 0)).choose_spec.symm
 
@@ -76,19 +80,19 @@ private theorem angleLift_lifts (g : C(I, Circle)) (t : I) :
 
 /-- The **winding number** of a continuous loop `g : [0,1] → S¹` about the
 origin: the total angle increment of its lift, normalised by `2π`. -/
-private noncomputable def windingNumber (g : C(I, Circle)) : ℝ :=
+noncomputable def windingNumber (g : C(I, Circle)) : ℝ :=
   (angleLift g 1 - angleLift g 0) / (2 * π)
 
 /-- Radial projection of a nonzero complex number onto the unit circle,
 `z ↦ z / ‖z‖`. -/
-private noncomputable def circleProj (z : ℂ) (hz : z ≠ 0) : Circle :=
+noncomputable def circleProj (z : ℂ) (hz : z ≠ 0) : Circle :=
   ⟨z / (‖z‖ : ℂ), by
     rw [← SetLike.mem_coe, Submonoid.coe_unitSphere, mem_sphere_zero_iff_norm, norm_div,
       Complex.norm_real, Real.norm_eq_abs, abs_of_pos (norm_pos_iff.2 hz),
       div_self (norm_pos_iff.2 hz).ne']⟩
 
 /-- The normalised loop of a nonvanishing continuous loop `γ : [0,1] → ℂ`. -/
-private noncomputable def normLoop (γ : C(I, ℂ)) (h : ∀ t, γ t ≠ 0) : C(I, Circle) :=
+noncomputable def normLoop (γ : C(I, ℂ)) (h : ∀ t, γ t ≠ 0) : C(I, Circle) :=
   ⟨fun t => circleProj (γ t) (h t), by
     apply Continuous.subtype_mk
     exact γ.continuous.div
@@ -244,7 +248,7 @@ theorem windingNumberC_posScalarField (c : C(I, ℝ)) (hc : ∀ t, 0 < c t)
 
 /-- The reverse unit-circle parametrization `t ↦ e^{-2π i t}`, as a nonvanishing
 `ℂ`-loop. -/
-private noncomputable def negCircleExpLoop : C(I, ℂ) :=
+noncomputable def negCircleExpLoop : C(I, ℂ) :=
   ⟨fun t => Complex.exp (((-(2 * π * (t : ℝ)) : ℝ) : ℂ) * Complex.I), by fun_prop⟩
 
 /-- `negCircleExpLoop` is nowhere zero (the exponential never vanishes). -/
@@ -566,13 +570,13 @@ private theorem remainder_norm_le (δ C S : ℝ) (hδ : 0 < δ) (hδ' : δ ≤ �
 
 /-- The chord sum `V(z) = (e^{iθ₂} − e^{iθ₁}) + √2` (θ₁ = π/4+δ·z.re,
 θ₂ = 3π/4+δ·z.im); this is the bracket in `errorMap_eq`. -/
-private noncomputable def Vpart (δ : ℝ) (z : ℂ) : ℂ :=
+noncomputable def Vpart (δ : ℝ) (z : ℂ) : ℂ :=
   (Complex.exp (((3 * π / 4 + δ * z.im : ℝ) : ℂ) * Complex.I)
       - Complex.exp (((π / 4 + δ * z.re : ℝ) : ℂ) * Complex.I)) + (Real.sqrt 2 : ℂ)
 
 /-- The invertible linear model `L(z) = δ·e^{-iπ/4}·(z.re − i·z.im)` of `Vpart`
 at the centre. -/
-private noncomputable def Lpart (δ : ℝ) (z : ℂ) : ℂ :=
+noncomputable def Lpart (δ : ℝ) (z : ℂ) : ℂ :=
   (δ : ℂ) * Complex.exp ((↑(-(π / 4)) : ℂ) * Complex.I) * ((z.re : ℂ) - (z.im : ℂ) * Complex.I)
 
 /-- On the unit circle, the linear model has norm exactly `δ`. -/
@@ -615,7 +619,7 @@ private theorem Vpart_ne (δ : ℝ) (hδ : 0 < δ) (hδ' : δ ≤ π / 8) {z : �
   exact norm_pos_iff.1 this
 
 /-- Continuity of the chord-sum boundary loop `t ↦ Vpart δ (e^{2π i t})`. -/
-private theorem continuous_Vpart_boundary (δ : ℝ) :
+theorem continuous_Vpart_boundary (δ : ℝ) :
     Continuous (fun t : I => Vpart δ (((Circle.exp (2 * π * (t : ℝ)) : Circle) : ℂ))) := by
   have hz : Continuous (fun t : I => ((Circle.exp (2 * π * (t : ℝ)) : Circle) : ℂ)) :=
     continuous_subtype_val.comp
@@ -624,17 +628,17 @@ private theorem continuous_Vpart_boundary (δ : ℝ) :
   fun_prop
 
 /-- The chord-sum boundary loop `V|_{∂D}` of the error map. -/
-private noncomputable def errVloop (δ : ℝ) : C(I, ℂ) :=
+noncomputable def errVloop (δ : ℝ) : C(I, ℂ) :=
   ⟨fun t => Vpart δ (((Circle.exp (2 * π * (t : ℝ)) : Circle) : ℂ)), continuous_Vpart_boundary δ⟩
 
 /-- The error map's boundary loop `s·V|_{∂D}`, as a constant `s` times `errVloop`. -/
-private noncomputable def errSVloop (a b δ : ℝ) : C(I, ℂ) :=
+noncomputable def errSVloop (a b δ : ℝ) : C(I, ℂ) :=
   ⟨fun t => (1 / (Complex.I * (b : ℂ)) - 1 / (Complex.I * (a : ℂ))) * errVloop δ t,
     continuous_const.mul (errVloop δ).continuous⟩
 
 /-- The linear-model boundary loop `L|_{∂D} = δ·e^{-iπ/4}·e^{-2π i t}`, as a
 constant times `negCircleExpLoop`. -/
-private noncomputable def errLloop (δ : ℝ) : C(I, ℂ) :=
+noncomputable def errLloop (δ : ℝ) : C(I, ℂ) :=
   ⟨fun t => ((δ : ℂ) * Complex.exp ((↑(-(π / 4)) : ℂ) * Complex.I)) * negCircleExpLoop t,
     continuous_const.mul negCircleExpLoop.continuous⟩
 

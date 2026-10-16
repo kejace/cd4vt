@@ -1,6 +1,8 @@
-import Gluck.Discrete.NegativeCornerAnchorSelection
-import Gluck.Discrete.RepeatedMaximumAnchor
-import Gluck.Discrete.RegularFourAnchorCyclic
+module
+
+public import Gluck.Discrete.NegativeCornerAnchorSelection
+public import Gluck.Discrete.RepeatedMaximumAnchor
+public import Gluck.Discrete.RegularFourAnchorCyclic
 
 /-!
 # Regular four-edge anchors for every adjacent-unequal DFV word
@@ -12,6 +14,8 @@ negative flags give the opposite-pure orthogonal anchor. Every branch
 retains actual edge indices and actual derivative rank, and positive
 scaling and cyclic/reversed transport restore the original profile.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

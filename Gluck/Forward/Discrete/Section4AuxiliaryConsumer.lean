@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4AuxiliaryRigidity
-import Gluck.Forward.Discrete.MinimalDiskBoundaryRadius
+module
+
+public import Gluck.Forward.Discrete.Section4AuxiliaryRigidity
+public import Gluck.Forward.Discrete.MinimalDiskBoundaryRadius
 
 /-!
 # Consuming Dahlberg's Section 4 auxiliary polygon
@@ -17,6 +19,8 @@ alternative has curvature radius strictly smaller than the minimal radius,
 so convex-hull containment prevents its curvature disk from containing the
 auxiliary polygon.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

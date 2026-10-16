@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Challenge.Discrete.Converse
+module
+
+public import Challenge.Discrete.Converse
 
 /-!
 # Challenge: `Gluck/Discrete/TangentChord.lean`
@@ -11,6 +13,8 @@ import Challenge.Discrete.Converse
 Verbatim copies (docstrings abridged) of the definitions from `Gluck/Discrete/TangentChord.lean` that the challenge
 statements depend on, in the library's order and `open`/`variable` context.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

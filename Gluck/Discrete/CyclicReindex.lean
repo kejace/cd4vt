@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.Convexity
+module
+
+public import Gluck.Discrete.Convexity
 
 /-!
 # Cyclic reindexing of Euclidean realizations
@@ -14,6 +16,8 @@ rotate all developed edge vectors by one common phase, while cyclic reversal
 conjugates them up to a common phase. Positive turning then supplies simplicity
 for each reindexed development.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

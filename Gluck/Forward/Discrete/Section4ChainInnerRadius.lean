@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4PositiveChain
-import Gluck.Discrete.CircleMeshChordSupport
+module
+
+public import Gluck.Forward.Discrete.Section4PositiveChain
+public import Gluck.Discrete.CircleMeshChordSupport
 
 /-!
 # A uniform inner radius for the positive chain in Dahlberg Section 4
@@ -14,6 +16,8 @@ nonempty chain.  Their maximum distance from the minimal-disk centre is
 therefore a single radius `ρ < R`.  A sufficiently fine chord mesh on the
 minimal circle then strictly supports every one of these retained vertices.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

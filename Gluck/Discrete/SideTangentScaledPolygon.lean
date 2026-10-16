@@ -1,6 +1,8 @@
-import Gluck.Discrete.SideTangentDFV
-import Gluck.Discrete.SideTangentProjectiveFan
-import Gluck.Discrete.StrictSupportSimplicity
+module
+
+public import Gluck.Discrete.SideTangentDFV
+public import Gluck.Discrete.SideTangentProjectiveFan
+public import Gluck.Discrete.StrictSupportSimplicity
 
 /-!
 # Closed positive edge scaling preserves strict polygonal support
@@ -9,6 +11,8 @@ Integrate a zero-sum cyclic edge list, then use the ordered one-turn heading of
 an already strict polygon to prove support for its positive closed edge scaling.
 The scaled polygon's simplicity is a conclusion, never an assumption.
 -/
+
+@[expose] public section
 
 open scoped BigOperators InnerProductSpace
 

@@ -1,4 +1,6 @@
-import Gluck.Discrete.RegularFourAnchorTransport
+module
+
+public import Gluck.Discrete.RegularFourAnchorTransport
 
 /-!
 # Regular-anchor transport under cyclic and reflected endpoint order
@@ -6,6 +8,8 @@ import Gluck.Discrete.RegularFourAnchorTransport
 The controller identities are differentiated off the zero set. In
 particular cyclic transport retains its lifted-turn correction.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

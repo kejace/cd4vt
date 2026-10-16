@@ -1,4 +1,6 @@
-import Gluck.Discrete.SideTangentProjectiveFan
+module
+
+public import Gluck.Discrete.SideTangentProjectiveFan
 
 /-!
 # Regular unit-incircle polygons
@@ -6,6 +8,8 @@ import Gluck.Discrete.SideTangentProjectiveFan
 A strict tangential polygon for a constant profile needs no balancing argument.
 The regular fan supplies its unit normals, strict support and interior contacts.
 -/
+
+@[expose] public section
 
 open scoped InnerProductSpace
 

@@ -1,5 +1,7 @@
-import Gluck.Discrete.RegularFourAnchor
-import Gluck.Discrete.ConstantRunDFV
+module
+
+public import Gluck.Discrete.RegularFourAnchor
+public import Gluck.Discrete.ConstantRunDFV
 
 /-!
 # Removing and restoring one repeated cyclic reading
@@ -10,6 +12,8 @@ of the shorter word lifts to the original word, with its full derivative
 unchanged. This is a finite operation on actual indices, not a limiting
 argument about realizations.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.ConstantRun
 

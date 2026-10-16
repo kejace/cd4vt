@@ -1,6 +1,8 @@
-import Gluck.Discrete.NativeOppositePureDefs
-import Gluck.Discrete.CompactBoundaryIVT
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
+module
+
+public import Gluck.Discrete.NativeOppositePureDefs
+public import Gluck.Discrete.CompactBoundaryIVT
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
 
 /-!
 # An explicit inward chart for the first-pair construction
@@ -10,6 +12,8 @@ arctangent chart even away from the temporary `α = π / 2` boundary.
 This avoids an implicit-continuation hypothesis for these two equations.
 Existence of a zero of the remaining high seam is a separate step.
 -/
+
+@[expose] public section
 
 open Set
 open scoped Topology

@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4CircleSplice
-import Gluck.Discrete.CircleMeshChordSupport
+module
+
+public import Gluck.Forward.Discrete.Section4CircleSplice
+public import Gluck.Discrete.CircleMeshChordSupport
 
 /-!
 # A sufficiently fine circle mesh
@@ -14,6 +16,8 @@ subdivision of any positive arc shorter than one full turn whose chords
 strictly support a prescribed concentric inner disk.  The final theorem
 combines this density choice with `CircleMeshChordSupport`.
 -/
+
+@[expose] public section
 
 open Set Metric Filter
 open scoped Topology

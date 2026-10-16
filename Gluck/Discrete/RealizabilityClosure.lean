@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.ClosingCell
-import Gluck.Discrete.CollaredConverse
+module
+
+public import Gluck.Discrete.ClosingCell
+public import Gluck.Discrete.CollaredConverse
 
 /-!
 # Closedness of uniformly interior realizations
@@ -14,6 +16,8 @@ coordinate box and whose moderate-arc walls retain one positive margin has a
 closed profile projection. Consequently, realizability passes to a profile
 limit whenever these two quantitative margins are uniform.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 
@@ -51,12 +55,12 @@ theorem closureMapR3_eq_zero_iff [NeZero n] (kappa ell : ZMod n → ℝ) :
     · simp only [closureMapR3, Prod.snd_zero]
       linarith
 
-private def uniformWallCarrier (K : Set (ZMod n → ℝ)) (eta : ℝ) :
+def uniformWallCarrier (K : Set (ZMod n → ℝ)) (eta : ℝ) :
     Set ((ZMod n → ℝ) × K) :=
   {p | ∀ i, |p.1 i| * (p.2.1 (i - 1) / 2) ≤ 1 - eta ∧
     |p.1 i| * (p.2.1 i / 2) ≤ 1 - eta}
 
-private def closedRealizationCarrier [NeZero n] (K : Set (ZMod n → ℝ)) (eta : ℝ) :
+def closedRealizationCarrier [NeZero n] (K : Set (ZMod n → ℝ)) (eta : ℝ) :
     Set ((ZMod n → ℝ) × K) :=
   uniformWallCarrier K eta ∩ {p | closureMapR3 (p.1, p.2.1) = 0}
 

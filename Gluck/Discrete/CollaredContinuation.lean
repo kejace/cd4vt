@@ -3,9 +3,11 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Mathlib.Analysis.Calculus.Implicit
-import Mathlib.Topology.Connected.Clopen
-import Mathlib.Topology.Maps.Proper.Basic
+module
+
+public import Mathlib.Analysis.Calculus.Implicit
+public import Mathlib.Topology.Connected.Clopen
+public import Mathlib.Topology.Maps.Proper.Basic
 
 /-!
 # Abstract collared continuation
@@ -25,6 +27,8 @@ second option is essential when interior Jacobians can be singular: the collar
 hypothesis alone does not imply local openness and does not manufacture the
 zero-free moving boundary required by a degree argument.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

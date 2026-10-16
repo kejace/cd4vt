@@ -1,4 +1,6 @@
-import Gluck.Discrete.CircleParameterGeometry
+module
+
+public import Gluck.Discrete.CircleParameterGeometry
 
 /-!
 # Circle parameters for Dahlberg's Section 4 construction
@@ -8,6 +10,8 @@ lifts.  Besides the standard `[0, 2π)` window, the main API allows an
 arbitrary base angle `β`; this is the form needed to order a finite family of
 minimal-circle contacts relative to a chosen endpoint of the positive chain.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

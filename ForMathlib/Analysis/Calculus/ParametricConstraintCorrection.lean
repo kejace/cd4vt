@@ -1,4 +1,6 @@
-import Mathlib.Analysis.Calculus.ImplicitContDiff
+module
+
+public import Mathlib.Analysis.Calculus.ImplicitContDiff
 
 /-!
 # Parametric correction of regular constraints
@@ -11,6 +13,8 @@ and fixes points which already satisfy the equation.
 This is an application of Mathlib's implicit function theorem, not a new
 implicit function theorem. No project-specific declarations are imported.
 -/
+
+@[expose] public section
 
 open Filter Set
 open scoped Topology ContDiff

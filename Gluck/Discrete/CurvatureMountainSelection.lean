@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.N6MonotoneResidue
-import Mathlib.Order.Interval.Set.Monotone
+module
+
+public import Gluck.Discrete.N6MonotoneResidue
+public import Mathlib.Order.Interval.Set.Monotone
 
 /-!+# Selecting the highest secondary curvature peak
 
@@ -15,6 +17,8 @@ decreasing afterward. All paths use actual consecutive cyclic indices.
 This formalizes the order-theoretic one-mountain reduction; it does not
 construct a geometric realization or assume a bound on the word length.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

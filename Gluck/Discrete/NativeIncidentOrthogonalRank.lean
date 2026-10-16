@@ -1,4 +1,6 @@
-import Gluck.Discrete.NativeOrderedFirstPair
+module
+
+public import Gluck.Discrete.NativeOrderedFirstPair
 
 /-!
 # Native rank with endpoints below their incident pure peaks
@@ -7,6 +9,8 @@ The derivative is taken in genuine angle and half-length coordinates.
 This module first treats the chamber in which the second pure turn is
 at least a right angle, including the equal-pure-curvature case.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.NativeOppositePure
 

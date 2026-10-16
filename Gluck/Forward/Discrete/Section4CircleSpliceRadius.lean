@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4CircleSplice
-import Gluck.Forward.Discrete.CircleSemicircleRadiusObstruction
+module
+
+public import Gluck.Forward.Discrete.Section4CircleSplice
+public import Gluck.Forward.Discrete.CircleSemicircleRadiusObstruction
 
 /-!
 # Radius obstruction carried by an odd Section 4 circle mesh
@@ -14,6 +16,8 @@ subintervals, so its central inserted vertex is the exact angular midpoint.
 The two retained boundary endpoints and that midpoint therefore certify the
 minimal radius whenever the completion arc spans at least a semicircle.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

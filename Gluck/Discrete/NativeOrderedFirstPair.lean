@@ -1,6 +1,8 @@
-import Gluck.Discrete.NativeOppositePurePhysical
-import Gluck.Discrete.NativeFirstPairFlag
-import Gluck.Discrete.N6TypeAThreeCellR
+module
+
+public import Gluck.Discrete.NativeOppositePurePhysical
+public import Gluck.Discrete.NativeFirstPairFlag
+public import Gluck.Discrete.N6TypeAThreeCellR
 
 /-!
 # Native anchors from an ordered first failed pair
@@ -9,6 +11,8 @@ The crossed-rectangle existence theorem is reused with its original
 principal residuals and all endpoint guards. No new winding argument is
 introduced here.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.NativeOppositePure
 

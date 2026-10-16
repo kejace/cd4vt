@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.MonotoneCuts
+module
+
+public import Gluck.Discrete.MonotoneCuts
 
 /-!
 # The finite two-block carrier skeleton at six labels
@@ -18,6 +20,8 @@ regrouping faces.  The oriented nine-cell chain is checked combinatorially:
 every triangular face has exactly two occurrences with opposite incidence.
 Nothing here asserts a closure zero or an analytic degree.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 namespace N6Carrier

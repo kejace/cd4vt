@@ -1,4 +1,6 @@
-import Mathlib.Tactic
+module
+
+public import Mathlib.Tactic
 
 /-!
 # Exact polynomial exclusion in the one-sided projective chamber
@@ -9,6 +11,8 @@ The polynomials are the two quadratics in equation (21) of
 `research/notes/TOP_TWO_MIXED_ORTHOGONAL_RANK_RESULT.md`. This file proves their sign
 on the forced interval; the native rank-to-interval reduction is separate.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.NativeIncidentProjective
 

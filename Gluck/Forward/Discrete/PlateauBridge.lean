@@ -1,11 +1,15 @@
-import Gluck.Forward.Kernel
-import Gluck.Discrete.TabachnikovReduction
+module
+
+public import Gluck.Forward.Kernel
+public import Gluck.Discrete.TabachnikovReduction
 
 /-! # The two formal plateau-extremum vocabularies
 
 Alternating plateau-aware extrema in Dahlberg's forward theorem yield the
 strict level window and distinct plateau runs used in the converse theorem.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4ContactOrientation
-import Gluck.Discrete.CircleParameterGeometry
+module
+
+public import Gluck.Forward.Discrete.Section4ContactOrientation
+public import Gluck.Discrete.CircleParameterGeometry
 
 /-!
 # Alternating boundary data force a chord crossing
@@ -20,6 +22,8 @@ polygonal chain with the same endpoints as the chord.  Replacing the chord
 by that chain is precisely the polygonal Jordan/crosscut step still needed
 for a full exposed-contact order theorem.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

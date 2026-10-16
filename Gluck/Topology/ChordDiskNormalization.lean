@@ -3,12 +3,14 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Mathlib.Analysis.Complex.Basic
-import Mathlib.Analysis.Convex.GaugeRescale
-import Mathlib.Analysis.Normed.Module.FiniteDimension
-import Mathlib.LinearAlgebra.Basis.Fin
-import Mathlib.LinearAlgebra.Complex.FiniteDimensional
-import Mathlib.Tactic
+module
+
+public import Mathlib.Analysis.Complex.Basic
+public import Mathlib.Analysis.Convex.GaugeRescale
+public import Mathlib.Analysis.Normed.Module.FiniteDimension
+public import Mathlib.LinearAlgebra.Basis.Fin
+public import Mathlib.LinearAlgebra.Complex.FiniteDimensional
+public import Mathlib.Tactic
 
 /-!
 # Normalize two crossing disk chords to the coordinate axes
@@ -23,13 +25,15 @@ This is the normalization needed before applying a rectangle crossing theorem
 to paths with arbitrary alternating endpoints on a circle.
 -/
 
+@[expose] public section
+
 noncomputable section
 
 open Filter Metric Set Bornology
 
 namespace Gluck.Topology
 
-private theorem pair_span_eq_top {u v : ℂ}
+theorem pair_span_eq_top {u v : ℂ}
     (hli : LinearIndependent ℝ ![u, v]) :
     Submodule.span ℝ (Set.range ![u, v]) = ⊤ := by
   apply hli.span_eq_top_of_card_eq_finrank

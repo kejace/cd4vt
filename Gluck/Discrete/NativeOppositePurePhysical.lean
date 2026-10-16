@@ -1,4 +1,6 @@
-import Gluck.Discrete.NativeOppositePureNativeRank
+module
+
+public import Gluck.Discrete.NativeOppositePureNativeRank
 
 /-!
 # Physical half-lengths for the opposite-pure slot model
@@ -7,6 +9,8 @@ Every active half-length is positive. The eight inequalities below are
 the literal endpoint incidence walls of the slots
 `(1,1), (p,t), (q,q), (h,l)`, in cyclic edge order.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.NativeOppositePure
 

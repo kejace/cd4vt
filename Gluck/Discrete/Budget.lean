@@ -1,4 +1,6 @@
-import Gluck.Discrete.Defs
+module
+
+public import Gluck.Discrete.Defs
 
 /-!
 # The discrete obstruction zoo
@@ -23,6 +25,8 @@ counting, and complex-closure cores below are Defs-independent and proved
 directly from Mathlib.
 
 -/
+
+@[expose] public section
 
 open Real
 

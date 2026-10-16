@@ -1,4 +1,6 @@
-import Gluck.Discrete.NativeOrderedFirstPair
+module
+
+public import Gluck.Discrete.NativeOrderedFirstPair
 
 /-!
 # Exact angle coordinates of the orthogonal four-edge core
@@ -7,6 +9,8 @@ The identities concern the actual positive half-lengths and principal acute
 angles. They provide the coordinate bridge for the incident-endpoint rank
 calculation; no derivative-rank assumption is made here.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.NativeOppositePure
 

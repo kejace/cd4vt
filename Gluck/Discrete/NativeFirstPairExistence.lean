@@ -1,8 +1,10 @@
-import Gluck.Discrete.NativeFirstPairInterior
-import Gluck.Discrete.NativeFirstPairWall
-import Gluck.Discrete.NativeFirstPairFlag
-import Gluck.Discrete.NativeFirstPairBoundaryDerivative
-import Gluck.Discrete.NativeOppositePureClosure
+module
+
+public import Gluck.Discrete.NativeFirstPairInterior
+public import Gluck.Discrete.NativeFirstPairWall
+public import Gluck.Discrete.NativeFirstPairFlag
+public import Gluck.Discrete.NativeFirstPairBoundaryDerivative
+public import Gluck.Discrete.NativeOppositePureClosure
 
 /-!
 # Assembly of the physical first-pair construction
@@ -14,6 +16,8 @@ endpoint while still strictly inside the original incidence wall. The
 proved inward derivative then produces a strict root, including equality
 in the original flag. There is no added existence or continuation premise.
 -/
+
+@[expose] public section
 
 open Set
 

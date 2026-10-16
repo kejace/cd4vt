@@ -1,5 +1,7 @@
-import Gluck.Discrete.RegularFourAnchor
-import Gluck.Discrete.FirstPairMountainSelector
+module
+
+public import Gluck.Discrete.RegularFourAnchor
+public import Gluck.Discrete.FirstPairMountainSelector
 
 /-!
 # Retaining the first-pair anchor before opening dormant edges
@@ -7,6 +9,8 @@ import Gluck.Discrete.FirstPairMountainSelector
 The selected data can be lifted to a word with constant runs before any
 edges are opened. No closedness property of `RealizesR2` is used.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

@@ -1,5 +1,7 @@
-import Gluck.Discrete.UniversalRegularFourAnchor
-import Gluck.Discrete.RegularFourAnchorConverse
+module
+
+public import Gluck.Discrete.UniversalRegularFourAnchor
+public import Gluck.Discrete.RegularFourAnchorConverse
 
 /-!
 # The coherent discrete converse for every polygon size at least four
@@ -12,6 +14,8 @@ positive. Positive constant profiles use the regular polygon.
 The conclusion is the original `TabachnikovProblem2`: all original
 curvatures, moderate arcs, closure, lifted full turn, and simplicity.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

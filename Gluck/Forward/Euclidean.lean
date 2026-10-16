@@ -1,6 +1,10 @@
-import Gluck.Forward.Discrete.DahlbergExact
+module
+
+public import Gluck.Forward.Discrete.DahlbergExact
 
 /-! Euclidean discrete reductions for Dahlberg's four-vertex theorem. -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

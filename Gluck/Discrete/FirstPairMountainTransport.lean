@@ -1,6 +1,8 @@
-import Gluck.Discrete.FirstPairMountainSelector
-import Gluck.Discrete.CyclicReindex
-import Gluck.Discrete.RealizesR2Scale
+module
+
+public import Gluck.Discrete.FirstPairMountainSelector
+public import Gluck.Discrete.CyclicReindex
+public import Gluck.Discrete.RealizesR2Scale
 
 /-!
 # Both mountain legs and transport to the original profile
@@ -11,6 +13,8 @@ original profile. Hence the remaining unique-maximum branch has two
 strictly negative normalized terminal flags, without choosing or assuming
 a geometric anchor.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

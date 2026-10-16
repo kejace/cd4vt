@@ -1,5 +1,7 @@
-import Gluck.Discrete.PolygonConvexity
-import Mathlib.Analysis.SpecialFunctions.Complex.CircleMap
+module
+
+public import Gluck.Discrete.PolygonConvexity
+public import Mathlib.Analysis.SpecialFunctions.Complex.CircleMap
 
 /-!
 # Positively ordered points on a Euclidean circle
@@ -9,6 +11,8 @@ auxiliary polygon is completed by inserting vertices along a circle arc.  The
 factorized cross-product formula makes strict left support a direct consequence
 of positive cyclic angle gaps.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 
