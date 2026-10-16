@@ -1,0 +1,38 @@
+/* Front page: a plain document in the old style. Loaded after the shared
+   stylesheets and scoped to body.home, so the other pages are unaffected. */
+body.home{--paper:#fff;--ink:#000;--muted:#333;--line:#999;--teal:#000080;
+  background:#fff;color:#000;font:17px/1.5 "Times New Roman",Times,serif}
+body.home .site-main{width:auto;max-width:62em;margin:0 auto;padding:1em 16px 0}
+body.home a{color:#00e;text-decoration:underline;text-underline-offset:auto}
+body.home a:visited{color:#551a8b}
+body.home h1{font:bold 2em/1.2 "Times New Roman",Times,serif;letter-spacing:0;text-align:center;margin:.8em 0 .3em}
+body.home h2{font:bold 1.4em/1.3 "Times New Roman",Times,serif;letter-spacing:0;margin:1.2em 0 .5em}
+body.home .author{text-align:center;font-size:1.15em;margin:0 0 .6em}
+body.home .links{text-align:center;margin:0 0 1em}
+body.home hr{border:0;border-top:1px solid #808080;margin:1.5em 0}
+body.home code{font:.9em "Courier New",Courier,monospace;overflow-wrap:anywhere}
+body.home .theorems li{margin:.25em 0}
+body.home address{font-style:italic;font-size:.95em;padding-bottom:1.5em}
+
+/* Playground: same markup and behaviour, without the card styling. */
+body.home .experiment{border:0;padding-top:0}
+body.home .eyebrow{display:none}
+body.home .experiment-heading p,body.home .proof-scope,body.home .hint,body.home .plot-caption,
+body.home .explanation p,body.home .polygon-options,body.home .polygon-options span,
+body.home .controls label,body.home .reading,body.home .metrics dt,body.home .path-control p,
+body.home .paste summary,body.home .paste label,body.home .status-bar{font-size:15px;letter-spacing:0;color:#000;font-family:"Times New Roman",Times,serif}
+body.home .proof-scope{background:none;border:0;padding:0;font-style:italic}
+body.home .panel,body.home .paste,body.home .path-control,body.home .status-bar,
+body.home .reading input,body.home .paste textarea{border-radius:0;background:#fff;box-shadow:none}
+body.home .panel,body.home .paste{border:1px solid #808080}
+body.home .status-bar{border:1px dashed #808080}
+body.home .status-bar[data-state="branch"],body.home .status-bar[data-state="invalid"],body.home .status-bar[data-state="failed"]{color:#a00000}
+body.home .panel-heading h2,body.home .explanation h2{font:bold 1.15em "Times New Roman",Times,serif}
+body.home .controls button,body.home .panel-heading button,body.home .paste button,
+body.home .controls select,body.home #new-realization{all:revert}
+body.home .engine-badge{border:0;border-radius:0;font-size:13px;letter-spacing:0;color:#000;font-family:"Courier New",Courier,monospace}
+body.home .metrics dd{color:#000;font-family:"Courier New",Courier,monospace}
+body.home .reading.active input{border-color:#000;box-shadow:none}
+body.home #polygon-empty{color:#808080;font-family:"Times New Roman",Times,serif}
+body.home .site-bottom{display:block;font-family:"Times New Roman",Times,serif;border:0;padding:0 16px;max-width:62em;margin:0 auto;font-size:17px;color:#000}
+body.home .site-bottom hr{margin-top:2em}
