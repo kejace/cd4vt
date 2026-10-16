@@ -2,18 +2,11 @@ module
 
 public import Gluck.Forward.Kernel
 public import Gluck.Discrete.TangentChord
+public import Gluck.Statements
 
 @[expose] public section
 
 namespace Gluck.Forward
-
-def DahlbergRegularAt (A B C : ℂ) : Prop :=
-  (Gluck.Discrete.crossR2 A B C = 0 ∧ B ∈ segment ℝ A C) ∨
-    ∃ O R, CircumcircleR2 A B C O R ∧ InVertexCone A B C O
-
-/-- Every vertex of a cyclic Euclidean polygon is regular in Dahlberg's sense. -/
-def DahlbergRegular {n : ℕ} (v : ZMod n → ℂ) : Prop :=
-  ∀ i, DahlbergRegularAt (v (i - 1)) (v i) (v (i + 1))
 
 /-- All vertices lie on one Euclidean circle. -/
 def Concyclic {n : ℕ} (v : ZMod n → ℂ) : Prop :=
@@ -151,10 +144,6 @@ theorem ne_of_onDiskBoundaryR2_of_dist_lt {n : ℕ}
   intro hij
   subst j
   exact (not_onDiskBoundaryR2_of_dist_lt hinterior) hboundary
-
-/-- The signed-Menger curvature profile of a cyclic Euclidean polygon. -/
-noncomputable def SignedMengerProfile {n : ℕ} (v : ZMod n → ℂ) : ZMod n → ℝ :=
-  fun i => Gluck.Discrete.signedMengerR2 (v (i - 1)) (v i) (v (i + 1))
 
 /-- The signed-Menger profile unfolds to the signed curvature of the adjacent
 vertex triple. -/

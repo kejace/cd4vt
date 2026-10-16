@@ -6,6 +6,7 @@ Authors: kejace
 module
 
 public import Gluck.Discrete.TangentChord
+public import Gluck.Statements
 
 /-!
 # Discrete local regularity (Dahlberg admissibility)
@@ -44,16 +45,6 @@ open Complex (normSq)
 variable {n : ℕ}
 
 /-! ## Circumcenters of vertex triples -/
-
-/-- The circumcenter of the plane triple `p, q, r`, in closed form: with
-`u = q - p`, `w = r - p`,
-`c = p + i (|w|² u - |u|² w) / (2 crossR2 p q r)`. A total function; its
-characterizing properties hold under the non-collinearity guard
-`crossR2 p q r ≠ 0`. Center of Dahlberg's discrete circle of curvature
-through the triple. -/
-noncomputable def circumcenterR2 (p q r : ℂ) : ℂ :=
-  p + Complex.I * ((normSq (r - p) : ℝ) * (q - p) - (normSq (q - p) : ℝ) * (r - p))
-      / (2 * (crossR2 p q r : ℂ))
 
 /-- The signed twice-area as the imaginary part of the Hermitian product of
 the two edge vectors at `A`. -/
@@ -497,24 +488,10 @@ theorem locallyRegular_development_moderate [NeZero n] {κ ℓ : ZMod n → ℝ}
 
 /-! ## Coherence: the circumcenter in the open vertex cone -/
 
-/-- The open vertex cone at vertex `i`: strictly positive combinations of the
-two incident edge vectors. Tabachnikov's *coherence* asks the circumcenter of
-each consecutive triple to lie inside this cone. -/
-def vertexCone (v : ZMod n → ℂ) (i : ZMod n) : Set ℂ :=
-  {z | ∃ s t : ℝ, 0 < s ∧ 0 < t ∧
-    z = v i + (s : ℂ) * (v (i - 1) - v i) + (t : ℂ) * (v (i + 1) - v i)}
-
 lemma vertexCone_subset_vertexSector (v : ZMod n → ℂ) (i : ZMod n) :
     vertexCone v i ⊆ vertexSector v i := by
   rintro z ⟨s, t, hs, ht, rfl⟩
   exact ⟨s, t, hs.le, ht.le, rfl⟩
-
-/-- **Coherent polygon** (Tabachnikov, arXiv:0710.5902, Problem 2): every
-consecutive triple is non-collinear and the center of its circumscribed
-circle lies inside the open cone of the middle vertex. -/
-def CoherentR2 (v : ZMod n → ℂ) : Prop :=
-  ∀ i : ZMod n, crossR2 (v i) (v (i - 1)) (v (i + 1)) ≠ 0 ∧
-    circumcenterR2 (v i) (v (i - 1)) (v (i + 1)) ∈ vertexCone v i
 
 lemma CoherentR2.locallyRegularR2 {v : ZMod n → ℂ} (h : CoherentR2 v) :
     LocallyRegularR2 v :=
@@ -650,23 +627,6 @@ theorem coherent_development_moderate [NeZero n] {κ ℓ : ZMod n → ℝ}
   exact circumcenterR2_mem_openCone_of_lt hcross hre_lt
 
 /-! ## Plateau-aware local extrema on a cyclic profile -/
-
-/-- A plateau local-maximum run for `f`, recorded by an `ℕ`-lift `a` and a
-run length `k`: `f` is constant on the lifted run `a, a+1, …, a+k` (as
-residues) and drops strictly at both extended ends. Dahlberg's `I(f,P)/Î`
-vocabulary in existential form: a constant run with strict drops at both
-ends is automatically the maximal plateau through any of its points. -/
-def PlateauMaxRun (f : ZMod n → ℝ) (a k : ℕ) : Prop :=
-  (∀ m ≤ k, f ((a + m : ℕ) : ZMod n) = f (a : ZMod n)) ∧
-    f ((a : ZMod n) - 1) < f (a : ZMod n) ∧
-    f ((a + k + 1 : ℕ) : ZMod n) < f (a : ZMod n)
-
-/-- A plateau local-minimum run: as `PlateauMaxRun` with the strict
-inequalities reversed. -/
-def PlateauMinRun (f : ZMod n → ℝ) (a k : ℕ) : Prop :=
-  (∀ m ≤ k, f ((a + m : ℕ) : ZMod n) = f (a : ZMod n)) ∧
-    f (a : ZMod n) < f ((a : ZMod n) - 1) ∧
-    f (a : ZMod n) < f ((a + k + 1 : ℕ) : ZMod n)
 
 /-- **Plateau local maximum** (Dahlberg): `i` lies on a constant run of `f`
 of length `< n` whose two extended neighbours drop strictly below the run

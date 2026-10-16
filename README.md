@@ -26,7 +26,9 @@ three consecutive supporting lines.
 | `ForMathlib/` | self-contained generalisations, Mathlib-only imports, staged for upstreaming |
 | `scripts/axioms.lean` | `#print axioms` for the paper's displayed theorems |
 | `formalization.yaml` | project metadata in the [formalization.yaml](https://github.com/mathlib-initiative/formalization.yaml) format |
-| `comparator/` | [Comparator](https://github.com/leanprover/comparator) statement/axiom/kernel audit |
+| `Challenge.lean`, `Solution.lean`, `comparator.json` | [Comparator](https://github.com/leanprover/comparator) check: the six statements and their definitions, importing only Mathlib, against the library |
+| `Gluck/Statements.lean` | the definitions used in the main statements, repeated verbatim in `Challenge.lean` |
+| `scripts/verify-comparator.sh` | runs `lake comparator` as Palomar does |
 | `scripts/build-paper`, `scripts/package-arxiv-discrete` | paper build and arXiv packaging |
 | `site/`, `scripts/build-site` | website (GitHub Pages): construction overview, playground, proof map, blueprint |
 | `tools/discrete_playground/` | playground solver source and the paper's figure generators |
@@ -58,6 +60,21 @@ lake exe cache get        # prebuilt Mathlib
 lake build
 lake env lean scripts/axioms.lean
 ```
+
+`Challenge.lean` states the six theorems with `sorry`, together with every
+definition they depend on, and imports only Mathlib. `lake comparator` (bundled
+with the Lean toolchain; needs `bwrap`) checks that the library proves exactly
+these statements with only the three standard axioms, under the Lean, NanoDa and
+con-ron kernels:
+
+```bash
+scripts/verify-comparator.sh
+```
+
+The challenge's definitions are those of `Gluck/Statements.lean`, copied
+verbatim; keep the two in step. They live in one module because Lean shares
+auto-generated auxiliary proofs (such as `foo._proof_1`) between the
+declarations of a module, and Comparator compares these names too.
 
 The paper needs pdfLaTeX and BibTeX:
 

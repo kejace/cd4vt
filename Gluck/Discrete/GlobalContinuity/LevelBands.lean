@@ -7,6 +7,7 @@ module
 
 public import Gluck.Discrete.GraftContraction
 public import Mathlib.Topology.Order.IntermediateValue
+public import Gluck.Statements
 
 /-!
 # An admissible path without a continuous DFV-level selection
@@ -19,9 +20,6 @@ global polygon selection. See README.md for the separate smooth argument.
 @[expose] public section
 
 namespace Gluck.Discrete.GlobalContinuity
-
-def bandProfile (s : ℝ) : ZMod 6 → ℝ :=
-  ![14, 11, 10 + 3 * s, 5, 7 - 3 * s, 3]
 
 theorem continuous_bandProfile : Continuous bandProfile := by
   apply continuous_pi

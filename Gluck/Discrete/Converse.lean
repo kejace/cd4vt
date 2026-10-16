@@ -8,6 +8,7 @@ module
 public import Gluck.Discrete.Convexity
 public import Gluck.Discrete.LocalRegularity
 public import Gluck.Discrete.N4Moderate
+public import Gluck.Statements
 
 /-!
 # The discrete converse (Euclidean, positive)
@@ -35,16 +36,6 @@ namespace Gluck.Discrete
 variable {n : ℕ}
 
 /-! ## The discrete four-vertex window -/
-
-/-- **Discrete four-vertex window**: the profile `κ : ZMod n → ℝ` admits four
-cyclically ordered indices — represented by `ℕ`-lifts
-`i₁ < i₂ < i₃ < i₄ < i₁ + n` — whose values alternate across the level `c`:
-`κ i₂, κ i₄ < c < κ i₁, κ i₃`. The hypothesis shape matches
-`dfv_plateau_extrema` verbatim. -/
-def DFV (κ : ZMod n → ℝ) (c : ℝ) : Prop :=
-  ∃ i₁ i₂ i₃ i₄ : ℕ, i₁ < i₂ ∧ i₂ < i₃ ∧ i₃ < i₄ ∧ i₄ < i₁ + n ∧
-    c < κ ((i₁ : ℕ) : ZMod n) ∧ κ ((i₂ : ℕ) : ZMod n) < c ∧
-    c < κ ((i₃ : ℕ) : ZMod n) ∧ κ ((i₄ : ℕ) : ZMod n) < c
 
 /-- **Positive discrete four-vertex hypothesis**: all values positive, and the
 profile is constant or admits a four-vertex window at some positive level. -/

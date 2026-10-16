@@ -4,6 +4,7 @@ public import Gluck.Curve
 public import Gluck.Curvature
 public import Gluck.SpaceForm.Defs
 public import Mathlib.Geometry.Euclidean.Sphere.Basic
+public import Gluck.Statements
 
 /-!
 # Definitions for forward four-vertex theorems
@@ -2553,10 +2554,6 @@ theorem exists_adjacent_lt_or_gt_of_not_constant {n : ℕ} [NeZero n]
   · exact False.elim (hi heq)
   · exact ⟨i, Or.inr hgt⟩
 
-/-- A Euclidean circle with centre `O` and positive radius `R` through a triple. -/
-def CircumcircleR2 (A B C O : ℂ) (R : ℝ) : Prop :=
-  0 < R ∧ dist O A = R ∧ dist O B = R ∧ dist O C = R
-
 /-- A positive circumcircle is equivalently a bundled Euclidean sphere containing
 the three points. The positive-radius condition remains explicit. -/
 theorem circumcircleR2_iff_pos_and_mem_sphere (A B C O : ℂ) (R : ℝ) :
@@ -2565,11 +2562,5 @@ theorem circumcircleR2_iff_pos_and_mem_sphere (A B C O : ℂ) (R : ℝ) :
         B ∈ (⟨O, R⟩ : EuclideanGeometry.Sphere ℂ) ∧
           C ∈ (⟨O, R⟩ : EuclideanGeometry.Sphere ℂ) := by
   simp only [CircumcircleR2, EuclideanGeometry.mem_sphere']
-
-/-- The closed convex vertex cone at `B`, spanned by the rays toward `A` and
-`C`.  Dahlberg's regularity asks that the circumcenter lie in this cone. -/
-def InVertexCone (A B C O : ℂ) : Prop :=
-  ∃ a b : ℝ, 0 ≤ a ∧ 0 ≤ b ∧
-    O - B = (a : ℂ) * (A - B) + (b : ℂ) * (C - B)
 
 end Gluck.Forward
