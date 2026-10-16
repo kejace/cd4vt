@@ -20,7 +20,6 @@ python3 -m http.server -d _site 8000
 ```
 
 The blueprint book under `blueprint/` is generated output, extracted from the
-gluck project's website build. Its provenance files (`blueprint/discrete/*provenance*.json`,
-`blueprint/discrete/proof-audit/`) record the gluck revisions and audits it was
-built from. One link to a declaration outside this library
+gluck project's website build. Its provenance file (`blueprint/discrete/proof-provenance.json`) records the
+gluck revisions it was built from; gluck's audit snapshots are not included. One link to a declaration outside this library
 (`Gluck.Hyperbolic.poincareMiranda_rect`) was removed.

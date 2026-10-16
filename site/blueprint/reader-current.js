@@ -34,14 +34,6 @@ function annotate() {
   if (!doc || !kind || doc.querySelector(':scope > .reader-scope')) return;
   const aside=document.createElement('aside');aside.className='reader-scope';
   aside.innerHTML=`<a href="/web/blueprint/">All projects</a> · <a href="/web/#playground">Playground</a><p>The paper and its supporting proofs, with linked Lean declarations. <a href="/paper/tabachnikov-converse.pdf">The paper</a>.</p>`;
-  if (kind==='discrete') {
-    const evidence=document.createElement('p');
-    evidence.innerHTML='Audited proof sources: <a href="./discrete/proof-audit/menger-characterization-audit/COMPLETE.md">Menger radius characterization</a> · <a href="./discrete/proof-audit/side-tangent-audit/forward_axioms.log">Side-tangent characterization</a> · <a href="./discrete/proof-provenance.json">Source revisions</a>.';
-    aside.append(evidence);
-  }
-  const current=document.createElement('p');
-  current.innerHTML=`Current presentation interfaces: <a href="./${kind}/proof-audit/current-presentation/provenance.json">sources and fresh Lean audit</a>. Historical proof snapshots retain their original evidence.`;
-  aside.append(current);
   doc.prepend(aside);
 }
 new MutationObserver(()=>{if(!scheduled){scheduled=true;requestAnimationFrame(annotate);}}).observe(document.body,{childList:true,subtree:true});
