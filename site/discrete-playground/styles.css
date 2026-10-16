@@ -23,7 +23,7 @@ button,select,input,textarea{font:inherit}button{cursor:pointer}button:disabled{
 .point-ring{stroke-width:1.6;opacity:1}
 .profile-point{stroke:#fff}
 .highlight-ring{stroke:#000}
-.polygon-edge{fill:#ffffe0;stroke:#000;stroke-width:2}
+.polygon-edge{fill:#ffff00;fill-opacity:.12;stroke:#000;stroke-width:2}
 .vertex-point{stroke:#000;stroke-width:1}
 .vertex-label{fill:#000}
 .leader{stroke:#808080}
