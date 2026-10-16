@@ -8,8 +8,13 @@ prefixes every such route with --base (the Pages project path, e.g. /cd4vt).
 
     scripts/build-site --out _site --base /cd4vt
     python3 -m http.server -d _site 8000     # local preview with --base ''
+
+Hand-written scripts, stylesheets and the playground's worker, solver module and
+WASM are requested with ?v=<hash of site/>, so a browser never combines a cached
+file from an earlier build with files from this one.
 """
 import argparse
+import hashlib
 from pathlib import Path
 import re
 import shutil
@@ -20,6 +25,19 @@ TEXT = {'.html', '.js', '.json', '.css', '.svg', '.txt'}
 # A root-absolute route inside a string, attribute or url(...): "/web/...", '/paper/...'.
 ROUTE = re.compile(r'''(?<=["'(`=])/(web|paper)(?=[/"'?#`)])''')
 MARKER = '.cd4vt-site'
+# Local .js/.css/.mjs references in HTML attributes (bundled assets carry hashes already).
+ASSET_ATTR = re.compile(r'''((?:src|href)=")((?!https?:|//)[^"?#]+\.(?:js|mjs|css))(")''')
+# Module, worker and WASM references of the playground.
+PLAYGROUND = [("'./worker.js'", "'./worker.js?v={v}'"), ("'./solver.mjs'", "'./solver.mjs?v={v}'"),
+              ('new URL("solver.wasm",import.meta.url)', 'new URL("solver.wasm?v={v}",import.meta.url)')]
+
+
+def site_version():
+    digest = hashlib.sha256()
+    for path in sorted((ROOT / 'site').rglob('*')):
+        if path.is_file():
+            digest.update(str(path.relative_to(ROOT)).encode() + b'\0' + path.read_bytes())
+    return digest.hexdigest()[:12]
 
 
 def main():
@@ -38,12 +56,19 @@ def main():
     (out / 'paper').mkdir()
     shutil.copy2(PAPER, out / 'paper' / PAPER.name)
 
+    version = site_version()
+
     def route(match):
         return base if match.group(1) == 'web' else f'{base}/paper'
     for path in out.rglob('*'):
-        if path.is_file() and path.suffix in TEXT:
+        if path.is_file() and path.suffix in TEXT | {'.mjs'}:
             text = path.read_text(encoding='utf-8', errors='surrogateescape')
             new = ROUTE.sub(route, text)
+            if path.suffix == '.html':
+                new = ASSET_ATTR.sub(lambda m: f'{m[1]}{m[2]}?v={version}{m[3]}', new)
+            if path.parent.name == 'discrete-playground':
+                for old, stamped in PLAYGROUND:
+                    new = new.replace(old, stamped.format(v=version))
             if new != text:
                 path.write_text(new, encoding='utf-8', errors='surrogateescape')
 
@@ -55,7 +80,7 @@ def main():
     (out / MARKER).write_text('')
     files = sum(1 for p in out.rglob('*') if p.is_file())
     size = sum(p.stat().st_size for p in out.rglob('*') if p.is_file())
-    print(f'build-site: {files} files, {size / 2**20:.1f} MiB -> {out}')
+    print(f'build-site: {files} files, {size / 2**20:.1f} MiB, version {version} -> {out}')
 
 
 if __name__ == '__main__':
