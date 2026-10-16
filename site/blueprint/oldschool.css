@@ -1,0 +1,30 @@
+/* Plain old-style look, matching the front page and playground. Loaded last. */
+:root{--bg:#fff;--panel:#fff;--heading:#000;--muted:#333;--line:#999;--soft:#f4f4f4;
+  --accent:#00e;--emphasis:#000;--shadow:none;
+  --serif:"Times New Roman",Times,serif;--sans:"Times New Roman",Times,serif;
+  --mathlib:#00008b;--mathlib-bg:#fff;--lean:#006400;--lean-bg:#fff;--sorry:#b00000;--sorry-bg:#fff;--empty:#555;--empty-bg:#fff}
+*,*::before,*::after{border-radius:0!important;box-shadow:none!important;text-shadow:none!important}
+html,body{background:#fff;color:#000}
+body,button,input,select,textarea,.prose,.stmt-body,.proof-body,.overview,
+.stmt-title,.stmt-kind,.stmt-detail-label,.doc-nav,.doc-outline,.stmt-badges,.project-stats,.site-header,.card-title,.card-blurb{font-family:"Times New Roman",Times,serif!important}
+.prose a,.stmt-body a,.proof-body a,.overview a{color:#00e;text-decoration:underline}
+.prose a:visited,.stmt-body a:visited,.proof-body a:visited{color:#551a8b}
+.site-header,.project-header{background:#fff!important}
+.stmt,.stmt-card,.stmt.k-definition,.stmt-card.k-definition,.stmt.k-theorem,.stmt-card.k-theorem,.stmt.k-lemma,.stmt-card.k-lemma{border:1px solid #808080;border-left:3px solid #000;background:#fff}
+.stmt-kind,.stmt-blueprint-btn,.stmt-detail-link,.card-pill{background:#fff!important;color:#000!important;border:1px solid #808080}
+.gm-btn.gm-btn-chapter,.gm-ch-frame{background:#fff;border-color:#000;color:#000}.gm-ch-title{color:#000}
+.card-illo{background:#fff!important}
+.proof-map-return{color:#00e;background:#fff;border-color:#808080}
+/* Site navigation: a plain line of links. */
+.blueprint-site-nav{background:#fff;border-bottom:1px solid #808080;font:16px "Times New Roman",Times,serif}
+.blueprint-site-brand{font-weight:bold;letter-spacing:0;color:#000}
+.blueprint-site-brand span{display:none}
+.blueprint-site-nav nav a{color:#00e;text-decoration:underline}
+.blueprint-site-nav nav a[aria-current=page]{color:#000;text-decoration:none;font-weight:bold}
+/* Sidebar selection, kind tags and scope links without tints. */
+.navlink.on,.tch.sel{background:#fff!important;color:#000!important;font-weight:bold}
+.navlink.on .ni,.tch.sel *{color:#000!important}
+.tag,.tag[class*="k-"]{background:#fff!important;color:#000!important;border:1px solid #808080}
+.otitle2{color:#000}
+.reader-scope a{color:#00e;text-decoration:underline}
+[class*="k-"]:not(.tag){border-left-color:#000!important}

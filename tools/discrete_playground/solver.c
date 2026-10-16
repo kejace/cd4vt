@@ -6,11 +6,13 @@
 #include <complex.h>
 #include <stdint.h>
 #include <string.h>
-#define N 12
+#define N 25          /* buffer stride; polygons have 4..MAXN vertices */
+#define MAXN 24
+#define METRICS (3*N)    /* offset of the metrics in the output buffer */
 #define TAU 6.283185307179586476925286766559
 #define LOWER 1e-10
 #define UPPER (1.0-1e-10)
-static double input[3*N], output[64];
+static double input[3*N], output[3*N+10];
 static int evaluations, attempts, frame_mask, method;
 static uint32_t random_state;
 static int balanced_start;
@@ -143,7 +145,7 @@ static int inspect(int n,const double *k,const double *ell,int publish){
     int valid=closure<2e-10 && turnerr<3e-10 && curverr<2e-6 && margin>2e-10 && minlen/maxlen>2e-8 && support>0;
     if(publish){
         for(int i=0;i<n;i++){output[i]=ell[i];output[N+2*i]=x[i];output[N+2*i+1]=y[i];}
-        output[36]=closure;output[37]=turnerr;output[38]=curverr;output[39]=margin;output[40]=minlen/maxlen;output[41]=evaluations;output[42]=attempts;output[43]=method;output[44]=frame_mask;output[45]=support;
+        output[METRICS]=closure;output[METRICS+1]=turnerr;output[METRICS+2]=curverr;output[METRICS+3]=margin;output[METRICS+4]=minlen/maxlen;output[METRICS+5]=evaluations;output[METRICS+6]=attempts;output[METRICS+7]=method;output[METRICS+8]=frame_mask;output[METRICS+9]=support;
     }
     return valid;
 }
@@ -227,23 +229,23 @@ static int continuation(int n,const double *oldk,const double *oldell,const doub
     if(t<1-1e-14)return 0;
     memcpy(ell,previous,n*sizeof(double));method=3;return 1;
 }
-/* Input: new κ[0:12], previous κ[12:24], previous full lengths[24:36].
- * Output: lengths[0:12], vertices[12:36], metrics[36:46].
+/* Input: new κ[0:N], previous κ[N:2N], previous full lengths[2N:3N].
+ * Output: lengths[0:N], vertices[N:3N], metrics[3N:3N+10].
  * Return 1 success, -1 size, -2 numeric range, -3 DFV, -4 branch ended,
  * 0 bounded initializer exhausted. No failure means nonexistence. */
 int solve(int n,int mode,int seed){
     evaluations=attempts=frame_mask=method=0;memset(output,0,sizeof output);
     balanced_start=seed==17;
     random_state=(uint32_t)seed+0x9e3779b9u;if(!random_state)random_state=1;
-    if(n<4 || n>11)return -1;
+    if(n<4 || n>MAXN)return -1;
     double lo=INFINITY,hi=0,ell[N];
     for(int i=0;i<n;i++){if(!isfinite(input[i]) || input[i]<=0)return -2;lo=fmin(lo,input[i]);hi=fmax(hi,input[i]);}
     if(lo<1e-6 || hi>1e6 || hi/lo>10000)return -2;
     if(!admissible(n,input))return -3;
     int ok=mode?continuation(n,input+N,input+2*N,input,ell):initialize(n,input,ell);
-    output[41]=evaluations;output[42]=attempts;
+    output[METRICS+5]=evaluations;output[METRICS+6]=attempts;
     if(!ok)return mode?-4:0;
     return inspect(n,input,ell,1)?1:(mode?-4:0);
 }
 /* Exposed for independent Jacobian tests, never used by the product UI. */
-int evaluate(int n){double f[3],J[3][N];if(n<4||n>11)return 0;if(!residual(n,input,input+N,f,J))return 0;for(int r=0;r<3;r++){output[r]=f[r];for(int i=0;i<n;i++)output[3+r*N+i]=J[r][i];}return 1;}
+int evaluate(int n){double f[3],J[3][N];if(n<4||n>MAXN)return 0;if(!residual(n,input,input+N,f,J))return 0;for(int r=0;r<3;r++){output[r]=f[r];for(int i=0;i<n;i++)output[3+r*N+i]=J[r][i];}return 1;}

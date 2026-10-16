@@ -11,6 +11,7 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[2]
 SEED = 194211
+N, MAXN = 25, 24  # buffer stride and largest polygon, as in solver.c
 
 
 def dfv(k):
@@ -60,7 +61,7 @@ def geometry(k, lengths, vertices=None):
 def fixtures():
     rng = np.random.default_rng(SEED)
     rows, bases = [], {}
-    for n in range(4, 12):
+    for n in range(4, MAXN + 1):
         cases = [('constant', np.ones(n)), ('repeated', np.array([3, 1, 3, 1] + [1] * (n - 4), float))]
         for _ in range(12):
             while True:
@@ -139,7 +140,7 @@ def run_suite(solve):
         geometry(k, result['lengths'], result['vertices'])
         previous = result
     assert obstruction is not None, 'Expected the checked obstruction trace to stop.'
-    invalid = [([1., 2., 3.], -1), ([1.] * 12, -1), ([1., 2., 3., 4.], -3),
+    invalid = [([1., 2., 3.], -1), ([1.] * (MAXN + 1), -1), ([1., 2., 3., 4.], -3),
                ([1., 0., 2., 0.], -2), ([1., -1., 2., 1.], -2),
                ([1e-7, 2e-7, 1e-7, 2e-7], -2), ([1., 10001., 1., 10001.], -2)]
     for k, status in invalid:
@@ -155,7 +156,7 @@ def run_suite(solve):
                   numpy=np.__version__, cold_cases=len(cold), cold_passed=len(cold),
                   cold_timing=summary([r['milliseconds'] for r in cold]), max_cold_curvature_error=worst_curvature,
                   continuation=continuation, obstruction=obstruction, rejected_inputs=len(invalid), cases=cold)
-    print('Continuation: 1,600 edits checked, explicit restarts =', sum(len(r['explicit_restarts']) for r in continuation), flush=True)
+    print(f'Continuation: {200 * len(bases):,} edits checked, explicit restarts =', sum(len(r['explicit_restarts']) for r in continuation), flush=True)
     print('Obstruction trace:', obstruction, flush=True)
     return report
 
@@ -165,30 +166,30 @@ class Native:
         self.lib = ctypes.CDLL(str(Path(path).resolve()))
         self.lib.input_buffer.restype = self.lib.output_buffer.restype = ctypes.POINTER(ctypes.c_double)
         self.lib.solve.argtypes = [ctypes.c_int] * 3
-        self.input = np.ctypeslib.as_array(self.lib.input_buffer(), shape=(36,))
-        self.output = np.ctypeslib.as_array(self.lib.output_buffer(), shape=(64,))
+        self.input = np.ctypeslib.as_array(self.lib.input_buffer(), shape=(3 * N,))
+        self.output = np.ctypeslib.as_array(self.lib.output_buffer(), shape=(3 * N + 10,))
 
     def solve(self, k, previous=None, seed=17):
         n = len(k)
         self.input.fill(0)
-        self.input[:min(n, 12)] = k[:12]
+        self.input[:min(n, N)] = k[:N]
         if previous:
-            self.input[12:12+n] = previous['k']
-            self.input[24:24+n] = previous['lengths']
+            self.input[N:N+n] = previous['k']
+            self.input[2*N:2*N+n] = previous['lengths']
         start = time.perf_counter()
         code = self.lib.solve(n, int(previous is not None), seed)
         ms = 1000 * (time.perf_counter() - start)
         return dict(k=k, status=code, milliseconds=ms, lengths=self.output[:n].tolist(),
-                    vertices=self.output[12:12+2*n].reshape(n, 2).tolist())
+                    vertices=self.output[N:N+2*n].reshape(n, 2).tolist())
 
     def jacobian_check(self):
         k = np.array([1., .4, .85, .2, .8, .3, .7, .6])
         q = np.linspace(.21, .76, len(k))
         def evaluate(x):
             self.input[:len(k)] = k
-            self.input[12:12+len(k)] = x
+            self.input[N:N+len(k)] = x
             assert self.lib.evaluate(len(k)) == 1
-            return self.output[:3].copy(), self.output[3:39].reshape(3, 12)[:, :len(k)].copy()
+            return self.output[:3].copy(), self.output[3:3+3*N].reshape(3, N)[:, :len(k)].copy()
         _, jac = evaluate(q)
         fd = np.zeros_like(jac)
         for j in range(len(k)):

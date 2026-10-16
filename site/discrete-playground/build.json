@@ -14,9 +14,9 @@
     "-sEXPORTED_FUNCTIONS=['_solve','_input_buffer','_output_buffer','_evaluate']"
   ],
   "source": "tools/discrete_playground/solver.c",
-  "sha256": "14c6a682ea38d6c0447b7008d20ba2db47492369ac5b90dc5ac1d42221908735",
+  "sha256": "1f99180977e462f7edafa24c41cb8de249de21ef2a0e2a493b8c112792efa9ef",
   "artifacts": {
     "solver.mjs": "5ad4307943083fd55bd414d45364da7d00b333957975216835b95e0d22d32271",
-    "solver.wasm": "c53b25f404cda694f52c916531f8da6cbf0314f994bb8d4e0b38382ef8fc48e6"
+    "solver.wasm": "5138e3a2e681de122157b11e6a2ece395cb18c2ebcf6d91ba841392b047a3a28"
   }
 }
