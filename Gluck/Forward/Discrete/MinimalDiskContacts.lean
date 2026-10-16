@@ -1,7 +1,9 @@
-import Gluck.Forward.Discrete.ContactSets
-import Mathlib.Analysis.Normed.Affine.AddTorsor
-import Mathlib.Analysis.Normed.Module.Convex
-import Mathlib.Geometry.Euclidean.Sphere.Basic
+module
+
+public import Gluck.Forward.Discrete.ContactSets
+public import Mathlib.Analysis.Normed.Affine.AddTorsor
+public import Mathlib.Analysis.Normed.Module.Convex
+public import Mathlib.Geometry.Euclidean.Sphere.Basic
 
 /-!
 # Boundary contacts of a finite minimal enclosing disk
@@ -10,6 +12,8 @@ This file contains finite Euclidean geometry used in Dahlberg's §4 argument.
 In particular, if a least enclosing disk has only two possible boundary
 contacts, then those contacts form a diameter.
 -/
+
+@[expose] public section
 
 open Set Metric
 

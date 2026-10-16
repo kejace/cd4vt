@@ -3,9 +3,11 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.Convexity
-import Gluck.Discrete.LocalRegularity
-import Gluck.Discrete.N4Moderate
+module
+
+public import Gluck.Discrete.Convexity
+public import Gluck.Discrete.LocalRegularity
+public import Gluck.Discrete.N4Moderate
 
 /-!
 # The discrete converse (Euclidean, positive)
@@ -25,6 +27,8 @@ the constant branch uses the regular polygon.
   points.
 
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

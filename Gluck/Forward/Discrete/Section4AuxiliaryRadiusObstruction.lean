@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4AuxiliaryConsumer
+module
+
+public import Gluck.Forward.Discrete.Section4AuxiliaryConsumer
 
 /-!
 # Direct radius obstruction for Dahlberg's Section 4 auxiliary polygon
@@ -14,6 +16,8 @@ This formulation lets the circle completion carry its own finite radius
 obstruction (for example three circle points spanning at least a semicircle),
 without requiring it to reproduce every original boundary contact.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

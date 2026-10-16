@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.TangentChord
+module
+
+public import Gluck.Discrete.TangentChord
 
 /-!
 # Discrete local regularity (Dahlberg admissibility)
@@ -31,6 +33,8 @@ DFV window to his conclusion class.
   maxima and two disjoint plateau minima.
 
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

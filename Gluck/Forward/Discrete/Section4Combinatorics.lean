@@ -1,4 +1,6 @@
-import Gluck.Forward.Discrete.CyclicComponents
+module
+
+public import Gluck.Forward.Discrete.CyclicComponents
 
 /-!
 # Finite curvature combinatorics for Dahlberg §4
@@ -6,6 +8,8 @@ import Gluck.Forward.Discrete.CyclicComponents
 This file contains no geometry.  It isolates the finite cyclic consequences
 of failure of the plateau-aware four-vertex conclusion.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

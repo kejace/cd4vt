@@ -1,5 +1,7 @@
-import Gluck.Discrete.SideTangentContact
-import ForMathlib.Analysis.InnerProductSpace.ProjectiveSegments
+module
+
+public import Gluck.Discrete.SideTangentContact
+public import ForMathlib.Analysis.InnerProductSpace.ProjectiveSegments
 
 /-!
 # The prescribed inward circle for three consecutive supporting lines
@@ -8,6 +10,8 @@ The center is `p - r • x`, where `x` is the corresponding unit-incircle vertex
 before positive edge scaling. Strict support of the next nonincident normal
 forces uniqueness of both center and radius.
 -/
+
+@[expose] public section
 
 open scoped InnerProductSpace
 

@@ -1,4 +1,6 @@
-import Gluck.Discrete.SideTangentFan
+module
+
+public import Gluck.Discrete.SideTangentFan
 
 /-!
 # A finite tangential fan approaching the labelled square
@@ -7,6 +9,8 @@ For four selected labels `0 < p < q < r < n`, perturb the four repeated normal
 angles towards the regular n-gon angles. Every positive perturbation has strict
 cyclic normal order and gaps below π. The original vertex labels are retained.
 -/
+
+@[expose] public section
 
 open Set Filter
 open scoped Topology InnerProductSpace BigOperators

@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.Budget
-import Mathlib.Analysis.InnerProductSpace.TwoDim
+module
+
+public import Gluck.Discrete.Budget
+public import Mathlib.Analysis.InnerProductSpace.TwoDim
 
 /-!
 # Discrete D0c: the Euclidean tangent–chord / signed Menger bridge
@@ -26,6 +28,8 @@ to the intrinsic *signed Menger curvature* of the developed vertex triples.
   and the forward bridge `RealizesR2 → RealizesMenger`.
 
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

@@ -1,4 +1,6 @@
-import Gluck.Discrete.SideTangentConverse
+module
+
+public import Gluck.Discrete.SideTangentConverse
 
 /-!
 # Reconstructing a balanced polygon from three-line circles
@@ -7,6 +9,8 @@ Normalizing the circle at each vertex recovers a closed polygon whose edges
 are positive inverse scalings of the original edges. Its strict support and
 exact signed affine balance therefore follow from the actual realization.
 -/
+
+@[expose] public section
 
 open scoped BigOperators InnerProductSpace
 

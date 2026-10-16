@@ -3,14 +3,16 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.MonotoneRunTrace
-import Gluck.Discrete.TangentChord
-import Mathlib.Analysis.Calculus.DSlope
-import Mathlib.Analysis.Calculus.ImplicitContDiff
-import Mathlib.Analysis.Calculus.InverseFunctionTheorem.FDeriv
-import Mathlib.LinearAlgebra.Complex.FiniteDimensional
-import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
-import Mathlib.LinearAlgebra.Matrix.Nondegenerate
+module
+
+public import Gluck.Discrete.MonotoneRunTrace
+public import Gluck.Discrete.TangentChord
+public import Mathlib.Analysis.Calculus.DSlope
+public import Mathlib.Analysis.Calculus.ImplicitContDiff
+public import Mathlib.Analysis.Calculus.InverseFunctionTheorem.FDeriv
+public import Mathlib.LinearAlgebra.Complex.FiniteDimensional
+public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
+public import Mathlib.LinearAlgebra.Matrix.Nondegenerate
 
 /-!
 # The orthogonal residual controller
@@ -20,6 +22,8 @@ total-turn and closure defects. This file identifies their exact nonlinear
 controller and proves that the residual origin is a locally isolated zero
 whenever the first and last core edges are transverse.
 -/
+
+@[expose] public section
 
 open Filter
 open scoped Topology

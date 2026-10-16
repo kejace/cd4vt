@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4CircleSplice
+module
+
+public import Gluck.Forward.Discrete.Section4CircleSplice
 
 /-!
 # Positive orientation of the Section 4 circle splice
@@ -13,6 +15,8 @@ run, and every inserted mesh vertex inherits it from the ordered circle arc.
 Thus only the two vertices where the original chain meets the circle mesh are
 genuine local geometric obligations.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

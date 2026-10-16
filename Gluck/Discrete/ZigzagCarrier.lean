@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.GapCoords
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
+module
+
+public import Gluck.Discrete.GapCoords
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan
 
 /-!
 # Carrier selection for strictly zigzag words
@@ -46,6 +48,8 @@ general strict-DFV words with monotone runs, so this chapter does not bear on
 Tabachnikov's Problem 2.
 
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

@@ -1,4 +1,6 @@
-import Gluck.Discrete.Converse
+module
+
+public import Gluck.Discrete.Converse
 
 /-!
 # Four-vertex windows under monotone periodic collapse
@@ -7,6 +9,8 @@ Adjacent equal readings may share a collapsed index. Alternating strict
 level signs prevent any two successive witnesses of a four-vertex window
 from sharing one, including across the periodic seam.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

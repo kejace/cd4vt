@@ -3,13 +3,15 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Mathlib.Algebra.Field.GeomSum
-import Mathlib.Analysis.Convex.Segment
-import Mathlib.Analysis.SpecialFunctions.Complex.Circle
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse
-import Mathlib.Data.ZMod.Basic
-import Mathlib.RingTheory.RootsOfUnity.Complex
-import Mathlib.Tactic
+module
+
+public import Mathlib.Algebra.Field.GeomSum
+public import Mathlib.Analysis.Convex.Segment
+public import Mathlib.Analysis.SpecialFunctions.Complex.Circle
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse
+public import Mathlib.Data.ZMod.Basic
+public import Mathlib.RingTheory.RootsOfUnity.Complex
+public import Mathlib.Tactic
 
 /-!
 # Discrete foundations: polygons, turning angles, realizability
@@ -39,6 +41,8 @@ the role of the smooth theorems' reparametrization freedom.
   the end-to-end sanity check of the definitional layer.
 
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

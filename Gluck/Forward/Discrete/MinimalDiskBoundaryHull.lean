@@ -3,9 +3,11 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.MinimalDiskBoundaryRadius
-import Mathlib.Analysis.LocallyConvex.Separation
-import Mathlib.Analysis.InnerProductSpace.Dual
+module
+
+public import Gluck.Forward.Discrete.MinimalDiskBoundaryRadius
+public import Mathlib.Analysis.LocallyConvex.Separation
+public import Mathlib.Analysis.InnerProductSpace.Dual
 
 /-!
 # Convex hull of minimal-disk boundary contacts
@@ -16,6 +18,8 @@ radius minimality show that the contacts cannot all lie in an open half-plane
 through the center.  Strong separation of a point from the finite closed
 convex hull then proves the result.
 -/
+
+@[expose] public section
 
 open Set Metric
 

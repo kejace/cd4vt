@@ -1,5 +1,7 @@
-import Gluck.Discrete.CurvatureLinkage
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse
+module
+
+public import Gluck.Discrete.CurvatureLinkage
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse
 
 /-!
 # Native equations for an opposite-pure quadrilateral
@@ -11,6 +13,8 @@ These definitions impose no orthogonality condition and retain the original
 mixed endpoint arcs. Positivity and principal-branch guards are hypotheses
 of theorems, rather than alterations to the native residuals.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.NativeOppositePure
 

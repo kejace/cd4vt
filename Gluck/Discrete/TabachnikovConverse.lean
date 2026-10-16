@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.TabachnikovFourActive
+module
+
+public import Gluck.Discrete.TabachnikovFourActive
 
 /-!
 # Tabachnikov's discrete converse in his own vocabulary
@@ -28,6 +30,8 @@ phrased with radii, convexity, coherence and circumradii:
   non-degeneracy clause: adjacent radii that differ force the four
   consecutive vertices off a common circle.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

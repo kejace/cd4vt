@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Mathlib.Analysis.Convex.PathConnected
+module
+
+public import Mathlib.Analysis.Convex.PathConnected
 
 /-!
 # Bundled paths for finite polygonal chains
@@ -13,6 +15,8 @@ This file turns a naturally indexed finite vertex chain into a Mathlib
 exactly the constituent edge segments, which is the bridge needed to combine
 continuous planar crossing theorems with `IsSimplePolygon`.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

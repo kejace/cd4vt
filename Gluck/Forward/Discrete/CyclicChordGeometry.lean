@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.CyclicComponents
+module
+
+public import Gluck.Forward.Discrete.CyclicComponents
 
 /-!
 # Strictly convex cyclic chord geometry
@@ -13,6 +15,8 @@ in Dahlberg's Lemmas 4 and 6 from strict support at the polygon edges.  Its
 proof is finite and algebraic: a Plücker identity propagates the orientation
 of consecutive triples to all cyclically ordered triples.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward.CyclicChordGeometry
 

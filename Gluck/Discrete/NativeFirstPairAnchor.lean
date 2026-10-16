@@ -1,5 +1,7 @@
-import Gluck.Discrete.NativeFirstPairExistence
-import Gluck.Discrete.NativeOppositePurePhysical
+module
+
+public import Gluck.Discrete.NativeFirstPairExistence
+public import Gluck.Discrete.NativeOppositePurePhysical
 
 /-!
 # A regular physical native anchor from the first-pair flag
@@ -9,6 +11,8 @@ positive half-lengths, all eight strict incidence inequalities, exact
 native closure and one full turn, and a surjective active derivative.
 The bound `p * t < 1` includes both the reversed and matched low cases.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.NativeOppositePure
 

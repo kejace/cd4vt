@@ -1,5 +1,7 @@
-import ForMathlib.Analysis.Complex.DiamondWinding
-import Mathlib.Topology.MetricSpace.ProperSpace.Lemmas
+module
+
+public import ForMathlib.Analysis.Complex.DiamondWinding
+public import Mathlib.Topology.MetricSpace.ProperSpace.Lemmas
 
 /-!
 # Persistence of diamond sign conditions
@@ -7,6 +9,8 @@ import Mathlib.Topology.MetricSpace.ProperSpace.Lemmas
 Joint continuity near a compact diamond transports strict boundary signs to all
 nearby parameters. This supplies actual zeros after finite vertex perturbations.
 -/
+
+@[expose] public section
 
 open Set Filter
 open scoped Topology

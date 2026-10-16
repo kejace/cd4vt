@@ -1,6 +1,8 @@
-import Gluck.Euclidean.Closure
-import Gluck.Euclidean.Reduction
-import Gluck.Euclidean.Simplicity
+module
+
+public import Gluck.Euclidean.Closure
+public import Gluck.Euclidean.Reduction
+public import Gluck.Euclidean.Simplicity
 
 /-!
 # Gluck's converse to the Four Vertex Theorem (strictly positive case)
@@ -10,6 +12,8 @@ converse to the four vertex theorem for strictly positive curvature
 (Gluck 1971; DeTurck–Gluck survey §III–IV).
 
 -/
+
+@[expose] public section
 
 namespace Gluck
 

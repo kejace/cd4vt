@@ -3,9 +3,11 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Mathlib.Analysis.Complex.RealDeriv
-import Gluck.Discrete.CurvatureLinkage
-import Gluck.Discrete.MonotoneCuts
+module
+
+public import Mathlib.Analysis.Complex.RealDeriv
+public import Gluck.Discrete.CurvatureLinkage
+public import Gluck.Discrete.MonotoneCuts
 
 /-!
 # Trace constraints for monotone-run compression
@@ -32,6 +34,8 @@ a construction must be phrased as an intersection or degree statement for
 `LinkageAffine` endpoint traces rather than as an equality obtained from
 telescoping curvature ratios.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

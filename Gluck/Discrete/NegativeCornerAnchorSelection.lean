@@ -1,6 +1,8 @@
-import Gluck.Discrete.NativeIncidentAcuteRank
-import Gluck.Discrete.FirstPairAnchorSelection
-import Gluck.Discrete.FirstPairMountainTransport
+module
+
+public import Gluck.Discrete.NativeIncidentAcuteRank
+public import Gluck.Discrete.FirstPairAnchorSelection
+public import Gluck.Discrete.FirstPairMountainTransport
 
 /-!
 # Actual four-edge selection at two negative terminal flags
@@ -10,6 +12,8 @@ and the unique global maximum. The native producer supplies physical
 closure and actual derivative rank, and its data are retained for later
 constant-run restoration.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

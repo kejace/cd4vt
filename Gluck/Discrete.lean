@@ -3,29 +3,31 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.TabachnikovFourActive
-import Gluck.Discrete.LocalContinuity
-import Gluck.Discrete.TabachnikovConverse
-import Gluck.Discrete.TabachnikovCharacterization
-import Gluck.Discrete.SideTangentChordSeparation
-import Gluck.Discrete.SideTangentCircle
-import Gluck.Discrete.SideTangentContact
-import Gluck.Discrete.SideTangentConverse
-import Gluck.Discrete.SideTangentDFV
-import Gluck.Discrete.SideTangentFan
-import Gluck.Discrete.SideTangentField
-import Gluck.Discrete.SideTangentForward
-import Gluck.Discrete.SideTangentNecessityBalance
-import Gluck.Discrete.SideTangentPerturbation
-import Gluck.Discrete.SideTangentProjectiveFan
-import Gluck.Discrete.SideTangentReconstruction
-import Gluck.Discrete.SideTangentRegularFan
-import Gluck.Discrete.SideTangentScaledPolygon
-import Gluck.Discrete.SideTangentSignBlocks
-import Gluck.Discrete.SideTangentSquareFan
-import Gluck.Discrete.SideTangentSquareLabels
-import Gluck.Discrete.GlobalContinuity.LevelBands
-import Gluck.Discrete.GlobalContinuity.EnclosingCircleObstruction
+module
+
+public import Gluck.Discrete.TabachnikovFourActive
+public import Gluck.Discrete.LocalContinuity
+public import Gluck.Discrete.TabachnikovConverse
+public import Gluck.Discrete.TabachnikovCharacterization
+public import Gluck.Discrete.SideTangentChordSeparation
+public import Gluck.Discrete.SideTangentCircle
+public import Gluck.Discrete.SideTangentContact
+public import Gluck.Discrete.SideTangentConverse
+public import Gluck.Discrete.SideTangentDFV
+public import Gluck.Discrete.SideTangentFan
+public import Gluck.Discrete.SideTangentField
+public import Gluck.Discrete.SideTangentForward
+public import Gluck.Discrete.SideTangentNecessityBalance
+public import Gluck.Discrete.SideTangentPerturbation
+public import Gluck.Discrete.SideTangentProjectiveFan
+public import Gluck.Discrete.SideTangentReconstruction
+public import Gluck.Discrete.SideTangentRegularFan
+public import Gluck.Discrete.SideTangentScaledPolygon
+public import Gluck.Discrete.SideTangentSignBlocks
+public import Gluck.Discrete.SideTangentSquareFan
+public import Gluck.Discrete.SideTangentSquareLabels
+public import Gluck.Discrete.GlobalContinuity.LevelBands
+public import Gluck.Discrete.GlobalContinuity.EnclosingCircleObstruction
 
 /-!
 # The discrete converse four-vertex theorem

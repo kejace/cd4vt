@@ -3,9 +3,11 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.CollaredConverse
-import Gluck.Discrete.RotationalPeriodic
-import Gluck.Discrete.RotationalRegular
+module
+
+public import Gluck.Discrete.CollaredConverse
+public import Gluck.Discrete.RotationalPeriodic
+public import Gluck.Discrete.RotationalRegular
 
 /-!
 # The moment centres of a rotationally periodic configuration are equivariant
@@ -35,6 +37,8 @@ is genuinely out of reach of this argument: the orbit signed area of
 Nothing here bears on Tabachnikov's Problem 2.
 
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

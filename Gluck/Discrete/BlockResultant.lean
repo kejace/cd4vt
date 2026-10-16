@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.Defs
+module
+
+public import Gluck.Discrete.Defs
 
 /-!
 # Two-edge blocks and the cross-block angle
@@ -45,6 +47,8 @@ even case, in which the two blocks are separated by dormant zero-length edges
 and `w` is an accumulated turn, is branch (iv) and is NOT carried out here.
 
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

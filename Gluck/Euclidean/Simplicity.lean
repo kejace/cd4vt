@@ -1,5 +1,7 @@
-import Gluck.Euclidean.Closure
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.Periodic
+module
+
+public import Gluck.Euclidean.Closure
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Periodic
 
 /-!
 # Simplicity of the reconstructed curve
@@ -20,6 +22,8 @@ midpoint direction `e^{iψ}` gives `0 = ∫ cos(φ−ψ)·ρ`, whose integrand i
 Blueprint: `blueprint/src/chapters/Gluck_Simplicity.tex`
 (`thm:reconstruct_injective`, `cor:positive_curvature_implies_simple`).
 -/
+
+@[expose] public section
 
 namespace Gluck
 

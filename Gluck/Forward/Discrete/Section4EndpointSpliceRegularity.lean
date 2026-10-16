@@ -3,11 +3,15 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4CircleSplice
+module
+
+public import Gluck.Forward.Discrete.Section4CircleSplice
 
 /-!
 # Regularity of the circle-splice endpoints in Dahlberg Section 4
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

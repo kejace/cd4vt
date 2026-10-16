@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Winding
+module
+
+public import Gluck.Winding
 
 /-!
 # A four-arc parameterization of rectangle boundaries
@@ -13,6 +15,8 @@ axis-aligned rectangle, based at the midpoint of its right face.  The four
 faces occupy exactly the arcs cut at `1/8`, `3/8`, `5/8`, and `7/8`, matching
 the four-half-plane winding lemmas used by the tilted open-cap socket.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 
@@ -680,7 +684,7 @@ private lemma midpoint_combo_mem_Ioo_aux {a b x s : ℝ}
   · nlinarith [mul_pos (sub_pos.mpr hs1) (sub_pos.mpr hm.2),
       mul_nonneg hs0 (sub_nonneg.mpr hx.2)]
 
-private noncomputable def fourArcRectangleRadialAux
+noncomputable def fourArcRectangleRadialAux
     (u₁ u₂ v₁ v₂ : ℝ) : C(unitInterval × unitInterval, ℝ × ℝ) :=
   ⟨fun st ↦
       ((1 - (st.1 : ℝ)) * ((u₁ + u₂) / 2) +
@@ -698,7 +702,7 @@ private noncomputable def fourArcRectangleRadialAux
           ((continuous_const.sub hs).mul continuous_const).add
             (hs.mul (continuous_snd.comp hb))⟩
 
-private lemma four_arc_rectangle_radial_mem_aux
+lemma four_arc_rectangle_radial_mem_aux
     {u₁ u₂ v₁ v₂ : ℝ} (hu : u₁ ≤ u₂) (hv : v₁ ≤ v₂)
     (st : unitInterval × unitInterval) :
     fourArcRectangleRadialAux u₁ u₂ v₁ v₂ st ∈
@@ -1098,7 +1102,7 @@ theorem windingNumberC_comp_fourArcRightLoopTime
       simp [q]
     rw [hq0, hq1, hloop]
 
-private noncomputable def fourArcRectangleRadialMapAux
+noncomputable def fourArcRectangleRadialMapAux
     {u₁ u₂ v₁ v₂ : ℝ} (hu : u₁ ≤ u₂) (hv : v₁ ≤ v₂)
     (F : ℝ × ℝ → ℂ)
     (hF : ContinuousOn F (Set.Icc u₁ u₂ ×ˢ Set.Icc v₁ v₂)) :

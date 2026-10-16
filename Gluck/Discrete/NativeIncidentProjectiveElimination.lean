@@ -1,4 +1,6 @@
-import Gluck.Discrete.NativeIncidentProjectivePolynomial
+module
+
+public import Gluck.Discrete.NativeIncidentProjectivePolynomial
 
 /-!
 # Exact elimination of the one-sided physical projective chamber
@@ -8,6 +10,8 @@ equations. Together with the original affine relation, they force the
 quadratic branch and its physical interval, where the sign theorem gives a
 contradiction. No resultant or external solver is trusted by this proof.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.NativeIncidentProjective
 
@@ -29,21 +33,21 @@ def projectiveN (p q r : ℝ) : ℝ := (p + 1) * (p - q) + 2 * p * (q - 1) * r
 
 def projectiveH (p q r k : ℝ) : ℝ := 2 * k * projectiveD0 p q r + projectiveN p q r
 
-private def coeffOne (p q r k : ℝ) : ℝ :=
+def coeffOne (p q r k : ℝ) : ℝ :=
   -q * (p * (1 - 2 * r) + (1 - 2 * k)) +
     (p + 1) * p * (1 - 2 * r) * (1 - 2 * k)
 
-private def constOne (p q r k : ℝ) : ℝ :=
+def constOne (p q r k : ℝ) : ℝ :=
   q * p * (p * (1 - 2 * r) + (1 - 2 * k)) - (p + 1) * q ^ 2
 
-private def coeffTwo (p q r k T : ℝ) : ℝ :=
+def coeffTwo (p q r k T : ℝ) : ℝ :=
   p * T * (T - 2 * k + p * (T - 2 * r)) - q * (p + 1) * T ^ 2
 
-private def constTwo (p q r k T : ℝ) : ℝ :=
+def constTwo (p q r k T : ℝ) : ℝ :=
   -q ^ 2 * T * (T - 2 * k + p * (T - 2 * r)) +
     q * (p + 1) * p * (T - 2 * k) * (T - 2 * r)
 
-private noncomputable def affineT (p q r k : ℝ) : ℝ :=
+noncomputable def affineT (p q r k : ℝ) : ℝ :=
   (2 * (p ^ 2 - q) * k - 2 * p * (q - 1) * r - (p + 1) * (p - q)) /
     ((p + 1) * (p - q))
 

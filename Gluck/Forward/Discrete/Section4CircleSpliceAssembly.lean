@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4CircleSpliceRadius
-import Gluck.Forward.Discrete.Section4AuxiliaryRadiusObstruction
+module
+
+public import Gluck.Forward.Discrete.Section4CircleSpliceRadius
+public import Gluck.Forward.Discrete.Section4AuxiliaryRadiusObstruction
 
 /-!
 # Assembly of the explicit Section 4 circle splice
@@ -14,6 +16,8 @@ Internal retained vertices inherit the original curvature gap, inserted mesh
 vertices have three neighbours on the minimal circle, and only the two splice
 endpoints remain as separate local geometric obligations.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

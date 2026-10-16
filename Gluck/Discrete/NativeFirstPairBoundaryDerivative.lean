@@ -3,9 +3,11 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.NativeFirstPairInterior
-import Gluck.Discrete.NativeOppositePureRank
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.ArctanDeriv
+module
+
+public import Gluck.Discrete.NativeFirstPairInterior
+public import Gluck.Discrete.NativeOppositePureRank
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.ArctanDeriv
 
 /-! # The inward first-pair derivative at the outgoing pure-one wall
 
@@ -14,6 +16,8 @@ It needs only the strict remaining physical guards, not equality or
 strictness of a failure flag. The final high-seam derivative is in fact
 strictly larger than one.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.NativeOppositePure
 

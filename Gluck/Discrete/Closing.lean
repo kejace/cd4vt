@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.Convexity
-import Mathlib.Topology.Order.IntermediateValue
+module
+
+public import Gluck.Discrete.Convexity
+public import Mathlib.Topology.Order.IntermediateValue
 
 /-!
 # The closing engine (Euclidean, positive) — Section 1: the Umlauf rescaling retraction
@@ -20,6 +22,8 @@ closing engine; the ceiling hypothesis (constructing a *balanced base*) and the
 
 Blueprint: `blueprint/src/chapters/Gluck_Discrete_Closing.tex`, `sec:umlauf`.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

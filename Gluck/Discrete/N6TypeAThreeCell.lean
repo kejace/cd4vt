@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.N6MonotoneResidue
+module
+
+public import Gluck.Discrete.N6MonotoneResidue
 
 /-!
 # Semialgebraic core of the ordinary type-A three-cell selector
@@ -21,6 +23,8 @@ The main results are:
 * `quadratic_pos_on_feasibleInterval`: the endpoint argument used to transfer
   the complementary `R` sign to the scalar `M` cell.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 namespace N6TypeAThreeCell

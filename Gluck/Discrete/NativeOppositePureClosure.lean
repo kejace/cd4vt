@@ -1,4 +1,6 @@
-import Gluck.Discrete.NativeOppositePureDefs
+module
+
+public import Gluck.Discrete.NativeOppositePureDefs
 
 /-!
 # Exact native closure for an opposite-pure quadrilateral
@@ -7,6 +9,8 @@ The off-zero identity below retains the lifted full-turn defect. Its
 correction term is essential before differentiation. No orthogonality
 assumption is used.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.NativeOppositePure
 

@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.TangentChord
+module
+
+public import Gluck.Discrete.TangentChord
 
 /-!
 # Cyclic zigzag words
@@ -16,6 +18,8 @@ geometric realization theorem is exposed through the explicit proposition
 general carrier branches.
 
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 
@@ -117,7 +121,7 @@ theorem strictZigzag_inv_iff {w : ZMod n → ℝ} (hpos : ∀ i, 0 < w i) :
 
 /-- The indicator of an ascending edge, valued in the integers so its cyclic
 difference can be summed. -/
-private def ascentIndicator (w : ZMod n → ℝ) (i : ZMod n) : ℤ :=
+def ascentIndicator (w : ZMod n → ℝ) (i : ZMod n) : ℤ :=
   if w i < w (i + 1) then 1 else 0
 
 /-- The change of the ascent indicator at a vertex is the indicator of a

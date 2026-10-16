@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4MinimalDisk
+module
+
+public import Gluck.Forward.Discrete.Section4MinimalDisk
 
 /-!
 # Reversal of the minimal-disk contact argument
@@ -13,6 +15,8 @@ This file removes the choice of that sign from the connected-contact
 contradiction: the negative case is reduced to the positive one by reversing
 the cyclic polygon.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

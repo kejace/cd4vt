@@ -3,10 +3,12 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Mathlib.Analysis.Normed.Module.Ray
-import Mathlib.Analysis.SpecialFunctions.Complex.Circle
-import Mathlib.MeasureTheory.Integral.CircleIntegral
-import Mathlib.Topology.Homotopy.Lifting
+module
+
+public import Mathlib.Analysis.Normed.Module.Ray
+public import Mathlib.Analysis.SpecialFunctions.Complex.Circle
+public import Mathlib.MeasureTheory.Integral.CircleIntegral
+public import Mathlib.Topology.Homotopy.Lifting
 
 /-!
 # The winding number of a continuous loop in the plane
@@ -83,6 +85,8 @@ invariance under free homotopies of loops (`windingNumber_eq_of_homotopy`).
 winding number, argument variation, degree, Rouché, Brouwer degree
 -/
 
+@[expose] public section
+
 open scoped Real unitInterval
 open Metric
 
@@ -93,7 +97,7 @@ namespace Complex
 /-- The continuous **angle lift** of a curve `g : [0,1] → S¹`: the path obtained by lifting
 `g` along the exponential covering `Circle.exp` starting at a chosen real preimage of `g 0`.
 It satisfies `Circle.exp (angleLift g t) = g t` (`angleLift_lifts`). -/
-private noncomputable def angleLift (g : C(I, Circle)) : C(I, ℝ) :=
+noncomputable def angleLift (g : C(I, Circle)) : C(I, ℝ) :=
   Circle.isCoveringMap_exp.liftPath g (Circle.exp_surjective (g 0)).choose
     (Circle.exp_surjective (g 0)).choose_spec.symm
 
@@ -105,7 +109,7 @@ private theorem angleLift_lifts (g : C(I, Circle)) (t : I) :
 
 /-- The winding number of a continuous curve `g : [0,1] → S¹`: the total angle increment of
 its lift, normalised by `2 * π`. -/
-private noncomputable def windingNumber (g : C(I, Circle)) : ℝ :=
+noncomputable def windingNumber (g : C(I, Circle)) : ℝ :=
   (angleLift g 1 - angleLift g 0) / (2 * π)
 
 /-- A constant curve has winding number `0`. -/
@@ -234,7 +238,7 @@ private theorem windingNumber_eq_of_homotopy {g₀ g₁ : C(I, Circle)} (H : C(I
 
 /-- Radial projection of a point `z ≠ w` onto the unit circle centered at the origin,
 `z ↦ (z - w) / ‖z - w‖`. -/
-private noncomputable def circleProjAt (w z : ℂ) (hz : z ≠ w) : Circle :=
+noncomputable def circleProjAt (w z : ℂ) (hz : z ≠ w) : Circle :=
   ⟨(z - w) / (‖z - w‖ : ℂ), by
     have hzw : z - w ≠ 0 := sub_ne_zero.2 hz
     rw [← SetLike.mem_coe, Submonoid.coe_unitSphere, mem_sphere_zero_iff_norm, norm_div,
@@ -246,7 +250,7 @@ private theorem circleProjAt_congr {w a b : ℂ} (ha : a ≠ w) (hb : b ≠ w) (
     circleProjAt w a ha = circleProjAt w b hb := by subst h; rfl
 
 /-- Radial projection of a continuous function avoiding `w` is continuous. -/
-private theorem continuous_circleProjAt {X : Type*} [TopologicalSpace X] {w : ℂ} {f : X → ℂ}
+theorem continuous_circleProjAt {X : Type*} [TopologicalSpace X] {w : ℂ} {f : X → ℂ}
     (hf : Continuous f) (hne : ∀ x, f x ≠ w) :
     Continuous fun x ↦ circleProjAt w (f x) (hne x) := by
   apply Continuous.subtype_mk
@@ -255,7 +259,7 @@ private theorem continuous_circleProjAt {X : Type*} [TopologicalSpace X] {w : �
     fun x ↦ ofReal_ne_zero.2 (norm_ne_zero_iff.2 (sub_ne_zero.2 (hne x)))
 
 /-- The normalised curve `t ↦ (γ t - w) / ‖γ t - w‖` of a continuous curve avoiding `w`. -/
-private noncomputable def normLoopAt (w : ℂ) (γ : C(I, ℂ)) (hγ : ∀ t, γ t ≠ w) :
+noncomputable def normLoopAt (w : ℂ) (γ : C(I, ℂ)) (hγ : ∀ t, γ t ≠ w) :
     C(I, Circle) :=
   ⟨fun t ↦ circleProjAt w (γ t) (hγ t), continuous_circleProjAt γ.continuous hγ⟩
 

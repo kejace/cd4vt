@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
-import Gluck.Discrete.TangentChord
+module
+
+public import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
+public import Gluck.Discrete.TangentChord
 
 /-!
 # Rotationally equivariant point families are non-collinear
@@ -30,6 +32,8 @@ application to the moment centres of `p`-periodic configurations is recorded in
 the blueprint remark `rem:rotational_regular_use`.
 
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

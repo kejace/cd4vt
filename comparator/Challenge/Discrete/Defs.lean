@@ -3,13 +3,15 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Mathlib.Analysis.Calculus.ContDiff.Defs
-import Mathlib.Analysis.Convex.Segment
-import Mathlib.Analysis.InnerProductSpace.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Data.ZMod.Basic
-import Mathlib.LinearAlgebra.Complex.FiniteDimensional
+module
+
+public import Mathlib.Analysis.Calculus.ContDiff.Defs
+public import Mathlib.Analysis.Convex.Segment
+public import Mathlib.Analysis.InnerProductSpace.Basic
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Inverse
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Data.ZMod.Basic
+public import Mathlib.LinearAlgebra.Complex.FiniteDimensional
 
 /-!
 # Challenge: `Gluck/Discrete/Defs.lean`
@@ -17,6 +19,8 @@ import Mathlib.LinearAlgebra.Complex.FiniteDimensional
 Verbatim copies (docstrings abridged) of the definitions from `Gluck/Discrete/Defs.lean` that the challenge
 statements depend on, in the library's order and `open`/`variable` context.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

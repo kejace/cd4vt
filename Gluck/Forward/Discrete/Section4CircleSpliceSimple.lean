@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4CircleEdgeSupport
-import Gluck.Forward.Discrete.Section4CircleArc
+module
+
+public import Gluck.Forward.Discrete.Section4CircleEdgeSupport
+public import Gluck.Forward.Discrete.Section4CircleArc
 
 /-!
 # Simplicity of the Section 4 circle splice
@@ -13,6 +15,8 @@ The retained edges form a contiguous subchain of the original simple polygon.
 Every remaining edge is a sufficiently short chord of the completion circle;
 strict support by that chord separates it from every nonadjacent splice edge.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

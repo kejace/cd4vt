@@ -1,8 +1,10 @@
-import Mathlib.Analysis.Calculus.Deriv.Slope
-import Mathlib.Topology.Compactness.Compact
-import Mathlib.Topology.Order.IntermediateValue
-import Mathlib.Topology.Order.LeftRightNhds
-import Mathlib.Tactic
+module
+
+public import Mathlib.Analysis.Calculus.Deriv.Slope
+public import Mathlib.Topology.Compactness.Compact
+public import Mathlib.Topology.Order.IntermediateValue
+public import Mathlib.Topology.Order.LeftRightNhds
+public import Mathlib.Tactic
 
 /-!
 # An inward intermediate-value argument on a compact physical strip
@@ -13,6 +15,8 @@ there. A negative left endpoint and a positive right endpoint persist on an
 inward nearby slice. A positive inward-coordinate derivative handles a zero
 boundary value without an unproved strict-sign premise.
 -/
+
+@[expose] public section
 
 open Set Filter
 open scoped Topology

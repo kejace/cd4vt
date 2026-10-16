@@ -3,11 +3,13 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.GlobalContinuity.LevelBands
-import Gluck.Forward.Discrete.MinimalDiskBoundaryRadius
-import Gluck.Forward.Discrete.Section4AuxiliaryContradiction
-import Gluck.Discrete.LocalRegularity
-import Gluck.Discrete.TabachnikovFourActive
+module
+
+public import Gluck.Discrete.GlobalContinuity.LevelBands
+public import Gluck.Forward.Discrete.MinimalDiskBoundaryRadius
+public import Gluck.Forward.Discrete.Section4AuxiliaryContradiction
+public import Gluck.Discrete.LocalRegularity
+public import Gluck.Discrete.TabachnikovFourActive
 
 /-!
 # The enclosing-radius obstruction for actual coherent hexagons
@@ -16,6 +18,8 @@ The special six-word path admits a shorter proof than the general enclosing-
 circle level lemma: contact localization to three consecutive vertices
 excludes level 9, and Dahlberg's two containing disks control the last endpoint.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.GlobalContinuity
 

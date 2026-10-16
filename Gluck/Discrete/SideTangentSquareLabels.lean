@@ -1,4 +1,6 @@
-import Gluck.Discrete.SideTangentPerturbation
+module
+
+public import Gluck.Discrete.SideTangentPerturbation
 
 /-!
 # Labelled collapsed-square configurations
@@ -7,6 +9,8 @@ The four corners and four side contacts are a finite limit configuration for
 arbitrary polygon size. Coefficients are grouped only for the calculation;
 all labels and their original coefficients remain in the perturbed realization.
 -/
+
+@[expose] public section
 
 open scoped BigOperators InnerProductSpace Topology
 

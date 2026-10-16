@@ -1,5 +1,7 @@
-import Gluck.Discrete.FourActiveFrameReindex
-import Gluck.Discrete.RegularFourAnchorReindex
+module
+
+public import Gluck.Discrete.FourActiveFrameReindex
+public import Gluck.Discrete.RegularFourAnchorReindex
 
 /-!
 # Cyclic and reflected transport of regular actual anchors
@@ -8,6 +10,8 @@ The sorted-frame constructors preserve literal selected edges. Their
 endpoint identities feed the original native derivative transports, so
 these operations retain the anchor witness rather than only realizability.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.RegularFourAnchor
 

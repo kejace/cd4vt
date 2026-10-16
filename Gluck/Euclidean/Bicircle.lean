@@ -1,4 +1,6 @@
-import Gluck.Euclidean.StepReduction
+module
+
+public import Gluck.Euclidean.StepReduction
 
 /-!
 # Bicircle curves and their error vectors
@@ -11,6 +13,8 @@ is Dahlberg's explicit formula (DeTurck–Gluck, Proposition 9.1) for the error
 vector of a bicircle, the input to the winding argument of `Gluck/Winding.lean`.
 
 -/
+
+@[expose] public section
 
 namespace Gluck
 

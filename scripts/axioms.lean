@@ -3,6 +3,8 @@ Axiom check for the theorems displayed in the paper's Lean appendix.
 Run after `lake build`:  lake env lean scripts/axioms.lean
 Each should report exactly [propext, Classical.choice, Quot.sound].
 -/
+module
+
 import Gluck
 
 #print axioms Gluck.Discrete.tabachnikov_converse_geometric

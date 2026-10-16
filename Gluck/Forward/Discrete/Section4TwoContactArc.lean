@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4CircleArc
-import Gluck.Forward.Discrete.MinimalDiskContacts
+module
+
+public import Gluck.Forward.Discrete.Section4CircleArc
+public import Gluck.Forward.Discrete.MinimalDiskContacts
 
 /-!
 # The two-contact Section 4 circle arc
@@ -14,6 +16,8 @@ those contacts are antipodal.  Hence either directed endpoint interval in one
 angle period has length exactly `π`; in particular the direction prescribed
 by the positive run has the semicircle bound required by the circle splice.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

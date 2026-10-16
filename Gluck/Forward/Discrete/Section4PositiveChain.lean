@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4PositiveGap
+module
+
+public import Gluck.Forward.Discrete.Section4PositiveGap
 
 /-!
 # The finite positive-curvature chain in Dahlberg Section 4
@@ -11,6 +13,8 @@ import Gluck.Forward.Discrete.Section4PositiveGap
 This file repackages the maximal complementary run selected in Section 4 as
 the exact finite chain consumed by the auxiliary-circle splice.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.Convexity
-import Mathlib.Analysis.LocallyConvex.Separation
+module
+
+public import Gluck.Discrete.Convexity
+public import Mathlib.Analysis.LocallyConvex.Separation
 
 /-!
 # Positive polygonal turning and global support
@@ -17,6 +19,8 @@ to index zero, proves that a simple positively oriented polygon accumulates
 exactly `2π` of heading in one period.  The resulting heading reconstruction
 then gives global strict edge support.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

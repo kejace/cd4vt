@@ -3,9 +3,11 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import ForMathlib.Analysis.Complex.WindingNumber
-import Mathlib.Analysis.Convex.Basic
-import Mathlib.Topology.Subpath
+module
+
+public import ForMathlib.Analysis.Complex.WindingNumber
+public import Mathlib.Analysis.Convex.Basic
+public import Mathlib.Topology.Subpath
 
 /-!
 # Winding comparison in pointwise open half-planes
@@ -13,6 +15,8 @@ import Mathlib.Topology.Subpath
 The separating linear functional may change discontinuously with the parameter.
 Only the two loops themselves need to be continuous.
 -/
+
+@[expose] public section
 
 open scoped unitInterval
 

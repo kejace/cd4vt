@@ -1,8 +1,10 @@
-import Gluck.Euclidean.Closure
-import Gluck.Curvature
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.Periodic
-import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+module
+
+public import Gluck.Euclidean.Closure
+public import Gluck.Curvature
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Periodic
+public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
 
 /-!
 # Reduction to a four-arc step function
@@ -20,6 +22,8 @@ winding argument actually consumes is that the *error vector*
 substitute for the source's `C¹`-closeness claim.
 
 -/
+
+@[expose] public section
 
 namespace Gluck
 

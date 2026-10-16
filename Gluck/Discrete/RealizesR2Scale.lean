@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace, Codex
 -/
-import Gluck.Discrete.Convexity
+module
+
+public import Gluck.Discrete.Convexity
 
 /-!
 # Positive similarity invariance of Euclidean realization
@@ -14,6 +16,8 @@ resulting development is the original polygon scaled by the reciprocal scalar,
 so closure and total turning are unchanged.  For positive curvature profiles,
 the existing positive-turning simplicity theorem then supplies simplicity.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

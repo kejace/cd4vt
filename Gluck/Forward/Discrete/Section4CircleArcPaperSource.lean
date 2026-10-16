@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4OrientedPositiveChain
-import Gluck.Forward.Discrete.Section4CircleArcSpliceContradiction
+module
+
+public import Gluck.Forward.Discrete.Section4OrientedPositiveChain
+public import Gluck.Forward.Discrete.Section4CircleArcSpliceContradiction
 
 /-!
 # Dahlberg Section 4 from an oriented circle arc
@@ -15,6 +17,8 @@ selected by the orientation of the minimal-circle contacts.  All support,
 mesh, endpoint-curvature, simplicity, and exact-Theorem-6 arguments are
 discharged by `Section4PositiveRunCertificate.false_of_circleArcCertificate`.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

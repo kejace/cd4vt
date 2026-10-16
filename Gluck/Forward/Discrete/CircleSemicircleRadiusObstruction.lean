@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Dahlberg
-import Gluck.Discrete.CircleParameterGeometry
+module
+
+public import Gluck.Forward.Discrete.Dahlberg
+public import Gluck.Discrete.CircleParameterGeometry
 
 /-!
 # A finite radius obstruction from a circle arc spanning a semicircle
@@ -14,14 +16,16 @@ angular midpoint, have the circle center in their convex hull.  Consequently
 any disk containing those three points has radius at least the circle radius.
 -/
 
+@[expose] public section
+
 namespace Gluck.Forward
 
 open Gluck.Discrete
 
-private noncomputable def semicircleEndpointWeight (θ₀ θ₂ : ℝ) : ℝ :=
+noncomputable def semicircleEndpointWeight (θ₀ θ₂ : ℝ) : ℝ :=
   1 / (2 * (1 - Real.cos ((θ₂ - θ₀) / 2)))
 
-private noncomputable def semicircleMidpointWeight (θ₀ θ₂ : ℝ) : ℝ :=
+noncomputable def semicircleMidpointWeight (θ₀ θ₂ : ℝ) : ℝ :=
   -Real.cos ((θ₂ - θ₀) / 2) /
     (1 - Real.cos ((θ₂ - θ₀) / 2))
 

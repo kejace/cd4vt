@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4CircleSpliceRadius
+module
+
+public import Gluck.Forward.Discrete.Section4CircleSpliceRadius
 
 /-!
 # The Section 4 circle splice is not concyclic
@@ -14,6 +16,8 @@ so they determine that circle uniquely.  The retained positive run also
 contains an original vertex strictly inside the minimal disk.  Consequently
 the complete splice cannot lie on one circle.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

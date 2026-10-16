@@ -1,4 +1,6 @@
-import Gluck.Discrete.ClosingCell
+module
+
+public import Gluck.Discrete.ClosingCell
 
 /-!
 # Curvature-circle linkage transfers
@@ -37,6 +39,8 @@ Since an admissible moderate cell has `0 < delta < Real.pi`, algebraic reversal
 does **not** construct another positive chart cell and cannot be used as a
 positive geometric insertion without an additional argument.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

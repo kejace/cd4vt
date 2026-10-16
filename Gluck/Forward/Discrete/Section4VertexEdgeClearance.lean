@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4ContactOrderCrosscut
+module
+
+public import Gluck.Forward.Discrete.Section4ContactOrderCrosscut
 
 /-!
 # Local clearance from nonincident polygon edges
@@ -13,6 +15,8 @@ misses any prescribed finite block of nonincident edges.  This is the local
 stability input used when a boundary contact is perturbed by a tiny circle
 detour in the three-contact orientation argument.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

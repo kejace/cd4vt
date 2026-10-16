@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4MinimalDisk
+module
+
+public import Gluck.Forward.Discrete.Section4MinimalDisk
 
 /-!
 # The positive complementary gap in Dahlberg Section 4
@@ -14,6 +16,8 @@ maximal complementary run disjoint from the nonpositive-curvature interval
 and proves the strict lower bound by applying the same connected-sublevel
 argument at the threshold given by the reciprocal minimal radius.
 -/
+
+@[expose] public section
 
 namespace Gluck
 

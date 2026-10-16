@@ -1,5 +1,7 @@
-import Gluck.Discrete.SideTangentScaledPolygon
-import Gluck.Discrete.SideTangentRegularFan
+module
+
+public import Gluck.Discrete.SideTangentScaledPolygon
+public import Gluck.Discrete.SideTangentRegularFan
 
 /-!
 # The converse for inward circles tangent to three consecutive supporting lines
@@ -9,6 +11,8 @@ The normals below are outward unit normals of the polygon. Thus the equation
 the line through A with normal N. Contacts on the neighboring line extensions
 are allowed; the central contact is required to lie in its open edge segment.
 -/
+
+@[expose] public section
 
 open scoped BigOperators InnerProductSpace
 

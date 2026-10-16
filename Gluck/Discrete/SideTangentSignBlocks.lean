@@ -1,4 +1,6 @@
-import Gluck.Discrete.SideTangentDFV
+module
+
+public import Gluck.Discrete.SideTangentDFV
 
 /-!
 # Two sign blocks when a cyclic list has no four-sign window
@@ -6,6 +8,8 @@ import Gluck.Discrete.SideTangentDFV
 Zeros are retained. A positive and a negative coefficient, with no alternating
 four-sign window, can be separated by two actual cyclic labels.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.SideTangent
 

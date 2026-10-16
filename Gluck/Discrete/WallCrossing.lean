@@ -3,15 +3,17 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Mathlib.Analysis.Calculus.Deriv.Comp
-import Mathlib.Analysis.Calculus.Deriv.Mul
-import Mathlib.Analysis.Calculus.Deriv.Slope
-import Mathlib.Analysis.Calculus.Implicit
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
-import Mathlib.Data.Set.Finite.Lemmas
-import Mathlib.LinearAlgebra.Complex.FiniteDimensional
-import Mathlib.LinearAlgebra.Matrix.Notation
+module
+
+public import Mathlib.Analysis.Calculus.Deriv.Comp
+public import Mathlib.Analysis.Calculus.Deriv.Mul
+public import Mathlib.Analysis.Calculus.Deriv.Slope
+public import Mathlib.Analysis.Calculus.Implicit
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+public import Mathlib.Data.Set.Finite.Lemmas
+public import Mathlib.LinearAlgebra.Complex.FiniteDimensional
+public import Mathlib.LinearAlgebra.Matrix.Notation
 
 /-!
 # Regular level sets cross transverse walls
@@ -25,6 +27,8 @@ The result uses Mathlib's finite-dimensional implicit-function theorem.  It is
 independent of the particular closing coordinates and can therefore be reused
 for both the angle--length and split-angle charts.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

@@ -3,13 +3,16 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.Closing
-import Gluck.Discrete.Converse
-import Gluck.Winding
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.InverseDeriv
-import Mathlib.Analysis.SpecialFunctions.Sqrt
-import Mathlib.Topology.Order.MonotoneContinuity
-import Mathlib.Order.Hom.Set
+module
+
+public import Gluck.Discrete.Closing
+public import Gluck.Discrete.Converse
+public import Gluck.Winding
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.InverseDeriv
+public import Mathlib.Analysis.SpecialFunctions.Sqrt
+public import Mathlib.Topology.Order.MonotoneContinuity
+public import Mathlib.Order.Hom.Set
+public import Mathlib.Analysis.Calculus.InverseFunctionTheorem.FDeriv
 
 /-!
 # The closing engine — the turning-angle chart and the antisymmetric 2-cell
@@ -33,6 +36,8 @@ antisymmetric 2-cell keeps for free.
 
 Blueprint: `blueprint/src/chapters/Gluck_Discrete_Closing.tex`, `sec:closure`.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 
@@ -7918,7 +7923,7 @@ private lemma boxGauge_pos_of_ne {Lu Hu Lv Hv : ℝ} (hLu : Lu < 0) (hHu : 0 < H
 
 /-- **The radial gauge map** (box side): rescale `w : ℂ` (viewed as `(w.re,
 w.im)`) to gauge-radius `‖w‖`. -/
-private noncomputable def boxProj (Lu Hu Lv Hv : ℝ) (w : ℂ) : ℝ × ℝ :=
+noncomputable def boxProj (Lu Hu Lv Hv : ℝ) (w : ℂ) : ℝ × ℝ :=
   (‖w‖ / boxGauge Lu Hu Lv Hv (w.re, w.im)) • (w.re, w.im)
 
 /-- Key identity: the box gauge of `boxProj w` equals `‖w‖`. -/
@@ -8604,8 +8609,8 @@ theorem fourBarAnchor_isolated_zero (ρ : Fin 4 → ℝ) (Φ₁ Φ₂ Φ₃ : �
   have hf : HasStrictFDerivAt (fourBarAnchor ρ Φ₁ Φ₂ Φ₃)
       (e : (ℝ × ℝ) →L[ℝ] ℂ) z₀ := by
     rw [he]; exact hasStrictFDerivAt_fourBarAnchor ρ Φ₁ Φ₂ Φ₃ z₀
-  have hlinv := hf.eventually_left_inverse
-  have himg := hf.localInverse_apply_image
+  have hlinv := HasStrictFDerivAt.eventually_left_inverse hf
+  have himg := HasStrictFDerivAt.localInverse_apply_image hf
   filter_upwards [nhdsWithin_le_nhds hlinv, self_mem_nhdsWithin] with w hw hne
   intro hcontra
   exact hne (by rw [← hw, hcontra, himg]; exact Set.mem_singleton z₀)
@@ -8820,7 +8825,7 @@ equation, the margin package and the winding brick are consumed downstream. -/
 continuous `ℝ`-linear map `h ↦ (ρ₀−ρ₁)e^{i(Φ₁+z₁)}·h₁ + (ρ₁−ρ₂)e^{i(Φ₂+z₂)}·h₂`
 (consecutive junction directions; the `1/i` prefactor cancels the chain-rule
 factor `i`). -/
-private noncomputable def fourBarAnchorAdjDeriv (ρ : Fin 4 → ℝ) (Φ₁ Φ₂ : ℝ)
+noncomputable def fourBarAnchorAdjDeriv (ρ : Fin 4 → ℝ) (Φ₁ Φ₂ : ℝ)
     (z : ℝ × ℝ) : ℝ × ℝ →L[ℝ] ℂ :=
   (((ρ 0 - ρ 1 : ℝ) : ℂ) * Complex.exp (((Φ₁ + z.1 : ℝ) : ℂ) * Complex.I)) •
       Complex.ofRealCLM.comp (ContinuousLinearMap.fst ℝ ℝ ℝ)
@@ -8944,8 +8949,8 @@ private theorem fourBarAnchorAdj_isolated_zero (ρ : Fin 4 → ℝ) (Φ₁ Φ₂
   have hf : HasStrictFDerivAt (fourBarAnchorAdj ρ Φ₁ Φ₂ Φ₃)
       (e : (ℝ × ℝ) →L[ℝ] ℂ) z₀ := by
     rw [he]; exact hasStrictFDerivAt_fourBarAnchorAdj ρ Φ₁ Φ₂ Φ₃ z₀
-  have hlinv := hf.eventually_left_inverse
-  have himg := hf.localInverse_apply_image
+  have hlinv := HasStrictFDerivAt.eventually_left_inverse hf
+  have himg := HasStrictFDerivAt.localInverse_apply_image hf
   filter_upwards [nhdsWithin_le_nhds hlinv, self_mem_nhdsWithin] with w hw hne
   intro hcontra
   exact hne (by rw [← hw, hcontra, himg]; exact Set.mem_singleton z₀)

@@ -1,7 +1,9 @@
-import Gluck.Discrete.NativeIncidentOrthogonalRank
-import Gluck.Discrete.NativeIncidentCoreTrig
-import Gluck.Discrete.NativeIncidentProjectiveElimination
-import Gluck.Discrete.NativeNegativeCorners
+module
+
+public import Gluck.Discrete.NativeIncidentOrthogonalRank
+public import Gluck.Discrete.NativeIncidentCoreTrig
+public import Gluck.Discrete.NativeIncidentProjectiveElimination
+public import Gluck.Discrete.NativeNegativeCorners
 
 /-!
 # The acute second-turn incident rank reduction
@@ -9,6 +11,8 @@ import Gluck.Discrete.NativeNegativeCorners
 This module keeps the actual native equations and exposes both genuine
 angle-chart minors needed for the remaining acute orthogonal chamber.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.NativeOppositePure
 

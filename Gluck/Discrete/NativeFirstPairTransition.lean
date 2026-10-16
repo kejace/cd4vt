@@ -1,5 +1,7 @@
-import Gluck.Discrete.NativeFirstPairAnchor
-import Gluck.Discrete.NativeOrderedFirstPair
+module
+
+public import Gluck.Discrete.NativeFirstPairAnchor
+public import Gluck.Discrete.NativeOrderedFirstPair
 
 /-!
 # Every first transition to a nonnegative flag has a regular anchor
@@ -7,6 +9,8 @@ import Gluck.Discrete.NativeOrderedFirstPair
 The predecessor `t` may be below, equal to, or above the marked low
 reading `p`. The two proved producers cover this exhaustive split.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.NativeOppositePure
 

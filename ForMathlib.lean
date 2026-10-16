@@ -3,18 +3,20 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import ForMathlib.Analysis.Calculus.ParametricConstraintCorrection
-import ForMathlib.Analysis.Calculus.ParametricPositiveSection
-import ForMathlib.Analysis.Complex.ConeWinding
-import ForMathlib.Analysis.Complex.DiamondStability
-import ForMathlib.Analysis.Complex.DiamondWinding
-import ForMathlib.Analysis.Complex.PoincareMiranda
-import ForMathlib.Analysis.Complex.WindingNumber
-import ForMathlib.Analysis.InnerProductSpace.ProjectiveBalance
-import ForMathlib.Analysis.InnerProductSpace.ProjectiveBall
-import ForMathlib.Analysis.InnerProductSpace.ProjectiveOrientation
-import ForMathlib.Analysis.InnerProductSpace.ProjectiveSegments
-import ForMathlib.Topology.Order.ParametricRoot
+module
+
+public import ForMathlib.Analysis.Calculus.ParametricConstraintCorrection
+public import ForMathlib.Analysis.Calculus.ParametricPositiveSection
+public import ForMathlib.Analysis.Complex.ConeWinding
+public import ForMathlib.Analysis.Complex.DiamondStability
+public import ForMathlib.Analysis.Complex.DiamondWinding
+public import ForMathlib.Analysis.Complex.PoincareMiranda
+public import ForMathlib.Analysis.Complex.WindingNumber
+public import ForMathlib.Analysis.InnerProductSpace.ProjectiveBalance
+public import ForMathlib.Analysis.InnerProductSpace.ProjectiveBall
+public import ForMathlib.Analysis.InnerProductSpace.ProjectiveOrientation
+public import ForMathlib.Analysis.InnerProductSpace.ProjectiveSegments
+public import ForMathlib.Topology.Order.ParametricRoot
 
 /-!
 # ForMathlib: mathlib-bound material staged from this project

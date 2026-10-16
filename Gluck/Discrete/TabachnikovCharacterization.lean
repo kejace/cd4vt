@@ -1,6 +1,8 @@
-import Gluck.Discrete.TabachnikovConverse
-import Gluck.Forward.Euclidean
-import Gluck.Forward.Discrete.PlateauBridge
+module
+
+public import Gluck.Discrete.TabachnikovConverse
+public import Gluck.Forward.Euclidean
+public import Gluck.Forward.Discrete.PlateauBridge
 
 /-!
 # The exact Menger-radius characterization
@@ -10,6 +12,8 @@ realizability is equivalent to two distinct plateau maxima and minima.
 This combines Tabachnikov's converse with Dahlberg's formalized forward theorem;
 it concerns vertex circumcircles, not circles tangent to supporting lines.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

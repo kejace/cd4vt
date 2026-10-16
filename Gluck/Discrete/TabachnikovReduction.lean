@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.N6MonotoneResidue
-import Gluck.Discrete.N6PlateauPerturbation
+module
+
+public import Gluck.Discrete.N6MonotoneResidue
+public import Gluck.Discrete.N6PlateauPerturbation
 
 /-!
 # Tabachnikov's Problem 2 as one named proposition
@@ -36,6 +38,8 @@ Dahlberg's conclusion a formal consequence of the maxima half
 gap only; the three stratum hypotheses themselves are not used by the proof.
 
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

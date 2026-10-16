@@ -1,5 +1,7 @@
-import Gluck.Discrete.SideTangentNecessityBalance
-import Gluck.Discrete.SideTangentReconstruction
+module
+
+public import Gluck.Discrete.SideTangentNecessityBalance
+public import Gluck.Discrete.SideTangentReconstruction
 
 /-!
 # Wegner forward theorem and exact supporting-line-circle characterization
@@ -9,6 +11,8 @@ open edge segments, the radii are constant or their cyclic first differences
 have at least four sign changes. Combined with the proved converse, this is an
 exact characterization, including repeated adjacent radii.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.SideTangent
 

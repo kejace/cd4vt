@@ -1,4 +1,6 @@
-import Gluck.Discrete.RegularDormantOpening
+module
+
+public import Gluck.Discrete.RegularDormantOpening
 
 /-!
 # Joint smoothness of discrete polygon reconstruction
@@ -7,6 +9,8 @@ The profile and the edge lengths are independent finite-dimensional variables.
 All orders of differentiability hold strictly inside the arcsine walls, even
 when some lengths are zero. These lemmas do not assert closure or simplicity.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

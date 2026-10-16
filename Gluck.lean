@@ -1,1 +1,3 @@
-import Gluck.Discrete
+module
+
+public import Gluck.Discrete

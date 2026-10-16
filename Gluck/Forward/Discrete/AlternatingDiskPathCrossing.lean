@@ -3,9 +3,11 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4AlternatingChordCrossing
-import Gluck.Topology.ChordDiskNormalization
-import ForMathlib.Analysis.Complex.PoincareMiranda
+module
+
+public import Gluck.Forward.Discrete.Section4AlternatingChordCrossing
+public import Gluck.Topology.ChordDiskNormalization
+public import ForMathlib.Analysis.Complex.PoincareMiranda
 
 /-!
 # Alternating disk paths cross
@@ -22,6 +24,8 @@ Endpoint-avoidance hypotheses are explicit.  They are exactly what simple
 polygonal subchains provide and are what makes the straight-line homotopy from
 each path to its chord stay away from the opposite fixed boundary endpoint.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

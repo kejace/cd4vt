@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.TangentChord
+module
+
+public import Gluck.Discrete.TangentChord
 
 /-!
 # The orthogonal-diagonal realization for four vertices
@@ -13,6 +15,8 @@ quadrilateral realization.  Its diagonals are the coordinate axes.  The
 construction is independent of the closing-map machinery used for larger
 polygons.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 
@@ -29,7 +33,7 @@ def orthogonalQuad (a b c d : ℝ) : ZMod 4 → ℂ := fun i =>
     ⟨i.val, i.val_lt⟩
 
 /-- A segment whose endpoints lie on the real and imaginary coordinate axes. -/
-private def axisSegment (x y : ℝ) : Set ℂ :=
+def axisSegment (x y : ℝ) : Set ℂ :=
   segment ℝ (x : ℂ) ((y : ℂ) * Complex.I)
 
 private lemma axisSegment_data {x y : ℝ} {z : ℂ} (hz : z ∈ axisSegment x y) :

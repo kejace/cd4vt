@@ -1,5 +1,7 @@
-import Gluck.Discrete.SideTangentSignBlocks
-import Gluck.Discrete.SideTangentChordSeparation
+module
+
+public import Gluck.Discrete.SideTangentSignBlocks
+public import Gluck.Discrete.SideTangentChordSeparation
 
 /-!
 # Affine balance forces four cyclic sign changes
@@ -8,6 +10,8 @@ A nonzero signed affine dependence among the cyclic vertices of a strictly
 convex polygon has at least four sign changes. The proof retains zero
 coefficients and separates the two possible sign blocks by a chord.
 -/
+
+@[expose] public section
 
 open scoped BigOperators
 

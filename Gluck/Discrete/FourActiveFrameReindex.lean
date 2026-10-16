@@ -1,4 +1,6 @@
-import Gluck.Discrete.RegularFourAnchorTransport
+module
+
+public import Gluck.Discrete.RegularFourAnchorTransport
 
 /-!
 # Sorted actual four-edge frames under cyclic reindexing
@@ -7,6 +9,8 @@ A one-step shift either preserves the order of the four labels or moves the
 first selected edge to the end. Reflection reverses edge order and swaps
 the literal start and finish readings. No virtual edge is introduced.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.FourActiveSlots.Frame
 

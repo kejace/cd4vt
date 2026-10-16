@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.ZigzagWords
-import Gluck.Discrete.ZigzagCarrier
+module
+
+public import Gluck.Discrete.ZigzagWords
+public import Gluck.Discrete.ZigzagCarrier
 
 /-!
 # Quantitative cuts in monotone runs
@@ -21,6 +23,8 @@ The depth result is conditional, and the product compression is algebraic: no
 theorem here lifts a compressed carrier certificate through a multi-edge active
 run.  That geometric lifting problem is the remaining universal gap.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

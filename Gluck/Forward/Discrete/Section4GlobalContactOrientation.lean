@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4ContactReversal
+module
+
+public import Gluck.Forward.Discrete.Section4ContactReversal
 
 /-!
 # Global orientation of enclosing-disk contacts
@@ -15,6 +17,8 @@ orientation. The proof is source-free: a Hopf secant grid computes the total
 principal edge turn as `2π` or `-2π` at any exposed disk contact, and the
 single global sum rules out opposite signs at two contacts.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

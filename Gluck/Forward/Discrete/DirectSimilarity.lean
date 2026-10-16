@@ -3,10 +3,12 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Defs
-import Gluck.Discrete.PolygonConvexity
-import Mathlib.Geometry.Euclidean.Sphere.Power
-import Mathlib.Analysis.Normed.Affine.AddTorsor
+module
+
+public import Gluck.Forward.Discrete.Defs
+public import Gluck.Discrete.PolygonConvexity
+public import Mathlib.Geometry.Euclidean.Sphere.Power
+public import Mathlib.Analysis.Normed.Affine.AddTorsor
 
 /-!
 # Direct similarities of the Euclidean plane
@@ -14,6 +16,8 @@ import Mathlib.Analysis.Normed.Affine.AddTorsor
 The map `z ↦ a * z + w` packages rotations, positive homotheties, and
 translations into one orientation-preserving similarity API.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

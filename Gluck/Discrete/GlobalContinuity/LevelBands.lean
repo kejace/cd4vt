@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.GraftContraction
-import Mathlib.Topology.Order.IntermediateValue
+module
+
+public import Gluck.Discrete.GraftContraction
+public import Mathlib.Topology.Order.IntermediateValue
 
 /-!
 # An admissible path without a continuous DFV-level selection
@@ -13,6 +15,8 @@ This proves an obstruction to selecting a *level*. It does not identify a
 continuous geometric invariant of a polygon and does not claim to refute
 global polygon selection. See README.md for the separate smooth argument.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.GlobalContinuity
 

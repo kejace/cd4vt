@@ -1,7 +1,7 @@
 # Comparator audit
 
 [Comparator](https://github.com/leanprover/comparator) (pinned at
-`32bd61da1d68fbaa310234964e9b820b03a0f82f`, release `v4.35.0-rc2`) checks a
+`e3dcf3083fc53d44b27a4431fabf7d43181583f5`, release `v4.35.0`) checks a
 candidate library against a trusted statement: same theorem statements and
 statement dependencies, only the permitted axioms, and acceptance of the proofs
 by the Lean kernel.
@@ -22,7 +22,8 @@ library's definitions exactly, including instance paths and the names of
 auto-generated auxiliary proofs. That is why the challenge imports seven
 specific Mathlib modules rather than all of Mathlib (which resolves the topology
 on `ℂ` through a C*-algebra instance), and why it follows the library's module
-boundaries. If a library definition changes, update its copy here; Comparator
+boundaries. Like the library, every challenge file uses the module system
+(`module`, `public import`, `@[expose] public section`). If a library definition changes, update its copy here; Comparator
 reports any definition or statement that no longer matches.
 
 ## Running

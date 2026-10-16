@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.N4Moderate
-import Gluck.Discrete.OrthogonalResidualController
+module
+
+public import Gluck.Discrete.N4Moderate
+public import Gluck.Discrete.OrthogonalResidualController
 
 /-!
 # The normalized orthogonal core for the Type-A R cell
@@ -15,6 +17,8 @@ The construction in `N4Orthogonal` previously introduced these quantities
 only as local proof terms.  Naming them makes the Type-A dormant-opening
 family available to continuity and residual-coordinate arguments.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.N6TypeAThreeCell
 

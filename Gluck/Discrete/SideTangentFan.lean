@@ -1,5 +1,7 @@
-import Gluck.Discrete.SideTangentSquareLabels
-import Gluck.Discrete.CircleParameterGeometry
+module
+
+public import Gluck.Discrete.SideTangentSquareLabels
+public import Gluck.Discrete.CircleParameterGeometry
 
 /-!
 # Tangent intersections for the finite side-tangent construction
@@ -8,6 +10,8 @@ The vertices are actual intersections of consecutive unit-circle tangent lines.
 The formulas remain continuous when a pair of normals coalesces, which gives
 exactly the side-contact limits used in the square perturbation argument.
 -/
+
+@[expose] public section
 
 open scoped InnerProductSpace Topology
 

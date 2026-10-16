@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.CircleParameterGeometry
+module
+
+public import Gluck.Discrete.CircleParameterGeometry
 
 /-!
 # Support of short circle-mesh chords
@@ -14,6 +16,8 @@ chord's distance from the center.  This supplies the inner-chain half of a
 circle-mesh support argument.  The outer-circle half is already provided by
 `crossR2_circlePoint_pos_of_ordered` from `CircleParameterGeometry`.
 -/
+
+@[expose] public section
 
 open Metric
 

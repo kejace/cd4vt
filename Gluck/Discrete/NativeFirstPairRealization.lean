@@ -1,5 +1,7 @@
-import Gluck.Discrete.NativeFirstPairTransition
-import Gluck.Discrete.FourActiveSlotEmbedding
+module
+
+public import Gluck.Discrete.NativeFirstPairTransition
+public import Gluck.Discrete.FourActiveSlotEmbedding
 
 /-!
 # First-pair realization with arbitrary hidden curvature words
@@ -8,6 +10,8 @@ The four selected edges belong to the original cyclic profile. All other
 readings are arbitrary positive real numbers. A produced regular anchor
 opens all their edges through the original coherent realization theorem.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.FourActiveSlots.Frame
 

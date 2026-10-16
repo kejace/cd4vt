@@ -3,19 +3,21 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Challenge.Discrete.Defs
-import Challenge.Discrete.Converse
-import Challenge.Discrete.TangentChord
-import Challenge.Discrete.LocalRegularity
-import Challenge.Discrete.TabachnikovReduction
-import Challenge.Discrete.TabachnikovConverse
-import Challenge.Discrete.PolygonConvexity
-import Challenge.Discrete.LocalContinuity
-import Challenge.Forward.Kernel
-import Challenge.Forward.Discrete.Defs
-import Challenge.Discrete.SideTangentDFV
-import Challenge.Discrete.SideTangentConverse
-import Challenge.Discrete.GlobalContinuity.LevelBands
+module
+
+public import Challenge.Discrete.Defs
+public import Challenge.Discrete.Converse
+public import Challenge.Discrete.TangentChord
+public import Challenge.Discrete.LocalRegularity
+public import Challenge.Discrete.TabachnikovReduction
+public import Challenge.Discrete.TabachnikovConverse
+public import Challenge.Discrete.PolygonConvexity
+public import Challenge.Discrete.LocalContinuity
+public import Challenge.Forward.Kernel
+public import Challenge.Forward.Discrete.Defs
+public import Challenge.Discrete.SideTangentDFV
+public import Challenge.Discrete.SideTangentConverse
+public import Challenge.Discrete.GlobalContinuity.LevelBands
 
 /-!
 # Comparator challenge: the formal statements of the discrete paper
@@ -39,6 +41,8 @@ names whose statements, and every definition they depend on, are identical to
 the ones here; that the proofs use only `propext`, `Classical.choice` and
 `Quot.sound`; and that the Lean kernel accepts them.
 -/
+
+@[expose] public section
 
 /-! ## The six theorems -/
 

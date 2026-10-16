@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.RotationalCollar
+module
+
+public import Gluck.Discrete.RotationalCollar
 
 /-!
 # Realizability is open at a regular configuration
@@ -41,6 +43,8 @@ neighbourhood of a regular `n`-gon is available by this route.  Prime `n`,
 Problem 2.
 
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

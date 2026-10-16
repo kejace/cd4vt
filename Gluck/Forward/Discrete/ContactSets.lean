@@ -1,4 +1,6 @@
-import Gluck.Forward.Discrete.CyclicComponents
+module
+
+public import Gluck.Forward.Discrete.CyclicComponents
 
 /-!
 # Finite circle contact sets
@@ -8,6 +10,8 @@ results here are independent of Dahlberg's Euclidean comparison geometry and
 can be reused by both the containing-circle and interior-missing-circle
 arguments.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

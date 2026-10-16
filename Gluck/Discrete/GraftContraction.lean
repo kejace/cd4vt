@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.Converse
+module
+
+public import Gluck.Discrete.Converse
 
 /-!
 # The graft contraction (G-comb)
@@ -31,6 +33,8 @@ finite union of the diagonal hyperplanes `{κ i₁ = κ i₂}`, `i₁ ≠ i₂`
 `exists_graft_contraction_attaining` is the attaining corollary.
 
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

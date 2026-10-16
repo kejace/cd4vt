@@ -1,4 +1,6 @@
-import Gluck.Discrete.RegularFourAnchor
+module
+
+public import Gluck.Discrete.RegularFourAnchor
 
 /-!
 # Transport of retained regular four-edge anchors
@@ -7,6 +9,8 @@ Positive curvature scaling transports the actual half-length witness and
 its surjective original controller derivative. Reindexing identities are
 stated off the zero set so that variable closure gauges are not discarded.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

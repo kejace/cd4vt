@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import ForMathlib.Analysis.Complex.WindingNumber
+module
+
+public import ForMathlib.Analysis.Complex.WindingNumber
 
 /-!
 # The Poincaré–Miranda theorem in the plane
@@ -59,6 +61,8 @@ planar special case.
 Poincare-Miranda, Miranda, intermediate value theorem, winding number, degree, Brouwer,
 fixed point
 -/
+
+@[expose] public section
 
 open scoped Real unitInterval
 open Complex Metric
@@ -169,7 +173,7 @@ private theorem windingNumberAt_eq_one_of_fourArcs (γ : C(I, ℂ)) (hγ : ∀ t
 /-! ### The radial disk-to-square chart -/
 
 /-- Scaling denominator of the radial disk-to-square chart: `‖z‖_∞ = max |re z| |im z|`. -/
-private noncomputable def sqDen (z : ℂ) : ℝ := max |z.re| |z.im|
+noncomputable def sqDen (z : ℂ) : ℝ := max |z.re| |z.im|
 
 private theorem sqDen_continuous : Continuous sqDen :=
   (continuous_abs.comp Complex.continuous_re).max (continuous_abs.comp Complex.continuous_im)
@@ -184,7 +188,7 @@ private theorem sqDen_pos {z : ℂ} (hz : z ≠ 0) : 0 < sqDen z := by
 /-- The radial disk-to-square chart `z ↦ (‖z‖ / ‖z‖_∞) • z`, mapping the closed unit disk
 onto the closed square `[-1, 1]²` (radially) and the unit circle onto the square's boundary.
 (Junk value `0` at `z = 0`, which is also its continuous value there.) -/
-private noncomputable def squareChart (z : ℂ) : ℂ := (‖z‖ / sqDen z) • z
+noncomputable def squareChart (z : ℂ) : ℂ := (‖z‖ / sqDen z) • z
 
 private theorem squareChart_norm_le (z : ℂ) : ‖squareChart z‖ ≤ 2 * ‖z‖ := by
   by_cases hz : z = 0

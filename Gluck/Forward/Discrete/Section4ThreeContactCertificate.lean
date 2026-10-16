@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4ThreeContactAnchor
+module
+
+public import Gluck.Forward.Discrete.Section4ThreeContactAnchor
 
 /-!
 # The three-contact circle-arc certificate
@@ -11,6 +13,8 @@ import Gluck.Forward.Discrete.Section4ThreeContactAnchor
 The complementary arc of a positive run contains an intermediate contact,
 whose orientation supplies the full circle-arc certificate.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

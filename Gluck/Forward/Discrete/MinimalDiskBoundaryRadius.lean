@@ -3,7 +3,9 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.MinimalDiskContacts
+module
+
+public import Gluck.Forward.Discrete.MinimalDiskContacts
 
 /-!
 # Radius minimality on boundary contacts
@@ -14,6 +16,8 @@ hypothetically smaller contact-containing disk.  Boundary contacts remain
 inside by convexity of distance, while the positive minimum of the radial
 slacks of the finitely many noncontacts keeps every other vertex inside.
 -/
+
+@[expose] public section
 
 open Set Metric
 

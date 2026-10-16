@@ -1,5 +1,7 @@
-import Gluck.Discrete.CurvatureMountainSelection
-import Gluck.Discrete.NativeFirstPairRealization
+module
+
+public import Gluck.Discrete.CurvatureMountainSelection
+public import Gluck.Discrete.NativeFirstPairRealization
 
 /-!
 # Selecting a literal first-pair transition on a rising mountain
@@ -9,6 +11,8 @@ transition on the actual consecutive rising leg. The four retained edges
 are exactly `0`, `i-1`, `i`, and `n-1`. The native first-pair theorem opens
 all remaining original edges and gives the coherent `RealizesR2` conclusion.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

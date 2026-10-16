@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4ChainInnerRadius
-import Gluck.Forward.Discrete.Section4MeshDensity
+module
+
+public import Gluck.Forward.Discrete.Section4ChainInnerRadius
+public import Gluck.Forward.Discrete.Section4MeshDensity
 
 /-!
 # Strict support by the circle edges in Dahlberg's Section 4 splice
@@ -15,6 +17,8 @@ the circle parameters puts every other mesh vertex, including the two retained
 boundary endpoints, strictly on the same side.  The final theorem packages
 both facts as strict edge support for the explicit auxiliary splice.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

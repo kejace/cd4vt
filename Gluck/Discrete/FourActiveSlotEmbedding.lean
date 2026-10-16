@@ -1,8 +1,10 @@
-import Gluck.Discrete.GapCoords
-import Gluck.Discrete.BlockResultant
-import Gluck.Discrete.CurvatureLinkage
-import Gluck.Discrete.NativeOppositePureNativeRank
-import Gluck.Discrete.RegularDormantOpening
+module
+
+public import Gluck.Discrete.GapCoords
+public import Gluck.Discrete.BlockResultant
+public import Gluck.Discrete.CurvatureLinkage
+public import Gluck.Discrete.NativeOppositePureNativeRank
+public import Gluck.Discrete.RegularDormantOpening
 
 /-!
 # Embedding four literal active edges in an arbitrary cyclic profile
@@ -12,6 +14,8 @@ natural representatives. All unselected lengths vanish on the active slice;
 no curvature reading is changed. Identities in this file hold on the entire
 active slice, including signed lengths, so they can later be differentiated.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.FourActiveSlots
 

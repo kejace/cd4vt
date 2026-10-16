@@ -1,5 +1,7 @@
-import Gluck.Discrete.NativeOppositePureClosure
-import Gluck.Discrete.NativeOppositePureRank
+module
+
+public import Gluck.Discrete.NativeOppositePureClosure
+public import Gluck.Discrete.NativeOppositePureRank
 
 /-!
 # Rank of the original opposite-pure closure equations
@@ -8,6 +10,8 @@ This file differentiates the exact off-zero native closure identity. Thus
 the split-controller rank is transferred to the actual complex closure and
 lifted real turn, without replacing either equation by a relaxed residual.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.NativeOppositePure
 

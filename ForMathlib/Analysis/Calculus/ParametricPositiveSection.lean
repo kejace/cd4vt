@@ -1,4 +1,6 @@
-import ForMathlib.Analysis.Calculus.ParametricConstraintCorrection
+module
+
+public import ForMathlib.Analysis.Calculus.ParametricConstraintCorrection
 
 /-!
 # Positive local sections from a regular boundary solution
@@ -8,6 +10,8 @@ positive section in its parameters if the derivative is onto using only
 directions supported on its positive coordinates. Additional open constraints
 are preserved. The section need not pass through the boundary solution.
 -/
+
+@[expose] public section
 
 open Filter Set
 open scoped Topology ContDiff

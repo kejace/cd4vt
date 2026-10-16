@@ -3,9 +3,11 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.N6TypeAThreeCell
-import Mathlib.Analysis.Calculus.Deriv.MeanValue
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.InverseDeriv
+module
+
+public import Gluck.Discrete.N6TypeAThreeCell
+public import Mathlib.Analysis.Calculus.Deriv.MeanValue
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.InverseDeriv
 
 /-!
 # Inverse-sine corner estimates in the Type-A three-cell selector
@@ -17,6 +19,8 @@ identity used in the latter. It also proves that a nonnegative bottom-right
 corner residual forces the sharp critical lower bound on `t`, and transfers
 that bound to the scalar `M` wall.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete.N6TypeAThreeCell
 

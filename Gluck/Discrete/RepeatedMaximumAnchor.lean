@@ -1,7 +1,9 @@
-import Gluck.Discrete.NativeRepeatedMaximum
-import Gluck.Discrete.NativeIncidentOrthogonalRank
-import Gluck.Discrete.RegularFourAnchor
-import Gluck.Discrete.FirstPairMountainSelector
+module
+
+public import Gluck.Discrete.NativeRepeatedMaximum
+public import Gluck.Discrete.NativeIncidentOrthogonalRank
+public import Gluck.Discrete.RegularFourAnchor
+public import Gluck.Discrete.FirstPairMountainSelector
 
 /-!
 # An actual regular anchor at two repeated maxima
@@ -10,6 +12,8 @@ The selected edges are the four literal edges incident to the two maxima.
 All intervening readings remain in the original word. The anchor is kept
 as data, so constant runs can subsequently be restored before opening.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

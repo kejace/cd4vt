@@ -3,12 +3,14 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.CyclicRunAvoidance
-import Gluck.Forward.Discrete.Section4Combinatorics
-import Gluck.Forward.Discrete.MinimalDiskContacts
-import Gluck.Forward.Discrete.MinimalDiskBoundaryHull
-import Gluck.Forward.Discrete.Section4ContactOrientation
-import Gluck.Forward.Discrete.Dahlberg
+module
+
+public import Gluck.Forward.Discrete.CyclicRunAvoidance
+public import Gluck.Forward.Discrete.Section4Combinatorics
+public import Gluck.Forward.Discrete.MinimalDiskContacts
+public import Gluck.Forward.Discrete.MinimalDiskBoundaryHull
+public import Gluck.Forward.Discrete.Section4ContactOrientation
+public import Gluck.Forward.Discrete.Dahlberg
 
 /-!
 # Minimal-disk contact combinatorics in Dahlberg Section 4
@@ -16,6 +18,8 @@ import Gluck.Forward.Discrete.Dahlberg
 This file separates the connected-contact contradiction in the at-least-three
 contact case from the remaining two-contact geometry.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 

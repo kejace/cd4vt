@@ -1,5 +1,7 @@
-import Gluck.Discrete.ConstantRunAnchorReduction
-import Gluck.Discrete.TabachnikovReduction
+module
+
+public import Gluck.Discrete.ConstantRunAnchorReduction
+public import Gluck.Discrete.TabachnikovReduction
 
 /-!
 # The remaining adjacent-unequal producer for the coherent converse
@@ -9,6 +11,8 @@ opener reduce the original universal theorem to producing a regular
 four-edge anchor for every positive adjacent-unequal DFV word. The
 producer is explicit below and is not asserted by this file.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

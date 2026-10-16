@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.MinimalDiskBoundaryHull
-import Gluck.Discrete.CircleParameterGeometry
+module
+
+public import Gluck.Forward.Discrete.MinimalDiskBoundaryHull
+public import Gluck.Discrete.CircleParameterGeometry
 
 /-!
 # Angular span of minimal-disk boundary contacts
@@ -13,6 +15,8 @@ The boundary contacts of a positive-radius minimal enclosing Euclidean disk
 cannot all lie in an open semicircle.  Quantitatively, any closed real-angle
 interval parameterizing all boundary contacts has length at least `π`.
 -/
+
+@[expose] public section
 
 open Set Metric
 

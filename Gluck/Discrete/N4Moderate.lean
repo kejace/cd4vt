@@ -3,8 +3,10 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.Convexity
-import Gluck.Discrete.N4Orthogonal
+module
+
+public import Gluck.Discrete.Convexity
+public import Gluck.Discrete.N4Orthogonal
 
 /-!
 # Moderate-arc realization for four vertices
@@ -13,6 +15,8 @@ The orthogonal-diagonal quadrilateral realizes the analytic Euclidean developmen
 its side lengths satisfy every strict moderate wall, its exterior turns sum to
 `2π`, and its developed edge vectors close by unit-complex cancellation.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

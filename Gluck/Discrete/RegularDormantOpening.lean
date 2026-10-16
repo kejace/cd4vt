@@ -3,9 +3,11 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Discrete.CollaredConverse
-import Gluck.Discrete.DormantOpening
-import Gluck.Discrete.WallCrossing
+module
+
+public import Gluck.Discrete.CollaredConverse
+public import Gluck.Discrete.DormantOpening
+public import Gluck.Discrete.WallCrossing
 
 /-!
 # Opening a regular dormant anchor
@@ -19,6 +21,8 @@ collapsed length face.  The second accepts the more convenient equivalent
 input used by sparse four-edge anchors: every controller target can be
 produced by a correction supported away from the collapsed coordinates.
 -/
+
+@[expose] public section
 
 namespace Gluck.Discrete
 

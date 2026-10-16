@@ -3,9 +3,11 @@ Copyright (c) 2026 kejace. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: kejace
 -/
-import Gluck.Forward.Discrete.Section4CircleArcPaperSource
-import Gluck.Forward.Discrete.Section4ThreeContactCertificate
-import Gluck.Forward.Discrete.Section4TwoContactArc
+module
+
+public import Gluck.Forward.Discrete.Section4CircleArcPaperSource
+public import Gluck.Forward.Discrete.Section4ThreeContactCertificate
+public import Gluck.Forward.Discrete.Section4TwoContactArc
 
 /-!
 # The source-free oriented circle arc in Dahlberg Section 4
@@ -14,6 +16,8 @@ The minimal circle has at least two polygonal contacts.  Exactly two contacts
 are antipodal, while three or more contacts supply the ordered complementary
 arc through the three-contact orientation anchor.
 -/
+
+@[expose] public section
 
 namespace Gluck.Forward
 
