@@ -1,7 +1,0 @@
-'AppendixUniformAudit.same_contract' depends on axioms: [propext, Classical.choice, Quot.sound]
-'Gluck.smooth_of_uniform_regularity' depends on axioms: [propext, Classical.choice, Quot.sound]
-'Gluck.UniformRegularStatement.exists_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
-'Gluck.dahlberg_converse_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]
-'Gluck.spherical_dahlberg_converse_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]
-'Gluck.hyperbolic_dahlberg_converse_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]
-'Gluck.spaceform_dahlberg_converse_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]
