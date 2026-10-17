@@ -53,7 +53,7 @@ depends only on `propext`, `Classical.choice` and `Quot.sound`.
 
 ## Building
 
-Lean `v4.35.0`, Mathlib `v4.35.0`.
+Lean `v4.35.0-rc3`, Mathlib `v4.35.0-rc3`.
 
 ```bash
 lake exe cache get        # prebuilt Mathlib
